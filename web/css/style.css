@@ -1,0 +1,138 @@
+body {
+	background-color: #FAFAFA !important;
+}
+
+
+
+/******************** INDEX Style ********************/
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+	text-align: center;
+	border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 700px;
+    padding: 25px 20px;
+}
+
+.login {
+	width: 60%;
+	margin: auto;
+	padding-top: 70px;
+}
+
+.indexFooter {
+	padding-top: 70px;
+	color: #585858;
+}
+/******************** End of INDEX Style ********************/
+
+
+.container {
+	padding-bottom: 15px;
+	margin-bottom: 40px;
+}
+
+.page-header a {
+	color: gray !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.page-header a:hover {
+	color: #FFBF00 !important;
+	text-decoration: none !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+
+/******************** Seminars & Sessions Style ********************/
+small {
+	color: #151515 !important;
+}
+
+.content {
+	padding-left: 25px;
+	padding-right: 25px;
+	min-height: 290px;
+	width: 100%;
+}
+
+.thumbnail {
+	height: 250px;
+}
+
+.thumbnail:hover, .thumbnail:active, .thumbnail:focus {
+	text-decoration: none;
+	border-color: #F6C533 !important;
+}
+
+#complete {
+	background: rgba(215, 215, 215, 0.8) !important;
+}
+
+.caption h4 {
+	border-top: 1px solid #585858;
+	padding: 10px;
+	font-weight: bold !important;
+	color: #EEA108 !important;
+}
+/******************** End of Seminars & Sessions Style ********************/
+
+
+/******************** Reports Style ********************/
+.reports {
+	padding: 25px;
+	text-align: center;
+	width: 400px;
+	margin: auto;
+}
+/******************** End of Reports Style ********************/
+
+/******************** Account Style ********************/
+.row .account {
+	background: white;
+	padding: 20px 25px !important;
+	margin: 0;
+}
+
+.accountLeft {
+	border-right: 2px solid #eee !important;
+}
+
+.accountRight {
+	padding-top: 20px;
+}
+
+.account h4 {
+	color: #A4A4A4 !important;
+}
+
+.account h4 span {
+	color: black;
+	padding-top: 0px;
+	padding-left: 40px;
+}
+/******************** End of Account Style ********************/
+
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .nav-tabs>li>a {
+	color: #585858 !important;
+}
+
+.someContainer {
+	border: 1px solid black;
+	height: 250px;
+}
