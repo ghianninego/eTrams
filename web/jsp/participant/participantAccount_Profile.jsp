@@ -53,10 +53,14 @@
 			 					
 			 					<div class="col-sm-4 accountRight">
 			 						<div class="someButton">
-			 							<a class="btn btn-yellow">Edit Information</a><br>
+			 							<a class="btn btn-yellow" href="participantAccount_EditProfile.jsp">
+			 								Edit Information
+			 							</a>
 			 						</div>
 			 						<div class="someButton">
-			 							<a class="btn btn-yellow">Edit Password</a>
+			 							<a class="btn btn-yellow" href="participantAccount_EditPassword.jsp">
+			 								Edit Password
+			 							</a>
 			 						</div>
 			 					</div>
 			 				</div>
