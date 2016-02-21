@@ -115,7 +115,9 @@
 												<td>00:00</td>
 												<td>00:00</td>
 												<td>mm/dd/yyyy</td>
-												<td>completed</td>
+												<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 										Completed
+			 									</a></td>
 												<td>certified</td>
 											</tr>
 											<tr>
@@ -125,7 +127,9 @@
 												<td>00:00</td>
 												<td>00:00</td>
 												<td>mm/dd/yyyy</td>
-												<td>completed</td>
+												<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 										Completed
+			 									</a></td>
 												<td><a href="#">certify?</a></td>
 											</tr>
 										</tbody>
@@ -139,6 +143,7 @@
 			 			
 			 			<!-- Modals -->
 						<%@ include file= "../modals/accountModals.jsp" %>
+						<%@ include file= "../modals/modals.jsp" %>
 						<!-- End of Modals -->
 			 			
 			 		</div>

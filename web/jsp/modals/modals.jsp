@@ -315,7 +315,20 @@
                         <input type="text" class="form-control" id="session_coordinator" name="session_coordinator" placeholder="Coordinator" pattern="[A-Za-z\.]*" required >
                         </div>
                     </div>
-            </div>
+                    
+                    <!-- Session Status -->
+                    <div class="form-group">
+                        <label for="Session_Speaker" class="col-sm-2 control-label">Session Status</label>
+                        <div class="col-sm-10">
+                            <div class="bfh-selectbox" data-name="session_speaker" id="session_speaker" data-value="1" data-filter="true">
+                                <div data-value="--">--</div>
+                               	<div data-value="1">Completed</div>
+                               	<div data-value="2">Ongoing</div>
+                            </div>                        
+                        </div>
+                    </div>
+            	</div>
+            	
                 <div class="modal-footer">
                     <button type="submit" onclick="return checkSelect()" class="btn btn-yellow pull-left">Submit</button>
                     <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
@@ -484,3 +497,38 @@
 </div>
 </div>
 <!-- NEW_FACULTY_MODAL -->
+
+
+<!-- SET STATUS MODAL -->
+<div class="modal fade setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
+			</div>
+		<form class="form-horizontal" action="modals.html" method="post">
+            <div class="modal-body">
+            
+            	<!-- Status -->
+            	<div class="form-group">
+            		<label for="status" class="col-sm-3 control-label">Status</label>
+            		<div class="col-sm-8">
+            			<div class="bfh-selectbox" data-name="status" id="status" data-value="--" data-filter="true">
+            				<div data-value="--">--</div>
+            				<div data-value="1">Complete</div>
+            				<div data-value="2">Incomplete</div>
+            			</div>
+            		</div>
+            	</div>
+    
+            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
+                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>
+<!-- SET STATUS MODAL -->

@@ -50,7 +50,6 @@
   										<a type='button' class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
   									</div>
   								">
@@ -70,7 +69,6 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
   									</div>
   								">
@@ -90,7 +88,6 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
   									</div>
   								">
@@ -110,7 +107,6 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
   									</div>
   								">
