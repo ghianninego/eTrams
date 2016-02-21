@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link type="text/css" rel="stylesheet" href="../css/style.css" />
-		<link type="text/css" rel="stylesheet" href="../css/headerAndFooter.css" />
 		<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
+		<link type="text/css" rel="stylesheet" href="../css/headerAndFooter.css" />
 		
 		<script src="../js/jquery.js"></script>
 		<script src="../js/bootstrap/bootstrap.js"></script>

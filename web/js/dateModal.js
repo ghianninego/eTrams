@@ -2,7 +2,7 @@ var count = 1;
 var id = 1;
 
 $(document).ready(function() {
-			LoadMyJs('js/bootstrap/bootstrap-formhelpers-min.js');
+			LoadMyJs('bootstrap/bootstrap-formhelpers-min.js');
 });
 
 function addDate(){
@@ -24,7 +24,7 @@ function addDate(){
                                     
 		$('.dateList').append(dateHTML);
 	
-		LoadMyJs('js/bootstrap/bootstrap-formhelpers-min.js');
+		LoadMyJs('../js/bootstrap/bootstrap-formhelpers-min.js');
 
 	}else{
 		alert("Maximum date entry is 31");
