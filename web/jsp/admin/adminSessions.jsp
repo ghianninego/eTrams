@@ -50,6 +50,7 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
+  										<a class='btn btn-gray btn-block' href=''>Re-open</a>
   										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
   									</div>
   								">
@@ -70,6 +71,7 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
+  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
   									</div>
   								">
@@ -88,6 +90,7 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
+  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
   									</div>
   								">
@@ -106,6 +109,7 @@
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
+  										<a class='btn btn-gray btn-block' href=''>Complete</a>
   										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
   									</div>
   								">
