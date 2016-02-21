@@ -1,0 +1,110 @@
+/*
+header {
+	background: #FAFAFA;
+	width: 100%;
+    height: auto;
+    top:0;
+    left:0;
+	z-index: 50;
+}
+
+.banner {
+	position;
+	height: auto;
+}
+*/
+
+/******************** Navigation Bar ********************/
+.navbar {
+	background: rgba(242, 242, 242, 0.7);
+	border: 0px !important;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .125);
+}
+
+.navbar-nav>li>a {
+	color: #2E2E2E !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.navbar-nav>li>a:hover {
+	color: #FACC02 !important;
+	background-color: rgba(0, 0, 0, 0) !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.navbar-nav>li.active {
+	border-top: 5px solid #2E2E2E;
+}
+
+.navbar-nav>li.active>a {
+	padding-top: 10px;
+
+}
+
+.navbar-nav>li>a:focus, .navbar>li>a:hover, .navbar-nav .open>a, .navbar-nav .open>a:focus, .navbar-nav .open>a:hover {
+	background-color: rgba(0, 0, 0, 0) !important;
+	color: #FACC02 !important;
+}
+
+.navbar-brand {
+	padding: 8px 15px !important;
+}
+.navbar-brand img {
+	width: 120px;
+}
+
+.dropdown-menu {
+	border: 0px !important;
+	background: rgba(242, 242, 242, 0.7) !important;
+	
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	background-color: rgba(0, 0, 0, 0) !important;
+	color: #FACC02 !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu>li>a {
+	color: #2E2E2E !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu .divider {
+	background-color: #FFD934 !important;
+}
+
+.navbar-toggle {
+	border: 1px solid black !important;
+}
+
+.navbar-toggle > .icon-bar {
+	background-color: black !important;
+}
+
+/******************** End of Navigation Bar ********************/
+
+
+.footer {
+	position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #e7e7e7;
+}
+
+.footer-cont {
+	margin: auto;
+	padding: 10px 0px 0px 0px;
+	text-align: center;
+	width: 500px;
+}
+
+.footer p {
+	font-size: 13px;
+}
