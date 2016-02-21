@@ -379,42 +379,55 @@
             
             	<!-- Name -->
             	<div class="form-group">
-            		<label for="User_Name" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
+            		<label for="User_Name" class="col-sm-3 control-label">Name</label>
+                    <div class="col-sm-8">
                     	<input type="text" class="form-control" id="user_name" name="user_name" placeholder="Name" required />
                     </div>
             	</div>
             	
             	<!-- Email -->
             	<div class="form-group">
-            		<label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
+            		<label for="email" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-8">
                     	<input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
                     </div>
             	</div>
             	
             	<!-- College -->
             	<div class="form-group">
-            		<label for="college" class="col-sm-2 control-label">College</label>
-                    <div class="col-sm-10">
-                    	<input type="text" class="form-control" id="college" name="college" placeholder="Faculty/College/Institute" required />
-                    </div>
+            		<label for="college" class="col-sm-3 control-label">Faculty/College/Institute</label>
+            		<div class="col-sm-8">
+            			<div class="bfh-selectbox" data-name="college" id="college" data-value="--" data-filter="true">
+            				<div data-value="--">--</div>
+            				<div data-value="1">College 1 </div>
+            				<div data-value="2">College 2</div>
+            			</div>
+            		</div>
             	</div>
             	
             	<!-- Department -->
             	<div class="form-group">
-            		<label for="department" class="col-sm-2 control-label">Department</label>
-                    <div class="col-sm-10">
-                    	<input type="text" class="form-control" id="department" name="department" placeholder="Department" required />
-                    </div>
+            		<label for="department" class="col-sm-3 control-label">Department</label>
+            		<div class="col-sm-8">
+            			<div class="bfh-selectbox" data-name="department" id="department" data-value="--" data-filter="true">
+            				<div data-value="--">--</div>
+            				<div data-value="1">Department 1 </div>
+            				<div data-value="2">Department 2</div>
+            			</div>
+            		</div>
             	</div>
             	
             	<!-- User Type -->
             	<div class="form-group">
-            		<label for="role" class="col-sm-2 control-label">User Type</label>
-                    <div class="col-sm-10">
-                    	<input type="text" class="form-control" id="role" name="role" placeholder="Role" required />
-                    </div>
+            		<label for="role" class="col-sm-3 control-label">User Type</label>
+            		<div class="col-sm-8">
+            			<div class="bfh-selectbox" data-name="role" id="role" data-value="--" data-filter="true">
+            				<div data-value="--">--</div>
+            				<div data-value="2">Coordinator</div>
+            				<div data-value="2">Staff</div>
+            				<div data-value="1">Participant</div>
+            			</div>
+            		</div>
             	</div>
                     
                 <div class="modal-footer">
@@ -430,7 +443,6 @@
 
 
 <!-- NEW_FACULTY_MODAL -->
-
 <div class="modal fade newFacultyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -452,9 +464,14 @@
             	<!-- Coordinator -->
             	<div class="form-group">
             		<label for="coordinator" class="col-sm-3 control-label">Coordinator</label>
-                    <div class="col-sm-9">
-                    	<input type="text" class="form-control" id="coordinator" name="coordinator" placeholder="Coordinator" required />
-                    </div>
+            		<div class="col-sm-9">
+            			<div class="bfh-selectbox" data-name="coordinator" id="coordinator" data-value="--" data-filter="true">
+            				<div data-value="--">--</div>
+            				<div data-value="1">Coordinator 1</div>
+            				<div data-value="2">Coordinator 2</div>
+            				<div data-value="3">Coordinator 3</div>
+            			</div>
+            		</div>
             	</div>
                     
                 <div class="modal-footer">
