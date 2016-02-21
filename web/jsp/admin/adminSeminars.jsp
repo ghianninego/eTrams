@@ -46,7 +46,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a type='button' class='btn btn-gray' data-toggle='modal' data-target='.seminarModal'>Edit</a>
+  										<a type='button' class='btn btn-gray' data-toggle='modal' data-target='.editSeminarModal'>Edit</a>
   										<a type='button' class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -65,7 +65,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -84,7 +84,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -103,7 +103,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>

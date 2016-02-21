@@ -58,7 +58,7 @@
 					<li><a href="coordinatorAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 				<% } %>
 				
-				<li><a href="../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="../../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</div>
