@@ -1,8 +1,26 @@
-body {
-	background-color: #FAFAFA !important;
+html {
+	position: relative;
+	min-height: 100%;
 }
 
+body {
+	background-color: #ffffff !important;
+	background: url('../img/bg.jpg');
+	background-position: right bottom;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 
+	margin-bottom: 100px;
+}
+
+a {
+	color: #A4A4A4 !important;
+}
+
+a:hover {
+	color: #FFD934 !important;
+	text-decoration: none !important;
+}
 
 /******************** INDEX Style ********************/
 .outer {
@@ -19,29 +37,38 @@ body {
 
 .inner {
 	text-align: center;
-	border: 1px solid black;
     margin-left: auto;
     margin-right: auto; 
     width: 700px;
     padding: 25px 20px;
 }
 
+.indexLogo img {
+	width: 600px;
+}
+
 .login {
 	width: 60%;
 	margin: auto;
-	padding-top: 70px;
+	padding-top: 20px;
 }
 
 .indexFooter {
-	padding-top: 70px;
+	padding-top: 50px;
 	color: #585858;
 }
 /******************** End of INDEX Style ********************/
 
 
 .container {
-	padding-bottom: 15px;
-	margin-bottom: 40px;
+	padding-bottom: 100px;
+}
+
+.content {
+	padding-left: 25px;
+	padding-right: 25px;
+	height: auto;
+	width: 100%;
 }
 
 .page-header a {
@@ -58,16 +85,42 @@ body {
 }
 
 
+/******************** Announcements Style ********************/
+.announcements {
+	height: 100px;
+	padding: 8px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	background: rgba(230, 230, 230, 0.3);
+	margin: 5px 0px;
+}
+
+.noAnnouncement {
+	padding: 12px;
+	font-size: 18px;
+	font-style: italic;
+	text-align: center;
+}
+
+.announcementPager {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.pagination {
+	margin:10px 0 !important;
+}
+
+.pagination>li:first-child>a,.pagination>li:last-child>a {
+	border-radius: 4px;
+}
+/******************** End of Announcements Style ********************/
+
+
 /******************** Seminars & Sessions Style ********************/
 small {
 	color: #151515 !important;
-}
-
-.content {
-	padding-left: 25px;
-	padding-right: 25px;
-	min-height: 290px;
-	width: 100%;
 }
 
 .thumbnail {
@@ -101,9 +154,10 @@ small {
 }
 /******************** End of Reports Style ********************/
 
+
 /******************** Account Style ********************/
 .row .account {
-	background: white;
+	background: rgba(255, 255, 255, 0.7);
 	padding: 20px 25px !important;
 	margin: 0;
 }
@@ -116,10 +170,6 @@ small {
 	padding-top: 20px;
 }
 
-.account h4 {
-	color:  !important;
-}
-
 .account h4 span {
 	color: #848484;
 	padding-top: 0px;
@@ -129,14 +179,98 @@ small {
 .editAccount {
 	padding: 0px 40px 20px 40px;
 }
-/******************** End of Account Style ********************/
-
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .nav-tabs>li>a {
 	color: #585858 !important;
 }
 
 .someContainer {
-	border: 1px solid black;
-	height: 250px;
+	border: 1px solid #ddd;
+	padding: 5px;
+	min-height: 380px;
+	background: rgba(255, 255, 255, 0.8);
+	position: relative;
 }
+/******************** End of Account Style ********************/
+
+
+/******************** Buttons ********************/
+.someButton {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.btn {
+	font-size: 16px !important;
+}
+
+.btn:focus, .btn:active {
+	border-color: #F6C533 !important;
+}
+
+.btn-yellow {
+	color: #282828 !important;
+    background: rgb(255, 217, 52) !important;
+    border-color: #F6C533 !important;
+    -webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+	min-width: 180px;
+}
+
+.btn-yellow:hover {
+	color: #282828 !important;
+    background: rgb(248, 193, 26) !important;
+    border-color: #F6C533;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.btn-gray {
+	color: white !important;
+    background: #2E2E2E !important;
+    border-color: #585858 !important;
+    -webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.btn-gray:hover {
+	color: white !important;
+    background: #000000 !important;
+    border-color: #1C1C1C;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+/******************** End of Buttons ********************/
+
+
+/******************** Tables ********************/
+.table th, td{
+	text-align: center;
+}
+
+.table tr { 
+	border: none; 
+}
+
+.table td {
+  border-right: solid 1px #000000; 
+}
+.table td:last-child{
+  border-right: none; 
+}
+.table th {
+  border-right: solid 1px #000000; 
+}
+.table th:last-child{
+  border-right: none; 
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td,
+.table-striped > tbody > tr:nth-child(2n) > th {
+   background-color: white;
+}
+.table-striped > thead{
+	background-color: #C0C0C0;
+}
+
+/******************** End of Tables ********************/
