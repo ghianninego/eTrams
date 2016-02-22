@@ -13,8 +13,8 @@ public class SessionBean implements BeanInterface{
 	private String venueRemarks;
 	private int capacity;
 	private java.sql.Date date;
-	private java.sql.Date startTime;
-	private java.sql.Date endTime;
+	private java.sql.Time startTime;
+	private java.sql.Time endTime;
 	private int speakerID;
 	private int completion;
 	private int active;
@@ -86,23 +86,6 @@ public class SessionBean implements BeanInterface{
 	public void setDate(java.sql.Date date) {
 		this.date = date;
 	}
-
-	public java.sql.Date getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(java.sql.Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public java.sql.Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(java.sql.Date endTime) {
-		this.endTime = endTime;
-	}
-
 	public int getSpeakerID() {
 		return speakerID;
 	}
@@ -125,5 +108,21 @@ public class SessionBean implements BeanInterface{
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public java.sql.Time getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(java.sql.Time startTime) {
+		this.startTime = startTime;
+	}
+
+	public java.sql.Time getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(java.sql.Time endTime) {
+		this.endTime = endTime;
 	}
 }

@@ -26,6 +26,14 @@ public class AccountBean implements BeanInterface {
 		return 0;
 	}
 
+	public int getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -48,6 +56,14 @@ public class AccountBean implements BeanInterface {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getRoleID() {
+		return roleID;
+	}
+
+	public void setRoleID(int roleID) {
+		this.roleID = roleID;
 	}
 
 	public int getActive() {

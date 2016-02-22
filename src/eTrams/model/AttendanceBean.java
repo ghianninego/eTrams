@@ -13,11 +13,12 @@ public class AttendanceBean implements BeanInterface {
 	private java.sql.Time timeOut;
 	private String status;
 	private int certification;
+	private java.sql.Date certificationRelease;
 	
 	@Override
 	public void getBeanType() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Attendance Bean");
 	}
 	@Override
 	public int storeToDatabase(Connection connection) {
@@ -65,6 +66,12 @@ public class AttendanceBean implements BeanInterface {
 	}
 	public void setCertification(int certification) {
 		this.certification = certification;
+	}
+	public java.sql.Date getCertificationRelease() {
+		return certificationRelease;
+	}
+	public void setCertificationRelease(java.sql.Date certificationRelease) {
+		this.certificationRelease = certificationRelease;
 	}
 	
 	

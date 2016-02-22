@@ -7,7 +7,7 @@ import eTrams.utilities.beanUtilities.BeanInterface;
 public class AnnouncementBean implements BeanInterface{
 	
 	private int announcementID;
-	private int userID;
+	private int creatorID;
 	private String title;
 	private String content;
 	private int active;
@@ -29,12 +29,6 @@ public class AnnouncementBean implements BeanInterface{
 	public void setAnnouncementID(int announcementID) {
 		this.announcementID = announcementID;
 	}
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -52,6 +46,12 @@ public class AnnouncementBean implements BeanInterface{
 	}
 	public void setActive(int active) {
 		this.active = active;
+	}
+	public int getCreatorID() {
+		return creatorID;
+	}
+	public void setCreatorID(int creatorID) {
+		this.creatorID = creatorID;
 	}
 	
 }

@@ -12,7 +12,7 @@ public class UserInfoBean implements BeanInterface {
 	private String lastName;
 	private String firstName;
 	private String middleName;
-	private int collegeID;
+	private int departmentID;
 	
 	@Override
 	public void getBeanType() {
@@ -66,12 +66,12 @@ public class UserInfoBean implements BeanInterface {
 		this.middleName = middleName;
 	}
 
-	public int getCollegeID() {
-		return collegeID;
+	public int getDepartmentID() {
+		return departmentID;
 	}
 
-	public void setCollegeID(int collegeID) {
-		this.collegeID = collegeID;
+	public void setDepartmentID(int collegeID) {
+		this.departmentID = departmentID;
 	}
 
 }
