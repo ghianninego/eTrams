@@ -19,7 +19,7 @@
 		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 		<script type="text/javascript" src="../../js/myscript.js"></script>
 		
-		<title>UST eTrams - All Users</title>
+		<title>UST eTrams - Venues</title>
 	</head>
 	
 	<body>
@@ -32,45 +32,41 @@
 		<div class="container">
 			<div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header">Faculties/Colleges/Institutes</h1>
+			 		<h1 class="page-header">Venues</h1>
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
-									<th>College ID #</th>
-									<th>College/Faculty/Institute</th>
-									<th>Coordinator</th>
+									<th>Venue ID #</th>
+									<th>Building</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>001</td>
-									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td>Building Name</td>
+									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>002</td>
-									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td>Building Name</td>
+									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>003</td>
-									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td>Building Name</td>
+									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
 						
 						<br>
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".newFacultyModal">
-  								<span class="glyphicon glyphicon-plus"></span> Add New College
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".newVenueModal">
+  								<span class="glyphicon glyphicon-plus"></span> Add New Venue
   							</button>
   						</div>
   						

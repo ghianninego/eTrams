@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="../../css/style.css" />
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
 		<script src="../../js/jquery.js"></script>
 		<script src="../../js/bootstrap/bootstrap.js"></script>
@@ -56,7 +56,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -75,7 +76,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -94,7 +96,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -113,7 +116,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -123,8 +127,7 @@
   						<br>
   						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".seminarModal">
-  								<span class="glyphicon glyphicon-plus"></span> New seminar
-  							</button>
+  								<span class="glyphicon glyphicon-plus"></span> New Seminar</button>
   						</div>
 			 		</div>
 			 		<!-- End of Content -->
@@ -134,7 +137,7 @@
 					<!-- End of Modals -->
 	
 			 	</div>
-			 </div>
+			</div>
 		</div>
 		<!-- End of Container -->		
 				
@@ -143,5 +146,4 @@
 		<!-- End of Footer -->
 				
 	</body>
-
 </html>

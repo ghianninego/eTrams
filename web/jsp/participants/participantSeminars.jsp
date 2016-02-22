@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="../../css/style.css" />
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
 		<script src="../../js/jquery.js"></script>
 		<script src="../../js/bootstrap/bootstrap.js"></script>
@@ -47,7 +47,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -62,7 +63,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -77,7 +79,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>
@@ -92,7 +95,8 @@
   									<div class="caption">
   										<h3>Seminar Name</h3>
   										<p>Number of Sessions</p>
-  										<p>Total no. of attendies</p>
+  										<p>Date Start</p>
+  										<p>Date End</p>
   									</div>
   								</a>
   							</div>

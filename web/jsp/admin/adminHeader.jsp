@@ -40,13 +40,16 @@
 					<li><a href="adminReports.jsp">Reports</a></li>
 				<% } %>
 				
-				<% if (x.equals("adminUsers.jsp") || x.equals("adminColleges.jsp")|| x.equals("adminManageUsers.jsp")) { %>
+				<% if (x.equals("adminUsers.jsp") || x.equals("adminColleges.jsp") || x.equals("adminVenues.jsp") || 
+						x.equals("adminManageUsers.jsp")) { %>
                  	<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
             				<li><a href="adminUsers.jsp">Users</a></li>
             				<li role="separator" class="divider"></li>
             				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
+            				<li role="separator" class="divider"></li>
+            				<li><a href="adminVenues.jsp">Venues</a></li>
           				</ul>
         			</li>
                	<% } else { %>
@@ -56,6 +59,8 @@
             				<li><a href="adminUsers.jsp">All Users</a></li>
             				<li role="separator" class="divider"></li>
             				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
+            				<li role="separator" class="divider"></li>
+            				<li><a href="adminVenues.jsp">Venues</a></li>
           				</ul>
         			</li>
 				<% } %>

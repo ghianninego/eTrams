@@ -48,6 +48,7 @@
 									<th>College/Faculty/Institute</th>
 									<th>Time In</th>
 									<th>Time Out</th>
+									<th>Status</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -58,6 +59,9 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
+									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 							Completed
+			 						</a></td>
 									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
@@ -66,6 +70,9 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
+									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 							Incomplete
+			 						</a></td>
 									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>
@@ -82,6 +89,7 @@
 									<th>College/Faculty/Institute</th>
 									<th>Time In</th>
 									<th>Time Out</th>
+									<th>Status</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -92,6 +100,9 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
+									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 							Completed
+			 						</a></td>
 									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
@@ -100,6 +111,9 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
+									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+			 							Incomplete
+			 						</a></td>
 									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>

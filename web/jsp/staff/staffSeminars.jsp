@@ -48,7 +48,8 @@
   										<div class="caption">
   											<h3>Seminar Name</h3>
   											<p>Number of Sessions</p>
-  											<p>Total no. of attendies</p>
+  											<p>Date Start</p>
+  											<p>Date End</p>
   										</div>
   									</a>
   								</div>
@@ -63,7 +64,8 @@
   										<div class="caption">
   											<h3>Seminar Name</h3>
   											<p>Number of Sessions</p>
-  											<p>Total no. of attendies</p>
+  											<p>Date Start</p>
+  											<p>Date End</p>
   										</div>
   									</a>
   								</div>
@@ -78,7 +80,8 @@
   										<div class="caption">
   											<h3>Seminar Name</h3>
   											<p>Number of Sessions</p>
-  											<p>Total no. of attendies</p>
+  											<p>Date Start</p>
+  											<p>Date End</p>
   										</div>
   									</a>
   								</div>
@@ -93,7 +96,8 @@
   										<div class="caption">
   											<h3>Seminar Name</h3>
   											<p>Number of Sessions</p>
-  											<p>Total no. of attendies</p>
+  											<p>Date Start</p>
+  											<p>Date End</p>
   										</div>
   									</a>
   								</div>

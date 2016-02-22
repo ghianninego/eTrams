@@ -16,7 +16,7 @@ header {
 
 /******************** Navigation Bar ********************/
 .navbar {
-	background: rgba(242, 242, 242, 0.7);
+	background: rgba(242, 242, 242, 0.9);
 	border: 0px !important;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, .125);
 }
@@ -57,7 +57,7 @@ header {
 
 .dropdown-menu {
 	border: 0px !important;
-	background: rgba(242, 242, 242, 0.7) !important;
+	background: rgb(242, 242, 242) !important;
 	
 }
 

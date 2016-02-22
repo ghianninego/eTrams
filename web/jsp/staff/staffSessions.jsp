@@ -47,6 +47,7 @@
   										<div class="caption">
   											<h3>Session 1: Name</h3>
   											<p>Total no. of attendies</p>
+  											<p>Capacity</p>
   											<br><br>
   											<h4>COMPLETED</h4>
   										</div>
@@ -63,6 +64,7 @@
   										<div class="caption">
   											<h3>Session 2: Name</h3>
   											<p>Total no. of attendies</p>
+  											<p>Capacity</p>
   										</div>
   									</a>
   								</div>
@@ -77,6 +79,7 @@
   										<div class="caption">
   											<h3>Session 3: Name</h3>
   											<p>Total no. of attendies</p>
+  											<p>Capacity</p>
   										</div>
   									</a>
   								</div>
@@ -91,6 +94,7 @@
   										<div class="caption">
   											<h3>Session 4: Name</h3>
   											<p>Total no. of attendies</p>
+  											<p>Capacity</p>
   										</div>
   									</a>
   								</div>

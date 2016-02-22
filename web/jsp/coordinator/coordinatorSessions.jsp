@@ -38,7 +38,7 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" id="complete" data-popover="true" data-html="true" 
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='coordinatorManageParticipants.jsp'>Manage Participants</a>
@@ -46,8 +46,10 @@
   								">
   									<div class="caption">
   										<h3>Session 1: Name</h3>
-  										<p>Number of Sessions</p>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
+  										<br><br>
+  										<h4>COMPLETED</h4>
   									</div>
   								</a>
   							</div>
@@ -61,8 +63,8 @@
   								">
   									<div class="caption">
   										<h3>Session 2: Name</h3>
-  										<p>Number of Sessions</p>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>
@@ -76,8 +78,8 @@
   								">
   									<div class="caption">
   										<h3>Session 3: Name</h3>
-  										<p>Number of Sessions</p>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>

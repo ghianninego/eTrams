@@ -6,11 +6,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		
 		<link type="text/css" rel="stylesheet" href="../../css/style.css" />
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
 		<script src="../../js/jquery.js"></script>
 		<script src="../../js/bootstrap/bootstrap.js"></script>
@@ -32,7 +32,7 @@
 		<div class="container">
 		 	<div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><a href="participantSeminars.jsp">Seminars</a> > Sessions</h1>
+			 		<h1 class="page-header"><small><a href="participantSeminars.jsp">Seminars</a> /</small> Sessions</h1>
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
@@ -47,6 +47,7 @@
   									<div class="caption">
   										<h3>Session 1: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   										<br><br>
   										<h4>REGISTERED</h4>
   									</div>
@@ -58,6 +59,7 @@
   									<div class="caption">
   										<h3>Session 2: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   										<br><br>
   										<h4>COMPLETED</h4>
   									</div>
@@ -74,6 +76,7 @@
   									<div class="caption">
   										<h3>Session 3: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>
@@ -88,6 +91,7 @@
   									<div class="caption">
   										<h3>Session 4: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
  									</div>
   								</a>
   							</div>

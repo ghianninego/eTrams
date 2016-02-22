@@ -86,7 +86,7 @@
 		 			<!-- End of Content -->
 			 		
 			 		<!-- Modals -->
-					<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/othersModals.jsp" %>
 					<!-- End of Modals -->
 			 	</div>
 			 </div>

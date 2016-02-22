@@ -52,24 +52,24 @@
 			
 				<!-- Old Password-->
             	<div class="form-group">
-            		<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-                    <div class="col-sm-9">
+            		<label for="oldPassword" class="col-sm-4 control-label">Old Password</label>
+                    <div class="col-sm-8">
                     	<input type="password" class="form-control" id="pasword" name="password" required />
                     </div>
             	</div>
             	
             	<!-- New Password-->
             	<div class="form-group">
-            		<label for="newPassword1" class="col-sm-3 control-label">New Password</label>
-                    <div class="col-sm-9">
+            		<label for="newPassword1" class="col-sm-4 control-label">New Password</label>
+                    <div class="col-sm-8">
                     	<input type="password" class="form-control" id="pasword" name="password" required />
                     </div>
             	</div>
             	
             	<!-- Re-enter New Password-->
             	<div class="form-group">
-            		<label for="newPassword2" class="col-sm-3 control-label">Re-enter New Password</label>
-                    <div class="col-sm-9">
+            		<label for="newPassword2" class="col-sm-4 control-label">Re-enter New Password</label>
+                    <div class="col-sm-8">
                     	<input type="password" class="form-control" id="pasword" name="password" required />
                     </div>
             	</div>
@@ -99,16 +99,16 @@
             	
             	<!-- New Password-->
             	<div class="form-group">
-            		<label for="newPassword1" class="col-sm-3 control-label">New Password</label>
-                    <div class="col-sm-9">
+            		<label for="newPassword1" class="col-sm-4 control-label">New Password</label>
+                    <div class="col-sm-8">
                     	<input type="password" class="form-control" id="pasword" name="password" required />
                     </div>
             	</div>
             	
             	<!-- Re-enter New Password-->
             	<div class="form-group">
-            		<label for="newPassword2" class="col-sm-3 control-label">Re-enter New Password</label>
-                    <div class="col-sm-9">
+            		<label for="newPassword2" class="col-sm-4 control-label">Re-enter New Password</label>
+                    <div class="col-sm-8">
                     	<input type="password" class="form-control" id="pasword" name="password" required />
                     </div>
             	</div>

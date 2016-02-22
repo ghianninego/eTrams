@@ -160,7 +160,7 @@
 						</table>
 						
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".sessionModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".addParticipantModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
   						

@@ -56,6 +56,7 @@
   									<div class="caption">
   										<h3>Session 1: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   										<br><br>
   										<h4>COMPLETED</h4>
   									</div>
@@ -76,6 +77,7 @@
   									<div class="caption">
   										<h3>Session 2: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>
@@ -94,6 +96,7 @@
   									<div class="caption">
   										<h3>Session 3: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>
@@ -112,6 +115,7 @@
   									<div class="caption">
   										<h3>Session 4: Name</h3>
   										<p>Total no. of attendies</p>
+  										<p>Capacity</p>
   									</div>
   								</a>
   							</div>
@@ -121,13 +125,13 @@
   						<br>
   						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".sessionModal">
-  							<span class="glyphicon glyphicon-plus"></span> New session</button>
+  								<span class="glyphicon glyphicon-plus"></span> New session</button>
   						</div>
 			 		</div>
 			 		<!-- End of Content -->
 			 			
 			 		<!-- Modals -->
-						<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/modals.jsp" %>
 					<!-- End of Modals -->
 						
 			 	</div>
