@@ -9,7 +9,7 @@ public class AnnouncementBean implements BeanInterface{
 	private int announcementID;
 	private int userID;
 	private String title;
-	private String description;
+	private String content;
 	private int active;
 	
 	@Override
@@ -41,11 +41,11 @@ public class AnnouncementBean implements BeanInterface{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
+	public String getContent() {
+		return content;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public int getActive() {
 		return active;
