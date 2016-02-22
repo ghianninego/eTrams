@@ -100,7 +100,7 @@
   							<!-- Announcements pagination -->
   							<div class="announcementPager text-center">
   								<ul class="pagination pager" id="myPager"></ul>
-  								<div id="page-selection"></div>
+  								<!-- <div id="page-selection"></div> -->
   							</div>
   							<!-- End of Announcements pagination -->
   								

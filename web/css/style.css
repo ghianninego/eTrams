@@ -14,7 +14,7 @@ body {
 }
 
 a {
-	color: #A4A4A4 !important;
+	color: #848484 !important;
 }
 
 a:hover {
@@ -71,7 +71,9 @@ a:hover {
 	width: 100%;
 }
 
-
+.page-header {
+	border-bottom: 1px solid #FACC02 !important;
+}
 
 .page-header a {
 	color: gray !important;
@@ -84,6 +86,14 @@ a:hover {
 	text-decoration: none !important;
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;
+}
+
+.someContainer {
+	padding: 5px;
+	min-height: 380px;
+	background: rgba(255, 255, 255, 0.7);
+	position: relative;
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
 }
 
 
@@ -127,15 +137,12 @@ small {
 
 .thumbnail {
 	height: 250px;
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
 }
 
 .thumbnail:hover, .thumbnail:active, .thumbnail:focus {
 	text-decoration: none;
 	border-color: #F6C533 !important;
-}
-
-#complete {
-	background: rgba(215, 215, 215, 0.8) !important;
 }
 
 .caption h4 {
@@ -162,6 +169,7 @@ small {
 	background: rgba(255, 255, 255, 0.7);
 	padding: 15px 25px !important;
 	margin: 0;
+	box-shadow: 6px 5px 6px rgba(0, 0, 0, .125);
 }
 
 .accountLeft {
@@ -185,14 +193,6 @@ small {
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .nav-tabs>li>a {
 	color: #585858 !important;
-}
-
-.someContainer {
-	border: 1px solid #ddd;
-	padding: 5px;
-	min-height: 380px;
-	background: rgba(255, 255, 255, 0.8);
-	position: relative;
 }
 /******************** End of Account Style ********************/
 
@@ -247,6 +247,10 @@ small {
 
 
 /******************** Tables ********************/
+.table {
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
+}
+
 .table th, td{
 	text-align: center;
 }
@@ -256,13 +260,14 @@ small {
 }
 
 .table td {
-  border-right: solid 1px #000000; 
+  border-right: solid 1px #FACC02; 
 }
 .table td:last-child{
   border-right: none; 
 }
 .table th {
-  border-right: solid 1px #000000; 
+  border-right: solid 1px #FACC02;
+  border-bottom: 2px solid #FACC02 !important;
 }
 .table th:last-child{
   border-right: none; 
@@ -273,7 +278,7 @@ small {
    background-color: white;
 }
 .table-striped > thead{
-	background-color: #C0C0C0;
+	background-color: rgba(255,222, 69, 0.8);
 }
 
 /******************** End of Tables ********************/

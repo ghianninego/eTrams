@@ -55,9 +55,10 @@
   								">
   									<div class="caption">
   										<h3>Seminar Name</h3>
-  										<p>Number of Sessions</p>
-  										<p>Date Start</p>
-  										<p>Date End</p>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
   								</a>
   							</div>
@@ -75,9 +76,10 @@
   								">
   									<div class="caption">
   										<h3>Seminar Name</h3>
-  										<p>Number of Sessions</p>
-  										<p>Date Start</p>
-  										<p>Date End</p>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
   								</a>
   							</div>
@@ -95,9 +97,10 @@
   								">
   									<div class="caption">
   										<h3>Seminar Name</h3>
-  										<p>Number of Sessions</p>
-  										<p>Date Start</p>
-  										<p>Date End</p>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
   								</a>
   							</div>
@@ -115,9 +118,10 @@
   								">
   									<div class="caption">
   										<h3>Seminar Name</h3>
-  										<p>Number of Sessions</p>
-  										<p>Date Start</p>
-  										<p>Date End</p>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
   								</a>
   							</div>

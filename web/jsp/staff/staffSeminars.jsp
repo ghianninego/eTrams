@@ -23,98 +23,100 @@
 	</head>
 	
 	<body>
-		<div class="wrapper">
 				
-			<!-- Header -->
-			<%@ include file= "staffHeader.jsp" %>
-			<!-- End of Header -->
+		<!-- Header -->
+		<%@ include file= "staffHeader.jsp" %>
+		<!-- End of Header -->
 				
-			<!-- Container -->
-			<div class="container">
-			 	<div class="row">
-			 		<div class="col-md-12">
-			 			<h1 class="page-header">Seminars</h1>
+		<!-- Container -->
+		<div class="container">
+			<div class="row">
+			 	<div class="col-md-12">
+			 		<h1 class="page-header">Seminars</h1>
 			 			
-			 			<!-- Content -->
-			 			<div class="content">
-			 				<div class="row">
-  								<div class="col-sm-6 col-md-3">
-  									<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  										data-content="<p>Seminar decription, date & venue, etc.</p><br>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
-  										</div>
-  									">
-  										<div class="caption">
-  											<h3>Seminar Name</h3>
-  											<p>Number of Sessions</p>
-  											<p>Date Start</p>
-  											<p>Date End</p>
-  										</div>
-  									</a>
-  								</div>
-  								
-  								<div class="col-sm-6 col-md-3">
-  									<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  										data-content="<p>Seminar decription, date & venue, etc.</p><br>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
-  										</div>
-  									">
-  										<div class="caption">
-  											<h3>Seminar Name</h3>
-  											<p>Number of Sessions</p>
-  											<p>Date Start</p>
-  											<p>Date End</p>
-  										</div>
-  									</a>
-  								</div>
-  								
-  								<div class="col-sm-6 col-md-3">
-  									<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  										data-content="<p>Seminar decription, date & venue, etc.</p><br>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
-  										</div>
-  									">
-  										<div class="caption">
-  											<h3>Seminar Name</h3>
-  											<p>Number of Sessions</p>
-  											<p>Date Start</p>
-  											<p>Date End</p>
-  										</div>
-  									</a>
-  								</div>
-  								
-  								<div class="col-sm-6 col-md-3">
-  									<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  										data-content="<p>Seminar decription, date & venue, etc.</p><br>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
-  										</div>
-  									">
-  										<div class="caption">
-  											<h3>Seminar Name</h3>
-  											<p>Number of Sessions</p>
-  											<p>Date Start</p>
-  											<p>Date End</p>
-  										</div>
-  									</a>
-  								</div>
-  								
+			 		<!-- Content -->
+			 		<div class="content">
+			 			<div class="row">
+  							<div class="col-sm-6 col-md-3">
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									<div class='someButton'>
+  										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
+  									</div>
+  								">
+  									<div class="caption">
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
+  									</div>
+  								</a>
   							</div>
-			 			</div>
-			 			<!-- End of Content -->
-			 			
+  								
+  							<div class="col-sm-6 col-md-3">
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									<div class='someButton'>
+  										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
+  									</div>
+  								">
+  									<div class="caption">
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
+  									</div>
+  								</a>
+  							</div>
+  								
+  							<div class="col-sm-6 col-md-3">
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									<div class='someButton'>
+  										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
+  									</div>
+  								">
+  									<div class="caption">
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
+  									</div>
+  								</a>
+  							</div>
+  								
+  							<div class="col-sm-6 col-md-3">
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									<div class='someButton'>
+  										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
+  									</div>
+  								">
+  									<div class="caption">
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
+  									</div>
+  								</a>
+  							</div>
+  								
+  						</div>
 			 		</div>
+			 		<!-- End of Content -->
+			 			
 			 	</div>
-			</div>
-			<!-- End of Container -->
-				
-			<!-- Footer -->
-			<%@ include file= "../footer.jsp" %>
-			<!-- End of Footer -->
-				
+			 </div>
 		</div>
+		<!-- End of Container -->
+				
+		<!-- Footer -->
+		<%@ include file= "../footer.jsp" %>
+		<!-- End of Footer -->
+				
 	</body>
 </html>
