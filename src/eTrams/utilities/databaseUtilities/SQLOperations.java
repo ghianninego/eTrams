@@ -131,7 +131,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewSeminar == null)
-				createNewSeminar = connection.prepareStatement("INSERT INTO seminarTable VALUES (?,?,?,?,?,?)");
+				createNewSeminar = connection.prepareStatement("INSERT INTO seminarTable VALUES (NULL, ?,?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{

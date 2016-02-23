@@ -19,7 +19,6 @@ public class AccountBean implements BeanInterface {
 	
 	@Override
 	public void getBeanType() {
-		// TODO Auto-generated method stub
 		System.out.println("Account Bean");
 	}
 

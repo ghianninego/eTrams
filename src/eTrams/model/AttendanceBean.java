@@ -26,7 +26,7 @@ public class AttendanceBean implements BeanInterface {
 	@Override
 	public int storeToDatabase(Connection connection) {
 
-		PreparedStatement ps = SQLOperations.createNewAnnouncement(connection);
+		PreparedStatement ps = SQLOperations.createNewAttendance(connection);
 		try
 		{
 			ps.setInt(1, getSessionID());
