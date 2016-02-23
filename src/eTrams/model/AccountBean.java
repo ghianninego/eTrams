@@ -1,9 +1,12 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import eTrams.security.Security;
 import eTrams.utilities.beanUtilities.BeanInterface;
-
+import eTrams.utilities.databaseUtilities.SQLOperations;
 // model for accounts 
 public class AccountBean implements BeanInterface {
 	
@@ -22,7 +25,26 @@ public class AccountBean implements BeanInterface {
 
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement ps = SQLOperations.createNewUserAccount(connection);
+		try
+		{
+			ps.setString(1, getUsername());
+			ps.setString(2, Security.encrypt(getPassword())); // please encrypt
+			ps.setString(3, getEmail());
+			ps.setInt(4, getRoleID());
+			ps.setInt(5, getActive());
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

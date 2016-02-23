@@ -1,7 +1,10 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.beanUtilities.BeanInterface;
 
 // user information bean
@@ -22,7 +25,26 @@ public class UserInfoBean implements BeanInterface {
 
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement ps = SQLOperations.createNewUserInfo(connection);
+		try
+		{
+			ps.setInt(1, getAccountID());
+			ps.setString(2, getLastName()); 
+			ps.setString(3, getFirstName());
+			ps.setString(4, getMiddleName());
+			ps.setInt(5, getDepartmentID());
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

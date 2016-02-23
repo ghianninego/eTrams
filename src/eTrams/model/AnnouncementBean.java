@@ -1,6 +1,8 @@
 package eTrams.model;
 import java.sql.Connection;
-
+import eTrams.utilities.databaseUtilities.SQLOperations;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import eTrams.utilities.beanUtilities.BeanInterface;
 
 // AnnouncementBean for announcement retrieval of information (for home page and announcements)
@@ -18,8 +20,25 @@ public class AnnouncementBean implements BeanInterface{
 	}
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
-		// DO THIS U PIEACE OF SHIET
+		
+		PreparedStatement ps = SQLOperations.createNewAnnouncement(connection);
+		try
+		{
+			ps.setInt(1, getCreatorID());
+			ps.setString(2, getTitle()); 
+			ps.setString(3, getContent());
+			ps.setInt(4, getActive());
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	

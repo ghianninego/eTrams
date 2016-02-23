@@ -1,8 +1,11 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import eTrams.utilities.beanUtilities.BeanInterface;
+import eTrams.utilities.databaseUtilities.SQLOperations;
 
 public class AttendanceBean implements BeanInterface {
 	
@@ -22,7 +25,27 @@ public class AttendanceBean implements BeanInterface {
 	}
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement ps = SQLOperations.createNewAnnouncement(connection);
+		try
+		{
+			ps.setInt(1, getSessionID());
+			ps.setInt(2, getParticipantID()); 
+			ps.setTime(3, getTimeIn());
+			ps.setTime(4, getTimeOut());
+			ps.setString(5, getStatus());
+			ps.setInt(6, getCertification());
+			ps.setDate(7, getCertificationRelease());
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	public int getAttendanceID() {

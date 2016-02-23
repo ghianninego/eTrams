@@ -1,14 +1,17 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import eTrams.utilities.beanUtilities.BeanInterface;
+import eTrams.utilities.databaseUtilities.SQLOperations;
 // session bean for sessions of a seminar
 public class SessionBean implements BeanInterface{
 	
 	private int sessionID;
 	private int seminarID;
-	private String seminarName;
+	private String sessionName;
 	private int venueID;
 	private String venueRemarks;
 	private int capacity;
@@ -27,7 +30,32 @@ public class SessionBean implements BeanInterface{
 
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement ps = SQLOperations.createNewSession(connection);
+		try
+		{
+			ps.setInt(1, getSeminarID());
+			ps.setString(2, getSessionName()); 
+			ps.setInt(3, getVenueID());
+			ps.setString(4, getVenueRemarks());
+			ps.setInt(5, getCapacity());
+			ps.setDate(6, getDate());
+			ps.setTime(7, getStartTime());
+			ps.setTime(8, getEndTime());
+			ps.setInt(9, getCompletion());
+			ps.setInt(10, getActive());
+			
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -47,12 +75,12 @@ public class SessionBean implements BeanInterface{
 		this.seminarID = seminarID;
 	}
 
-	public String getSeminarName() {
-		return seminarName;
+	public String getSessionName() {
+		return sessionName;
 	}
 
-	public void setSeminarName(String seminarName) {
-		this.seminarName = seminarName;
+	public void setSeminarName(String sessionName) {
+		this.sessionName = sessionName;
 	}
 
 	public int getVenueID() {

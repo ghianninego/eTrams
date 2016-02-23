@@ -1,7 +1,10 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.beanUtilities.BeanInterface;
 // bean for respective colleges
 public class CollegeBean implements BeanInterface {
@@ -18,7 +21,23 @@ public class CollegeBean implements BeanInterface {
 
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+
+		PreparedStatement ps = SQLOperations.createNewCollege(connection);
+		try
+		{
+			ps.setString(1, getCollegeName());
+			ps.setInt(2, getActive()); 
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

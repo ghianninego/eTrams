@@ -1,7 +1,10 @@
 package eTrams.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.beanUtilities.BeanInterface;
 // seminar bean for seminars
 public class SeminarBean implements BeanInterface {
@@ -10,7 +13,7 @@ public class SeminarBean implements BeanInterface {
 	private int creatorID;
 	private String seminarName;
 	private String description;
-	private java.util.Date dateCreated;
+	private java.sql.Date dateCreated;
 	private int completion;
 	private int active;
 	
@@ -22,7 +25,27 @@ public class SeminarBean implements BeanInterface {
 
 	@Override
 	public int storeToDatabase(Connection connection) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement ps = SQLOperations.createNewSeminar(connection);
+		try
+		{
+			ps.setInt(1, getCreatorID());
+			ps.setString(2, getSeminarName()); 
+			ps.setString(3, getDescription());
+			ps.setDate(4, getDateCreated());
+			ps.setInt(5, getCompletion());
+			ps.setInt(6, getActive());
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -58,11 +81,11 @@ public class SeminarBean implements BeanInterface {
 		this.description = description;
 	}
 
-	public java.util.Date getDateCreated() {
+	public java.sql.Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(java.util.Date dateCreated) {
+	public void setDateCreated(java.sql.Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
