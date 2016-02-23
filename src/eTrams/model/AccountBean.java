@@ -29,7 +29,7 @@ public class AccountBean implements BeanInterface {
 		PreparedStatement ps = SQLOperations.createNewUserAccount(connection);
 		try
 		{
-			ps.setString(1, getUsername());
+			ps.setString(1, Security.encrypt(getUsername()));
 			ps.setString(2, Security.encrypt(getPassword())); // please encrypt
 			ps.setString(3, getEmail());
 			ps.setInt(4, getRoleID());
