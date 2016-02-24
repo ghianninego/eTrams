@@ -100,7 +100,7 @@
   							
   						<!-- Announcement Tools -->
   						<div class="text-center" style="padding: 5px;">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".announcementModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#createAnnouncementModal">
   								<span class="glyphicon glyphicon-plus"></span> New Announcement
   							</button>
   						</div>
@@ -109,7 +109,7 @@
 			 		<!-- End of content -->
 			 		
 			 		<!-- Modals -->
-					<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/AnnouncementModals.jsp" %>
 					<!-- End of Modals -->
 					
 			 	</div>

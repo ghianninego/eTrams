@@ -60,7 +60,7 @@
 									<td>00:00</td>
 									<td>00:00</td>
 									<td>Completed</td>
-									<td><a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
 									<td>002</td>
@@ -69,7 +69,7 @@
 									<td>00:00</td>
 									<td>00:00</td>
 									<td>Incomplete</td>
-									<td><a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>
 						</table>
@@ -97,7 +97,7 @@
 									<td>00:00</td>
 									<td>00:00</td>
 									<td>Completed</td>
-									<td><a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
 									<td>002</td>
@@ -106,7 +106,7 @@
 									<td>00:00</td>
 									<td>00:00</td>
 									<td>Incomplete</td>
-									<td><a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>
 						</table>
@@ -150,7 +150,7 @@
 			 		<!-- End of Content -->
 						
 			 		<!-- Modals -->
-					<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 					<!-- End of Modals -->
 					
 			 	</div>	

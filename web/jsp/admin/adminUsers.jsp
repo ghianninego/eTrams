@@ -77,7 +77,7 @@
 						
 						<br>
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".newAccountModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newAccountModal">
   								<span class="glyphicon glyphicon-plus"></span> Create Account
   							</button>
   						</div>

@@ -1,7 +1,7 @@
 <!-- ACCOUNT MODALS -->
 
 <!-- EDIT PROFILE MODAL -->
-<div class="modal fade editProfileModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -40,7 +40,7 @@
 
 
 <!-- EDIT PASSWORD MODAL -->
-<div class="modal fade editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -87,7 +87,7 @@
 
 
 <!-- EDIT OTHER USER'S PASSWORD MODAL -->
-<div class="modal fade editUserPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="editUserPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

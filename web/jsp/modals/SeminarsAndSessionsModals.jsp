@@ -1,46 +1,5 @@
-<!-- MODALS -->
-
-<!-- ANNOUNCEMENT_MODAL -->
-<div class="modal fade announcementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">New Announcement</h4>
-			</div>
-		<form class="form-horizontal" action="modals.html" method="post">
-            <div class="modal-body">
-            		
-                    <!-- Announcement Title -->
-                    <div class="form-group">
-                        <label for="Title" class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="announcement_title" name="announcement_title" placeholder="Title" required />
-                        </div>
-                    </div>
-
-                    <!-- Announcement Content -->
-                    <div class="form-group">
-                        <label for="Content" class="col-sm-2 control-label">Content</label>
-                        <div class="col-sm-10">
-                        <textarea class="form-control" name="announcement_content" id="announcement_content" rows="5" required></textarea>
-                        </div>
-                    </div>
-    
-            </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
-                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-		</form>
-	</div>
-</div>
-<!-- ANNOUNCEMENT_MODAL -->
-
-
 <!-- SEMINAR_MODAL -->
-<div class="modal fade seminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="seminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -79,7 +38,7 @@
 
 
 <!-- EDIT SEMINAR_MODAL -->
-<div class="modal fade editSeminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="editSeminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -117,7 +76,7 @@
 
 
 <!-- SESSION_MODAL -->
-<div class="modal fade sessionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -217,7 +176,7 @@
 
 
 <!-- EDIT SESSION_MODAL -->
-<div class="modal fade editSessionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="editSessionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -327,7 +286,7 @@
 
 
 <!-- ATTENDANCE_MODAL -->
-<div class="modal fade attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -366,7 +325,7 @@
 
 
 <!-- SET STATUS MODAL -->
-<div class="modal fade setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

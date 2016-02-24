@@ -56,12 +56,12 @@
 			 					
 			 				<div class="col-sm-4 accountRight">
 			 					<div class="someButton">
-			 						<button class="btn btn-yellow" data-toggle="modal" data-target=".editProfileModal">
+			 						<button class="btn btn-yellow" data-toggle="modal" data-target="#editProfileModal">
 			 							Edit Information
 			 						</button>
 			 					</div>
 			 					<div class="someButton">
-			 						<a class="btn btn-yellow" data-toggle="modal" data-target=".editPasswordModal">
+			 						<a class="btn btn-yellow" data-toggle="modal" data-target="#editPasswordModal">
 			 							Edit Password
 			 						</a>
 			 					</div>

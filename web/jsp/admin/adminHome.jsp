@@ -68,7 +68,10 @@
   									</button>
   									<h4>Announcement 1</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
+  										<a href="">Delete</a>
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement2">
   									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
@@ -76,23 +79,10 @@
   									</button>
   									<h4>Announcement 2</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a></p>
-  								</div>
-  								<div class="announcements fade in" id="announcement2">
-  									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
-  										<span aria-hidden="true">&times;</span>
-  									</button>
-  									<h4>Announcement 3</h4>
-  									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a></p>
-  								</div>
-  								<div class="announcements fade in" id="announcement4">
-  									<button type="button" class="close" data-target="#announcement4" data-dismiss="alert">
-  										<span aria-hidden="true">&times;</span>
-  									</button>
-  									<h4>Announcement 3</h4>
-  									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a> | <a href="">Delete</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
+  										<a href="">Delete</a>
+  									</p>
   								</div>
   							</div>
   							<!-- End of List of announcements -->
@@ -109,7 +99,7 @@
   							
   						<!-- New Announcement -->
   						<div class="someButton text-center" style="padding-top: 15px;">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".announcementModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#createAnnouncementModal">
   								<span class="glyphicon glyphicon-plus"></span> New Announcement
   							</button>
   						</div>
@@ -118,7 +108,7 @@
 			 		<!-- End of content -->
 			 			
 			 		<!-- Modals -->
-						<%@ include file= "../modals/modals.jsp" %>
+						<%@ include file= "../modals/AnnouncementModals.jsp" %>
 					<!-- End of Modals -->
 			
 			 	</div>

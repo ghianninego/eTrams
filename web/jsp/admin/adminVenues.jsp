@@ -48,24 +48,24 @@
 								<tr>
 									<td>001</td>
 									<td>Building Name</td>
-									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>002</td>
 									<td>Building Name</td>
-									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>003</td>
 									<td>Building Name</td>
-									<td><a href="#" data-toggle="modal" data-target=".editVenueModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editVenueModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
 						
 						<br>
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".newVenueModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newVenueModal">
   								<span class="glyphicon glyphicon-plus"></span> Add New Venue
   							</button>
   						</div>

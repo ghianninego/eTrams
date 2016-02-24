@@ -59,10 +59,10 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
-									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 							Completed
 			 						</a></td>
-									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
 									<td>002</td>
@@ -70,10 +70,10 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
-									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>
 						</table>
@@ -100,10 +100,10 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
-									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 							Completed
 			 						</a></td>
-									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 								<tr>
 									<td>002</td>
@@ -111,10 +111,10 @@
 									<td>College/Faculty/Institute</td>
 									<td>00:00</td>
 									<td>00:00</td>
-									<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target=".attendanceModal">Set attendance</a></td>			
+									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal">Set attendance</a></td>			
 								</tr>
 							</tbody>
 						</table>
@@ -160,7 +160,7 @@
 						</table>
 						
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".addParticipantModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
   						
@@ -168,7 +168,7 @@
 			 		<!-- End of Content -->
 						
 			 		<!-- Modals -->
-					<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 					<!-- End of Modals -->
 					
 			 	</div>

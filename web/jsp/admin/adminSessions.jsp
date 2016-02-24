@@ -46,7 +46,7 @@
   								<a href="#" class="thumbnail" id="complete" data-popover="true" data-html="true" 
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSessionModal'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -68,7 +68,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSessionModal'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -88,7 +88,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSessionModal'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -108,7 +108,7 @@
   								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='.editSessionModal'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -128,14 +128,14 @@
   							
   						<br>
   						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".sessionModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#sessionModal">
   								<span class="glyphicon glyphicon-plus"></span> New session</button>
   						</div>
 			 		</div>
 			 		<!-- End of Content -->
 			 			
 			 		<!-- Modals -->
-					<%@ include file= "../modals/modals.jsp" %>
+					<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 					<!-- End of Modals -->
 						
 			 	</div>

@@ -50,26 +50,26 @@
 									<td>001</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>002</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 								<tr>
 									<td>003</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target=".editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
 						
 						<br>
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target=".newFacultyModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newFacultyModal">
   								<span class="glyphicon glyphicon-plus"></span> Add New College
   							</button>
   						</div>

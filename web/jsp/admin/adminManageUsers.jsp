@@ -74,12 +74,12 @@
 			 					
 			 							<div class="col-sm-4 accountRight">
 			 								<div class="someButton">
-			 									<button class="btn btn-yellow" data-toggle="modal" data-target=".editProfileModal">
+			 									<button class="btn btn-yellow" data-toggle="modal" data-target="#editProfileModal">
 			 										Edit Information
 			 									</button>
 			 								</div>
 			 								<div class="someButton">
-			 									<a class="btn btn-yellow" data-toggle="modal" data-target=".editUserPasswordModal">
+			 									<a class="btn btn-yellow" data-toggle="modal" data-target="#editUserPasswordModal">
 			 										Edit Password
 			 									</a>
 			 								</div>
@@ -115,7 +115,7 @@
 												<td>00:00</td>
 												<td>00:00</td>
 												<td>mm/dd/yyyy</td>
-												<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+												<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 										Completed
 			 									</a></td>
 												<td>certified</td>
@@ -127,7 +127,7 @@
 												<td>00:00</td>
 												<td>00:00</td>
 												<td>mm/dd/yyyy</td>
-												<td><a href="#" data-toggle="modal" data-target=".setStatusModal">
+												<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 										Completed
 			 									</a></td>
 												<td><a href="#">certify?</a></td>
@@ -143,7 +143,7 @@
 			 			
 			 			<!-- Modals -->
 						<%@ include file= "../modals/accountModals.jsp" %>
-						<%@ include file= "../modals/modals.jsp" %>
+						<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 						<!-- End of Modals -->
 			 			
 			 		</div>
