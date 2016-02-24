@@ -24,28 +24,34 @@
 					<div class="inner">
 					
 						<!-- System Title -->
-						<div class="indexLogo">
-							<img src="img/system title.jpg" alt="e-Training Registration & Attendance Monitoring System">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3 indexLogo">
+								<img src="img/system title.jpg" alt="e-Training Registration & Attendance Monitoring System">
+							</div>
 						</div>
 						<!-- End of System Title -->
 						
 						<!-- Login Form-->
-						<form class="form login" action="jsp/admin/adminHome.jsp" method="">
-							<div class="form-group">
-								<input type="text" class="form-control" id="username" name="username" 
-									required="required" placeholder="Username">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<form class="form login" action="jsp/admin/adminHome.jsp" method="">
+									<div class="form-group">
+										<input type="text" class="form-control" id="username" name="username" required="required" placeholder="Username">
+									</div>
+									<div class="form-group">
+									<input type="password" class="form-control" id="password" name="password" required="required" placeholder="Password">
+									</div>
+									<button type="submit" class="btn btn-yellow">Login</button>
+								</form>
 							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="password" name="password" 
-									required="required" placeholder="Password">
-							</div>
-							<button type="submit" class="btn btn-yellow">Login</button>
-						</form>
+						</div>
 						<!-- End of Login Form -->
 						
 						<!-- Footer -->
-						<div class="indexFooter">
-							<p>© 2016 University of Santo Tomas. All Rights Reserved.</p>
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3 indexFooter">
+								<p>© 2016 University of Santo Tomas. All Rights Reserved.</p>
+							</div>
 						</div>
 						<!-- End of Footer -->
 						
