@@ -43,7 +43,7 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" id="complete" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
@@ -54,18 +54,18 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 1: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 1: This is the name<br>ajodj</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
-  										<br>
-  										<h4>COMPLETED</h4>
+  										<p><strong>Status:</strong> Completed</p>
   									</div>
   								</a>
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
@@ -76,16 +76,18 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 2: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 2: Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
+  										<p><strong>Status:</strong> Ongoing</p>
   									</div>
   								</a>
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
@@ -96,16 +98,18 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 3: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 3: Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
+  										<p><strong>Status:</strong> Ongoing</p>
   									</div>
   								</a>
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
@@ -116,10 +120,12 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 4: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 4: Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
+  										<p><strong>Status:</strong> Ongoing</p>
   									</div>
   								</a>
   							</div>

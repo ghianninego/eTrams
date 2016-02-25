@@ -108,7 +108,7 @@
 			 		<!-- End of content -->
 			 			
 			 		<!-- Modals -->
-						<%@ include file= "../modals/AnnouncementModals.jsp" %>
+					<%@ include file= "../modals/AnnouncementModals.jsp" %>
 					<!-- End of Modals -->
 			
 			 	</div>

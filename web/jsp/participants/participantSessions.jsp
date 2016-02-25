@@ -37,65 +37,76 @@
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<div class="row">
+			 			
+			 				<!-- FOR REGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									data-content="<p>Session decription, date & venue, etc.</p>
+  								<!-- Add this line -->
+  									<p><strong>You are registered here.</strong></p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Unregister</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 1: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 1: Session Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
-  										<br>
-  										<h4>REGISTERED</h4>
+  										<p><strong>Status:</strong> Ongoing</p>
   									</div>
   								</a>
   							</div>
   							
+  							<!-- FOR COMPLETED PARTICIPANT SESSIONS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" id="complete" style="pointer-events:none">
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									style="pointer-events:none"> <!-- Add this line -->
   									<div class="caption">
-  										<h3>Session 2: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 2: Session Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
-  										<br>
-  										<h4>COMPLETED</h4>
+  										<p><strong>Status:</strong> Completed</p>
   									</div>
   								</a>
   							</div>
-  								
+  							
+  							<!-- FOR UNREGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Register</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 3: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 3: Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
+  										<p><strong>Status:</strong> Ongoing</p>
   									</div>
   								</a>
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Session decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Register</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Session 4: Name</h3>
-  										<br>
+  										<div class="sessionTitle">
+  											<h3>Session 4: Name</h3>
+  										</div>
   										<p><strong>Total no. of attendies:</strong> ###</p>
   										<p><strong>Capacity:</strong> ###</p>
+  										<p><strong>Status:</strong> Ongoing</p>
  									</div>
   								</a>
   							</div>

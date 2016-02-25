@@ -38,15 +38,16 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='participantSessions.jsp'>View Sessions</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -55,15 +56,16 @@
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -72,15 +74,16 @@
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -89,17 +92,19 @@
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<p>Number of Sessions</p>
-  										<p>Date Start</p>
-  										<p>Date End</p>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
   								</a>
   							</div>

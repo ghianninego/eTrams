@@ -44,7 +44,7 @@
 			 	<!-- End of Calendar -->
 			 		
 			 	<!-- Announcements -->
-			 	<div class="col-md-offset-1 col-md-4">
+			 	<div class="col-md-5">
 			 		<h1 class="page-header">Announcements</h1>
 			 		
 			 		<!-- Content -->
@@ -65,7 +65,8 @@
   									</button>
   									<h4>Announcement 1</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> 
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement2">
   									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
@@ -73,7 +74,8 @@
   									</button>
   									<h4>Announcement 2</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> 
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement3">
   									<button type="button" class="close" data-target="#announcement3" data-dismiss="alert">
@@ -81,7 +83,8 @@
   									</button>
   									<h4>Announcement 3</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> 
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement4">
   									<button type="button" class="close" data-target="#announcement4" data-dismiss="alert">
@@ -89,7 +92,8 @@
   									</button>
   									<h4>Announcement 4</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> 
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement5">
   									<button type="button" class="close" data-target="#announcement5" data-dismiss="alert">
@@ -97,7 +101,8 @@
   									</button>
   									<h4>Announcement 5</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> 
+  									</p>
   								</div>
   							</div>
   							<!-- End of List of announcements -->
@@ -111,6 +116,10 @@
   						</div>
 			 		</div>
 			 		<!-- End of content -->
+			 		
+			 		<!-- Modals -->
+					<%@ include file= "../modals/AnnouncementModals.jsp" %>
+					<!-- End of Modals -->
 			 			
 			 	</div>
 			 	<!-- End of Announcements -->

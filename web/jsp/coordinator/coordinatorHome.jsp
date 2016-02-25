@@ -45,7 +45,7 @@
 			 	<!-- End of Calendar -->
 			 		
 			 	<!-- Announcements -->
-			 	<div class="col-md-offset-1 col-md-4">
+			 	<div class="col-md-5">
 			 		<h1 class="page-header">Announcements</h1>
 						
 		 			<!-- Content -->
@@ -67,7 +67,9 @@
   									</button>
   									<h4>Announcement 1</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a>
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement2">
   									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
@@ -75,7 +77,9 @@
   									</button>
   									<h4>Announcement 2</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a>
+  									</p>
   								</div>
   								<div class="announcements fade in" id="announcement2">
   									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
@@ -83,7 +87,9 @@
   									</button>
   									<h4>Announcement 3</h4>
   									<p>Content content content content con... <br>
-  										<a href="">View</a> | <a href="">Edit</a></p>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a>
+  									</p>
   								</div>
   							</div>
   							<!-- End of List of announcements -->

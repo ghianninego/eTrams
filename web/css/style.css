@@ -145,11 +145,20 @@ small {
 	border-color: #F6C533 !important;
 }
 
-.caption h4 {
-	border-top: 1px solid #585858;
-	padding: 10px;
-	font-weight: bold !important;
-	color: #EEA108 !important;
+.caption p {
+	padding-right: 5px;
+	text-align: right !important;
+}
+
+.sessionTitle, .seminarTitle {
+	padding: 2px 8px !important;
+	border-bottom: 2px solid #2E2E2E;
+	margin-bottom: 10px;
+	height: 130px;
+}
+
+.sessionTitle h3, .seminarTitle h3 {
+	margin-top: 10px !important;
 }
 /******************** End of Seminars & Sessions Style ********************/
 
@@ -282,3 +291,12 @@ small {
 }
 
 /******************** End of Tables ********************/
+
+
+
+/************************ Fonts ************************/
+@font-face {
+	font-family: quadranta;
+	src: url('../fonts/Quadranta-Regular.otf');
+}
+/********************* End of Fonts ********************/
