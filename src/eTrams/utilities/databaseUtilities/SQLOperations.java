@@ -180,7 +180,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewAnnouncement == null)
-				createNewAnnouncement = connection.prepareStatement("INSERT INTO announcementTable VALUES (?,?,?,?)");
+				createNewAnnouncement = connection.prepareStatement("INSERT INTO announcementTable VALUES (?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -494,7 +494,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteCollege == null)
-				deleteCollege = connection.prepareStatement("UPDATE collegeTable SET active = 'FALSE' WHERE collegeTableId = ? ");
+				deleteCollege = connection.prepareStatement("UPDATE collegeTable SET active = '0' WHERE collegeTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -510,7 +510,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteDepartment == null)
-				deleteDepartment = connection.prepareStatement("UPDATE departmentTable SET active = 'FALSE' WHERE departmentTableId = ? ");
+				deleteDepartment = connection.prepareStatement("UPDATE departmentTable SET active = '0' WHERE departmentTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -526,7 +526,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteUserInfo == null)
-				deleteUserInfo = connection.prepareStatement("UPDATE userInfoTable SET active = 'FALSE' WHERE userInfoTableId = ? ");
+				deleteUserInfo = connection.prepareStatement("UPDATE userInfoTable SET active = '0' WHERE userInfoTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -542,7 +542,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteUserAccount == null)
-				deleteUserAccount = connection.prepareStatement("UPDATE userAccountTable SET active = 'FALSE' WHERE userAccountTableId = ? ");
+				deleteUserAccount = connection.prepareStatement("UPDATE userAccountTable SET active = '0' WHERE userAccountTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -558,7 +558,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteSeminar == null)
-				deleteSeminar = connection.prepareStatement("UPDATE seminarTable  SET active = 'FALSE' WHERE seminarTableId = ? ");
+				deleteSeminar = connection.prepareStatement("UPDATE seminarTable  SET active = '0' WHERE seminarTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -574,7 +574,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteSession == null)
-				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = 'FALSE' WHERE seesionTableId = ? ");
+				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE seesionTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -591,7 +591,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteAttendance == null)
-				deleteAttendance = connection.prepareStatement("UPDATE attendanceTable  SET active = 'FALSE' WHERE attendanceTableId = ? ");
+				deleteAttendance = connection.prepareStatement("UPDATE attendanceTable  SET active = '0' WHERE attendanceTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -607,7 +607,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteAnnouncement == null)
-				deleteAnnouncement = connection.prepareStatement("UPDATE announcementTable SET active = 'FALSE' WHERE announcementTableId = ? ");
+				deleteAnnouncement = connection.prepareStatement("UPDATE announcementTable SET active = '0' WHERE announcementTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -623,7 +623,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteVenue == null)
-				deleteVenue = connection.prepareStatement("UPDATE venueTable SET active = 'FALSE' WHERE venueTableId = ? ");
+				deleteVenue = connection.prepareStatement("UPDATE venueTable SET active = '0' WHERE venueTableId = ? ");
 		} 
 		catch (SQLException e) 
 		{

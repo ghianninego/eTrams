@@ -42,8 +42,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 			case "createSeminar": 
 				SeminarClass.createSeminar(request, connection, 1); // temporary ID (must get from session)
 				// if admin
-					response.sendRedirect("jsp/admin/adminSeminars.jsp");
-				// else if coordinator
+					response.sendRedirect("jsp/admin/adminSeminars.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 		}
