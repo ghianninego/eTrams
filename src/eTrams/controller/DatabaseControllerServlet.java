@@ -46,6 +46,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
+			
 		}
 	}
 

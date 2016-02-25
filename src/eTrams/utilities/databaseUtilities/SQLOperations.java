@@ -58,6 +58,8 @@ public class SQLOperations
 	private static PreparedStatement selectOneCollege;
 	private static PreparedStatement selectOneDepartment;
 	
+//-----------select COUNT RECORDS
+	private static PreparedStatement countSessions;
 	
 /*-----------------------------------------------------------------------------------------
 *******************************************INSERT****************************************** 
@@ -738,8 +740,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		return updateTimeOut;
 	}
 	
-	
-		public synchronized static PreparedStatement updateAnnouncement(Connection connection)
+	public synchronized static PreparedStatement updateAnnouncement(Connection connection)
 	{
 		try 
 		{
@@ -754,7 +755,25 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		System.out.println("update announcementTable");         
 		return updateAnnouncement;
 	}	
+	
 
+	/*-----------------------------------------------------------------------------------------
+	*****************************************COUNT!****************************************** 
+	------------------------------------------------------------------------------------------*/
 	
-	
+	public synchronized static PreparedStatement countSessions(Connection connection)
+	{
+		try 
+		{
+			if (countSessions == null)
+				countSessions = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countSessions sessionTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countSessions sessionTable");         
+		return countSessions;
+	}
 }
