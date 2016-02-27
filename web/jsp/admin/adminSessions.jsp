@@ -19,8 +19,6 @@
 		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 		<script type="text/javascript" src="../../js/myscript.js"></script>
 		
-		<!-- FOR SEMINAR MODAL -->
-		<script type="text/javascript" src="../../js/dateModal.js"></script>
 		<!-- FOR SESSION MODAL -->
 		<script type="text/javascript" src="../../js/sessionModal.js"></script>
 		
