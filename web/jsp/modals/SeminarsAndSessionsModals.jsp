@@ -1,4 +1,4 @@
-<!-- SEMINAR_MODAL -->
+<!-- SEMINAR_MODAL --> <!-- DITO--> 
 <div class="modal fade" id="seminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -13,7 +13,7 @@
             	<div class="form-group">
             		<label for="Seminar_Name" class="col-sm-2 control-label">Seminar Name</label>
             		<div class="col-sm-10">
-            			<input type="text" class="form-control" id="seminar_name" name="seminar_name" placeholder="Seminar Name" required />
+            			<input type="text" class="form-control" id="seminar_name" name="seminar_name" placeholder="Seminar Name" required /> <!-- SEMINAR PLACEHOLDER HERE (put ${bean.seminarName} in the placeholder -->
             		</div>
             	</div>
             	
@@ -21,11 +21,12 @@
             	<div class="form-group">
             		<label for="Topic" class="col-sm-2 control-label">Seminar Topic</label>
             		<div class="col-sm-10">
-            			<textarea class="form-control" name="seminar_topic" id="seminar_topic" rows="5" required></textarea>
+            			<textarea class="form-control" name="seminar_topic" id="seminar_topic" rows="5" required></textarea> <!-- SEMINAR PLACEHOLDER HERE (put ${bean.seminarDescription} in the placeholder -->
             		</div>
             	</div>
             </div>
             <div class="modal-footer">
+				<!-- <text type="hidden" name="seminarID" value="${bean.seminarID}" -->
             	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
             	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
             </div>
@@ -283,65 +284,6 @@
 	</div>
 </div>
 <!-- EDIT SESSION_MODAL -->
-
-
-<!-- ADD_PARTICIPANTS_MODAL -->
-<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Add Participants</h4>
-			</div>
-		<form class="form-horizontal" action="modals.html" method="post">
-            <div class="modal-body">
-            		
-				<div class="form-group">
-					<label for="Participant Names" class="col-sm-2 control-label" id="participantLabel" >Participants (1)</label>
-					<div class="col-sm-10">
-                    
-                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
-                    	<select class="participantLists hidden">
-                        	<option value="James Suarez"></option>
-                        	<option value="Marie Rosalado"></option>
-                        	<option value="Shiarra Go"></option>
-                        	<option value="Nil Carpio"></option>
-                        	<option value="Mark Cabe"></option>
-                        	<option value="Cedrick Cancio"></option>
-                        	<option value="Epsilon Sta. Ana"></option>
-                        	<option value="Gabriel Centeno"></option>
-                        	<option value="Lyn Frias"></option>
-                        </select>
-                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
-
-                        
-						<div class="row participantList">
-							<div id="participantGroup_1">
-								<div class="col-sm-2">
-									<label class="control-label">Participant 1</label>
-								</div>
-								<div class="col-sm-10">
-									<div class="input-group ui-widget">
-										<input type="text" id="participant_1" name="participants" class="form-control" placeholder="Please type the participant's name here" required />
-										<div class="input-group-addon"><button type="button" onclick="return addParticipant()" class="glyphicon glyphicon-plus"></button></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-    
-            </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
-                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-		</form>
-	</div>
-</div>
-<!-- ADD_PARTICIPANTS_MODAL -->
 
 
 <!-- ATTENDANCE_MODAL -->

@@ -18,7 +18,7 @@ public class SessionBean implements BeanInterface{
 	private java.sql.Date date;
 	private java.sql.Time startTime;
 	private java.sql.Time endTime;
-	private int speakerID;
+	private String speaker;
 	private int completion;
 	private int active;
 
@@ -42,8 +42,9 @@ public class SessionBean implements BeanInterface{
 			ps.setDate(6, getDate());
 			ps.setTime(7, getStartTime());
 			ps.setTime(8, getEndTime());
-			ps.setInt(9, getCompletion());
-			ps.setInt(10, getActive());
+			ps.setString(9, getSpeaker());
+			ps.setInt(10, getCompletion());
+			ps.setInt(11, getActive());
 			
 			
 			if (ps.executeUpdate() > 0)
@@ -114,12 +115,12 @@ public class SessionBean implements BeanInterface{
 	public void setDate(java.sql.Date date) {
 		this.date = date;
 	}
-	public int getSpeakerID() {
-		return speakerID;
+	public String getSpeaker() {
+		return speaker;
 	}
 
-	public void setSpeakerID(int speakerID) {
-		this.speakerID = speakerID;
+	public void setSpeaker(String speaker) {
+		this.speaker = speaker;
 	}
 
 	public int getCompletion() {

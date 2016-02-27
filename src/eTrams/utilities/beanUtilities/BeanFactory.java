@@ -102,19 +102,19 @@ public class BeanFactory {
 	}
 	
 	// for getting session bean
-	public static BeanInterface getBean(int sessionID, int seminarID, String seminarName, int venueID, String venueRemarks, int capacity, java.sql.Date date, java.sql.Time startTime, java.sql.Time endTime, int speakerID, int completion, int active)
+	public static BeanInterface getBean(int sessionID, int seminarID, String sessionName, int venueID, String venueRemarks, int capacity, java.sql.Date date, java.sql.Time startTime, java.sql.Time endTime, String speaker, int completion, int active)
 	{
 		SessionBean sessionBean = new SessionBean();
 		
 		sessionBean.setSessionID(sessionID);
 		sessionBean.setSeminarID(seminarID);
-		sessionBean.setSeminarName(seminarName);
+		sessionBean.setSeminarName(sessionName);
 		sessionBean.setVenueID(venueID);
 		sessionBean.setVenueRemarks(venueRemarks);
 		sessionBean.setCapacity(capacity);
 		sessionBean.setStartTime(startTime);
 		sessionBean.setEndTime(endTime);
-		sessionBean.setSpeakerID(speakerID);
+		sessionBean.setSpeaker(speaker);
 		sessionBean.setCompletion(completion);
 		sessionBean.setActive(active);
 		

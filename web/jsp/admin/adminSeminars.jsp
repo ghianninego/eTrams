@@ -19,6 +19,8 @@
 		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 		<script type="text/javascript" src="../../js/myscript.js"></script>
 		
+		<!-- FOR SEMINAR MODAL -->
+		<script type="text/javascript" src="../../js/dateModal.js"></script>
 		<!-- FOR SESSION MODAL -->
 		<script type="text/javascript" src="../../js/sessionModal.js"></script>
 		
@@ -41,7 +43,7 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a type='button' class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>	
@@ -52,34 +54,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<div class="seminarTitle">
-  											<h3>Seminar Name</h3>
-  										</div>
-  										<p><strong>Number of Sessions:</strong> ####</p>
-  										<p><strong>Date Start:</strong> 00/00/0000</p>
-  										<p><strong>Date End:</strong> 00/00/0000</p>
-  									</div>
-  								</a>
-  							</div>
-  							
-  							
-  								
-  							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
-  									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  										<a class='btn btn-gray'>Delete</a>
-									</div>
-  									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
-  									</div>
-  								">
-  									<div class="caption">
-  										<div class="seminarTitle">
-  											<h3>Seminar Name</h3>
-  										</div>
-  										<p><strong>Number of Sessions:</strong> ####</p>
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
@@ -87,7 +64,7 @@
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
@@ -98,10 +75,30 @@
   									</div>
   								">
   									<div class="caption">
-  										<div class="seminarTitle">
-  											<h3>Seminar Name</h3>
-  										</div>
-  										<p><strong>Number of Sessions:</strong> ####</p>
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
+  										<p><strong>Date Start:</strong> 00/00/0000</p>
+  										<p><strong>Date End:</strong> 00/00/0000</p>
+  									</div>
+  								</a>
+  							</div>
+  								
+  							<div class="col-sm-6 col-md-3">
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
+  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  										<a class='btn btn-gray'>Delete</a>
+									</div>
+  									<div class='someButton'>
+  										<a class='btn btn-yellow btn-block' href='adminSessions.jsp'>View Sessions</a>
+  									</div>
+  								">
+  									<div class="caption">
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
@@ -109,7 +106,7 @@
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
   									data-content="<p>Seminar decription, date & venue, etc.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
@@ -120,10 +117,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<div class="seminarTitle">
-  											<h3>Seminar Name</h3>
-  										</div>
-  										<p><strong>Number of Sessions:</strong> ####</p>
+  										<h3>Seminar Name</h3>
+  										<br>
+  										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
@@ -134,7 +130,7 @@
   							
   						<br>
   						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#seminarModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#seminarModal"> <!-- LAGYAN MO NG X TO --> 
   								<span class="glyphicon glyphicon-plus"></span> New Seminar</button>
   						</div>
 			 		</div>
@@ -142,6 +138,7 @@
 						
 			 		<!-- Modals -->
 					<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
+					<!--INCREMENT DITO -->
 					<!-- End of Modals -->
 	
 			 	</div>
