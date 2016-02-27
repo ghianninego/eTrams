@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!-- SEMINAR MODAL -->
+=======
+<!-- SEMINAR_MODAL --> <!-- DITO--> 
+>>>>>>> origin/master
 <div class="modal fade" id="seminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -13,7 +17,11 @@
             	<div class="form-group">
             		<label for="Seminar Name" class="col-sm-2 control-label">Seminar Name</label>
             		<div class="col-sm-10">
+<<<<<<< HEAD
             			<input type="text" class="form-control" id="seminarName" name="seminarName" placeholder="Seminar Name" required />
+=======
+            			<input type="text" class="form-control" id="seminar_name" name="seminar_name" placeholder="Seminar Name" required /> <!-- SEMINAR PLACEHOLDER HERE (put ${bean.seminarName} in the placeholder -->
+>>>>>>> origin/master
             		</div>
             	</div>
             	
@@ -21,11 +29,16 @@
             	<div class="form-group">
             		<label for="Topic" class="col-sm-2 control-label">Seminar Topic</label>
             		<div class="col-sm-10">
+<<<<<<< HEAD
             			<textarea class="form-control" name="seminarTopic" id="seminarTopic" rows="5" required></textarea>
+=======
+            			<textarea class="form-control" name="seminar_topic" id="seminar_topic" rows="5" required></textarea> <!-- SEMINAR PLACEHOLDER HERE (put ${bean.seminarDescription} in the placeholder -->
+>>>>>>> origin/master
             		</div>
             	</div>
             </div>
             <div class="modal-footer">
+				<!-- <text type="hidden" name="seminarID" value="${bean.seminarID}" -->
             	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
             	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
             </div>
@@ -251,6 +264,7 @@
 <!-- EDIT SESSION MODAL -->
 
 
+<<<<<<< HEAD
 <!-- ADD PARTICIPANTS_MODAL -->
 <div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg" role="document">
@@ -310,6 +324,9 @@
 
 
 <!-- ATTENDANCE MODAL -->
+=======
+<!-- ATTENDANCE_MODAL -->
+>>>>>>> origin/master
 <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
