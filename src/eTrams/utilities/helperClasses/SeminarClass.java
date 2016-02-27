@@ -26,8 +26,8 @@ public class SeminarClass {
 			return 0;
 	}
 	
-	public static ArrayList<> retrieveSeminars(Connection connection)
+	/*public static ArrayList<> retrieveSeminars(Connection connection)
 	{
 		
-	}
+	}*/
 }
