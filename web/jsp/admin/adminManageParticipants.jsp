@@ -11,11 +11,17 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/jquery_ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/jquery_ui/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
 		
 		<script src="../../js/jquery.js"></script>
 		<script src="../../js/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 		
+		<!-- FOR ADD PARTICIPANT MODAL -->
+		<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
+		<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
+
 		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 		<script type="text/javascript" src="../../js/myscript.js"></script>
 		
@@ -160,7 +166,7 @@
 						</table>
 						
 						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantModal">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
   						

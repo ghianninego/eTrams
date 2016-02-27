@@ -285,6 +285,65 @@
 <!-- EDIT SESSION_MODAL -->
 
 
+<!-- ADD_PARTICIPANTS_MODAL -->
+<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Add Participants</h4>
+			</div>
+		<form class="form-horizontal" action="modals.html" method="post">
+            <div class="modal-body">
+            		
+				<div class="form-group">
+					<label for="Participant Names" class="col-sm-2 control-label" id="participantLabel" >Participants (1)</label>
+					<div class="col-sm-10">
+                    
+                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
+                    	<select class="participantLists hidden">
+                        	<option value="James Suarez"></option>
+                        	<option value="Marie Rosalado"></option>
+                        	<option value="Shiarra Go"></option>
+                        	<option value="Nil Carpio"></option>
+                        	<option value="Mark Cabe"></option>
+                        	<option value="Cedrick Cancio"></option>
+                        	<option value="Epsilon Sta. Ana"></option>
+                        	<option value="Gabriel Centeno"></option>
+                        	<option value="Lyn Frias"></option>
+                        </select>
+                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
+
+                        
+						<div class="row participantList">
+							<div id="participantGroup_1">
+								<div class="col-sm-2">
+									<label class="control-label">Participant 1</label>
+								</div>
+								<div class="col-sm-10">
+									<div class="input-group ui-widget">
+										<input type="text" id="participant_1" name="participants" class="form-control" placeholder="Please type the participant's name here" required />
+										<div class="input-group-addon"><button type="button" onclick="return addParticipant()" class="glyphicon glyphicon-plus"></button></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+    
+            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
+                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>
+<!-- ADD_PARTICIPANTS_MODAL -->
+
+
 <!-- ATTENDANCE_MODAL -->
 <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
