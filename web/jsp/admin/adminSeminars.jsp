@@ -52,8 +52,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -73,8 +74,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -94,8 +96,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
@@ -115,8 +118,9 @@
   									</div>
   								">
   									<div class="caption">
-  										<h3>Seminar Name</h3>
-  										<br>
+  										<div class="seminarTitle">
+  											<h3>Seminar Name</h3>
+  										</div>
   										<p><strong>Number of Sessions:</strong> ##</p>
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
