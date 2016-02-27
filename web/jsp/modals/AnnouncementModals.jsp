@@ -1,6 +1,6 @@
 <!-- MODALS -->
 
-<!-- NEW ANNOUNCEMENT_MODAL -->
+<!-- NEW ANNOUNCEMENT MODAL -->
 <div class="modal fade" id="createAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label for="Title" class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="announcement_title" name="announcement_title" placeholder="Title" required />
+                        <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" placeholder="Title" required />
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="Content" class="col-sm-2 control-label">Content</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="announcement_content" id="announcement_content" rows="5" required></textarea>
+                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required></textarea>
                         </div>
                     </div>
     
@@ -39,7 +39,7 @@
 <!-- NEW ANNOUNCEMENT_MODAL -->
 
 
-<!-- VIEW ANNOUNCEMENT_MODAL -->
+<!-- VIEW ANNOUNCEMENT MODAL -->
 <div class="modal fade" id="viewAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -54,10 +54,10 @@
 		</div>
 	</div>
 </div>
-<!-- VIEW ANNOUNCEMENT_MODAL -->
+<!-- VIEW ANNOUNCEMENT MODAL -->
 
 
-<!-- EDIT ANNOUNCEMENT_MODAL -->
+<!-- EDIT ANNOUNCEMENT MODAL -->
 <div class="modal fade" id="editAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label for="Title" class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="announcement_title" name="announcement_title" value="Title" required />
+                        <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="Title" required />
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label for="Content" class="col-sm-2 control-label">Content</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="announcement_content" id="announcement_content" rows="5" required>SomethingSomething</textarea>
+                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required>SomethingSomething</textarea>
                         </div>
                     </div>
     

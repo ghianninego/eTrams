@@ -42,7 +42,7 @@
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a type='button' class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>	
   										<a type='button' class='btn btn-gray'>Delete</a>
@@ -66,7 +66,7 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
@@ -88,7 +88,7 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
@@ -110,7 +110,7 @@
   							
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>

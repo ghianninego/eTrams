@@ -39,7 +39,7 @@
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
   									</div>
@@ -57,7 +57,7 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
   									</div>
@@ -75,7 +75,7 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
   									</div>
@@ -93,7 +93,7 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
+  									data-content="<p>Seminar decriptionblbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffSessions.jsp'>View Sessions</a>
   									</div>

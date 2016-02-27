@@ -39,7 +39,12 @@
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffManageParticipants.jsp'>Manage Participants</a>
   									</div>
@@ -57,7 +62,12 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffManageParticipants.jsp'>Manage Participants</a>
   									</div>
@@ -75,7 +85,12 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffManageParticipants.jsp'>Manage Participants</a>
   									</div>
@@ -93,7 +108,12 @@
   								
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='staffManageParticipants.jsp'>Manage Participants</a>
   									</div>

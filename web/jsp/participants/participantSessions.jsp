@@ -41,9 +41,14 @@
 			 				<!-- FOR REGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   								<!-- Add this line -->
-  									<p><strong>You are registered here.</strong></p><br>
+  									<p><strong>You are registered here.</strong></p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Unregister</a>
   									</div>
@@ -77,7 +82,12 @@
   							<!-- FOR UNREGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Register</a>
   									</div>
@@ -95,7 +105,12 @@
   							
   							<div class="col-sm-6 col-md-3">
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Session decription, date & venue, etc.</p><br>
+  									data-content="
+  									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
+  										<strong>Date:</strong> asdfghjkl<br>
+  										<strong>Venue:</strong> afghjkl<br>
+  										<strong>Speaker:</strong> afghjkl
+  									</p>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href=''>Register</a>
   									</div>

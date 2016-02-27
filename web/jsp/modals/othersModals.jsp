@@ -12,15 +12,15 @@
             <div class="modal-body">
             	<!-- Name -->
             	<div class="form-group">
-            		<label for="User_Name" class="col-sm-3 control-label">Name</label>
+            		<label for="User Name" class="col-sm-3 control-label">Name</label>
                     <div class="col-sm-8">
-                    	<input type="text" class="form-control" id="user_name" name="user_name" placeholder="Name" required />
+                    	<input type="text" class="form-control" id="username" name="username" placeholder="Name" required />
                     </div>
             	</div>
             	
             	<!-- Email -->
             	<div class="form-group">
-            		<label for="email" class="col-sm-3 control-label">Email</label>
+            		<label for="Email" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-8">
                     	<input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
                     </div>
@@ -28,7 +28,7 @@
             	
             	<!-- College -->
             	<div class="form-group">
-            		<label for="college" class="col-sm-3 control-label">Faculty/College/Institute</label>
+            		<label for="College" class="col-sm-3 control-label">Faculty/College/Institute</label>
             		<div class="col-sm-8">
             			<div class="bfh-selectbox" data-name="college" id="college" data-value="--" data-filter="true">
             				<div data-value="--">--</div>
@@ -40,7 +40,7 @@
             	
             	<!-- Department -->
             	<div class="form-group">
-            		<label for="department" class="col-sm-3 control-label">Department</label>
+            		<label for="Department" class="col-sm-3 control-label">Department</label>
             		<div class="col-sm-8">
             			<div class="bfh-selectbox" data-name="department" id="department" data-value="--" data-filter="true">
             				<div data-value="--">--</div>
@@ -52,7 +52,7 @@
             	
             	<!-- User Type -->
             	<div class="form-group">
-            		<label for="role" class="col-sm-3 control-label">User Type</label>
+            		<label for="Role" class="col-sm-3 control-label">User Type</label>
             		<div class="col-sm-8">
             			<div class="bfh-selectbox" data-name="role" id="role" data-value="--">
             				<div data-value="--">--</div>
