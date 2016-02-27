@@ -19,8 +19,6 @@
 		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 		<script type="text/javascript" src="../../js/myscript.js"></script>
 		
-		<!-- FOR SEMINAR MODAL -->
-		<script type="text/javascript" src="../../js/dateModal.js"></script>
 		<!-- FOR SESSION MODAL -->
 		<script type="text/javascript" src="../../js/sessionModal.js"></script>
 		
@@ -43,13 +41,8 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-<<<<<<< HEAD
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription blbalablba</p><br>
-=======
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
->>>>>>> origin/master
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a type='button' class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>	
   										<a type='button' class='btn btn-gray'>Delete</a>
@@ -69,13 +62,8 @@
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-<<<<<<< HEAD
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription blbalablba.</p><br>
-=======
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
->>>>>>> origin/master
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
@@ -95,13 +83,8 @@
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-<<<<<<< HEAD
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription blbalablba.</p><br>
-=======
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
->>>>>>> origin/master
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
@@ -121,13 +104,8 @@
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-<<<<<<< HEAD
   								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="<p>Seminar decription blbalablba.</p><br>
-=======
-  								<a href="#" class="thumbnail" data-popover="true" data-html="true" 
-  									data-content="<p>Seminar decription, date & venue, etc.</p><br>
->>>>>>> origin/master
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
   										<a class='btn btn-gray'>Delete</a>
@@ -150,7 +128,7 @@
   							
   						<br>
   						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#seminarModal"> <!-- LAGYAN MO NG X TO --> 
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#seminarModal"><!-- LAGYAN MO NG X TO --> 
   								<span class="glyphicon glyphicon-plus"></span> New Seminar</button>
   						</div>
 			 		</div>
