@@ -102,7 +102,7 @@ public class BeanFactory {
 	}
 	
 	// for getting session bean
-	public static BeanInterface getBean(int sessionID, int seminarID, String sessionName, int venueID, String venueRemarks, int capacity, java.sql.Date date, java.sql.Time startTime, java.sql.Time endTime, String speaker, int completion, int active)
+	public static BeanInterface getBean(int sessionID, int seminarID, String sessionName, int venueID, String venueRemarks, int capacity, java.sql.Date date, java.sql.Time startTime, java.sql.Time endTime, int speakerID, int completion, int active)
 	{
 		SessionBean sessionBean = new SessionBean();
 		
@@ -113,8 +113,9 @@ public class BeanFactory {
 		sessionBean.setVenueRemarks(venueRemarks);
 		sessionBean.setCapacity(capacity);
 		sessionBean.setStartTime(startTime);
+		sessionBean.setDate(date);
 		sessionBean.setEndTime(endTime);
-		sessionBean.setSpeaker(speaker);
+		sessionBean.setSpeakerID(speakerID);
 		sessionBean.setCompletion(completion);
 		sessionBean.setActive(active);
 		

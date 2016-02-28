@@ -149,7 +149,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewSession == null)
-				createNewSession = connection.prepareStatement("INSERT INTO sessionTable VALUES (?,?,?,?,?,?,?,?,?)");
+				createNewSession = connection.prepareStatement("INSERT INTO sessionTable VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -413,7 +413,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectSeminar == null)
-				selectSeminar = connection.prepareStatement("SELECT * FROM seminarTable");
+				selectSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE Active = 1 ORDER BY DateCreated DESC");
 		} 
 		catch (SQLException e) 
 		{
@@ -429,7 +429,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectSession == null)
-				selectSession = connection.prepareStatement("SELECT * FROM sessionTable");
+				selectSession = connection.prepareStatement("SELECT SessionTable.sessionID, SessionTable.seminarID, SessionTable.sessionName, VenueTable.venueName, SessionTable.venueRemarks, SessionTable.capacity, SessionTable.date, SessionTable.startTime, SessionTable.endTime, SessionTable.speakerID, SessionTable.completion, SessionTable.active, UserInfoTable.lastName, UserInfoTable.firstName, UserInfoTable.middleName FROM `SessionTable`, `VenueTable`, `AccountTable`, `UserInfoTable` WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and SessionTable.SeminarID = ? ORDERY BY Date DESC");
 		} 
 		catch (SQLException e) 
 		{
@@ -560,7 +560,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteSeminar == null)
-				deleteSeminar = connection.prepareStatement("UPDATE seminarTable  SET active = '0' WHERE seminarTableId = ? ");
+				deleteSeminar = connection.prepareStatement("UPDATE seminarTable  SET active = '0' WHERE seminarId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -680,7 +680,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (updateSeminar == null)
-				updateSeminar = connection.prepareStatement("UPDATE seminarTable  SET coordinatorUserTable = ? ,  title = ? , topic = ? WHERE seminarTableId = ? ");
+				updateSeminar = connection.prepareStatement("UPDATE seminarTable  SET SeminarName = ? , Description = ? WHERE seminarID = ? ");
 		} 
 		catch (SQLException e) 
 		{
