@@ -220,3 +220,21 @@
 	</div>
 </div>
 <!-- EDIT VENUE MODAL -->
+
+
+<!-- ALERT-LIKE MODALS -->
+<!-- DELETE MODAL -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<p>Are you sure you want to delete this item?</p>
+				<div class="someButton text-center">
+					<button type="submit" class="btn btn-default">Yes</button>
+            		<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- DELETE MODAL -->

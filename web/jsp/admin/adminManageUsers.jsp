@@ -84,7 +84,7 @@
 			 									</a>
 			 								</div>
 			 								<div class="someButton">
-			 									<a class="btn btn-yellow">Delete Account</a>
+			 									<a class="btn btn-yellow" data-toggle='modal' data-target='#deleteModal'>Delete Account</a>
 			 								</div>
 			 							</div>
 			 						</div>
@@ -144,6 +144,7 @@
 			 			<!-- Modals -->
 						<%@ include file= "../modals/accountModals.jsp" %>
 						<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
+						<%@ include file= "../modals/othersModals.jsp" %>
 						<!-- End of Modals -->
 			 			
 			 		</div>

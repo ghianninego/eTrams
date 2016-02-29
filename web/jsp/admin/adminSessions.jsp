@@ -64,7 +64,7 @@
   									</p>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal<%= sessions%>'>Edit</a>
-  										<a class='btn btn-gray'>Delete</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
@@ -278,6 +278,8 @@
 							</form>
 						</div>
 					</div>
+					
+					<%@ include file= "../modals/othersModals.jsp" %>
 					<!-- End of Modals -->
 						
 			 	</div>

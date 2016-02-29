@@ -50,19 +50,19 @@
 									<td>001</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 								<tr>
 									<td>002</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 								<tr>
 									<td>003</td>
 									<td>College/Faculty/Institute</td>
 									<td>Coordinator</td>
-									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
