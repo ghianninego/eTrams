@@ -11,6 +11,7 @@ public class VenueBean implements BeanInterface {
 
 	private int venueID;
 	private String venueName;
+	private int active;
 	
 	@Override
 	public void getBeanType() {
@@ -25,6 +26,7 @@ public class VenueBean implements BeanInterface {
 		try
 		{
 			ps.setString(1, getVenueName());
+			ps.setInt(2, 1);
 			
 			if (ps.executeUpdate() > 0)
 			{
@@ -53,6 +55,14 @@ public class VenueBean implements BeanInterface {
 
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
 	}
 	
 	

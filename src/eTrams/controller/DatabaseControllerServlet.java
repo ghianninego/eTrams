@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eTrams.utilities.databaseUtilities.DatabaseDataSource;
+import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
+import eTrams.utilities.helperClasses.VenueClass;
 
 /**
  * Servlet implementation class DatabaseControllerServlet
@@ -42,6 +44,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 		switch(requestType)
 		{
 			// ADMIN ACCOUNT
+			//////// seminar
 			case "createSeminar": 
 				SeminarClass.createSeminar(request, connection, 1); // temporary ID (must get from session)
 				response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
@@ -59,15 +62,50 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("seminars", seminars);
 				response.sendRedirect("jsp/admin/adminSeminars.jsp");
 				break;
+			//////// sessions
 			case "createSession":
-				SessionClass.createSession(request, connection); // temporary ID (must get from session)
+				SessionClass.createSession(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+request.getParameter("seminarID")); // change to URL mapping (hehe)
 				break;
+			case "editSession":
+				SessionClass.editSession(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+session.getAttribute("seminarID"));
+				break;
+			case "deleteSession":
+				SessionClass.deleteSession(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+session.getAttribute("seminarID"));
 			case "goToAdminSession":
+				ResultSet venues = VenueClass.retrieveVenues(connection);
+				ResultSet speakers = SessionClass.retrieveCoordinators(connection);
 				ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
 				session.setAttribute("session", sessions);
+				session.setAttribute("venue", venues);
+				session.setAttribute("speakers", speakers);
 				session.setAttribute("seminarID", request.getParameter("seminarID"));
 				response.sendRedirect("jsp/admin/adminSessions.jsp");
+				break;
+			//////// venues
+			case "createVenue":
+				VenueClass.createVenue(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminVenue"); 
+				break;
+			case "editVenue":
+				VenueClass.editVenue(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminVenue"); 
+				break;
+			case "deleteVenue":
+				VenueClass.deleteVenue(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminVenue"); 
+				break;
+			case "goToAdminVenue":
+				ResultSet venue = VenueClass.retrieveVenues(connection);
+				session.setAttribute("venue", venue);
+				response.sendRedirect("jsp/admin/adminVenues.jsp");
+				break;
+			///////// manage participants
+			case "addParticipants":
+				ManageParticipantsClass.addParticipant(request, connection);
+				//response.sendRedirect("dbcontrol?requestType=goToAdminVenue");
 				break;
 		}
 	}

@@ -261,9 +261,9 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">Add Participants</h4>
 			</div>
-		<form class="form-horizontal" action="modals.html" method="post">
+		<form class="form-horizontal" action="../../dbcontrol" method="post">
             <div class="modal-body">
-            		
+            	<input type="hidden" name="requestType" value="addParticipants"/>
 				<div class="form-group">
 					<label for="Participant Names" class="col-sm-2 control-label" id="participantLabel" >Participants (1)</label>
 					<div class="col-sm-10">

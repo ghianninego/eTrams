@@ -36,6 +36,7 @@ public class SQLOperations
 	private static PreparedStatement updateSession;
 	private static PreparedStatement updateTimeIn;
 	private static PreparedStatement updateTimeOut;
+	private static PreparedStatement updateVenue;
 	//private static PreparedStatement updateAnnouncement;
 //-----------select CHECK
 	private static PreparedStatement selectCollege;
@@ -46,6 +47,7 @@ public class SQLOperations
 	private static PreparedStatement selectSession;
 	private static PreparedStatement selectAttendance;
 	private static PreparedStatement selectAnnouncement;
+	private static PreparedStatement selectCoordinators;
 	private static PreparedStatement selectVenue;
 	
 //-----------select SINGLE CHECK
@@ -166,7 +168,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewAttendance == null)
-				createNewAttendance = connection.prepareStatement("INSERT INTO attendanceTable VALUES (?,?,?,?,?,?,?)");
+				createNewAttendance = connection.prepareStatement("INSERT INTO attendanceTable VALUES (NULL,?,?,?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -198,7 +200,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewVenue == null)
-				createNewVenue = connection.prepareStatement("INSERT INTO venueTable VALUES (?,?)");
+				createNewVenue = connection.prepareStatement("INSERT INTO venueTable VALUES (NULL, ?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -429,7 +431,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectSession == null)
-				selectSession = connection.prepareStatement("SELECT SessionTable.sessionID, SessionTable.seminarID, SessionTable.sessionName, VenueTable.venueName, SessionTable.venueRemarks, SessionTable.capacity, SessionTable.date, SessionTable.startTime, SessionTable.endTime, SessionTable.speakerID, SessionTable.completion, SessionTable.active, UserInfoTable.lastName, UserInfoTable.firstName, UserInfoTable.middleName FROM `SessionTable`, `VenueTable`, `AccountTable`, `UserInfoTable` WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and SessionTable.SeminarID = ? ORDERY BY Date DESC");
+				selectSession = connection.prepareStatement("SELECT SessionTable.sessionID, SessionTable.seminarID, SessionTable.sessionName, VenueTable.venueName, SessionTable.venueRemarks, SessionTable.capacity, SessionTable.date, SessionTable.startTime, SessionTable.endTime, SessionTable.speakerID, SessionTable.completion, SessionTable.active, UserInfoTable.lastName, UserInfoTable.firstName, UserInfoTable.middleName FROM `SessionTable`, `VenueTable`, `AccountTable`, `UserInfoTable` WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and SessionTable.SeminarID = ? ORDER BY Date DESC");
 		} 
 		catch (SQLException e) 
 		{
@@ -477,7 +479,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectVenue == null)
-				selectVenue = connection.prepareStatement("SELECT * FROM venueTable");
+				selectVenue = connection.prepareStatement("SELECT * FROM venueTable WHERE Active = 1");
 		} 
 		catch (SQLException e) 
 		{
@@ -486,7 +488,23 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		}
 		System.out.println("SELECT VenueTable");         
 		return selectVenue;
-	}	
+	}
+	
+	public synchronized static PreparedStatement selectCoordinators(Connection connection)
+	{
+		try 
+		{
+			if (selectCoordinators == null)
+				selectCoordinators = connection.prepareStatement("SELECT AccountTable.accountID, UserInfoTable.LastName, UserInfoTable.FirstName, UserInfoTable.MiddleName FROM AccountTable, UserInfoTable WHERE RoleID = 2 AND AccountTable.UserInfoID = UserInfoTable.UserInfoID");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT userAccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT userAccountTable");         
+		return selectCoordinators;
+	}
 	
 /*-----------------------------------------------------------------------------------------
 *****************************************LOGICAL DELETE!****************************************** 
@@ -576,7 +594,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteSession == null)
-				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE seesionTableId = ? ");
+				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE seesionID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -625,7 +643,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteVenue == null)
-				deleteVenue = connection.prepareStatement("UPDATE venueTable SET active = '0' WHERE venueTableId = ? ");
+				deleteVenue = connection.prepareStatement("UPDATE venueTable SET active = '0' WHERE venueId = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -696,7 +714,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (updateSession == null)
-				updateSession = connection.prepareStatement("UPDATE sessionTable SET seminarTableId = ? , venue = ?, capacity = ?, startTime = ? , endTime=? , description=? , date =? , speaker = ?  WHERE sessionTableId = ? ");
+				updateSession = connection.prepareStatement("UPDATE sessionTable SET SessionName = ? , VenueID = ?, VenueRemarks = ?, capacity = ?, date=? ,startTime = ? , endTime=? , speakerID = ?  WHERE sessionID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -754,7 +772,23 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		}
 		System.out.println("update announcementTable");         
 		return updateAnnouncement;
-	}	
+	}
+	
+	public synchronized static PreparedStatement updateVenue(Connection connection)
+	{
+		try 
+		{
+			if (updateVenue == null)
+				updateVenue = connection.prepareStatement("UPDATE venueTable SET venueName = ? WHERE venueID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update venueTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update venueTable");         
+		return updateVenue;
+	}
 	
 
 	/*-----------------------------------------------------------------------------------------

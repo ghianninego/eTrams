@@ -104,7 +104,7 @@
 							</div>
 						</div>
  						<% seminars++;
-			 			} %>	
+			 			} rs.first(); rs.previous();%>	
 			 			</div>
   						<br>
   						<div class="someButton">
