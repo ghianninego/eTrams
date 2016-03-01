@@ -37,6 +37,7 @@
 			 <div class="row">
 			 	<div class="col-md-12">
 			 		<h1 class="page-header">Seminars</h1>
+			 		
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<div class="row">
@@ -47,11 +48,12 @@
 			 				{
 			 			%>
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p><%= rs.getString(4) %></p><br>
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="auto"
+  									data-content="
+  									<p><%= rs.getString(4) %></p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal<%=seminars%>'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</div>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>'>View Sessions</a>
@@ -64,7 +66,7 @@
   										<p><strong>Date Created:</strong> <%= rs.getDate(5) %></p>
   										<p><strong>Completed:</strong> <%if (rs.getInt(6) == 1) out.print("Completed"); else out.print("Ongoing"); %></p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<div class="modal fade" id="editSeminarModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">

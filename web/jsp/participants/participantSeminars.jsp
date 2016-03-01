@@ -38,8 +38,9 @@
 			 		<div class="content">
 			 			<div class="row">
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription blbalablba.</p><br>
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									data-content="
+  									<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='participantSessions.jsp'>View Sessions</a>
   									</div>
@@ -52,12 +53,13 @@
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   								
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription blbalablba.</p><br>
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									data-content="
+  									<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
@@ -70,12 +72,13 @@
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription blbalablba.</p><br>
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									data-content="
+  									<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
@@ -88,12 +91,13 @@
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
-  									data-content="<p>Seminar decription blbalablba.</p><br>
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  									data-content="
+  									<p>Seminar decription blbalablba.</p><br>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block'>View Sessions</a>
   									</div>
@@ -106,7 +110,7 @@
   										<p><strong>Date Start:</strong> 00/00/0000</p>
   										<p><strong>Date End:</strong> 00/00/0000</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   						</div>

@@ -40,7 +40,7 @@
 			 			
 			 				<!-- FOR REGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="
   									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
   										<strong>Date:</strong> asdfghjkl<br>
@@ -61,12 +61,12 @@
   										<p><strong>Capacity:</strong> ###</p>
   										<p><strong>Status:</strong> Ongoing</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<!-- FOR COMPLETED PARTICIPANT SESSIONS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									style="pointer-events:none"> <!-- Add this line -->
   									<div class="caption">
   										<div class="sessionTitle">
@@ -76,12 +76,12 @@
   										<p><strong>Capacity:</strong> ###</p>
   										<p><strong>Status:</strong> Completed</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<!-- FOR UNREGISTERED PARTICIPANTS -->
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="
   									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
   										<strong>Date:</strong> asdfghjkl<br>
@@ -100,11 +100,11 @@
   										<p><strong>Capacity:</strong> ###</p>
   										<p><strong>Status:</strong> Ongoing</p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="
   									<p><strong>Time:</strong> 00:00 pm - 00:00 pm<br>
   										<strong>Date:</strong> asdfghjkl<br>
@@ -123,7 +123,7 @@
   										<p><strong>Capacity:</strong> ###</p>
   										<p><strong>Status:</strong> Ongoing</p>
  									</div>
-  								</a>
+  								</button>
   							</div>
   							
   						</div>

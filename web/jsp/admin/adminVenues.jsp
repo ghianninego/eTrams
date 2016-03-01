@@ -77,9 +77,12 @@
 								                    	<input type="text" class="form-control" id="venue" name="venue" value="<%= rs.getString(2) %>" required />
 								                    </div>
 								            	</div>
+								            	<br>
 								            </div>
+								            
 								            <input type="hidden" name="venueID" value="<%= rs.getInt(1)%>"/>
 								            <input type="hidden" name="requestType" value="editVenue"/>
+								            	
 								            <div class="modal-footer">
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>

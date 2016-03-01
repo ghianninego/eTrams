@@ -55,11 +55,11 @@
 					 				String str2 = format.format( rs.getTime(9));
 				 			%>
   							<div class="col-sm-6 col-md-3">
-  								<a href="#" class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
+  								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
   									data-content="
   									<p><strong>Time:</strong> <%= str %> - <%= str2 %><br>
   										<strong>Date:</strong> <%= rs.getDate(7) %><br>
-  										<strong>Venue:</strong> <%= rs.getString(4) %><br>
+  										<strong>Venue:</strong> <%=rs.getString(5) %>, <%= rs.getString(4) %><br>
   										<strong>Speaker:</strong> <%= rs.getString(13) %>, <%= rs.getString(14) %> <%= rs.getString(15) %>
   									</p>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
@@ -78,7 +78,7 @@
   										<p><strong>Capacity:</strong> <%= rs.getInt(6) %></p>
   										<p><strong>Status:</strong> <%if (rs.getInt(6) == 1) out.print("Completed"); else out.print("Ongoing"); %></p>
   									</div>
-  								</a>
+  								</button>
   							</div>
   							
 							<!-- EDIT SEMINAR MODAL -->
