@@ -105,4 +105,19 @@ public class SessionClass {
 		
 		return rs;
 	}
+	
+	public static ResultSet retrieveOneSession(Connection connection, int sessionID)
+	{
+		PreparedStatement ps = SQLOperations.selectOneSession(connection);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, sessionID);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
 }

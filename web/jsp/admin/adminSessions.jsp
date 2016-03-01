@@ -67,7 +67,7 @@
   										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='adminManageParticipants.jsp'>Manage Participants</a>
+  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipants&sessionID=<%= rs.getInt(1)%>'>Manage Participants</a>
   									</div>
   								">
   								

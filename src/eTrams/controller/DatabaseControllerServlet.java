@@ -107,6 +107,33 @@ public class DatabaseControllerServlet extends HttpServlet {
 				ManageParticipantsClass.addParticipant(request, connection);
 				//response.sendRedirect("dbcontrol?requestType=goToAdminVenue");
 				break;
+			case "goToAdminManageParticipants":
+				// retrieve participants
+				session.setAttribute("sessionID", request.getParameter("sessionID"));
+				int sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+				ResultSet allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+				ResultSet oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+				ResultSet sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+				session.setAttribute("allParticipants", allParticipantAccounts);
+				session.setAttribute("sessionDetails", oneSession);
+				session.setAttribute("sessionParticipants", sessionParticipants);
+				response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
+				break;
+				
+			case "cancelRegistration":
+				ManageParticipantsClass.cancelRegistration(connection, Integer.parseInt(request.getParameter("attendanceID")));
+				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+				break;
+			
+			case "setStatus":
+				ManageParticipantsClass.setStatus(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+				break;
+			
+			case "setAttendance":
+				ManageParticipantsClass.setTime(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+				break;
 		}
 	}
 
