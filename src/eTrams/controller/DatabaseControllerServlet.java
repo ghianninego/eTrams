@@ -215,6 +215,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
+			// ANNOUNCEMENTS :))
 			case "addAnnouncement":
 					AnnouncementClass.createAnnouncement(request, connection);
 					try {
