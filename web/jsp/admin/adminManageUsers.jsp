@@ -1,3 +1,6 @@
+<jsp:useBean id="oneUser"  type="java.sql.ResultSet" scope="session"/>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,20 +59,21 @@
 			 				 	<div role="tabpanel" class="tab-pane fade in active" id="profile">
 			 				 		<div class="row account">
 			 							<div class="col-sm-8 accountLeft">
+			 							<%oneUser.next(); %>
 			 								<h4>Name</h4>
-			 								<h4><span>Something S. Something</span></h4>
+			 								<h4><span><%=oneUser.getString("firstName")%>   <%=oneUser.getString("middleName")%> <%=oneUser.getString("lastName")%></span></h4>
 			 								<br>
 			 								<h4>Email</h4>
-											<h4><span>2013-xxxxxx@ust-ics.mygbiz.com</span></h4>
+											<h4><span><%=oneUser.getString("email")%></span></h4>
 											<br>
 											<h4>Faculty/College/Institute</h4>
-											<h4><span>Institute of Information and Computing Sciences</span></h4>
+											<h4><span><%=oneUser.getString("collegeName")%></span></h4>
 											<br>
 											<h4>Department</h4>
-											<h4><span>Department</span></h4>
+											<h4><span><%=oneUser.getString("departmentName")%></span></h4>
 											<br>
 											<h4>User Type</h4>
-											<h4><span>Administrator</span></h4>
+											<h4><span><%=oneUser.getString("roleName")%></span></h4>
 			 							</div>
 			 					
 			 							<div class="col-sm-4 accountRight">
@@ -84,7 +88,13 @@
 			 									</a>
 			 								</div>
 			 								<div class="someButton">
-			 									<a class="btn btn-yellow" data-toggle='modal' data-target='#deleteModal'>Delete Account</a>
+			 								<form class="form-horizontal" action="../../dbcontrol" method="post">
+			 								<input type="hidden" name="requestType" value="adminManageUserDelete">
+											<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
+											<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
+											<%oneUser.first(); oneUser.previous(); %>
+			 								<input class="btn btn-yellow" type="submit" value="Delete">
+			 								</form>
 			 								</div>
 			 							</div>
 			 						</div>
@@ -144,7 +154,6 @@
 			 			<!-- Modals -->
 						<%@ include file= "../modals/accountModals.jsp" %>
 						<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
-						<%@ include file= "../modals/othersModals.jsp" %>
 						<!-- End of Modals -->
 			 			
 			 		</div>

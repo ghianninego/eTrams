@@ -23,9 +23,9 @@
 				
 				
 				<% if (x.equals("adminHome.jsp")) { %>
-                 	<li class="active"><a href="adminHome.jsp">Home</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=home">Home</a></li>
                	<% } else { %>
-					<li><a href="adminHome.jsp">Home</a></li>
+					<li><a href="../../dbcontrol?requestType=home">Home</a></li>
 				<% } %>
 				
 				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp")) { %>
@@ -45,7 +45,7 @@
                  	<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
-            				<li><a href="adminUsers.jsp">Users</a></li>
+            				<li><a href="../../dbcontrol?requestType=adminUser">Users</a></li>
             				<li role="separator" class="divider"></li>
             				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
             				<li role="separator" class="divider"></li>
@@ -56,7 +56,7 @@
 					<li class="dropdown">
         			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
-            				<li><a href="adminUsers.jsp">All Users</a></li>
+            				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>
             				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
             				<li role="separator" class="divider"></li>

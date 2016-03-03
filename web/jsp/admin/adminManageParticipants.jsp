@@ -101,8 +101,8 @@
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
 								            			<div class="bfh-selectbox" data-name="status" name="status" id="status">
-								            				<div data-value="Complete">Complete</div>
-								            				<div data-value="Incomplete">Incomplete</div>
+								            				<div data-value="Complete" value="Complete">Complete</div>
+								            				<div data-value="Incomplete" value="Incomplete">Incomplete</div>
 								            			</div>
 								            		</div>
 								            	</div>
@@ -212,7 +212,7 @@
 								            	<div class="form-group">`
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
-								            			<div class="bfh-selectbox" data-name="status" name="status" id="status">
+								            			<div class="bfh-selectbox" data-name="status" id="status">
 								            				<div data-value="Complete">Complete</div>
 								            				<div data-value="Incomplete">Incomplete</div>
 								            			</div>

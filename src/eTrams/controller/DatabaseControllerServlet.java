@@ -3,6 +3,7 @@ package eTrams.controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eTrams.utilities.databaseUtilities.DatabaseDataSource;
+import eTrams.utilities.databaseUtilities.SQLOperations;
+import eTrams.utilities.helperClasses.AnnouncementClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
+import eTrams.utilities.helperClasses.UserClass;
 import eTrams.utilities.helperClasses.VenueClass;
 
 /**
@@ -134,6 +138,122 @@ public class DatabaseControllerServlet extends HttpServlet {
 				ManageParticipantsClass.setTime(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
 				break;
+			/// USER MANAGEMENT
+			case "adminUser": 
+				session.setAttribute("allUser",UserClass.getAllUsers(request, connection));
+				try {
+					session.setAttribute("college",SQLOperations.selectCollege(connection).executeQuery());
+					session.setAttribute("department",SQLOperations.selectDepartment(connection).executeQuery());
+					session.setAttribute("role",SQLOperations.selectRole(connection).executeQuery());
+				} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+
+				response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "adminManageUser": 
+				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "adminManageUserDone": 
+				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				UserClass.editUser(request, connection);
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "adminManageUserDelete": 
+				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
+				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				UserClass.deleteUser(request, connection);
+				response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "adminAddUser": 
+				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
+				
+				UserClass.createUser(request, connection);
+				response.sendRedirect("dbcontrol?requestType=adminUser"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "adminEditPassword": 
+				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				UserClass.editUserPassword(request, connection);
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "login": 
+				session.setAttribute("user",UserClass.login(request, connection));
+			try {
+				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "editSelfPassword": 
+				UserClass.editUserPassword(request, connection);
+				response.sendRedirect("jsp/admin/adminAccount.jsp"); // change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "editSelfInfo": 
+				UserClass.editSelf(request, connection);
+				session.setAttribute("user",UserClass.login(request, connection));
+				response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
+				// else if coordinator0
+				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
+				break;
+			case "addAnnouncement":
+					AnnouncementClass.createAnnouncement(request, connection);
+					try {
+						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+				break;
+			case  "announcementEdit":
+				AnnouncementClass.editAnnouncement(request, connection);
+				try {
+					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+			break;
+			case  "announcementDelete":
+				AnnouncementClass.deleteAnnouncement(request, connection);
+				try {
+					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+			break;
+			case  "home":
+				try {
+					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+			break;
 		}
 	}
 

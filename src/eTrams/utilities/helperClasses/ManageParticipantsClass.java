@@ -89,9 +89,9 @@ public class ManageParticipantsClass {
 		PreparedStatement ps = SQLOperations.updateStatus(connection);
 		try 
 		{
-			System.out.println(request.getParameter("status"));
+			System.out.println(request.getParameter("Status"));
 			System.out.println(request.getParameter("attendanceID"));
-			String status = request.getParameter("status");
+			String status = request.getParameter("Status");
 			int attendanceID = Integer.parseInt(request.getParameter("attendanceID"));
 			
 			ps.setString(1, status);

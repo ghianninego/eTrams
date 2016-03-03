@@ -138,4 +138,39 @@ public class BeanFactory {
 		
 		return attendanceBean;
 	}
+	
+	// for getting account bean
+	public static BeanInterface getBean(int accountID,int userInfoId, String username, String password, String email, int roleID, int active)
+	{
+		AccountBean accountBean = new AccountBean();
+		
+		accountBean.setAccountID(accountID);
+		accountBean.setUserInfoId(userInfoId);
+		accountBean.setUsername(username);
+		accountBean.setPassword(password);
+		accountBean.setEmail(email);
+		accountBean.setRoleID(roleID);
+		accountBean.setActive(active);
+		
+		return accountBean;
+	}
+	
+	public static BeanInterface getBean(int accountID,int userInfoId,String lastName, String firstName, String middleName, String department,String college ,String username, String password, String email, String role, int active)
+	{
+		FinalUserBean accountBean = new FinalUserBean();
+		
+		accountBean.setLastName(lastName);
+		accountBean.setFirstName(firstName);
+		accountBean.setMiddleName(middleName);
+		accountBean.setDepartmentName(department);
+		accountBean.setAccountID(accountID);
+		accountBean.setUserInfoID(userInfoId);
+		accountBean.setUsername(username);
+		accountBean.setPassword(password);
+		accountBean.setEmail(email);
+		accountBean.setRoleName(role);
+		accountBean.setActive(active);
+		accountBean.setCollegeName(college);
+		return accountBean;
+	}
 }

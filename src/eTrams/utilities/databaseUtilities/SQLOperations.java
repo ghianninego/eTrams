@@ -18,6 +18,7 @@ public class SQLOperations
 	private static PreparedStatement createNewAttendance;
 	private static PreparedStatement createNewAnnouncement;
 	private static PreparedStatement createNewVenue;
+	private static PreparedStatement createNewAccount;
 //-----------Delete	
 	private static PreparedStatement deleteCollege;
 	private static PreparedStatement deleteDepartment;
@@ -28,6 +29,7 @@ public class SQLOperations
 	private static PreparedStatement deleteAttendance;
 	private static PreparedStatement deleteAnnouncement;
 	private static PreparedStatement deleteVenue;
+	private static PreparedStatement deleteAccount;
 //-----------Edit/update
 	private static PreparedStatement updateUserInfo;
 	private static PreparedStatement updateUserAccount;
@@ -37,6 +39,8 @@ public class SQLOperations
 	private static PreparedStatement updateTime;
 	private static PreparedStatement updateStatus;
 	private static PreparedStatement updateVenue;
+	private static PreparedStatement updateAccountPassword;
+	private static PreparedStatement updateAccount;
 	//private static PreparedStatement updateAnnouncement;
 //-----------select CHECK
 	private static PreparedStatement selectCollege;
@@ -49,7 +53,10 @@ public class SQLOperations
 	private static PreparedStatement selectAnnouncement;
 	private static PreparedStatement selectCoordinators;
 	private static PreparedStatement selectVenue;
+	private static PreparedStatement selectAccount;
 	private static PreparedStatement selectParticipants;
+	private static PreparedStatement selectRole;
+	
 	
 //-----------select SINGLE CHECK
  	private static PreparedStatement selectOneUserInfo;
@@ -60,14 +67,35 @@ public class SQLOperations
 	private static PreparedStatement selectOneAnnouncement;
 	private static PreparedStatement selectOneCollege;
 	private static PreparedStatement selectOneDepartment;
+	private static PreparedStatement selectOneAccount;
 	private static PreparedStatement selectSessionParticipants;
+	
 	
 //-----------select COUNT RECORDS
 	private static PreparedStatement countSessions;
 	
+//-----------login
+	private static PreparedStatement login;
+	
 /*-----------------------------------------------------------------------------------------
 *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
+	public synchronized static PreparedStatement createNewAccount(Connection connection)
+	{
+		try 
+		{
+			if (createNewAccount == null)
+				createNewAccount = connection.prepareStatement("INSERT INTO AccountTable (userInfoId , username, password, email, roleID, active) VALUES(?,?,?,?,?,?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("INSERT AccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("INSERT AccountTable");         
+		return createNewAccount;
+	}
+	
 	public synchronized static PreparedStatement createNewCollege(Connection connection)
 	{
 		try 
@@ -114,6 +142,22 @@ public class SQLOperations
 		}
 		System.out.println("INSERT userInfoTable");         
 		return createNewUserInfo;
+	}
+	
+	public synchronized static PreparedStatement deleteAccount(Connection connection)
+	{
+		try 
+		{
+			if (deleteAccount == null)
+				deleteAccount = connection.prepareStatement("UPDATE AccountTable SET active = 0 WHERE AccountId = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("delete AccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("delete AccountTable");         
+		return deleteAccount;
 	}
 	
 	public synchronized static PreparedStatement createNewUserAccount(Connection connection)
@@ -220,7 +264,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneCollege == null)
-				selectOneCollege = connection.prepareStatement("SELECT * FROM collegeTable WHERE collegeTableId = ?");
+				selectOneCollege = connection.prepareStatement("SELECT * FROM collegeTable WHERE collegeID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -236,7 +280,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneDepartment == null)
-				selectOneDepartment = connection.prepareStatement("SELECT * FROM departmentTable WHERE departmentTableId = ?");
+				selectOneDepartment = connection.prepareStatement("SELECT * FROM departmentTable WHERE departmentID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -247,28 +291,13 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return selectOneDepartment;
 	}
 	
-	public synchronized static PreparedStatement selectOneUserInfo(Connection connection)
-	{
-		try 
-		{
-			if (selectOneUserInfo == null)
-				selectOneUserInfo = connection.prepareStatement("SELECT * FROM userInfoTable WHERE userInfoTableId = ?");
-		} 
-		catch (SQLException e) 
-		{
-			System.err.println("selectOne userInfoTable_ERR");
-			e.printStackTrace();
-		}
-		System.out.println("selectOne userInfoTable");         
-		return selectOneUserInfo;
-	}
 	
 	public synchronized static PreparedStatement selectOneUserAccount(Connection connection)
 	{
 		try 
 		{
 			if (selectOneUserAccount == null)
-				selectOneUserAccount = connection.prepareStatement("SELECT * FROM userAccountTable WHERE userAccountTableId = ?");
+				selectOneUserAccount = connection.prepareStatement("SELECT * FROM userAccountTable WHERE userAccountID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -284,7 +313,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneSeminar == null)
-				selectOneSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE seminarTableId = ?");
+				selectOneSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE seminarID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -293,6 +322,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("selectOne seminarTable");         
 		return selectOneSeminar;
+	}
+	
+	public synchronized static PreparedStatement selectOneUserInfo(Connection connection)
+	{
+		try 
+		{
+			if (selectOneUserInfo == null)
+				selectOneUserInfo = connection.prepareStatement("SELECT * FROM userInfoTable WHERE userInfoId = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne userInfoTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne userInfoTable");         
+		return selectOneUserInfo;
 	}
 	
 	public synchronized static PreparedStatement selectOneSession(Connection connection)
@@ -332,7 +377,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneAttendance == null)
-				selectOneAttendance = connection.prepareStatement("SELECT * FROM attendanceTable WHERE attendanceTableId = ?");
+				selectOneAttendance = connection.prepareStatement("SELECT * FROM attendanceTable WHERE attendanceID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -343,7 +388,21 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return selectOneAttendance;
 	}
 	
-
+	public synchronized static PreparedStatement selectRole(Connection connection)
+	{
+		try 
+		{
+			if (selectRole == null)
+				selectRole = connection.prepareStatement("SELECT * FROM RoleTable");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT RoleTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT RoleTable");         
+		return selectRole;
+	}	
 	
 	public synchronized static PreparedStatement selectOneAnnouncement(Connection connection)
 	{
@@ -359,6 +418,40 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("selectOne announcementTable");         
 		return selectOneAnnouncement;
+	}
+	
+	public synchronized static PreparedStatement selectOneUserInfoId(Connection connection)
+	{
+		try 
+		{
+			if (selectOneUserInfo == null)
+				selectOneUserInfo = connection.prepareStatement("SELECT userInfoId FROM userInfoTable WHERE lastName = ? and firstName = ? and middleName = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne userInfoTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne userInfoTable");         
+		return selectOneUserInfo;
+	}
+	
+	public synchronized static PreparedStatement selectOneAccount(Connection connection)
+	{
+		try 
+		{
+			if (selectOneAccount == null)
+				selectOneAccount = connection.prepareStatement("SELECT a.AccountId , u.userInfoId , u.firstName , u.middleName , u.lastName, "
+						+ "a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
+						+ " where a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId and a.AccountId=?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne AccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne AccountTable");         
+		return selectOneAccount;
 	}
 	
 /*-----------------------------------------------------------------------------------------
@@ -540,6 +633,26 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		return selectParticipants;
 	}
 	
+	public synchronized static PreparedStatement selectAccount(Connection connection)
+	{
+		try 
+		{
+			if (selectAccount == null)
+				selectAccount = connection.prepareStatement("SELECT a.AccountId , a.userName, a.password,a.active , u.userInfoId , u.firstName , u.middleName , u.lastName, "
+						+ "a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
+						+ " where a.active = 1 and a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT AccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT AccountTable");         
+		return selectAccount;
+	}
+	
+	
+	
 /*-----------------------------------------------------------------------------------------
 *****************************************LOGICAL DELETE!****************************************** 
 ------------------------------------------------------------------------------------------*/	
@@ -548,7 +661,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteCollege == null)
-				deleteCollege = connection.prepareStatement("UPDATE collegeTable SET active = '0' WHERE collegeTableId = ? ");
+				deleteCollege = connection.prepareStatement("UPDATE collegeTable SET active = '0' WHERE collegeID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -564,7 +677,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteDepartment == null)
-				deleteDepartment = connection.prepareStatement("UPDATE departmentTable SET active = '0' WHERE departmentTableId = ? ");
+				deleteDepartment = connection.prepareStatement("UPDATE departmentTable SET active = '0' WHERE departmentID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -580,7 +693,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteUserInfo == null)
-				deleteUserInfo = connection.prepareStatement("UPDATE userInfoTable SET active = '0' WHERE userInfoTableId = ? ");
+				deleteUserInfo = connection.prepareStatement("UPDATE userInfoTable SET active = '0' WHERE userInfoID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -596,7 +709,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteUserAccount == null)
-				deleteUserAccount = connection.prepareStatement("UPDATE userAccountTable SET active = '0' WHERE userAccountTableId = ? ");
+				deleteUserAccount = connection.prepareStatement("UPDATE userAccountTable SET active = '0' WHERE userAccountID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -661,7 +774,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteAnnouncement == null)
-				deleteAnnouncement = connection.prepareStatement("UPDATE announcementTable SET active = '0' WHERE announcementTableId = ? ");
+				deleteAnnouncement = connection.prepareStatement("UPDATE announcementTable SET active = '0' WHERE announcementID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -709,6 +822,22 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		}
 		System.out.println("update userInfoTable");         
 		return updateUserInfo;
+	}
+	
+	public synchronized static PreparedStatement updateAccount(Connection connection)
+	{
+		try 
+		{
+			if (updateAccount== null)
+				updateAccount = connection.prepareStatement("UPDATE AccountTable  SET email = ? WHERE accountID = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update userInfoAccount_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update userInfoAccount");         
+		return updateAccount;
 	}
 	
 	public synchronized static PreparedStatement updateUserAccount(Connection connection)
@@ -797,7 +926,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (updateAnnouncement == null)
-				updateAnnouncement = connection.prepareStatement("UPDATE announcementTable SET userAccountTableId = ? , title = ? , description = ?  WHERE announcementTableId = ? ");
+				updateAnnouncement = connection.prepareStatement("UPDATE announcementTable SET userAccountID = ? , title = ? , description = ?  WHERE announcementID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -824,6 +953,22 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		return updateVenue;
 	}
 	
+	public synchronized static PreparedStatement updateAccountPassword(Connection connection)
+	{
+		try 
+		{
+			if (updateAccountPassword== null)
+				updateAccountPassword = connection.prepareStatement("UPDATE AccountTable  SET password = ? WHERE accountID = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update userInfoAccountPassword_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update userInfoAccountPassword");         
+		return updateAccountPassword;
+	}
+	
 
 	/*-----------------------------------------------------------------------------------------
 	*****************************************COUNT!****************************************** 
@@ -843,5 +988,24 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		}
 		System.out.println("countSessions sessionTable");         
 		return countSessions;
+	}
+	
+	public synchronized static PreparedStatement login(Connection connection)
+	{
+		try 
+		{
+			if (login == null)
+				login = connection.prepareStatement("SELECT a.AccountId , a.userName, a.password,a.active , u.userInfoId , u.firstName ,"
+						+ " u.middleName , u.lastName, a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , "
+						+ "departmentTable as d , collegeTable as c , roleTable as r "
+						+ "where a.active = 1 and a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId and a.username = ? and a.password = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne login_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne login");         
+		return login;
 	}
 }

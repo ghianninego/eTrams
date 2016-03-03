@@ -1,3 +1,5 @@
+<jsp:useBean id="allUser"  type="java.sql.ResultSet" scope="session"/>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,30 +50,24 @@
 								</tr>
 							</thead>
 							<tbody>
+							<%while(allUser.next()){ %>
 								<tr>
-									<td>001</td>
-									<td>User name</td>
-									<td>College/Faculty/Institute</td>
-									<td>Department</td>
-									<td>Participant</td>
-									<td><a href="adminManageUsers.jsp">Manage</a></td>
+									<td><%=allUser.getString("accountID")%></td>
+									<td><%=allUser.getString("firstName")%>   <%=allUser.getString("middleName")%> <%=allUser.getString("lastName")%></td>
+									<td><%=allUser.getString("collegeName")%></td>
+									<td><%=allUser.getString("departmentName")%></td>
+									<td><%=allUser.getString("roleName")%></td>
+									
+									<td><form method="post" action="../../dbcontrol">
+									<input type="hidden" name="requestType" value="adminManageUser">
+									<input type="hidden" name="accountId" value="<%=allUser.getString("accountID")%>">
+									<input type="hidden" name="userInfoId" value="<%=allUser.getString("userInfoID")%>">
+									
+									<input class="btn btn-gray" type="submit" value="Manage">
+									</form></td>
 								</tr>
-								<tr>
-									<td>002</td>
-									<td>User name</td>
-									<td>College/Faculty/Institute</td>
-									<td>Department</td>
-									<td>Coordinator</td>
-									<td><a href="adminManageUsers.jsp">Manage</a></td>
-								</tr>
-								<tr>
-									<td>003</td>
-									<td>User name</td>
-									<td>College/Faculty/Institute</td>
-									<td>Department</td>
-									<td>Staff</td>
-									<td><a href="adminManageUsers.jsp">Manage</a></td>
-								</tr>
+								<%} allUser.first(); allUser.previous();%>
+						
 							</tbody>
 						</table>
 						

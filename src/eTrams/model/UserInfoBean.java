@@ -2,6 +2,7 @@ package eTrams.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import eTrams.utilities.databaseUtilities.SQLOperations;
@@ -16,6 +17,7 @@ public class UserInfoBean implements BeanInterface {
 	private String firstName;
 	private String middleName;
 	private int departmentID;
+	private int collegeID;
 	
 	@Override
 	public void getBeanType() {
@@ -29,17 +31,37 @@ public class UserInfoBean implements BeanInterface {
 		PreparedStatement ps = SQLOperations.createNewUserInfo(connection);
 		try
 		{
-			ps.setInt(1, getAccountID());
-			ps.setString(2, getLastName()); 
-			ps.setString(3, getFirstName());
-			ps.setString(4, getMiddleName());
-			ps.setInt(5, getDepartmentID());
+			ps.setString(1, getLastName()); 
+			ps.setString(2, getFirstName());
+			ps.setString(3, getMiddleName());
+			ps.setInt(4, getDepartmentID());
 			
 			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
 			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int getIdFromDatabase(Connection connection) {
+
+		PreparedStatement ps = SQLOperations.selectOneUserInfoId(connection);
+		ResultSet rs = null;
+		try
+		{
+			ps.setString(1, getLastName()); 
+			ps.setString(2, getFirstName());
+			ps.setString(3, getMiddleName());
+			
+			 rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt("userInfoId");
 		}
 		catch(SQLException e)
 		{
@@ -92,8 +114,16 @@ public class UserInfoBean implements BeanInterface {
 		return departmentID;
 	}
 
-	public void setDepartmentID(int collegeID) {
+	public void setDepartmentID(int departmentID) {
 		this.departmentID = departmentID;
+	}
+
+	public int getCollegeID() {
+		return collegeID;
+	}
+
+	public void setCollegeID(int collegeID) {
+		this.collegeID = collegeID;
 	}
 
 }

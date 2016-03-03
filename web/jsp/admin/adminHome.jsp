@@ -1,3 +1,4 @@
+<jsp:useBean id="announcement" type="java.sql.ResultSet" scope="session"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -61,30 +62,85 @@
   							<!-- End of No announcement -->
   								
   							<!-- List of announcements -->
+  							<%int z = 1;while(announcement.next()) { %>
   							<div id="announcementList">
-  								<div class="announcements fade in" id="announcement1">
-  									<button type="button" class="close" data-target="#announcement1" data-dismiss="alert">
+  								<div class="announcements<%=z %> fade in" id="announcement">
+  									<button type="button" class="close" data-target="#announcement<%=z %>" data-dismiss="alert">
   										<span aria-hidden="true">&times;</span>
   									</button>
-  									<h4>Announcement 1</h4>
-  									<p>Content content content content con... <br>
-  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
-  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
-  										<a href="">Delete</a>
-  									</p>
-  								</div>
-  								<div class="announcements fade in" id="announcement2">
-  									<button type="button" class="close" data-target="#announcement2" data-dismiss="alert">
-  										<span aria-hidden="true">&times;</span>
-  									</button>
-  									<h4>Announcement 2</h4>
-  									<p>Content content content content con... <br>
-  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
-  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
-  										<a href="">Delete</a>
+  									<h4><%=announcement.getString("title") %></h4>
+  									<p><%=announcement.getString("content") %> <br>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal<%=z %>">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal<%=z %>">Edit</a> | 
+  										<form action="../../dbcontrol">
+  										<input type="hidden" name="requestType" value="announcementDelete" />
+  										<input type="hidden" name="announcementID" value="<%=announcement.getInt("announcementID") %>" />	
+  										<input type="submit" value="delete"/>
+  										</form>
   									</p>
   								</div>
   							</div>
+  							
+  												
+					
+<!-- VIEW ANNOUNCEMENT MODAL -->
+<div class="modal fade" id="viewAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="gridSystemModalLabel"><%=announcement.getString("title")%></h4>
+			</div>
+			<div class="modal-body">
+				<p><%=announcement.getString("content")%></p>
+				<p><em><%=announcement.getString("dateCreated")%></em></p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- VIEW ANNOUNCEMENT MODAL -->
+
+
+<!-- EDIT ANNOUNCEMENT MODAL -->
+<div class="modal fade" id="editAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
+			</div>
+		<form class="form-horizontal" action="../../dbcontrol" method="post">
+            <div class="modal-body">
+            		
+                    <!-- Announcement Title -->
+                    <div class="form-group">
+                        <label for="Title" class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<%=announcement.getString("title")%>" required />
+                        </div>
+                    </div>
+
+                    <!-- Announcement Content -->
+                    <div class="form-group">
+                        <label for="Content" class="col-sm-2 control-label">Content</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5"  required><%=announcement.getString("content")%>"</textarea>
+                        </div>
+                    </div>
+    
+            </div>
+                <div class="modal-footer">
+                <input type="hidden" name="announcementID" value="<%=announcement.getInt("AnnouncementID")%>">
+                <input type="hidden" name="requestType" value="announcementEdit">
+                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
+                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>
+<!-- EDIT ANNOUNCEMENT_MODAL -->
+  						<%z++;} announcement.first();announcement.previous();%>
   							<!-- End of List of announcements -->
   								
   							<!-- Announcements pagination -->
@@ -108,7 +164,9 @@
 			 		<!-- End of content -->
 			 			
 			 		<!-- Modals -->
-					<%@ include file= "../modals/AnnouncementModals.jsp" %>
+					
+
+						<%@ include file= "../modals/AnnouncementModals.jsp" %>	
 					<!-- End of Modals -->
 			
 			 	</div>

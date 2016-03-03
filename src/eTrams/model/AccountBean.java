@@ -16,6 +16,7 @@ public class AccountBean implements BeanInterface {
 	private String email;
 	private int roleID;
 	private int active;
+	private int userInfoId;
 	
 	@Override
 	public void getBeanType() {
@@ -25,14 +26,15 @@ public class AccountBean implements BeanInterface {
 	@Override
 	public int storeToDatabase(Connection connection) {
 
-		PreparedStatement ps = SQLOperations.createNewUserAccount(connection);
+		PreparedStatement ps = SQLOperations.createNewAccount(connection);
 		try
 		{
-			ps.setString(1, Security.encrypt(getUsername()));
-			ps.setString(2, Security.encrypt(getPassword())); // please encrypt
-			ps.setString(3, getEmail());
-			ps.setInt(4, getRoleID());
-			ps.setInt(5, getActive());
+			ps.setInt(1,getUserInfoId());
+			ps.setString(2, getUsername());
+			ps.setString(3, getPassword()); // please encrypt
+			ps.setString(4, getEmail());
+			ps.setInt(5, getRoleID());
+			ps.setInt(6, getActive());
 			
 			if (ps.executeUpdate() > 0)
 			{
@@ -46,6 +48,11 @@ public class AccountBean implements BeanInterface {
 		}
 		return 0;
 	}
+	
+	
+	
+	
+	
 
 	public int getAccountID() {
 		return accountID;
@@ -93,6 +100,14 @@ public class AccountBean implements BeanInterface {
 
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	public int getUserInfoId() {
+		return userInfoId;
+	}
+
+	public void setUserInfoId(int userInfoId) {
+		this.userInfoId = userInfoId;
 	}
 
 }

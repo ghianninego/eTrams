@@ -34,7 +34,8 @@
 						<!-- Login Form-->
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
-								<form class="form login" action="jsp/admin/adminHome.jsp" method="">
+								<form class="form login" action="dbcontrol" method="">
+									<input type="hidden" value="login" name="requestType">
 									<div class="form-group">
 										<input type="text" class="form-control" id="username" name="username" required="required" placeholder="Username">
 									</div>
