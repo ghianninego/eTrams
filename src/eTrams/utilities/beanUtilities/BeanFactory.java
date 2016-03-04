@@ -18,33 +18,18 @@ public class BeanFactory {
 	}
 	
 	// for getting user information bean
-	public static BeanInterface getBean(int userInfoID, int accountID, String lastName, String firstName, String middleName, int departmentID)
+	public static BeanInterface getBean(int userInfoID,String lastName, String firstName, String middleName, int departmentID, int collegeID)
 	{
 		UserInfoBean userInfoBean = new UserInfoBean();
 		
-		userInfoBean.setAccountID(accountID);
 		userInfoBean.setUserInfoID(userInfoID);
 		userInfoBean.setLastName(lastName);
 		userInfoBean.setFirstName(firstName);
 		userInfoBean.setMiddleName(middleName);
 		userInfoBean.setDepartmentID(departmentID);
+		userInfoBean.setCollegeID(collegeID);
 		
 		return userInfoBean;
-	}
-	
-	// for getting account bean
-	public static BeanInterface getBean(int accountID, String username, String password, String email, int roleID, int active)
-	{
-		AccountBean accountBean = new AccountBean();
-		
-		accountBean.setAccountID(accountID);
-		accountBean.setUsername(username);
-		accountBean.setPassword(password);
-		accountBean.setEmail(email);
-		accountBean.setRoleID(roleID);
-		accountBean.setActive(active);
-		
-		return accountBean;
 	}
 	
 	// for getting department bean

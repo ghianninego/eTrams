@@ -1,4 +1,5 @@
 <jsp:useBean id="user" class="eTrams.model.FinalUserBean"  scope="session"/>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -153,10 +154,8 @@
                     </div>
             	</div>
                  <input type="hidden" name="requestType" value="editSelfInfo">
-				<input type="hidden" name="accountId" value="<%=user.getAccountID()%>">
+					<input type="hidden" name="accountId" value="<%=user.getAccountID()%>">
 					<input type="hidden" name="userInfoId" value="<%=user.getUserInfoID()%>">
-					<input type="hidden" name="username" value="${user.username }">
-					<input type="hidden" name="passsword" value="${user.password }">
 						
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-yellow pull-left">Save Changes</button>

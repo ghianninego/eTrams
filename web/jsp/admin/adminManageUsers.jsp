@@ -92,7 +92,7 @@
 			 								<input type="hidden" name="requestType" value="adminManageUserDelete">
 											<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
 											<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
-											<%oneUser.first(); oneUser.previous(); %>
+											
 			 								<input class="btn btn-yellow" type="submit" value="Delete">
 			 								</form>
 			 								</div>
@@ -153,6 +153,7 @@
 			 			
 			 			<!-- Modals -->
 						<%@ include file= "../modals/accountModals.jsp" %>
+						<%oneUser.first(); oneUser.previous(); %>
 						<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 						<!-- End of Modals -->
 			 			

@@ -37,7 +37,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 		getServletContext().setAttribute("connectionDAO", connection);
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		doPost(request, response);
 	}
 
@@ -156,21 +156,25 @@ public class DatabaseControllerServlet extends HttpServlet {
 				break;
 			case "adminManageUser": 
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				
+
 				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "adminManageUserDone": 
-				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+				
 				UserClass.editUser(request, connection);
+				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "adminManageUserDelete": 
+				UserClass.deleteUser(request, connection);
 				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
-				UserClass.deleteUser(request, connection);
+				
 				response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
@@ -209,8 +213,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "editSelfInfo": 
-				UserClass.editSelf(request, connection);
-				session.setAttribute("user",UserClass.login(request, connection));
+				
+				session.setAttribute("user",UserClass.editSelf(request, connection));
 				response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
@@ -250,10 +254,12 @@ public class DatabaseControllerServlet extends HttpServlet {
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
+			break;
+			case  "myAccount":
+					response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
 			break;
 		}
 	}

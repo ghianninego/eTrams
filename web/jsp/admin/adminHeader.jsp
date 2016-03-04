@@ -69,9 +69,9 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<% if (x.equals("adminAccount.jsp")) { %>
-                 	<li class="active"><a href="adminAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=myAccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
                	<% } else { %>
-					<li><a href="adminAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="../../dbcontrol?requestType=myAccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 				<% } %>
 				
 				<li><a href="../../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

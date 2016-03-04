@@ -58,10 +58,10 @@ public class UserClass {
 			updated = pstmt.executeUpdate();
 			connection.commit();
 
-			PreparedStatement pstmt2 = SQLOperations.deleteUserInfo(connection);
-			pstmt2.setInt(1, userInfoId);
-			updated = pstmt2.executeUpdate();
-			connection.commit();
+		//	PreparedStatement pstmt2 = SQLOperations.deleteUserInfo(connection);
+		//	pstmt2.setInt(1, userInfoId);
+		//	updated = pstmt2.executeUpdate();
+		//	connection.commit();
 
 		} catch (SQLException sqle) {
 			System.out.println("SQLException -" + sqle.getMessage());
@@ -171,7 +171,6 @@ public class UserClass {
 			ps.setInt(1, accountId);
 			return ps.executeQuery();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 			return null;
 		}
@@ -200,7 +199,7 @@ public class UserClass {
 			return null;
 		}
 	}
-	public static void editSelf(HttpServletRequest request, Connection connection)
+	public static FinalUserBean editSelf(HttpServletRequest request, Connection connection)
 	{
 		String firstName = request.getParameter("firstName");
 		String middleName = request.getParameter("middleName");
@@ -208,13 +207,14 @@ public class UserClass {
 		String email = request.getParameter("email");
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
 		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
-
+		ResultSet rs = null;
 		int updated = 0;
+		FinalUserBean x= new FinalUserBean();
 		try {
 			connection.setAutoCommit(false);
 			PreparedStatement pstmt = SQLOperations.updateUserInfo(connection);
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
+			pstmt.setString(1, lastName);
+			pstmt.setString(2, firstName);
 			pstmt.setString(3, middleName);
 			pstmt.setInt(4, userInfoId);
 
@@ -226,13 +226,27 @@ public class UserClass {
 			pstmt2.setInt(2, accountId);
 			updated = pstmt2.executeUpdate();
 			connection.commit();
+			
+			PreparedStatement ps = SQLOperations.selectOneUserAccount(connection);
+			ps.setInt(1,userInfoId);
+			rs= ps.executeQuery();
+			rs.next();
+			 x = (FinalUserBean) BeanFactory.getBean(rs.getInt("accountID"), rs.getInt("userInfoId")
+			, rs.getString("lastName"), rs.getString("firstName"), rs.getString("middleName")
+			, rs.getString("departmentName"), rs.getString("collegeName"), rs.getString("userName")
+			, rs.getString("password"), rs.getString("email"), rs.getString("roleName"), rs.getInt("active"));
+			System.out.print(x.getCollegeName());
+			return x;
 
 		} catch (SQLException sqle) {
 			System.out.println("SQLException -" + sqle.getMessage());
 			try {
+				
 				connection.rollback();
+				return x;
 			} catch (SQLException sql) {
 				System.err.println("Error on Update Connection Rollback - " + sql.getMessage());
+				return x;
 			}
 					}
 		

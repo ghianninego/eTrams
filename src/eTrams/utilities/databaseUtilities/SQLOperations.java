@@ -80,21 +80,7 @@ public class SQLOperations
 /*-----------------------------------------------------------------------------------------
 *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
-	public synchronized static PreparedStatement createNewAccount(Connection connection)
-	{
-		try 
-		{
-			if (createNewAccount == null)
-				createNewAccount = connection.prepareStatement("INSERT INTO AccountTable (userInfoId , username, password, email, roleID, active) VALUES(?,?,?,?,?,?)");
-		} 
-		catch (SQLException e) 
-		{
-			System.err.println("INSERT AccountTable_ERR");
-			e.printStackTrace();
-		}
-		System.out.println("INSERT AccountTable");         
-		return createNewAccount;
-	}
+
 	
 	public synchronized static PreparedStatement createNewCollege(Connection connection)
 	{
@@ -133,7 +119,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewUserInfo == null)
-				createNewUserInfo = connection.prepareStatement("INSERT INTO userInfoTable VALUES (?,?,?,?,?)");
+				createNewUserInfo = connection.prepareStatement("INSERT INTO userInfoTable (lastName ,firstName ,middleName,departmentID) VALUES(?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -142,6 +128,22 @@ public class SQLOperations
 		}
 		System.out.println("INSERT userInfoTable");         
 		return createNewUserInfo;
+	}
+	
+	public synchronized static PreparedStatement createNewAccount(Connection connection)
+	{
+		try 
+		{
+			if (createNewAccount == null)
+				createNewAccount = connection.prepareStatement("INSERT INTO AccountTable (userInfoId , username, password, email, roleID, active) VALUES(?,?,?,?,?,?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("INSERT AccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("INSERT AccountTable");         
+		return createNewAccount;
 	}
 	
 	public synchronized static PreparedStatement deleteAccount(Connection connection)
@@ -165,7 +167,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewUserAccount == null)
-				createNewUserAccount = connection.prepareStatement("INSERT INTO userAccountTable VALUES (?,?,?,?,?,?)");
+				createNewUserAccount = connection.prepareStatement("INSERT INTO AccountTable VALUES (?,?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -297,7 +299,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneUserAccount == null)
-				selectOneUserAccount = connection.prepareStatement("SELECT * FROM userAccountTable WHERE userAccountID = ?");
+				selectOneUserAccount = connection.prepareStatement("SELECT r.*, u.* , a.* , d.* , c.*  FROM AccountTable as a , UserInfoTable as u , collegeTable as c, DepartmentTable as d, roleTable as r     WHERE u.userInfoID = a.userInfoID and c.collegeID = d.collegeID and d.departmentID = u.departmentID and a.roleID = r.roleID and   u.userInfoID = ?");
 		} 
 		catch (SQLException e) 
 		{
@@ -813,7 +815,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (updateUserInfo == null)
-				updateUserInfo = connection.prepareStatement("UPDATE userInfoTable  SET accountID = ? ,  lastName = ? , firstName = ? , middleName = ?, departmentID = ? WHERE userInfoID = ? ");
+				updateUserInfo = connection.prepareStatement("UPDATE userInfoTable SET   lastName = ? , firstName = ? , middleName = ? WHERE userInfoID = ? ");
 		} 
 		catch (SQLException e) 
 		{
