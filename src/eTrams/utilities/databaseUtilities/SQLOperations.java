@@ -379,7 +379,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneAttendance == null)
-				selectOneAttendance = connection.prepareStatement("SELECT * FROM attendanceTable WHERE attendanceID = ?");
+				selectOneAttendance = connection.prepareStatement("SELECT a.*, s.*, sem.*,ac.*  FROM attendanceTable as a, sessionTable as s, seminarTable as sem, accountTable as ac WHERE sem.seminarID = s.seminarID and a.sessionId = s.sessionId and ac.accountID = a.participantID and  ac.accountID = ?");
 		} 
 		catch (SQLException e) 
 		{

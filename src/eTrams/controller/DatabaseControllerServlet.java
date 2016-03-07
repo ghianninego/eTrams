@@ -168,16 +168,18 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "adminManageUser": 
+				session.setAttribute("history", UserClass.getHistory(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
-				
+			
 
 				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "adminManageUserDone": 
-				
+				System.out.println("dumaan3");
 				UserClass.editUser(request, connection);
+				session.setAttribute("history", UserClass.getHistory(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
@@ -185,6 +187,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				break;
 			case "adminManageUserDelete": 
 				UserClass.deleteUser(request, connection);
+				session.setAttribute("history", UserClass.getHistory(request, connection));
 				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 				

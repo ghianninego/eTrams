@@ -1,5 +1,5 @@
 <jsp:useBean id="oneUser"  type="java.sql.ResultSet" scope="session"/>
-
+<jsp:useBean id="history"  type="java.sql.ResultSet" scope="session"/>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -105,7 +105,7 @@
 			 				 	<div role="tabpanel" class="tab-pane fade" id="attendance">
 			 				 		<br><br>
 			 				 		<table class="table table-condensed table-striped table-hover ">
-										<thead>
+							<%while (history.next()){ %>			<thead>
 											<tr>
 												<th>#</th>
 												<th>Seminar</th>
@@ -119,30 +119,21 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>001</td>
-												<td>Seminar Name</td>
-												<td>Session Name</td>
-												<td>00:00</td>
-												<td>00:00</td>
-												<td>mm/dd/yyyy</td>
+												<td><%=history.getInt("attendanceID") %></td>
+												<td><%=history.getString("seminarName") %></td>
+												<td><%=history.getString("sessionName") %></td>
+												<td><%=history.getString("TimeIn") %></td>
+												<td><%=history.getString("TimeOut") %></td>
+												<td><%=history.getString("Date") %></td>
 												<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
 			 										Completed
 			 									</a></td>
 												<td>certified</td>
 											</tr>
-											<tr>
-												<td>002</td>
-												<td>Seminar Name</td>
-												<td>Session Name</td>
-												<td>00:00</td>
-												<td>00:00</td>
-												<td>mm/dd/yyyy</td>
-												<td><a href="#" data-toggle="modal" data-target="#setStatusModal">
-			 										Completed
-			 									</a></td>
-												<td><a href="#">certify?</a></td>
-											</tr>
+											
+											
 										</tbody>
+									<%} history.first();history.previous(); %>
 									</table>
 			 				 	</div>
 			 				 	<!-- End of Attendance Tab -->

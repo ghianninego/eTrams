@@ -29,9 +29,9 @@
 				<% } %>
 				
 				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp")) { %>
-                 	<li class="active"><a href="adminSeminars.jsp">Seminars & Sessions</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
                	<% } else { %>
-					<li><a href="adminSeminars.jsp">Seminars & Sessions</a></li>
+					<li><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
 				<% } %>
 				
 				<% if (x.equals("adminReports.jsp")) { %>

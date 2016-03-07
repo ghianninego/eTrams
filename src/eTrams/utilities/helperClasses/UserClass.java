@@ -252,5 +252,22 @@ public class UserClass {
 		
 	}
 	
+	public static ResultSet getHistory(HttpServletRequest request, Connection connection){
+		int accountId = Integer.parseInt(request.getParameter("accountId"));
+		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		
+		try {
+			PreparedStatement s = SQLOperations.selectOneAttendance(connection);
+			s.setInt(1, accountId);
+			System.out.println(accountId);
+			return s.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	
 }
