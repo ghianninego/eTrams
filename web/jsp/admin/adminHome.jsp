@@ -13,13 +13,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - Home</title>
 	</head>
 	
@@ -64,7 +57,7 @@
   							<!-- List of announcements -->
   							<%int z = 1;while(announcement.next()) { %>
   							<div id="announcementList">
-  								<div class="announcements<%=z %> fade in" id="announcement">
+  								<div class="paginateClass announcements<%=z %> fade in" id="announcement">
   									<button type="button" class="close" data-target="#announcement<%=z %>" data-dismiss="alert">
   										<span aria-hidden="true">&times;</span>
   									</button>
@@ -75,7 +68,7 @@
   										<form action="../../dbcontrol">
   										<input type="hidden" name="requestType" value="announcementDelete" />
   										<input type="hidden" name="announcementID" value="<%=announcement.getInt("announcementID") %>" />	
-  										<input type="submit" value="delete"/>
+  										<input class="btn btn-link" type="submit" value="delete"/>
   										</form>
   									</p>
   								</div>
@@ -144,10 +137,6 @@
   							<!-- End of List of announcements -->
   								
   							<!-- Announcements pagination -->
-  							<div class="announcementPager text-center">
-  								<ul class="pagination pager" id="myPager"></ul>
-  								<!-- <div id="page-selection"></div> -->
-  							</div>
   							<!-- End of Announcements pagination -->
   								
   						</div>
@@ -164,9 +153,7 @@
 			 		<!-- End of content -->
 			 			
 			 		<!-- Modals -->
-					
-
-						<%@ include file= "../modals/AnnouncementModals.jsp" %>	
+					<%@ include file= "../modals/AnnouncementModals.jsp" %>	
 					<!-- End of Modals -->
 			
 			 	</div>
@@ -181,4 +168,12 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
 </html>

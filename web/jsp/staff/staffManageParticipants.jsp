@@ -12,13 +12,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - Seminars & Sessions</title>
 	</head>
 	
@@ -163,4 +156,12 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
 </html>

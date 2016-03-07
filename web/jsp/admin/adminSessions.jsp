@@ -15,16 +15,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
-		<!-- FOR SESSION MODAL -->
-		<script type="text/javascript" src="../../js/sessionModal.js"></script>
-		
 		<title>UST eTrams - Seminars & Sessions</title>
 	</head>
 	
@@ -81,7 +71,7 @@
   								</button>
   							</div>
   							
-							<!-- EDIT SEMINAR MODAL -->
+							<!-- EDIT SESSION MODAL -->
 							<div class="modal fade" id="editSessionModal<%= sessions %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
@@ -124,7 +114,7 @@
 							            	<div class="form-group">
 							            		<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-value="1" data-filter="true">
+							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-value="<%=rs.getString(4)%>" data-filter="true">
 							            				<% while(rs2.next())
 							            				{ %>
 							            				<div data-value="<%=rs2.getInt(1)%>"><%= rs2.getString(2) %></div>
@@ -150,7 +140,7 @@
 							            	<div class="form-group">
 							            		<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionSpeaker" id="sessionSpeaker" data-value="2" data-filter="true">
+							            			<div class="bfh-selectbox" data-name="sessionSpeaker" id="sessionSpeaker" data-value="<%=rs.getInt(10)%>" data-filter="true">
 							            				<% while(rs3.next())
 							            				{ %>
 							            				<div data-value="<%= rs3.getInt(1) %>"><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></div>
@@ -173,6 +163,26 @@
 									</form>
 								</div>
 							</div>
+							<!-- EDIT SESSION MODAL -->
+							
+							<!-- DELETE MODAL -->
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+								<form>
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>Are you sure you want to delete this item?</p>
+											<div class="someButton text-center">
+												<button type="submit" class="btn btn-default">Yes</button>
+												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+											</div>
+										</div>
+									</div>
+								</form>
+								</div>
+							</div>
+							<!-- DELETE MODAL -->
+							
   							<%
   							sessions++; } 
   							rs.first(); rs.previous(); %>
@@ -278,8 +288,7 @@
 							</form>
 						</div>
 					</div>
-					
-					<%@ include file= "../modals/othersModals.jsp" %>
+					<!--  CREATE SESSION MODAL -->
 					<!-- End of Modals -->
 						
 			 	</div>
@@ -292,4 +301,15 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
+	<!-- FOR SESSION MODAL -->
+	<script type="text/javascript" src="../../js/sessionModal.js"></script>
+		
 </html>

@@ -13,13 +13,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - Venues</title>
 	</head>
 	
@@ -59,6 +52,7 @@
 									<td><%= rs.getString(2) %></td>
 									<td><a href="#" data-toggle="modal" data-target="#editVenueModal<%= venues %>">Edit</a> - <a href="../../dbcontrol?requestType=deleteVenue&venueID=<%= rs.getInt(1) %>">Delete</a></td>
 								</tr>
+								
 								<!-- EDIT VENUE MODAL -->
 								<div class="modal fade" id="editVenueModal<%= venues %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
@@ -92,6 +86,25 @@
 									</div>
 								</div>
 								<!-- EDIT VENUE MODAL -->
+								
+								<!-- DELETE MODAL -->
+								<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog modal-sm" role="document">
+									<form>
+										<div class="modal-content">
+											<div class="modal-body text-center">
+												<p>Are you sure you want to delete this item?</p>
+												<div class="someButton text-center">
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</form>	
+									</div>
+								</div>
+								<!-- DELETE MODAL -->
+							
 								<% venues++; } rs.first(); rs.previous(); %>
 							</tbody>
 						</table>
@@ -120,4 +133,12 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
 </html>

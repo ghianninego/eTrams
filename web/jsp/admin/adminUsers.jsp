@@ -16,13 +16,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - All Users</title>
 	</head>
 	
@@ -65,7 +58,7 @@
 									<input type="hidden" name="accountId" value="<%=allUser.getString("accountID")%>">
 									<input type="hidden" name="userInfoId" value="<%=allUser.getString("userInfoID")%>">
 									
-									<input class="btn btn-gray" type="submit" value="Manage">
+									<input class="btn btn-link" type="submit" value="Manage">
 									</form></td>
 								</tr>
 								<%} allUser.first(); allUser.previous();%>
@@ -98,7 +91,7 @@
             <div class="modal-body">
             	<!-- Name -->
             	<div class="form-group">
-            		<label for="User Name" class="col-sm-2 control-label">Name</label>
+            		<label for="Name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-3">
                     	<input type="text" class="form-control" id="username" name="firstName" placeholder="First Name" required />
                     </div>
@@ -109,14 +102,14 @@
                     	<input type="text" class="form-control" id="username" name="lastName" placeholder="Last Name" required />
                     </div>
             	</div>
-            	<!-- Email -->
+            	<!-- Username -->
             	<div class="form-group">
-            		<label for="" class="col-sm-2 control-label">username</label>
+            		<label for="User Name" class="col-sm-2 control-label">username</label>
                     <div class="col-sm-9">
                     	<input type="text" class="form-control" id="" name="username" placeholder="username" required />
                     </div>
             	</div>
-            	<!-- Email -->
+            	<!-- Password -->
             	<div class="form-group">
             		<label for="Email" class="col-sm-2 control-label">password</label>
                     <div class="col-sm-9">
@@ -193,4 +186,12 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+	
 </html>

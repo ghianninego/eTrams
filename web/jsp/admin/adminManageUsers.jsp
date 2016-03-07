@@ -15,13 +15,6 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - All Users</title>
 	</head>
 	
@@ -88,13 +81,13 @@
 			 									</a>
 			 								</div>
 			 								<div class="someButton">
-			 								<form class="form-horizontal" action="../../dbcontrol" method="post">
-			 								<input type="hidden" name="requestType" value="adminManageUserDelete">
-											<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
-											<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
+			 									<form class="form-horizontal" action="../../dbcontrol" method="post">
+			 									<input type="hidden" name="requestType" value="adminManageUserDelete">
+												<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
+												<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
 											
-			 								<input class="btn btn-yellow" type="submit" value="Delete">
-			 								</form>
+			 									<button class="btn btn-yellow" data-toggle="modal" data-target="#deleteModal"><!--type="submit"-->Delete</button>
+			 									</form>
 			 								</div>
 			 							</div>
 			 						</div>
@@ -105,7 +98,9 @@
 			 				 	<div role="tabpanel" class="tab-pane fade" id="attendance">
 			 				 		<br><br>
 			 				 		<table class="table table-condensed table-striped table-hover ">
-							<%while (history.next()){ %>			<thead>
+							
+								<%while (history.next()){ %>		
+										<thead>
 											<tr>
 												<th>#</th>
 												<th>Seminar</th>
@@ -130,10 +125,10 @@
 			 									</a></td>
 												<td>certified</td>
 											</tr>
-											
-											
 										</tbody>
-									<%} history.first();history.previous(); %>
+										
+								<%} history.first();history.previous(); %>
+								
 									</table>
 			 				 	</div>
 			 				 	<!-- End of Attendance Tab -->
@@ -143,102 +138,137 @@
 			 			<!-- End of Content -->
 			 			
 			 			<!-- Modals -->
-					
-					
-
-<!-- EDIT PROFILE MODAL -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
-			</div>
-		<form class="form-horizontal" action="../../dbcontrol" method="post">
-			<div class="modal-body">
-			
-				<!-- Name-->
-            	<div class="form-group">
-            		<label for="Name" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-3">
-                    	<input type="text" class="form-control" name="firstName" id="name" value="<%=oneUser.getString("firstName")%>" placeholder="First name" required />
-                    </div>
-                    <div class="col-sm-3">
-                    	<input type="text" class="form-control" name="middleName" id="name" value="<%=oneUser.getString("middleName")%>" placeholder="Middle name" required />
-                    </div>
-                    <div class="col-sm-3">	
-                    	<input type="text" class="form-control" name="lastName" id="name" value="<%=oneUser.getString("lastName")%>" placeholder="Last name" required />
-                    </div>
-            	</div>
-            	
-            	<!-- Email -->
-            	<div class="form-group">
-            		<label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-9">
-                    	<input type="text" class="form-control" id="email" name="email" value="<%=oneUser.getString("email")%>" required />
-                    </div>
-            	</div>
-                 <input type="hidden" name="requestType" value="adminManageUserDone">
-									<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
-									<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId")%>">
+			 			<!-- EDIT PROFILE MODAL -->
+			 			<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+			 				<div class="modal-dialog modal-lg" role="document">
+			 					<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
+									</div>
+								<form class="form-horizontal" action="../../dbcontrol" method="post">
+									<div class="modal-body">
 									
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
-                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-		</form>
-	</div>
-</div>
-</div>
-<!-- EDIT PROFILE MODAL -->
-
-
-
-<!-- EDIT OTHER USER'S PASSWORD MODAL -->
-<div class="modal fade" id="editUserPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
-			</div>
-		<form class="form-horizontal" action="../../dbcontrol" method="post">
-			<div class="modal-body">
+										<!-- Name-->
+            							<div class="form-group">
+            								<label for="Name" class="col-sm-2 control-label">Name</label>
+                    						<div class="col-sm-3">
+                    							<input type="text" class="form-control" name="firstName" id="name" value="<%=oneUser.getString("firstName")%>" placeholder="First name" required />
+                    						</div>
+   							                 <div class="col-sm-3">
+                    							<input type="text" class="form-control" name="middleName" id="name" value="<%=oneUser.getString("middleName")%>" placeholder="Middle name" required />
+                    						</div>
+                    						<div class="col-sm-3">	
+                    							<input type="text" class="form-control" name="lastName" id="name" value="<%=oneUser.getString("lastName")%>" placeholder="Last name" required />
+                    						</div>
+            							</div>
             	
-            	<!-- New Password-->
-            	<div class="form-group">
-            		<label for="New Password1" class="col-sm-4 control-label">New Password</label>
-                    <div class="col-sm-8">
-                    	<input type="password" class="form-control" id="password" required />
-                    </div>
-            	</div>
+						            	<!-- Email -->
+            							<div class="form-group">
+            								<label for="email" class="col-sm-2 control-label">Email</label>
+            								<div class="col-sm-9">
+            									<input type="text" class="form-control" id="email" name="email" value="<%=oneUser.getString("email")%>" required />
+            								</div>
+            							</div>
+            							
+            							<input type="hidden" name="requestType" value="adminManageUserDone">
+										<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
+										<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId")%>">
+									</div>
+									
+                					<div class="modal-footer">
+                    					<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
+                    					<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+                    				</div>
+                    				
+                    			</form>
+                    			</div>
+                    		</div>
+                    	</div>
+                    	<!-- EDIT PROFILE MODAL -->
+                    	
+                    	<!-- EDIT OTHER USER'S PASSWORD MODAL -->
+                    	<div class="modal fade" id="editUserPasswordModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    		<div class="modal-dialog" role="document">
+                    			<div class="modal-content">
+                    				<div class="modal-header">
+                    					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    					<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
+									</div>
+								<form class="form-horizontal" action="../../dbcontrol" method="post">
+									<div class="modal-body">
             	
-            	<!-- Re-enter New Password-->
-            	<div class="form-group">
-            		<label for="New Password2" class="col-sm-4 control-label">Re-enter New Password</label>
-                    <div class="col-sm-8">
-                    	<input type="password" class="form-control" id="password" name="password" required />
-                    </div>
-            	</div>
-                       <input type="hidden" name="requestType" value="adminEditPassword">
-									<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
-									<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId")%>">
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
-                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-		</form>
-	</div>
-</div>
-</div>
-<!-- EDIT OTHER USER'S PASSWORD MODAL -->
+            							<!-- New Password-->
+            							<div class="form-group">
+            								<label for="New Password1" class="col-sm-4 control-label">New Password</label>
+            								<div class="col-sm-8">
+            									<input type="password" class="form-control" id="password" required />
+            								</div>
+            							</div>
+            							
+            							<!-- Re-enter New Password-->
+            							<div class="form-group">
+            								<label for="New Password2" class="col-sm-4 control-label">Re-enter New Password</label>
+            								<div class="col-sm-8">
+            									<input type="password" class="form-control" id="password" name="password" required />
+            								</div>
+            							</div>
+                       
+                       					<input type="hidden" name="requestType" value="adminEditPassword">
+										<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
+										<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId")%>">
+									</div>
+									
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
+										<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+									</div>
+								
+								</form>
+								</div>
+							</div>
+						</div>
+						<!-- EDIT OTHER USER'S PASSWORD MODAL -->
+						
+						<!-- DELETE MODAL -->
+						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog modal-sm" role="document">
+							<form>
+								<div class="modal-content">
+									<div class="modal-body text-center">
+										<p>Are you sure you want to delete this account?</p>
+										<div class="someButton text-center">
+											<button type="submit" class="btn btn-default">Yes</button>
+											<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+						</div>
+						<!-- DELETE MODAL -->
+						
+						<!-- CERTIFY MODAL -->
+						<div class="modal fade" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog modal-sm" role="document">
+							<form>
+								<div class="modal-content">
+									<div class="modal-body text-center">
+										<p>Are you sure you want to certify this participant?</p>
+										<div class="someButton text-center">
+											<button type="submit" class="btn btn-default">Yes</button>
+											<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+						</div>
+						<!-- CERTIFY MODAL -->
 
-					
-					
 					
 						<%oneUser.first(); oneUser.previous(); %>
+						
 						<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
 						<!-- End of Modals -->
 			 			
@@ -252,4 +282,12 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
 </html>

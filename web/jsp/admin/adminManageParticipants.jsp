@@ -15,17 +15,6 @@
 		<link href="../../css/jquery_ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
 		
-		<script src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap/bootstrap.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-		<!-- FOR ADD PARTICIPANT MODAL -->
-		<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
-		<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
-
-		<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-		<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 		<title>UST eTrams - Seminars & Sessions</title>
 	</head>
 	
@@ -82,8 +71,9 @@
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=certParticipants%>">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#uncertifyModal">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
 								</tr>
+								
 								<!-- SET STATUS MODAL -->
 								<div class="modal fade" id="setStatusModal<%= certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
@@ -100,9 +90,9 @@
 								            	<div class="form-group">
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
-								            			<div class="bfh-selectbox" data-name="status" name="status" id="status">
-								            				<div data-value="Complete" value="Complete">Complete</div>
-								            				<div data-value="Incomplete" value="Incomplete">Incomplete</div>
+								            			<div class="bfh-selectbox" data-name="status" id="status">
+								            				<div data-value="Complete" >Complete</div>
+								            				<div data-value="Incomplete">Incomplete</div>
 								            			</div>
 								            		</div>
 								            	</div>
@@ -117,6 +107,25 @@
 									</div>
 								</div>
 								<!-- SET STATUS MODAL -->
+								
+								<!-- UNCERTIFY MODAL -->
+								<div class="modal fade" id="uncertifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog modal-sm" role="document">
+									<form>
+										<div class="modal-content">
+											<div class="modal-body text-center">
+												<p>Are you sure you want to uncertify this participant?</p>
+												<div class="someButton text-center">
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</form>
+									</div>
+								</div>
+								<!-- UNCERTIFY MODAL -->
+								
 								<!-- ATTENDANCE MODAL -->
 								<div class="modal fade" id="attendanceModal<%=certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
@@ -154,6 +163,8 @@
 								        </div>
 									</div>
 								</div>
+								<!-- ATTENDANCE MODAL -->
+								
 								<% 	
 								certParticipants++;	}
 								    } rs2.first(); rs2.previous();%>
@@ -194,8 +205,9 @@
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=uncertParticipants%>">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#certifyModal">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a></td>			
 								</tr>
+								
 								<!-- SET STATUS MODAL -->
 								<div class="modal fade" id="setStatusModal<%= uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
@@ -229,6 +241,25 @@
 									</div>
 								</div>
 								<!-- SET STATUS MODAL -->
+								
+								<!-- CERTIFY MODAL -->
+								<div class="modal fade" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog modal-sm" role="document">
+									<form>
+										<div class="modal-content">
+											<div class="modal-body text-center">
+												<p>Are you sure you want to certify this participant?</p>
+												<div class="someButton text-center">
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</form>
+									</div>
+								</div>
+								<!-- CERTIFY MODAL -->
+								
 								<!-- ATTENDANCE MODAL -->
 								<div class="modal fade" id="attendanceModal<%= uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
@@ -266,6 +297,8 @@
 								        </div>
 									</div>
 								</div>
+								<!-- ATTENDANCE MODAL -->
+								
 								<% 		
 							    uncertParticipants++; counter++;}
 								    } rs2.first(); rs2.previous();%>
@@ -314,6 +347,7 @@
 			 		</div>
 			 		<% } rs.previous(); %>
 			 		<!-- End of Content -->
+			 		
 					<!-- ADD PARTICIPANTS_MODAL -->
 					<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
 						<div class="modal-dialog modal-lg" role="document">
@@ -364,8 +398,7 @@
 					        </div>
 						</div>
 					</div>
-			 		<!-- Modals -->
-					<!-- End of Modals -->
+					<!-- ATTENDANCE MODAL -->
 					
 			 	</div>
 			</div>
@@ -377,4 +410,16 @@
 		<!-- End of Footer -->
 				
 	</body>
+	
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<!-- FOR ADD PARTICIPANT MODAL -->
+	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
+
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+	
 </html>
