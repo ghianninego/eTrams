@@ -13,12 +13,13 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/apache-tomcat-7.0.64/lib/servlet-api.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MYSQL">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MYSQL">
+	<classpathentry kind="lib" path="C:/SourceCodes/apache-tomcat-8.0.15/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBCConnector">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
