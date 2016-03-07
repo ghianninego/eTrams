@@ -38,7 +38,7 @@
 		<div class="container">
 			 <div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminSeminars.jsp">Seminar Name</a> / </small> Sessions</h1>
+			 		<h1 class="page-header"><small><a href="adminSeminars.jsp"><%= (String)session.getAttribute("seminarName") %></a> / </small> Sessions</h1>
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
@@ -67,7 +67,7 @@
   										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipants&sessionID=<%= rs.getInt(1)%>'>Manage Participants</a>
+  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%= rs.getInt(1)%>&sessionName=<%= rs.getString(3)%>'>Manage Participants</a>
   									</div>
   								">
   								

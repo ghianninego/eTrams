@@ -11,16 +11,20 @@ import eTrams.utilities.databaseUtilities.SQLOperations;
 
 public class ManageParticipantsClass {
 
-	public static int addParticipant(HttpServletRequest request, Connection connection)
+	public static int addParticipant(HttpServletRequest request, String participantID, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.createNewAttendance(connection);
 		try 
 		{
-			String values[] = request.getParameterValues("participants");
-			for (int i = 0; i < values.length; i++)
-				System.out.println(values[i]);
+			ps.setInt(1, Integer.parseInt((String)request.getSession().getAttribute("sessionID")));
+			ps.setInt(2, Integer.parseInt(participantID));
+			ps.setTime(3, java.sql.Time.valueOf("00:00:00"));
+			ps.setTime(4, java.sql.Time.valueOf("00:00:00"));
+			ps.setString(5, "Incomplete");
+			ps.setInt(6, 0);
+			ps.setDate(7, java.sql.Date.valueOf("1111-11-1"));
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -89,9 +93,9 @@ public class ManageParticipantsClass {
 		PreparedStatement ps = SQLOperations.updateStatus(connection);
 		try 
 		{
-			System.out.println(request.getParameter("Status"));
+			System.out.println(request.getParameter("status"));
 			System.out.println(request.getParameter("attendanceID"));
-			String status = request.getParameter("Status");
+			String status = request.getParameter("status");
 			int attendanceID = Integer.parseInt(request.getParameter("attendanceID"));
 			
 			ps.setString(1, status);
@@ -137,5 +141,12 @@ public class ManageParticipantsClass {
 			
 		}
 		return 0;
+	}
+	
+	public static void addMultipleParticipants(HttpServletRequest request, Connection connection)
+	{
+		String values[] = request.getParameterValues("participants");
+		for (int i = 0; i < values.length; i++)
+			addParticipant(request, values[i], connection);
 	}
 }

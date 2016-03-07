@@ -82,6 +82,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				ResultSet venues = VenueClass.retrieveVenues(connection);
 				ResultSet speakers = SessionClass.retrieveCoordinators(connection);
 				ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
+				session.setAttribute("seminarName", request.getParameter("seminarName"));
 				session.setAttribute("session", sessions);
 				session.setAttribute("venue", venues);
 				session.setAttribute("speakers", speakers);
@@ -108,12 +109,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 				break;
 			///////// manage participants
 			case "addParticipants":
-				ManageParticipantsClass.addParticipant(request, connection);
-				//response.sendRedirect("dbcontrol?requestType=goToAdminVenue");
+				ManageParticipantsClass.addMultipleParticipants(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants");
 				break;
 			case "goToAdminManageParticipants":
-				// retrieve participants
-				session.setAttribute("sessionID", request.getParameter("sessionID"));
 				int sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
 				ResultSet allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
 				ResultSet oneSession = SessionClass.retrieveOneSession(connection, sessionID);
@@ -121,6 +120,20 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("allParticipants", allParticipantAccounts);
 				session.setAttribute("sessionDetails", oneSession);
 				session.setAttribute("sessionParticipants", sessionParticipants);
+				response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
+				break;
+			case "goToAdminManageParticipantsFromAdminSessions":
+				// retrieve participants
+				session.setAttribute("sessionID", request.getParameter("sessionID"));
+				System.out.println(request.getParameter("sessionID"));
+				int sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+				ResultSet allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+				ResultSet oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+				ResultSet sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+				session.setAttribute("allParticipants", allParticipantAccounts2);
+				session.setAttribute("sessionDetails", oneSession2);
+				session.setAttribute("sessionName", request.getParameter("sessionName"));
+				session.setAttribute("sessionParticipants", sessionParticipants2);
 				response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
 				break;
 				
@@ -196,12 +209,12 @@ public class DatabaseControllerServlet extends HttpServlet {
 				break;
 			case "login": 
 				session.setAttribute("user",UserClass.login(request, connection));
-			try {
-				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
@@ -239,7 +252,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
-			break;
+					break;
 			case  "announcementDelete":
 				AnnouncementClass.deleteAnnouncement(request, connection);
 				try {
@@ -249,7 +262,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
-			break;
+					break;
 			case  "home":
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -257,10 +270,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
-			break;
+					break;
 			case  "myAccount":
 					response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
-			break;
+					break;
 		}
 	}
 

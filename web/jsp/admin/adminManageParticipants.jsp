@@ -42,8 +42,8 @@
 		<div class="container">
 			 <div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminSeminars.jsp">Seminars</a> / 
-			 			<a href="adminSessions.jsp">Session Name</a> /</small> Manage Participants</h1>
+			 		<h1 class="page-header"><small><a href="adminSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
+			 			<a href="adminSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Participants</h1>
 			 			
 			 		<!-- For Completed Sessions -->
 			 		<!-- Content -->
@@ -112,8 +112,8 @@
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								            </div>
-								        </div>
 										</form>
+								        </div>
 									</div>
 								</div>
 								<!-- SET STATUS MODAL -->
@@ -150,8 +150,8 @@
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								            </div>
-								        </div>
 										</form>
+								        </div>
 									</div>
 								</div>
 								<% 	
@@ -224,8 +224,8 @@
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								            </div>
-								        </div>
 										</form>
+								        </div>
 									</div>
 								</div>
 								<!-- SET STATUS MODAL -->
@@ -262,8 +262,8 @@
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								            </div>
-								        </div>
 										</form>
+								        </div>
 									</div>
 								</div>
 								<% 		
@@ -328,18 +328,13 @@
 									<div class="form-group">
 										<label for="Participant Names" class="col-sm-2 control-label" id="participantLabel" >Participants (1)</label>
 										<div class="col-sm-10">
-					                    
-					                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
+					                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->	                    	
+						                    <% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants"); %>
 					                    	<select class="participantLists hidden">
-					                        	<option value="James Suarez"></option>
-					                        	<option value="Marie Rosalado"></option>
-					                        	<option value="Shiarra Go"></option>
-					                        	<option value="Nil Carpio"></option>
-					                        	<option value="Mark Cabe"></option>
-					                        	<option value="Cedrick Cancio"></option>
-					                        	<option value="Epsilon Sta. Ana"></option>
-					                        	<option value="Gabriel Centeno"></option>
-					                        	<option value="Lyn Frias"></option>
+					                    	<% while(rs3.next())
+					                    		{ %>
+					                        	<option value="<%=rs3.getInt(1)%>"> <%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %> </option>
+					                        <% } rs3.first(); rs3.previous();%>
 					                        </select>
 					                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
 					
@@ -365,8 +360,8 @@
 					            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
 					            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 					            </div>
-					        </div>
 							</form>
+					        </div>
 						</div>
 					</div>
 			 		<!-- Modals -->

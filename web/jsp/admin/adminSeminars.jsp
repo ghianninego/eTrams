@@ -56,7 +56,7 @@
   										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>'>View Sessions</a>
+  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
   									</div>
   								">
   									<div class="caption">

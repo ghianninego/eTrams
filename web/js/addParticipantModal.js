@@ -8,7 +8,8 @@ $(document).ready(function() {
 	 participants = new Array();
 	 
 	     $('select option').each(function() {
-            participants.push($(this).val());
+            //participants.push($(this).val());
+	    	 participants.push($(this).text());
         });
 	 
 		reloadParticipants(1);
