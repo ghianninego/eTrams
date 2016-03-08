@@ -114,7 +114,7 @@
 							            	<div class="form-group">
 							            		<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-value="<%=rs.getString(4)%>" data-filter="true">
+							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-filter="true">
 							            				<% while(rs2.next())
 							            				{ %>
 							            				<div data-value="<%=rs2.getInt(1)%>"><%= rs2.getString(2) %></div>

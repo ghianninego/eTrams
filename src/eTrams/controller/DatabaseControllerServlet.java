@@ -70,15 +70,15 @@ public class DatabaseControllerServlet extends HttpServlet {
 			//////// sessions
 			case "createSession":
 				SessionClass.createSession(request, connection);
-				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+request.getParameter("seminarID")); // change to URL mapping (hehe)
+				response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID")); // change to URL mapping (hehe)
 				break;
 			case "editSession":
 				SessionClass.editSession(request, connection);
-				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+session.getAttribute("seminarID"));
+				response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 				break;
 			case "deleteSession":
 				SessionClass.deleteSession(request, connection);
-				response.sendRedirect("dbcontrol?requestType=goToAdminSession&seminarID="+session.getAttribute("seminarID"));
+				response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 			case "goToAdminSession":
 				ResultSet venues = VenueClass.retrieveVenues(connection);
 				ResultSet speakers = SessionClass.retrieveCoordinators(connection);
@@ -88,6 +88,15 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("venue", venues);
 				session.setAttribute("speakers", speakers);
 				session.setAttribute("seminarID", request.getParameter("seminarID"));
+				response.sendRedirect("jsp/admin/adminSessions.jsp");
+				break;
+			case "goToAdminSessionFromAction":
+				ResultSet venues2 = VenueClass.retrieveVenues(connection);
+				ResultSet speakers2 = SessionClass.retrieveCoordinators(connection);
+				ResultSet sessions2 = SessionClass.retrieveSessions(connection, Integer.valueOf((String)session.getAttribute("seminarID")));
+				session.setAttribute("session", sessions2);
+				session.setAttribute("venue", venues2);
+				session.setAttribute("speakers", speakers2);
 				response.sendRedirect("jsp/admin/adminSessions.jsp");
 				break;
 			//////// venues
@@ -142,7 +151,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 				ManageParticipantsClass.cancelRegistration(connection, Integer.parseInt(request.getParameter("attendanceID")));
 				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
 				break;
-			
+			case "certify":
+				ManageParticipantsClass.setCertification(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+				break;
 			case "setStatus":
 				ManageParticipantsClass.setStatus(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));

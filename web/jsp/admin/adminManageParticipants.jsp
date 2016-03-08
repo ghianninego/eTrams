@@ -71,7 +71,7 @@
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=certParticipants%>">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#uncertifyModal">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#uncertifyModal<%=certParticipants %>">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
 								</tr>
 								
 								<!-- SET STATUS MODAL -->
@@ -109,11 +109,14 @@
 								<!-- SET STATUS MODAL -->
 								
 								<!-- UNCERTIFY MODAL -->
-								<div class="modal fade" id="uncertifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal fade" id="uncertifyModal<%=certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog modal-sm" role="document">
-									<form>
+									<form action="../../dbcontrol" method="post">
 										<div class="modal-content">
 											<div class="modal-body text-center">
+											<input type="hidden" name="requestType" value="certify"/>
+											<input type="hidden" name="certification" value="0"/>
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
 												<p>Are you sure you want to uncertify this participant?</p>
 												<div class="someButton text-center">
 													<button type="submit" class="btn btn-default">Yes</button>
@@ -208,7 +211,7 @@
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=uncertParticipants%>">
 			 							Incomplete
 			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#certifyModal<%=uncertParticipants%>">Certify</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a></td>			
 								</tr>
 								
 								<!-- SET STATUS MODAL -->
@@ -221,6 +224,7 @@
 											</div>
 										<form class="form-horizontal" action="../../dbcontrol" method="post">
 								            <div class="modal-body">
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
 								            	<input type="hidden" name="requestType" value="setStatus"/>
 								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
 								            	<!-- Status -->
@@ -246,13 +250,17 @@
 								<!-- SET STATUS MODAL -->
 								
 								<!-- CERTIFY MODAL -->
-								<div class="modal fade" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal fade" id="certifyModal<%=uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog modal-sm" role="document">
-									<form>
+									<form action="../../dbcontrol" method="post">
 										<div class="modal-content">
 											<div class="modal-body text-center">
 												<p>Are you sure you want to certify this participant?</p>
 												<div class="someButton text-center">
+												
+											<input type="hidden" name="requestType" value="certify"/>
+											<input type="hidden" name="certification" value="1"/>
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
 													<button type="submit" class="btn btn-default">Yes</button>
 													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 												</div>

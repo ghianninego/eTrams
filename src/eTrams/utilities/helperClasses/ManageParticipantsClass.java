@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -114,6 +115,48 @@ public class ManageParticipantsClass {
 		return 0;
 	}
 	
+	public static int setCertification(HttpServletRequest request, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.updateAttendanceCertification(connection);
+		try 
+		{
+			System.out.println(request.getParameter("attendanceID"));
+			int attendanceID = Integer.parseInt(request.getParameter("attendanceID"));
+			
+			ps.setInt(1, Integer.parseInt(request.getParameter("certification")));
+			ps.setInt(2, attendanceID);
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				setCertificationRelease(connection, attendanceID);
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
+	public static void setCertificationRelease(Connection connection, int attendanceID)
+	{
+		PreparedStatement ps = SQLOperations.updateCertificationRelease(connection);
+		try 
+		{
+			ps.setDate(1, java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())));
+			ps.setInt(2, attendanceID);
+			
+			if (ps.executeUpdate() > 0)
+				connection.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
 	public static int setTime(HttpServletRequest request, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.updateTime(connection);
@@ -142,6 +185,8 @@ public class ManageParticipantsClass {
 		}
 		return 0;
 	}
+	
+	
 	
 	public static void addMultipleParticipants(HttpServletRequest request, Connection connection)
 	{

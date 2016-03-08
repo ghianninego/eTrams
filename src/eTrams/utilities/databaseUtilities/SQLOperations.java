@@ -40,7 +40,9 @@ public class SQLOperations
 	private static PreparedStatement updateStatus;
 	private static PreparedStatement updateVenue;
 	private static PreparedStatement updateAccountPassword;
+	private static PreparedStatement updateCertificationRelease;
 	private static PreparedStatement updateAccount;
+	private static PreparedStatement updateAttendanceCertification;
 	//private static PreparedStatement updateAnnouncement;
 //-----------select CHECK
 	private static PreparedStatement selectCollege;
@@ -988,6 +990,38 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		}
 		System.out.println("update userInfoAccountPassword");         
 		return updateAccountPassword;
+	}
+	
+	public synchronized static PreparedStatement updateAttendanceCertification(Connection connection)
+	{
+		try 
+		{
+			if (updateAttendanceCertification == null)
+				updateAttendanceCertification = connection.prepareStatement("UPDATE AttendanceTable SET Certification = ? WHERE attendanceId = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update attendanceTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update attendanceTable");         
+		return updateAttendanceCertification;
+	}
+	
+	public synchronized static PreparedStatement updateCertificationRelease(Connection connection)
+	{
+		try 
+		{
+			if (updateCertificationRelease == null)
+				updateCertificationRelease = connection.prepareStatement("UPDATE AttendanceTable SET CertificationRelease = ? WHERE attendanceId = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update attendanceTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update attendanceTable");         
+		return updateCertificationRelease;
 	}
 	
 
