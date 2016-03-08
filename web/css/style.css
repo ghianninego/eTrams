@@ -90,16 +90,19 @@ a:hover {
 
 .someContainer {
 	padding: 5px;
-	min-height: 380px;
+	min-height: 500px;
 	background: rgba(255, 255, 255, 0.7);
 	position: relative;
 	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
 }
 
+.calendar {
+	margin-top: 10px;
+}
 
 /******************** Announcements Style ********************/
-.announcements {
-	height: 100px;
+.paginateClass {
+	height: 85px;
 	padding: 8px;
 	border: 1px solid #eee;
 	border-radius: 5px;

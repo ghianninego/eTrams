@@ -59,9 +59,12 @@ $(document).ready(function() {
               venue: ' <%=eBean.get(i).getVenueName()%> ',
               venueRemarks: ' <%=eBean.get(i).getVenueRemarks()%> ',
               speaker: ' <%=eBean.get(i).getSpeakerName()%> ',
+              status:
+            	  <%if(eBean.get(i).getCompletion() == 1){%>'Completed'
+            	  <%} else if(eBean.get(i).getCompletion() == 0){%>'Ongoing'<%}%>,
               color: 
-            	  <%if(eBean.get(i).getCompletion() == 1){%>'red'
-            	  <%} else if(eBean.get(i).getCompletion() == 0){%>'green'<%}%>
+            	  <%if(eBean.get(i).getCompletion() == 1){%>'#0489B1'
+            	  <%} else if(eBean.get(i).getCompletion() == 0){%>'#5FB404'<%}%>
             	  
           	}
         <%}else{%>
@@ -80,9 +83,12 @@ $(document).ready(function() {
             venue: ' <%=eBean.get(i).getVenueName()%> ',
             venueRemarks: ' <%=eBean.get(i).getVenueRemarks()%> ',
             speaker: ' <%=eBean.get(i).getSpeakerName()%> ',
-            color: 
-          	  <%if(eBean.get(i).getCompletion() == 1){%>'red'
-          	  <%} else if(eBean.get(i).getCompletion() == 0){%>'green'<%}%>
+            status:
+            	<%if(eBean.get(i).getCompletion() == 1){%>'Completed'
+        	  	<%} else if(eBean.get(i).getCompletion() == 0){%>'Ongoing'<%}%>,
+            color:
+            	<%if(eBean.get(i).getCompletion() == 1){%>'#0489B1'
+            	<%} else if(eBean.get(i).getCompletion() == 0){%>'#5FB404'<%}%>
           	  
         	},
 	            <%}}%>
@@ -97,11 +103,11 @@ $(document).ready(function() {
 	        	    +'<b>Seminar Name:</b> ' + calEvent.seminarName + '<br>'
 	        	    +'<b> Session Name:</b> ' + calEvent.title + '<br>'
 	        	    		+'<b>Speaker:</b> ' +  calEvent.speaker + '<br>'
-	        	    		+'<b>Venue:</b> ' +  calEvent.venue + '<br>'
-	        	    		+'<b>Venue Remarks:</b> ' +  calEvent.venueRemarks + '<br>'
+	        	    		+'<b>Venue:</b> ' +  calEvent.venue + ': ' +  calEvent.venueRemarks + '<br>'
 	        	    		+'<b>Capacity:</b> ' +  calEvent.capacity + '<br>'
 	        	    		+'<b>Time:</b> ' +  calEvent.startTime + ' <b>to</b> '
 	        	    		+  calEvent.endTime + '<br>'
+	        	    		+'<b>Status:</b> ' +  calEvent.status + '<br>'
 	        	    		+'</div>';
 	        	    $("body").append(tooltip);
 	        	    $(this).mouseover(function(e) {

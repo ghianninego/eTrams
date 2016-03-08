@@ -15,7 +15,7 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<title>UST eTrams - All Users</title>
+		<title>UST eTrams - All Users - Manage Users</title>
 	</head>
 	
 	<body>
@@ -81,13 +81,7 @@
 			 									</a>
 			 								</div>
 			 								<div class="someButton">
-			 									<form class="form-horizontal" action="../../dbcontrol" method="post">
-			 									<input type="hidden" name="requestType" value="adminManageUserDelete">
-												<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
-												<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
-											
-			 									<button class="btn btn-yellow" data-toggle="modal" data-target="#deleteModal"><!--type="submit"-->Delete</button>
-			 									</form>
+			 									<button class="btn btn-yellow" data-toggle="modal" data-target="#deleteModal">Delete</button>
 			 								</div>
 			 							</div>
 			 						</div>
@@ -97,9 +91,7 @@
 			 				 	<!-- Attendance Tab -->
 			 				 	<div role="tabpanel" class="tab-pane fade" id="attendance">
 			 				 		<br><br>
-			 				 		<table class="table table-condensed table-striped table-hover ">
-							
-								<%while (history.next()){ %>		
+			 				 		<table class="table table-condensed table-striped table-hover ">		
 										<thead>
 											<tr>
 												<th>#</th>
@@ -112,6 +104,7 @@
 												<th>Certification</th>
 											</tr>
 										</thead>
+								<%while (history.next()){ %>
 										<tbody>
 											<tr>
 												<td><%=history.getInt("attendanceID") %></td>
@@ -233,17 +226,22 @@
 						<!-- DELETE MODAL -->
 						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 							<div class="modal-dialog modal-sm" role="document">
-							<form>
 								<div class="modal-content">
+								<form class="form-horizontal" action="../../dbcontrol" method="post">
 									<div class="modal-body text-center">
 										<p>Are you sure you want to delete this account?</p>
+										
+										<input type="hidden" name="requestType" value="adminManageUserDelete">
+										<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountId")%>">
+										<input type="hidden" name="userInfoId" value="<%=oneUser.getInt("userInfoId") %>">
+											
 										<div class="someButton text-center">
 											<button type="submit" class="btn btn-default">Yes</button>
 											<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 										</div>
 									</div>
+								</form>
 								</div>
-							</form>
 							</div>
 						</div>
 						<!-- DELETE MODAL -->

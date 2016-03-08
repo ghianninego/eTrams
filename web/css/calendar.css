@@ -1,27 +1,26 @@
 @CHARSET "ISO-8859-1";
 
 #calendar .fc-agenda-axis, #calendar .fc-widget-header{
-	background-color: #C2E6FF;
-	border-color: #AED0EA;
+	background-color: rgba(255,222, 69, 0.8);
+	border-color: #FACC02;
 	font-weight: normal;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	border-radius: 3px;
 }
-#calendar .fc-content{
+#calendar .fc-content {
 	color:white;
-	font-size: 15px;
+	font-size: 12px;
 }
-#calendar .fc-view-container
-{
+#calendar .fc-view-container {
 	background-color: white ;
 }
 .fc-today {
-	background-color: rgba(255,240,0,0.2) !important;
+	background-color: rgba(210, 210, 210, 0.4) !important;
 }
 .fc-button-prev {
-   background-color: red;
-display:block;
-width:50px;
-height:50px;
+	background-color: red;
+	display:block;
+	width:50px;
+	height:50px;
 }

@@ -12,7 +12,7 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<title>UST eTrams - All Users</title>
+		<title>UST eTrams - Faculties/Colleges/Institutes</title>
 	</head>
 	
 	<body>
@@ -34,7 +34,7 @@
 								<tr>
 									<th>College ID #</th>
 									<th>College/Faculty/Institute</th>
-									<th>Coordinator</th>
+									<th>Departments</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -42,19 +42,19 @@
 								<tr>
 									<td>001</td>
 									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 								<tr>
 									<td>002</td>
 									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 								<tr>
 									<td>003</td>
 									<td>College/Faculty/Institute</td>
-									<td>Coordinator</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
 							</tbody>
@@ -77,6 +77,7 @@
 					<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 						<div class="modal-dialog modal-sm" role="document">
 							<div class="modal-content">
+							<form>
 								<div class="modal-body text-center">
 									<p>Are you sure you want to delete this item?</p>
 									<div class="someButton text-center">
@@ -84,6 +85,7 @@
 										<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 									</div>
 								</div>
+								</form>
 							</div>	
 						</div>
 					</div>

@@ -15,7 +15,7 @@
 		<link href="../../css/jquery_ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
 		
-		<title>UST eTrams - Seminars & Sessions</title>
+		<title>UST eTrams - Seminars & Sessions - Manage Participants</title>
 	</head>
 	
 	<body>
@@ -84,12 +84,12 @@
 											</div>
 										<form class="form-horizontal" action="../../dbcontrol" method="post">
 								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setStatus"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
+								            	
 								            	<!-- Status -->
 								            	<div class="form-group">
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
+								            			
 								            			<div class="bfh-selectbox" data-name="status" id="status">
 								            				<div data-value="Complete" >Complete</div>
 								            				<div data-value="Incomplete">Incomplete</div>
@@ -138,6 +138,7 @@
 								            <div class="modal-body">
 								            	<input type="hidden" name="requestType" value="setAttendance"/>
 								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
+								            	
 								            	<!-- Time In -->
 								            	<div class="form-group">
 								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
@@ -153,7 +154,9 @@
 								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut" name="timeOut"></div>
 								            		</div>
 								            	</div>
-								    
+								            	
+								            	<p><br><br></p>
+								            	
 								            </div>
 								            <div class="modal-footer">
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
@@ -272,6 +275,7 @@
 								            <div class="modal-body">
 								            	<input type="hidden" name="requestType" value="setAttendance"/>
 								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
+								            	
 								            	<!-- Time In -->
 								            	<div class="form-group">
 								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
@@ -287,6 +291,8 @@
 								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut" name="timeOut"></div>
 								            		</div>
 								            	</div>
+								            	
+								            	<p><br><br></p>
 								    
 								            </div>
 								            <div class="modal-footer">
@@ -307,8 +313,6 @@
 			 		</div>
 			 		<% } else { %>
 			 		<!-- End of Content -->
-			 		
-					<br><br><br><br>
 			 		
 			 		<!-- For Ongoing/Unfinished Sessions -->
 			 		<!-- Content -->
