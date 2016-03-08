@@ -17,19 +17,6 @@
                     	<input type="text" class="form-control" id="college" name="college" placeholder="Faculty/College/Institute" required />
                     </div>
             	</div>
-            	
-            	<!-- Coordinator -->
-            	<div class="form-group">
-            		<label for="coordinator" class="col-sm-3 control-label">Coordinator</label>
-            		<div class="col-sm-9">
-            			<div class="bfh-selectbox" data-name="coordinator" id="coordinator" data-value="--" data-filter="true">
-            				<div data-value="--">--</div>
-            				<div data-value="1">Coordinator 1</div>
-            				<div data-value="2">Coordinator 2</div>
-            				<div data-value="3">Coordinator 3</div>
-            			</div>
-            		</div>
-            	</div>
             </div>
             
             <div class="modal-footer">
