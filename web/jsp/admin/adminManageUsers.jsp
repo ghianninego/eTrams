@@ -28,9 +28,10 @@
 			<div class="container">
 			 	<div class="row">
 			 		<div class="col-md-12">
+			 		<%oneUser.next(); %>
 			 			<h1 class="page-header">
 			 				<small><a href="adminUsers.jsp">All Users</a> /</small>
-			 				User's name
+			 				<%=oneUser.getString("userName")%>
 			 			</h1>
 			 			
 			 			<!-- Content -->
@@ -52,9 +53,12 @@
 			 				 	<div role="tabpanel" class="tab-pane fade in active" id="profile">
 			 				 		<div class="row account">
 			 							<div class="col-sm-8 accountLeft">
-			 							<%oneUser.next(); %>
+			 							
 			 								<h4>Name</h4>
 			 								<h4><span><%=oneUser.getString("firstName")%>   <%=oneUser.getString("middleName")%> <%=oneUser.getString("lastName")%></span></h4>
+			 								<br>
+			 								<h4>Username</h4>
+			 								<h4><span><%=oneUser.getString("userName")%></span></h4>
 			 								<br>
 			 								<h4>Email</h4>
 											<h4><span><%=oneUser.getString("email")%></span></h4>

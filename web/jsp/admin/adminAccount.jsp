@@ -36,6 +36,9 @@
 			 					<h4>Name</h4>
 			 					<h4><span>${user.firstName }  ${user.middleName } ${user.lastName }</span></h4>
 			 					<br>
+			 					<h4>Username</h4>
+			 					<h4><span>${user.username}</span></h4>
+			 					<br>
 			 					<h4>Email</h4>
 								<h4><span>${user.email}</span></h4>
 								<br>

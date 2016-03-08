@@ -122,7 +122,11 @@
 											<div class="form-group">
 												<label for="Content" class="col-sm-2 control-label">Content</label>
 												<div class="col-sm-10">
-													<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5"  required><%=announcement.getString("content")%>"</textarea>
+													<%
+														String con = announcement.getString("content");
+														con = con.replaceAll("<br />","");
+													%>
+													<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5"  required><%=con%></textarea>
 												</div>
 											</div>
 										</div>

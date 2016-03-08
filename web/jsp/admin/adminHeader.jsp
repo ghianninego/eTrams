@@ -41,7 +41,7 @@
 				<% } %>
 				
 				<% if (x.equals("adminUsers.jsp") || x.equals("adminColleges.jsp") || x.equals("adminVenues.jsp") || 
-						x.equals("adminManageUsers.jsp")) { %>
+						x.equals("adminManageUsers.jsp") || x.equals("adminDepartments.jsp")) { %>
                  	<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">

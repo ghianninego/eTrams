@@ -446,7 +446,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneAccount == null)
-				selectOneAccount = connection.prepareStatement("SELECT a.AccountId , u.userInfoId , u.firstName , u.middleName , u.lastName, "
+				selectOneAccount = connection.prepareStatement("SELECT a.AccountId , u.userInfoId , a.userName, u.firstName , u.middleName , u.lastName, "
 						+ "a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
 						+ " where a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId and a.AccountId=?");
 		} 
@@ -598,7 +598,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectAnnouncement == null)
-				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable");
+				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable where active=1");
 		} 
 		catch (SQLException e) 
 		{
@@ -949,7 +949,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (updateAnnouncement == null)
-				updateAnnouncement = connection.prepareStatement("UPDATE announcementTable SET userAccountID = ? , title = ? , description = ?  WHERE announcementID = ? ");
+				updateAnnouncement = connection.prepareStatement("UPDATE announcementTable SET title = ? , content = ?  WHERE announcementID = ? ");
 		} 
 		catch (SQLException e) 
 		{

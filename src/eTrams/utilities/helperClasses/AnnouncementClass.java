@@ -16,6 +16,7 @@ public class AnnouncementClass {
 	public static int createAnnouncement(HttpServletRequest request, Connection connection) {
 		String title = request.getParameter("announcementTitle");
 		String content = request.getParameter("announcementContent");
+		content = content.replaceAll("\n","<br />");
 
 		int creatorId = Integer.parseInt(request.getParameter("creatorID"));
 		int active = 1;
@@ -54,6 +55,7 @@ public class AnnouncementClass {
 	public static int editAnnouncement(HttpServletRequest request, Connection connection) {
 		String title = request.getParameter("announcementTitle");
 		String content = request.getParameter("announcementContent");
+		content = content.replaceAll("\n","<br />");
 		int announcementID = Integer.parseInt(request.getParameter("announcementID"));
 
 		int updated = 0;
