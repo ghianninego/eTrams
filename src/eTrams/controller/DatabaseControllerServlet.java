@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import eTrams.utilities.databaseUtilities.DatabaseDataSource;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.helperClasses.AnnouncementClass;
+import eTrams.utilities.helperClasses.CalendarClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
@@ -211,6 +212,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "login": 
+				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user",UserClass.login(request, connection));
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());

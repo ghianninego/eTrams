@@ -1,4 +1,5 @@
 <jsp:useBean id="announcement" type="java.sql.ResultSet" scope="session"/>
+<jsp:useBean id="user" class="eTrams.model.FinalUserBean" scope="session"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,19 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
+		<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+		
+	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+		
+<link rel='stylesheet' href='../../Calendar/fullcalendar.css' />
+<link rel='stylesheet' href='../../css/calendar.css' />
+<script src='../../Calendar/jquery.min.js'></script>
+<script src='../../Calendar/moment.min.js'></script>
+<script src='../../Calendar/fullcalendar.js'></script>
+
 		<title>UST eTrams - Home</title>
 	</head>
 	
@@ -32,7 +46,7 @@
 			 		
 			 		<div class="content">
 			 			<div class="someContainer">
-  							<p>This is a calendar</p>
+							<%@ include file= "../CalendarEvents.jsp" %>	
   						</div>
 			 		</div>
 			 	</div>
@@ -169,11 +183,6 @@
 				
 	</body>
 	
-	<script src="../../js/jquery.js"></script>
-	<script src="../../js/bootstrap/bootstrap.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
+	
 		
 </html>

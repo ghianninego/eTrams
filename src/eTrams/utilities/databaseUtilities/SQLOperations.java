@@ -49,6 +49,7 @@ public class SQLOperations
 	private static PreparedStatement selectUserAccount;
 	private static PreparedStatement selectSeminar;
 	private static PreparedStatement selectSession;
+	private static PreparedStatement selectAllSession;
 	private static PreparedStatement selectAttendance;
 	private static PreparedStatement selectAnnouncement;
 	private static PreparedStatement selectCoordinators;
@@ -232,7 +233,7 @@ public class SQLOperations
 		try 
 		{
 			if (createNewAnnouncement == null)
-				createNewAnnouncement = connection.prepareStatement("INSERT INTO announcementTable VALUES (?,?,?,?,?)");
+				createNewAnnouncement = connection.prepareStatement("INSERT INTO announcementTable VALUES (?,?,?,?,?,?)");
 		} 
 		catch (SQLException e) 
 		{
@@ -554,6 +555,24 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		System.out.println("SELECT sessionTable");         
 		return selectSession;
 	}
+	
+	
+	public synchronized static PreparedStatement selectAllSession(Connection connection)
+	{
+		try 
+		{
+			if (selectAllSession == null)
+				selectAllSession = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , accountTable.* , VenueTable.* , userInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and seminarTable.seminarID = sessiontable.seminarID  ORDER BY Date DESC");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT sessionTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT sessionTable");         
+		return selectAllSession;
+	}
+	
 	
 	
 	public synchronized static PreparedStatement selectAttendance(Connection connection)

@@ -24,10 +24,12 @@ public class AnnouncementBean implements BeanInterface{
 		PreparedStatement ps = SQLOperations.createNewAnnouncement(connection);
 		try
 		{
-			ps.setInt(1, getCreatorID());
-			ps.setString(2, getTitle()); 
-			ps.setString(3, getContent());
-			ps.setInt(4, getActive());
+			ps.setInt(1, 0);
+			ps.setInt(2, getCreatorID());
+			ps.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
+			ps.setString(4, getTitle()); 
+			ps.setString(5, getContent());
+			ps.setInt(6, getActive());
 			
 			if (ps.executeUpdate() > 0)
 			{

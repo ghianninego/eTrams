@@ -8,7 +8,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="gridSystemModalLabel">New Announcement</h4>
 			</div>
-		<form class="form-horizontal" action="modals.html" method="post">
+		<form class="form-horizontal" action="../../dbcontrol" method="post">
             <div class="modal-body">
             		
                     <!-- Announcement Title -->
@@ -29,6 +29,9 @@
     
             </div>
                 <div class="modal-footer">
+                <input name="requestType" value="addAnnouncement" type="hidden"/>
+                <input name="creatorID" value="<%=user.getAccountID() %>"  type="hidden"/>
+                <input name="userInfoID" value="<%=user.getUserInfoID() %>"  type="hidden"/>
                     <button type="submit" class="btn btn-yellow pull-left">Submit</button>
                     <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
                 </div>
