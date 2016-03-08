@@ -75,7 +75,7 @@ public class ManageParticipantsClass {
 		try 
 		{
 			ps.setInt(1, attendanceID);
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -101,7 +101,7 @@ public class ManageParticipantsClass {
 			ps.setString(1, status);
 			ps.setInt(2, attendanceID);
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -130,7 +130,7 @@ public class ManageParticipantsClass {
 			ps.setTime(2, timeOut);
 			ps.setInt(3, attendanceID);
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;

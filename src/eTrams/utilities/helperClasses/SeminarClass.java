@@ -53,7 +53,7 @@ public class SeminarClass {
 			ps.setString(2, request.getParameter("seminarTopic"));
 			ps.setInt(3, Integer.parseInt(request.getParameter("seminarID")));
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -72,13 +72,18 @@ public class SeminarClass {
 		try
 		{
 			ps.setInt(1, Integer.parseInt(request.getParameter("seminarID")));
-			
-			if (ps.executeUpdate() > 1)
+			System.out.println(request.getParameter("seminarID"));
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
 				return 1;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return 0;
 	}

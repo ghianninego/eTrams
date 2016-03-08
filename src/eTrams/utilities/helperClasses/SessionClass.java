@@ -62,7 +62,8 @@ public class SessionClass {
 			ps.setTime(7, java.sql.Time.valueOf(TimeDateConverterClass.convertToSQLTimeFormat(request.getParameter("sessionTimeOut"))));
 			ps.setInt(8, Integer.parseInt(request.getParameter("sessionSpeaker")));
 			ps.setInt(9, Integer.parseInt(request.getParameter("sessionID")));
-			if (ps.executeUpdate() > 1)
+
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -82,8 +83,11 @@ public class SessionClass {
 		{
 			ps.setInt(1, Integer.parseInt(request.getParameter("sessionID")));
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
 				return 1;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

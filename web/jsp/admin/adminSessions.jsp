@@ -168,11 +168,13 @@
 							<!-- DELETE MODAL -->
 							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-sm" role="document">
-								<form>
+								<form action="../../dbcontrol" method="post">
 									<div class="modal-content">
 										<div class="modal-body text-center">
 											<p>Are you sure you want to delete this item?</p>
 											<div class="someButton text-center">
+												<input type="hidden" name="sessionID" value="<%= rs.getInt(1) %>"/>
+												<input type="hidden" name="requestType" value="deleteSession"/>
 												<button type="submit" class="btn btn-default">Yes</button>
 												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 											</div>
@@ -185,8 +187,8 @@
 							
   							<%
   							sessions++; } 
-  							rs.first(); rs.previous(); %>
-  						</div>
+  							rs.first(); rs.previous(); 	%>
+						</div>
   							
   						<br>
   						<div class="someButton">

@@ -53,7 +53,7 @@ public class VenueClass {
 			ps.setString(1, request.getParameter("venue"));
 			ps.setInt(2, Integer.parseInt(request.getParameter("venueID")));
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
@@ -72,7 +72,7 @@ public class VenueClass {
 		try {
 			ps.setInt(1, Integer.parseInt(request.getParameter("venueID")));
 			
-			if (ps.executeUpdate() > 1)
+			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;

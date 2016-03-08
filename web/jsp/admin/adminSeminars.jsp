@@ -43,7 +43,7 @@
   									<p><%= rs.getString(4) %></p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal<%=seminars%>'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal<%= seminars %>'>Delete</a>
 									</div>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
@@ -97,13 +97,15 @@
 							</div>
 							
 							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal fade" id="deleteModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-sm" role="document">
-								<form>
+								<form action="../../dbcontrol" method="post">
 									<div class="modal-content">
 										<div class="modal-body text-center">
 											<p>Are you sure you want to delete this item?</p>
 											<div class="someButton text-center">
+												<input type="hidden" name="seminarID" value="<%= rs.getInt(1) %>"/>
+												<input type="hidden" name="requestType" value="deleteSeminar"/>
 												<button type="submit" class="btn btn-default">Yes</button>
 												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 											</div>
