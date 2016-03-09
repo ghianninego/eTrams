@@ -103,7 +103,7 @@
 												<td>00:00</td>
 												<td>mm/dd/yyyy</td>
 												<td>completed</td>
-												<td><a href="#">certify?</a></td>
+												<td><a href="#"  data-toggle="modal" data-target="#certifyModal">certify?</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -115,7 +115,23 @@
 			 			<!-- End of Content -->
 			 			
 			 			<!-- Modals -->
-						<%@ include file= "../modals/accountModals.jsp" %>
+						<!-- CERTIFY MODAL -->
+						<div class="modal fade" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog modal-sm" role="document">
+							<form>
+								<div class="modal-content">
+									<div class="modal-body text-center">
+										<p>Are you sure you want to certify this participant?</p>
+										<div class="someButton text-center">
+											<button type="submit" class="btn btn-default">Yes</button>
+											<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+						</div>
+						<!-- CERTIFY MODAL -->
 						<!-- End of Modals -->
 			 			
 			 		</div>

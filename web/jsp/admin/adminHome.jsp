@@ -45,15 +45,13 @@
 			 		<h1 class="page-header">Calendar</h1>
 			 		
 			 		<div class="content">
-			 			<div class="someContainer">
-							<%@ include file= "../CalendarEvents.jsp" %>	
-  						</div>
+						<%@ include file= "../CalendarEvents.jsp" %>	
 			 		</div>
 			 	</div>
 			 	<!-- End of Calendar -->
 			 		
 			 	<!-- Announcements -->
-			 	<div class=" col-md-5">
+			 	<div class="col-md-offset-1 col-md-4">
 			 		<h1 class="page-header">Announcements</h1>
 			 			
 			 		<!-- Content -->
@@ -61,13 +59,13 @@
 			 				
 			 			<!-- Announcements Container -->
 			 			<div class="someContainer">
-			 					
+
 			 				<!-- No announcement -->
   							<div class="noAnnouncement">
   								No announcement.
   							</div>
   							<!-- End of No announcement -->
-  								
+
   							<!-- List of announcements -->
   							<%int z = 1;while(announcement.next()) { %>
   							<div id="announcementList">
@@ -92,7 +90,7 @@
   										</div>
   										<div class="modal-body">
   											<p><%=announcement.getString("content")%></p>
-											<p><em><%=announcement.getString("dateCreated")%></em></p>
+											<p><em style="color: #848484 !important">Date created: <%=announcement.getString("dateCreated")%></em></p>
 										</div>
 									</div>
 								</div>

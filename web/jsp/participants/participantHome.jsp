@@ -102,7 +102,6 @@
   								
   							<!-- Announcements pagination -->
   							<div class="announcementPager text-center">
-  								<ul class="pagination pager" id="myPager"></ul>
   							</div>
   							<!-- End of Announcements pagination -->
   								
@@ -111,7 +110,22 @@
 			 		<!-- End of content -->
 			 		
 			 		<!-- Modals -->
-					<%@ include file= "../modals/AnnouncementModals.jsp" %>
+					<!-- VIEW ANNOUNCEMENT MODAL -->
+  					<div class="modal fade" id="viewAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  						<div class="modal-dialog" role="document">
+  							<div class="modal-content">
+  								<div class="modal-header">
+  									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  									<h4 class="modal-title" id="gridSystemModalLabel">TITLE</h4>
+  								</div>
+  								<div class="modal-body">
+  									<p>Content</p>
+									<p><em style="color: #848484 !important">Date created:</em></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- VIEW ANNOUNCEMENT MODAL -->
 					<!-- End of Modals -->
 			 			
 			 	</div>
