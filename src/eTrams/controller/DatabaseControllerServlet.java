@@ -79,6 +79,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 			case "deleteSession":
 				SessionClass.deleteSession(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
+				break;
 			case "goToAdminSession":
 				ResultSet venues = VenueClass.retrieveVenues(connection);
 				ResultSet speakers = SessionClass.retrieveCoordinators(connection);

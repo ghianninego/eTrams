@@ -114,7 +114,8 @@
 							            	<div class="form-group">
 							            		<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-filter="true">
+							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-filter="true" data-value="--">
+							            				<div data-value="--">--</div>
 							            				<% while(rs2.next())
 							            				{ %>
 							            				<div data-value="<%=rs2.getInt(1)%>"><%= rs2.getString(2) %></div>
@@ -171,7 +172,7 @@
 								<form action="../../dbcontrol" method="post">
 									<div class="modal-content">
 										<div class="modal-body text-center">
-											<p>Are you sure you want to delete this item?</p>
+											<p>1Are you sure you want to delete this item?</p>
 											<div class="someButton text-center">
 												<input type="hidden" name="sessionID" value="<%= rs.getInt(1) %>"/>
 												<input type="hidden" name="requestType" value="deleteSession"/>
@@ -268,6 +269,7 @@
 					            		<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
 					            		<div class="col-sm-10">
 					            			<div class="bfh-selectbox" data-name="sessionSpeaker" id="sessionSpeaker" data-value="--" data-filter="true">
+					            				<div data-value>--</div>
 					            				<% while(rs3.next())
 							            		{ %>
 							            		<div data-value="<%= rs3.getInt(1) %>"><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></div>

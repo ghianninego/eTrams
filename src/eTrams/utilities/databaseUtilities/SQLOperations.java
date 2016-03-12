@@ -764,7 +764,7 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		try 
 		{
 			if (deleteSession == null)
-				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE seesionID = ? ");
+				deleteSession = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE sessionID = ? ");
 		} 
 		catch (SQLException e) 
 		{

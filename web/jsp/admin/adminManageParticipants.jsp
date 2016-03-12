@@ -69,7 +69,7 @@
 									<td><%= rs2.getTime(4) %></td>
 									<td><%= rs2.getTime(5) %></td>
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=certParticipants%>">
-			 							Incomplete
+			 							<%=rs2.getString(6) %>
 			 						</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#uncertifyModal<%=certParticipants %>">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
 								</tr>
@@ -87,15 +87,19 @@
 								            	
 								            	<!-- Status -->
 								            	<div class="form-group">
-								            		<label for="status" class="col-sm-3 control-label">Status</label>
+								            		<label for="Status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
 								            			
-								            			<div class="bfh-selectbox" data-name="status" id="status">
-								            				<div data-value="Complete" >Complete</div>
-								            				<div data-value="Incomplete">Incomplete</div>
-								            			</div>
+								        					<select name="status">
+								        						<option value="Complete">Complete</option>
+								        						<option value="Incomplete">Incomplete</option>
+								        					</select>
 								            		</div>
 								            	</div>
+								  				   <input type="hidden" name="requestType" value="setStatus"/>
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
+								    
+								    
 								    
 								            </div>
 								            <div class="modal-footer">
@@ -160,7 +164,9 @@
 								            	</div>
 								            	
 								            	<p><br><br></p>
-								            	
+								            	<input type="hidden" name="requestType" value="certify"/>
+												<input type="hidden" name="certification" value="0"/>
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
 								            </div>
 								            <div class="modal-footer">
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
@@ -210,7 +216,7 @@
 									<td><%= rs2.getTime(4) %></td>
 									<td><%= rs2.getTime(5) %></td>
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=uncertParticipants%>">
-			 							Incomplete
+			 							<%=rs2.getString(6) %>
 			 						</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#certifyModal<%=uncertParticipants%>">Certify</a> - 
 										<a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a>
@@ -233,12 +239,18 @@
 								            	<div class="form-group">`
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
-								            			<div class="bfh-selectbox" data-name="status" id="status">
-								            				<div data-value="Complete">Complete</div>
-								            				<div data-value="Incomplete">Incomplete</div>
-								            			</div>
+								            			<select name="status">
+								        						<option value="Complete">Complete</option>
+								        						<option value="Incomplete">Incomplete</option>
+								        					</select>
 								            		</div>
 								            	</div>
+								    
+								    
+								   				 <input type="hidden" name="requestType" value="setStatus"/>
+								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
+								    
+								    
 								    
 								            </div>
 								            <div class="modal-footer">
@@ -298,7 +310,7 @@
 								            	<div class="form-group">
 								            		<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
 								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut" name="timeOut"></div>
+								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut"></div>
 								            		</div>
 								            	</div>
 								            	
@@ -425,6 +437,8 @@
 				
 	</body>
 	
+	
+
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
@@ -435,5 +449,6 @@
 
 	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 	<script type="text/javascript" src="../../js/myscript.js"></script>
+	
 	
 </html>
