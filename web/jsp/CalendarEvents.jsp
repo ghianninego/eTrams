@@ -100,7 +100,7 @@ $(document).ready(function() {
 	        	    	'style="min-height:150px;padding:12px;background:rgba(225, 225, 225, 0.8);'
 	        	    	+ 'position:absolute;z-index:10001;">'
 	        	    			
-	        	    +'<b>Seminar Name:</b> ' + calEvent.seminarName + '<br>'
+	        	    +'<b>Seminar Name:</b> ' + calEvent.seminar + '<br>'
 	        	    +'<b> Session Name:</b> ' + calEvent.title + '<br>'
 	        	    		+'<b>Speaker:</b> ' +  calEvent.speaker + '<br>'
 	        	    		+'<b>Venue:</b> ' +  calEvent.venue + ': ' +  calEvent.venueRemarks + '<br>'
