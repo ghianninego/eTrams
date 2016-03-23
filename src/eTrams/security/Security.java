@@ -5,8 +5,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.*;
 
 public class Security {
+
 	private static byte[] key = {
-		'g', 'o', '-', 'g', 'a', 'r', 'c', 'i', 'a', 'c', 'a', 'n', 'c', 'i', 'o', '?'
+		0x74, 0x68, 0x69, 0x73, 0x49, 0x73, 0x41, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x4b, 0x65, 0x79
 	};
 
 	public static String encrypt(String strToEncrypt) {
