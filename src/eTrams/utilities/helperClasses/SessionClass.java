@@ -124,4 +124,29 @@ public class SessionClass {
 		
 		return rs;
 	}
+	
+	
+	public static int completeSession(HttpServletRequest request, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.updateSessionStatus(connection);
+		try
+		{
+			ps.setInt(1, 1);
+			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 }

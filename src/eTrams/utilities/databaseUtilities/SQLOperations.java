@@ -35,7 +35,9 @@ public class SQLOperations
 	private static PreparedStatement updateUserAccount;
 	private static PreparedStatement updateAnnouncement;
 	private static PreparedStatement updateSeminar;
+	private static PreparedStatement updateSeminarStatus;
 	private static PreparedStatement updateSession;
+	private static PreparedStatement updateSessionStatus;
 	private static PreparedStatement updateTime;
 	private static PreparedStatement updateStatus;
 	private static PreparedStatement updateVenue;
@@ -894,6 +896,39 @@ public synchronized static PreparedStatement deleteCollege(Connection connection
 		System.out.println("update seminarTable");         
 		return updateSeminar;
 	}
+	
+	public synchronized static PreparedStatement updateSeminarStatus(Connection connection)
+	{
+		try 
+		{
+			if (updateSeminarStatus == null)
+				updateSeminarStatus = connection.prepareStatement("UPDATE seminarTable  SET completion = ?  WHERE dateCreated < ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update seminarTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update seminarTable");         
+		return updateSeminarStatus;
+	}
+
+	public synchronized static PreparedStatement updateSessionStatus(Connection connection)
+	{
+		try 
+		{
+			if (updateSessionStatus == null)
+				updateSessionStatus = connection.prepareStatement("UPDATE sessionTable  SET completion = ?  WHERE date < ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update updateSessionStatus_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update updateSessionStatus");         
+		return updateSessionStatus;
+	}
+	
 	
 	public synchronized static PreparedStatement updateSession(Connection connection)
 	{
