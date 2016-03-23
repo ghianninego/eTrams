@@ -39,10 +39,14 @@
 				 				ResultSet rs3 = (ResultSet)session.getAttribute("speakers");
 				 				int sessions = 0;
 				 				DateFormat format = new SimpleDateFormat( "h:mm a" );
+				 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		            			
 				 				while (rs.next())
 				 				{
 					 				String str = format.format( rs.getTime(8) );
 					 				String str2 = format.format( rs.getTime(9));
+					 				String editDate = df.format(rs.getDate(7));
+			            			
 				 			%>
   							<div class="col-sm-6 col-md-3">
   								<button class="thumbnail" data-toggle="popover" data-trigger="focus" data-html="true" data-placement="bottom"
@@ -94,7 +98,7 @@
 							            	<div class="form-group">
 							            		<label for="Session Date" class="col-sm-2 control-label">Date</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate"></div>
+							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate" data-date="<%=editDate%>"></div>
 							            		</div>
 							            	</div>
 							            	
@@ -102,11 +106,11 @@
 							            	<div class="form-group">
 							            		<label for="Session Time In" class="col-sm-2 control-label">Start Time</label>
 							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn"></div>
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn" data-time="<%= str %>"></div>
 							            		</div>
 							            		<label for="Session Time Out" class="col-sm-2 control-label">End Time</label>
 							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut"></div>
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut" data-time="<%= str2 %>"></div>
 							            		</div>
 							            	</div>
 							            	
