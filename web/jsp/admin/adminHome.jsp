@@ -69,100 +69,18 @@
   							<!-- List of announcements -->
   							<%int z = 1;while(announcement.next()) { %>
   							<div id="announcementList">
-  								<div class="paginateClass announcements<%=z %> fade in" id="announcement">
+  								<div class="paginateClass announcements fade in" id="announcement">
   									
   									<h4><%=announcement.getString("title") %></h4>
   									<p>
-  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal<%=z %>">View</a> | 
-  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal<%=z %>">Edit</a> | 
-  										<a href="#" data-toggle="modal" data-target="#deleteModal<%=z %>">Delete</a>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
+  										<a href="#" data-toggle="modal" data-target="#deleteModal">Delete</a>
   									</p>
   								</div>
   							</div>
   							
-  							<!-- VIEW ANNOUNCEMENT MODAL -->
-  							<div class="modal fade" id="viewAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-  								<div class="modal-dialog" role="document">
-  									<div class="modal-content">
-  										<div class="modal-header">
-  											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  											<h4 class="modal-title" id="gridSystemModalLabel"><%=announcement.getString("title")%></h4>
-  										</div>
-  										<div class="modal-body">
-  											<p><%=announcement.getString("content")%></p>
-											<p><em style="color: #848484 !important">Date created: <%=announcement.getString("dateCreated")%></em></p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- VIEW ANNOUNCEMENT MODAL -->
-							
-							<!-- EDIT ANNOUNCEMENT MODAL -->
-							<div class="modal fade" id="editAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
-										</div>
-									<form class="form-horizontal" action="../../dbcontrol" method="post">
-										<div class="modal-body">
-										
-											<!-- Announcement Title -->
-											<div class="form-group">
-												<label for="Title" class="col-sm-2 control-label">Title</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<%=announcement.getString("title")%>" required />
-												</div>
-											</div>
-										
-											<!-- Announcement Content -->
-											<div class="form-group">
-												<label for="Content" class="col-sm-2 control-label">Content</label>
-												<div class="col-sm-10">
-													<%
-														String con = announcement.getString("content");
-														con = con.replaceAll("<br />","");
-													%>
-													<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5"  required><%=con%></textarea>
-												</div>
-											</div>
-										</div>
-									
-										<div class="modal-footer">
-											<input type="hidden" name="announcementID" value="<%=announcement.getInt("AnnouncementID")%>">
-											<input type="hidden" name="requestType" value="announcementEdit">
-										
-											<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-											<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-										</div>
-									</div>
-									</form>
-								</div>
-							</div>
-							<!-- EDIT ANNOUNCEMENT MODAL -->
-							
-							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-sm" role="document">
-									<div class="modal-content">
-									<form class="form-horizontal" action="../../dbcontrol">
-										<div class="modal-body text-center">
-											<p>Are you sure you want to delete this account?</p>
-										
-											<input type="hidden" name="requestType" value="announcementDelete" />
-  											<input type="hidden" name="announcementID" value="<%=announcement.getInt("announcementID") %>" />
-											
-											<div class="someButton text-center">
-												<button type="submit" class="btn btn-default">Yes</button>
-												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-											</div>
-										</div>
-									</form>
-									</div>
-								</div>
-							</div>
-							<!-- DELETE MODAL -->
+  							
   						
   							<%z++;} announcement.first();announcement.previous();%>
   							<!-- End of List of announcements -->
@@ -236,7 +154,89 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-				
+							<!-- VIEW ANNOUNCEMENT MODAL -->
+  							<div class="modal fade" id="viewAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  								<div class="modal-dialog" role="document">
+  									<div class="modal-content">
+  										<div class="modal-header">
+  											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  											<h4 class="modal-title" id="gridSystemModalLabel"><!--  display announcement.getString("title") here --></h4>
+  										</div>
+  										<div class="modal-body">
+  											<p><!-- display announcement.getString("content")%> here --></p>
+											<p><em style="color: #848484 !important">Date created: <!-- announcement.getString("dateCreated")%>  --></em></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- VIEW ANNOUNCEMENT MODAL -->
+							
+							<!-- EDIT ANNOUNCEMENT MODAL -->
+							<div class="modal fade" id="editAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
+										</div>
+									<form class="form-horizontal" action="../../dbcontrol" method="post">
+										<div class="modal-body">
+										
+											<!-- Announcement Title -->
+											<div class="form-group">
+												<label for="Title" class="col-sm-2 control-label">Title</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<!-- announcement.getString(title here) -->" required />
+												</div>
+											</div>
+										
+											<!-- Announcement Content -->
+											<div class="form-group">
+												<label for="Content" class="col-sm-2 control-label">Content</label>
+												<div class="col-sm-10">
+													<!-- 
+														String con = announcement.getString("content"); 
+														con = con.replaceAll("<br />","");
+													-->
+													<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5"  required><!-- con --></textarea>
+												</div>
+											</div>
+										</div>
+									
+										<div class="modal-footer">
+											<input type="hidden" name="announcementID" value="<!-- announcement.getInt(announcementID)  -->">
+											<input type="hidden" name="requestType" value="announcementEdit">
+										
+											<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+											<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+							<!-- EDIT ANNOUNCEMENT MODAL -->
+							
+							<!-- DELETE MODAL -->
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+									<form class="form-horizontal" action="../../dbcontrol">
+										<div class="modal-body text-center">
+											<p>Are you sure you want to delete this account?</p>
+										
+											<input type="hidden" name="requestType" value="announcementDelete" />
+  											<input type="hidden" name="announcementID" value="<!-- announcement.getInt(announcementID)  -->" />
+											
+											<div class="someButton text-center">
+												<button type="submit" class="btn btn-default">Yes</button>
+												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+											</div>
+										</div>
+									</form>
+									</div>
+								</div>
+							</div>
+							<!-- DELETE MODAL -->
 	</body>
 	
 	

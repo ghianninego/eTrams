@@ -50,60 +50,10 @@
 								<tr>
 									<td><%= rs.getInt(1) %></td>
 									<td><%= rs.getString(2) %></td>
-									<td><a href="#" data-toggle="modal" data-target="#editVenueModal<%= venues %>">Edit</a> - <a href="../../dbcontrol?requestType=deleteVenue&venueID=<%= rs.getInt(1) %>">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editVenueModal">Edit</a> - <a href="#deleteModal">Delete</a></td>
 								</tr>
 								
-								<!-- EDIT VENUE MODAL -->
-								<div class="modal fade" id="editVenueModal<%= venues %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Edit Venue</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            
-								            	<!-- Venue Name-->
-								            	<div class="form-group">
-								            		<label for="venue" class="col-sm-3 control-label">Venue Building</label>
-								                    <div class="col-sm-9">
-								                    	<input type="text" class="form-control" id="venue" name="venue" value="<%= rs.getString(2) %>" required />
-								                    </div>
-								            	</div>
-								            	<br>
-								            </div>
-								            
-								            <input type="hidden" name="venueID" value="<%= rs.getInt(1)%>"/>
-								            <input type="hidden" name="requestType" value="editVenue"/>
-								            	
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</div>
-										</form>
-									</div>
-								</div>
-								<!-- EDIT VENUE MODAL -->
 								
-								<!-- DELETE MODAL -->
-								<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form>
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<p>Are you sure you want to delete this item?</p>
-												<div class="someButton text-center">
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>	
-									</div>
-								</div>
-								<!-- DELETE MODAL -->
 							
 								<% venues++; } rs.first(); rs.previous(); %>
 							</tbody>
@@ -131,7 +81,59 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-				
+								<!-- EDIT VENUE MODAL -->
+								<div class="modal fade" id="editVenueModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="gridSystemModalLabel">Edit Venue</h4>
+											</div>
+										<form class="form-horizontal" action="../../dbcontrol" method="post">
+								            <div class="modal-body">
+								            
+								            	<!-- Venue Name-->
+								            	<div class="form-group">
+								            		<label for="venue" class="col-sm-3 control-label">Venue Building</label>
+								                    <div class="col-sm-9">
+								                    	<input type="text" class="form-control" id="venue" name="venue" value="<!--  rs.getString(2)-->" required />
+								                    </div>
+								            	</div>
+								            	<br>
+								            </div>
+								            
+								            <input type="hidden" name="venueID" value="<!--  rs.getInt(1) -->"/>
+								            <input type="hidden" name="requestType" value="editVenue"/>
+								            	
+								            <div class="modal-footer">
+								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+								            </div>
+										</div>
+										</form>
+									</div>
+								</div>
+								<!-- EDIT VENUE MODAL -->
+								
+								<!-- DELETE MODAL -->
+								<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog modal-sm" role="document">
+									<form action="../../dbcontrol" method="post">
+										<div class="modal-content">
+											<div class="modal-body text-center">
+												<p>Are you sure you want to delete this item?</p>
+												<div class="someButton text-center">
+													<input type="hidden" name="requestType" value="deleteVenue"/>
+													<input type="hidden" name="venueID" value="<!-- rs.getInt(1) -->"/>
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</form>	
+									</div>
+								</div>
+								<!-- DELETE MODAL -->
 	</body>
 	
 	<script src="../../js/jquery.js"></script>

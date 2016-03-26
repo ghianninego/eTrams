@@ -57,7 +57,7 @@
   										<strong>Speaker:</strong> <%= rs.getString(13) %>, <%= rs.getString(14) %> <%= rs.getString(15) %>
   									</p>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal<%= sessions%>'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
@@ -74,121 +74,6 @@
   									</div>
   								</button>
   							</div>
-  							
-							<!-- EDIT SESSION MODAL -->
-							<div class="modal fade" id="editSessionModal<%= sessions %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="gridSystemModalLabel">Edit Session</h4>
-										</div>
-									<form class="form-horizontal" action="../../dbcontrol" method="post">
-							            <div class="modal-body">
-							            
-							            	<!-- Session Name -->
-							            	<div class="form-group">
-							            		<label for="Session Name" class="col-sm-2 control-label">Session Name</label>
-							            		<div class="col-sm-10">
-							            			<input type="text" class="form-control" id="sessionName" name="sessionName" value="<%= rs.getString(3) %>" required />
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Session Date -->
-							            	<div class="form-group">
-							            		<label for="Session Date" class="col-sm-2 control-label">Date</label>
-							            		<div class="col-sm-10">
-							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate" data-date="<%=editDate%>"></div>
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Session Time -->
-							            	<div class="form-group">
-							            		<label for="Session Time In" class="col-sm-2 control-label">Start Time</label>
-							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn" data-time="<%= str %>"></div>
-							            		</div>
-							            		<label for="Session Time Out" class="col-sm-2 control-label">End Time</label>
-							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut" data-time="<%= str2 %>"></div>
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Session Venue -->
-							            	<div class="form-group">
-							            		<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
-							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-filter="true" data-value="--">
-							            				<div data-value="--">--</div>
-							            				<% while(rs2.next())
-							            				{ %>
-							            				<div data-value="<%=rs2.getInt(1)%>"><%= rs2.getString(2) %></div>
-							            				<% } 
-							  							rs2.first(); rs2.previous();%>
-							            				<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags -->
-							            			</div>
-							            		</div>
-							            		<div class="col-sm-offset-2 col-sm-10">
-							            			<textarea class="form-control" id="venueRemarks" name="venueRemarks" placeholder="Venue Remarks" rows="3"><%=rs.getString(5) %></textarea>
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Capacity -->
-							            	<div class="form-group">
-							            		<label for="Capacity" class="col-sm-2 control-label">Capacity</label>
-							            		<div class="col-sm-10">
-							            			<input type="number" class="form-control" name="capacity" id="capacity" placeholder="Number of Maximum Participants " value="<%=rs.getInt(6) %>" required />
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Session Speaker -->
-							            	<div class="form-group">
-							            		<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
-							            		<div class="col-sm-10">
-							            			<div class="bfh-selectbox" data-name="sessionSpeaker" id="sessionSpeaker" data-value="<%=rs.getInt(10)%>" data-filter="true">
-							            				<% while(rs3.next())
-							            				{ %>
-							            				<div data-value="<%= rs3.getInt(1) %>"><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></div>
-							            				<%
-							            				}
-							  							rs3.first(); rs3.previous();
-							            				%>
-							            				<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags -->
-							            			</div>
-							            		</div>
-							            	</div>
-							            	<input type="hidden" name="sessionID" value="<%= rs.getInt(1)%>">
-							            	<input type="hidden" name="requestType" value="editSession">
-							            </div>
-							            <div class="modal-footer">
-							            	<button type="submit" onclick="return checkSelect()" class="btn btn-yellow pull-left">Submit</button>
-							            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-							            </div>
-							        </div>
-									</form>
-								</div>
-							</div>
-							<!-- EDIT SESSION MODAL -->
-							
-							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-sm" role="document">
-								<form action="../../dbcontrol" method="post">
-									<div class="modal-content">
-										<div class="modal-body text-center">
-											<p>1Are you sure you want to delete this item?</p>
-											<div class="someButton text-center">
-												<input type="hidden" name="sessionID" value="<%= rs.getInt(1) %>"/>
-												<input type="hidden" name="requestType" value="deleteSession"/>
-												<button type="submit" class="btn btn-default">Yes</button>
-												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-											</div>
-										</div>
-									</div>
-								</form>
-								</div>
-							</div>
-							<!-- DELETE MODAL -->
 							
   							<%
   							sessions++; } 
@@ -307,7 +192,119 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-				
+							<!-- EDIT SESSION MODAL -->
+							<div class="modal fade" id="editSessionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="gridSystemModalLabel">Edit Session</h4>
+										</div>
+									<form class="form-horizontal" action="../../dbcontrol" method="post">
+							            <div class="modal-body">
+							            
+							            	<!-- Session Name -->
+							            	<div class="form-group">
+							            		<label for="Session Name" class="col-sm-2 control-label">Session Name</label>
+							            		<div class="col-sm-10">
+							            			<input type="text" class="form-control" id="sessionName" name="sessionName" value="<!-- rs.getString(3)-->" required />
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Session Date -->
+							            	<div class="form-group">
+							            		<label for="Session Date" class="col-sm-2 control-label">Date</label>
+							            		<div class="col-sm-10">
+							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate"></div>
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Session Time -->
+							            	<div class="form-group">
+							            		<label for="Session Time In" class="col-sm-2 control-label">Start Time</label>
+							            		<div class="col-sm-4">
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn"></div>
+							            		</div>
+							            		<label for="Session Time Out" class="col-sm-2 control-label">End Time</label>
+							            		<div class="col-sm-4">
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut"></div>
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Session Venue -->
+							            	<div class="form-group">
+							            		<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
+							            		<div class="col-sm-10">
+							            			<div class="bfh-selectbox" data-name="sessionVenue" id="sessionVenue" data-filter="true" data-value="--">
+							            				<div data-value="--">--</div>
+							            				<% while(rs2.next())
+							            				{ %>
+							            				<div data-value="<%=rs2.getInt(1)%>"><%= rs2.getString(2) %></div>
+							            				<% } 
+							  							rs2.first(); rs2.previous();%>
+							            				<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags -->
+							            			</div>
+							            		</div>
+							            		<div class="col-sm-offset-2 col-sm-10">
+							            			<textarea class="form-control" id="venueRemarks" name="venueRemarks" placeholder="Venue Remarks" rows="3"><!-- rs.getString(5) --></textarea>
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Capacity -->
+							            	<div class="form-group">
+							            		<label for="Capacity" class="col-sm-2 control-label">Capacity</label>
+							            		<div class="col-sm-10">
+							            			<input type="number" class="form-control" name="capacity" id="capacity" placeholder="Number of Maximum Participants " value="<!-- rs.getInt(6)  -->" required />
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Session Speaker -->
+							            	<div class="form-group">
+							            		<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
+							            		<div class="col-sm-10">
+							            			<div class="bfh-selectbox" data-name="sessionSpeaker" id="sessionSpeaker" data-value="<!-- rs.getInt(10) -->" data-filter="true">
+							            				<% while(rs3.next())
+							            				{ %>
+							            				<div data-value="<%= rs3.getInt(1) %>"><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></div>
+							            				<%
+							            				}
+							  							rs3.first(); rs3.previous();
+							            				%>
+							            			</div>
+							            		</div>
+							            	</div>
+							            	<input type="hidden" name="sessionID" value="<!-- rs.getInt(1)  -->">
+							            	<input type="hidden" name="requestType" value="editSession">
+							            </div>
+							            <div class="modal-footer">
+							            	<button type="submit" onclick="return checkSelect()" class="btn btn-yellow pull-left">Submit</button>
+							            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+							            </div>
+							        </div>
+									</form>
+								</div>
+							</div>
+							<!-- EDIT SESSION MODAL -->
+							
+							<!-- DELETE MODAL -->
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+								<form action="../../dbcontrol" method="post">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>1Are you sure you want to delete this item?</p>
+											<div class="someButton text-center">
+												<input type="hidden" name="sessionID" value="<!--  rs.getInt(1)  -->"/>
+												<input type="hidden" name="requestType" value="deleteSession"/>
+												<button type="submit" class="btn btn-default">Yes</button>
+												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+											</div>
+										</div>
+									</div>
+								</form>
+								</div>
+							</div>
+							<!-- DELETE MODAL -->
 	</body>
 	
 	<script src="../../js/jquery.js"></script>

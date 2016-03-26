@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.ResultSet" %>
+
+<%@ page import = "java.text.DateFormat" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 
 <html>
@@ -37,6 +40,8 @@
 			 		<!-- For Completed Sessions -->
 			 		<!-- Content -->
 			 		<% ResultSet rs = (ResultSet) session.getAttribute("sessionDetails"); 
+			 		DateFormat format = new SimpleDateFormat( "h:mm a" );
+	 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");	
 					rs.next();
 					if (rs.getInt(11) == 1) 
 					{
@@ -59,6 +64,8 @@
 								<%
 									while(rs2.next())
 									{
+										String timeIn = format.format(rs2.getTime(4));
+										String timeOut = format.format(rs2.getTime(5));
 										if (rs2.getInt(7) == 1)
 										{System.out.println("c: " + certParticipants);
 								%>
@@ -66,117 +73,13 @@
 									<td><%= certParticipants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
-									<td><%= rs2.getTime(4) %></td>
-									<td><%= rs2.getTime(5) %></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=certParticipants%>">
+									<td><%= timeIn %></td>
+									<td><%= timeOut %></td>
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>">
 			 							<%=rs2.getString(6) %>
 			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#uncertifyModal<%=certParticipants %>">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal<%=certParticipants%>">Set Attendance</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="0">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>">Set Attendance</a></td>			
 								</tr>
-								
-								<!-- SET STATUS MODAL -->
-								<div class="modal fade" id="setStatusModal<%= certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	
-								            	<!-- Status -->
-								            	<div class="form-group">
-								            		<label for="Status" class="col-sm-3 control-label">Status</label>
-								            		<div class="col-sm-8">
-								            			
-								        					<select name="status">
-								        						<option value="Complete">Complete</option>
-								        						<option value="Incomplete">Incomplete</option>
-								        					</select>
-								            		</div>
-								            	</div>
-								  				   <input type="hidden" name="requestType" value="setStatus"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								    
-								    
-								    
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
-									</div>
-								</div>
-								<!-- SET STATUS MODAL -->
-								
-								<!-- UNCERTIFY MODAL -->
-								<div class="modal fade" id="uncertifyModal<%=certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form action="../../dbcontrol" method="post">
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<input type="hidden" name="requestType" value="certify"/>
-												<input type="hidden" name="certification" value="0"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-												
-												<p>Are you sure you want to uncertify this participant?</p>
-												<div class="someButton text-center">
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-									</div>
-								</div>
-								<!-- UNCERTIFY MODAL -->
-								
-								<!-- ATTENDANCE MODAL -->
-								<div class="modal fade" id="attendanceModal<%=certParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Attendance</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setAttendance"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								            	
-								            	<!-- Time In -->
-								            	<div class="form-group">
-								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeIn" data-name="timeIn" name="timeIn"></div>
-								            		</div>
-								            	</div>
-								            	
-								            	<!-- Time Out -->
-								            	<div class="form-group">
-								            		<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut" name="timeOut"></div>
-								            		</div>
-								            	</div>
-								            	
-								            	<p><br><br></p>
-								            	<input type="hidden" name="requestType" value="certify"/>
-												<input type="hidden" name="certification" value="0"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
-									</div>
-								</div>
-								<!-- ATTENDANCE MODAL -->
 								
 								<% 	
 								certParticipants++;	}
@@ -206,6 +109,8 @@
 								int counter = 1;
 									while(rs2.next())
 									{
+										String timeIn = format.format(rs2.getTime(4));
+										String timeOut = format.format(rs2.getTime(5));
 										if (rs2.getInt(7) == 0)
 										{ System.out.println("U: " + uncertParticipants);
 								%>
@@ -213,119 +118,15 @@
 									<td><%= counter %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
-									<td><%= rs2.getTime(4) %></td>
-									<td><%= rs2.getTime(5) %></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal<%=uncertParticipants%>">
+									<td><%= timeIn %></td>
+									<td><%= timeOut%></td>
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>" >
 			 							<%=rs2.getString(6) %>
 			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal<%=uncertParticipants%>">Certify</a> - 
-										<a href="" data-toggle="modal" data-target="#attendanceModal<%= uncertParticipants %>">Set Attendance</a>
+									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="1">Certify</a> - 
+										<a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1)%>">Set Attendance</a>
 									</td>			
 								</tr>
-								
-								<!-- SET STATUS MODAL -->
-								<div class="modal fade" id="setStatusModal<%= uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setStatus"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								            	<!-- Status -->
-								            	<div class="form-group">`
-								            		<label for="status" class="col-sm-3 control-label">Status</label>
-								            		<div class="col-sm-8">
-								            			<select name="status">
-								        						<option value="Complete">Complete</option>
-								        						<option value="Incomplete">Incomplete</option>
-								        					</select>
-								            		</div>
-								            	</div>
-								    
-								    
-								   				 <input type="hidden" name="requestType" value="setStatus"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								    
-								    
-								    
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
-									</div>
-								</div>
-								<!-- SET STATUS MODAL -->
-								
-								<!-- CERTIFY MODAL -->
-								<div class="modal fade" id="certifyModal<%=uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form action="../../dbcontrol" method="post">
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<p>Are you sure you want to certify this participant?</p>
-												<div class="someButton text-center">
-													<input type="hidden" name="requestType" value="certify"/>
-													<input type="hidden" name="certification" value="1"/>
-													<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-												
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-									</div>
-								</div>
-								<!-- CERTIFY MODAL -->
-								
-								<!-- ATTENDANCE MODAL -->
-								<div class="modal fade" id="attendanceModal<%= uncertParticipants %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Attendance</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setAttendance"/>
-								            	<input type="hidden" name="attendanceID" value="<%=rs2.getInt(1) %>"/>
-								            	
-								            	<!-- Time In -->
-								            	<div class="form-group">
-								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeIn" data-name="timeIn" name="timeIn"></div>
-								            		</div>
-								            	</div>
-								            	
-								            	<!-- Time Out -->
-								            	<div class="form-group">
-								            		<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut"></div>
-								            		</div>
-								            	</div>
-								            	
-								            	<p><br><br></p>
-								    
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
-									</div>
-								</div>
-								<!-- ATTENDANCE MODAL -->
 								
 								<% 		
 							    uncertParticipants++; counter++;}
@@ -434,7 +235,105 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-				
+								
+								
+								
+								<!-- SET STATUS MODAL -->
+								<div class="modal fade setStatusModal" id="setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
+											</div>
+										<form class="form-horizontal" action="../../dbcontrol" method="post">
+								            <div class="modal-body">
+								            	<input type="hidden" name="requestType" value="setStatus"/>
+								            	<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+								            	<!-- Status -->
+								            	<div class="form-group">`
+								            		<label for="status" class="col-sm-3 control-label">Status</label>
+								            		<div class="col-sm-8">
+															<select name="status">
+								        						<option value="Complete">Complete</option>
+								        						<option value="Incomplete">Incomplete</option>
+								        					</select>
+								            		</div>
+								            	</div>
+								            </div>
+								            <div class="modal-footer">
+								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+								            </div>
+										</form>
+								        </div>
+									</div>
+								</div>
+								<!-- SET STATUS MODAL -->
+								
+								
+								<!-- CERTIFY MODAL -->
+								<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog modal-sm" role="document">
+									<form action="../../dbcontrol" method="post">
+										<div class="modal-content">
+											<div class="modal-body text-center">
+												<p id="certText">Are you sure you want to certify this participant?</p>
+												<div class="someButton text-center">
+													<input type="hidden" name="requestType" value="certify" />
+													<input type="hidden" id="certification" name="certification" value="" />
+													<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+												
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</form>
+									</div>
+								</div>
+								<!-- CERTIFY MODAL -->
+								
+								<!-- ATTENDANCE MODAL -->
+								<div class="modal fade attendanceModal" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="gridSystemModalLabel">Set Attendance</h4>
+											</div>
+										<form class="form-horizontal" action="../../dbcontrol" method="post">
+								            <div class="modal-body">
+								            	<input type="hidden" name="requestType" value="setAttendance"/>
+								            	<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+								            	
+								            	<!-- Time In -->
+								            	<div class="form-group">
+								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
+								            		<div class="col-sm-10">
+								            			<div class="bfh-timepicker" data-mode="12h" id="timeIn" data-name="timeIn"></div>
+								            		</div>
+								            	</div>
+								            	
+								            	<!-- Time Out -->
+								            	<div class="form-group">
+								            		<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
+								            		<div class="col-sm-10">
+								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut"></div>
+								            		</div>
+								            	</div>
+								            	
+								            	<p><br><br></p>
+								            </div>
+								            <div class="modal-footer">
+								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+								            </div>
+										</form>
+								        </div>
+									</div>
+								</div>
+								<!-- ATTENDANCE MODAL -->
 	</body>
 	
 	
@@ -442,6 +341,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
 		
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
@@ -450,5 +350,52 @@
 	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 	<script type="text/javascript" src="../../js/myscript.js"></script>
 	
+	<script type="text/javascript">
+		$(".setStatusModal").on(
+				"show.bs.modal",
+				function(event) {
+					var url = $(event.relatedTarget);
+					var attendanceID = url.data("attendanceid");
+					
+	
+					var modal = $(this);
+					modal.find("#attendanceID").val(attendanceID);
+	
+		})
+		
+		$(".certifyModal").on(
+				"show.bs.modal",
+				function(event) {
+					var url = $(event.relatedTarget);
+					var attendanceID = url.data("attendanceid");
+					var certification = url.data("certification");
+					
+					alert(attendanceID);
+					
+					var modal = $(this);
+					
+					if(certification == "1"){
+						modal.find("#certText").text("Are you sure you want to certify this participant?");
+					}else if(certification == "0"){
+						modal.find("#certText").text("Are you sure you want to uncertify this participant?");
+					}
+					modal.find("#certification").val(certification);
+					modal.find("#attendanceID").val(attendanceID);
+	
+		})
+		
+		$(".attendanceModal").on(
+				"show.bs.modal",
+				function(event) {
+					var url = $(event.relatedTarget);
+					var attendanceID = url.data("attendanceid");
+					
+					
+					var modal = $(this);
+					
+					modal.find("#attendanceID").val(attendanceID);
+	
+		})
+	</script>
 	
 </html>

@@ -42,8 +42,8 @@
   									data-content="
   									<p><%= rs.getString(4) %></p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal<%=seminars%>'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal<%= seminars %>'>Delete</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 									</div>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
@@ -59,62 +59,6 @@
   								</button>
   							</div>
   							
-  							<div class="modal fade" id="editSeminarModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-  								<div class="modal-dialog modal-lg" role="document">
-  									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="gridSystemModalLabel">Edit Seminar</h4>
-										</div>
-								<form class="form-horizontal" action="../../dbcontrol" method="post">
-						            	<div class="modal-body">
-						            
-						            		<!-- Seminar Name -->
-						                    <div class="form-group">
-						                        <label for="Seminar Name" class="col-sm-2 control-label">Seminar Name</label>
-						                        <div class="col-sm-10">
-						                        <input type="text" class="form-control" id="seminarName" name="seminarName" value="<%= rs.getString(3) %>" required />
-						                        </div>
-						                    </div>
-						                    
-						                    <!-- Seminar Topic -->
-						                    <div class="form-group">
-						                        <label for="Topic" class="col-sm-2 control-label">Seminar Topic</label>
-						                        <div class="col-sm-10">
-						                        <textarea class="form-control" name="seminarTopic" id="seminarTopic" rows="5" required><%= rs.getString(4) %></textarea>
-						                        </div>
-						                    </div>
-						            	</div>
-						                <div class="modal-footer">
-						                    <button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
-						                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-						                </div>
-									</div>
-									<input type="hidden" name="seminarID" value="<%= rs.getInt(1) %>" />
-									<input type="hidden" name="requestType" value="editSeminar" />
-								</form>
-								</div>
-							</div>
-							
-							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-sm" role="document">
-								<form action="../../dbcontrol" method="post">
-									<div class="modal-content">
-										<div class="modal-body text-center">
-											<p>Are you sure you want to delete this item?</p>
-											<div class="someButton text-center">
-												<input type="hidden" name="seminarID" value="<%= rs.getInt(1) %>"/>
-												<input type="hidden" name="requestType" value="deleteSeminar"/>
-												<button type="submit" class="btn btn-default">Yes</button>
-												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-											</div>
-										</div>
-									</div>
-								</form>
-								</div>
-							</div>
-							<!-- DELETE MODAL -->
 							
  						<% seminars++;
 			 			} rs.first(); rs.previous();%>	
@@ -140,7 +84,63 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-				
+							<!-- EDIT SEMINAR MODAL -->
+  							<div class="modal fade" id="editSeminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  								<div class="modal-dialog modal-lg" role="document">
+  									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="gridSystemModalLabel">Edit Seminar</h4>
+										</div>
+								<form class="form-horizontal" action="../../dbcontrol" method="post">
+						            	<div class="modal-body">
+						            
+						            		<!-- Seminar Name -->
+						                    <div class="form-group">
+						                        <label for="Seminar Name" class="col-sm-2 control-label">Seminar Name</label>
+						                        <div class="col-sm-10">
+						                        <input type="text" class="form-control" id="seminarName" name="seminarName" value="<!-- rs.getString(3) -->" required />
+						                        </div>
+						                    </div>
+						                    
+						                    <!-- Seminar Topic -->
+						                    <div class="form-group">
+						                        <label for="Topic" class="col-sm-2 control-label">Seminar Topic</label>
+						                        <div class="col-sm-10">
+						                        <textarea class="form-control" name="seminarTopic" id="seminarTopic" rows="5" required><!--  rs.getString(4) --></textarea>
+						                        </div>
+						                    </div>
+						            	</div>
+						                <div class="modal-footer">
+						                    <button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
+						                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+						                </div>
+									</div>
+									<input type="hidden" name="seminarID" value="<!--  rs.getInt(1)-->" />
+									<input type="hidden" name="requestType" value="editSeminar" />
+								</form>
+								</div>
+							</div>
+							<!-- EDIT SEMINAR MODAL -->
+							<!-- DELETE MODAL -->
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+								<form action="../../dbcontrol" method="post">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>Are you sure you want to delete this item?</p>
+											<div class="someButton text-center">
+												<input type="hidden" name="seminarID" value="<!--  rs.getInt(1) -->"/>
+												<input type="hidden" name="requestType" value="deleteSeminar"/>
+												<button type="submit" class="btn btn-default">Yes</button>
+												<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+											</div>
+										</div>
+									</div>
+								</form>
+								</div>
+							</div>
+							<!-- DELETE MODAL -->
 	</body>
 	
 	<script src="../../js/jquery.js"></script>
