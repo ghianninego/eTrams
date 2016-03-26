@@ -204,7 +204,7 @@
 							            	<div class="form-group">
 							            		<label for="Session Date" class="col-sm-2 control-label">Date</label>
 							            		<div class="col-sm-10">
-							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate"></div>
+							            			<div class="bfh-datepicker" date-close="false" id="sessionDate" data-name="sessionDate" data-date="<%=editDate%>"></div>
 							            		</div>
 							            	</div>
 							            	
@@ -212,11 +212,11 @@
 							            	<div class="form-group">
 							            		<label for="Session Time In" class="col-sm-2 control-label">Start Time</label>
 							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn"></div>
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeIn" data-name="sessionTimeIn" data-time="<%= str %>"></div>
 							            		</div>
 							            		<label for="Session Time Out" class="col-sm-2 control-label">End Time</label>
 							            		<div class="col-sm-4">
-							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut" ></div>
+							            			<div class="bfh-timepicker" data-mode="12h" id="sessionTimeOut" data-name="sessionTimeOut" data-time="<%= str2 %>"></div>
 							            		</div>
 							            	</div>
 							            	
