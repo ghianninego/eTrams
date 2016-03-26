@@ -69,35 +69,19 @@
   							<!-- List of announcements -->
   							<%int z = 1;while(announcement.next()) { %>
   							<div id="announcementList">
-  								<div class="paginateClass announcements fade in" id="announcement">
+  								<div class="paginateClass announcements<%=z %> fade in" id="announcement">
   									
   									<h4><%=announcement.getString("title") %></h4>
   									<p>
-  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> | 
-  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> | 
-  										<a href="#" data-toggle="modal" data-target="#deleteModal">Delete</a>
+  										<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal<%=z %>">View</a> | 
+  										<a href="#" data-toggle="modal" data-target="#editAnnouncementModal<%=z %>">Edit</a> | 
+  										<a href="#" data-toggle="modal" data-target="#deleteModal<%=z %>">Delete</a>
   									</p>
   								</div>
   							</div>
   							
-  							
-
-			 		</div>
-			 		<!-- End of content -->
-			
-			 	</div>
-			 	<!-- End of Announcements -->
-			 		
-			 </div>
-		</div>
-		<!-- End of Container -->
-				
-		<!-- Footer -->
-		<%@ include file= "../footer.jsp" %>
-		<!-- End of Footer -->
-		
-		<!-- VIEW ANNOUNCEMENT MODAL -->
-  							<div class="modal fade" id="viewAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  							<!-- VIEW ANNOUNCEMENT MODAL -->
+  							<div class="modal fade" id="viewAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   								<div class="modal-dialog" role="document">
   									<div class="modal-content">
   										<div class="modal-header">
@@ -114,7 +98,7 @@
 							<!-- VIEW ANNOUNCEMENT MODAL -->
 							
 							<!-- EDIT ANNOUNCEMENT MODAL -->
-							<div class="modal fade" id="editAnnouncementModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal fade" id="editAnnouncementModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -159,7 +143,7 @@
 							<!-- EDIT ANNOUNCEMENT MODAL -->
 							
 							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal fade" id="deleteModal<%=z %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-sm" role="document">
 									<div class="modal-content">
 									<form class="form-horizontal" action="../../dbcontrol">
@@ -238,6 +222,21 @@
   						</div>
   					</div>
   					<!-- NEW ANNOUNCEMENT_MODAL -->
+
+			 		</div>
+			 		<!-- End of content -->
+			
+			 	</div>
+			 	<!-- End of Announcements -->
+			 		
+			 </div>
+		</div>
+		<!-- End of Container -->
+				
+		<!-- Footer -->
+		<%@ include file= "../footer.jsp" %>
+		<!-- End of Footer -->
+				
 	</body>
 	
 	

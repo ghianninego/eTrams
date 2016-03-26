@@ -16,7 +16,6 @@ import eTrams.utilities.databaseUtilities.DatabaseDataSource;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.helperClasses.AnnouncementClass;
 import eTrams.utilities.helperClasses.CalendarClass;
-import eTrams.utilities.helperClasses.CollegeClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
@@ -49,7 +48,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 		session = request.getSession();
 		switch(requestType)
 		{
-			//////// seminar -----------------------------------------------------------------------------------------
+			// ADMIN ACCOUNT
+			//////// seminar
 			case "createSeminar": 
 				SeminarClass.createSeminar(request, connection, 1); // temporary ID (must get from session)
 				response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
@@ -67,7 +67,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("seminars", seminars);
 				response.sendRedirect("jsp/admin/adminSeminars.jsp");
 				break;
-			//////// sessions -------------------------------------------------------------------------------------------
+			//////// sessions
 			case "createSession":
 				SessionClass.createSession(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID")); // change to URL mapping (hehe)
@@ -100,7 +100,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("speakers", speakers2);
 				response.sendRedirect("jsp/admin/adminSessions.jsp");
 				break;
-			//////// venues ------------------------------------------------------------------------------------------
+			//////// venues
 			case "createVenue":
 				VenueClass.createVenue(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminVenue"); 
@@ -118,7 +118,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("venue", venue);
 				response.sendRedirect("jsp/admin/adminVenues.jsp");
 				break;
-			///////// manage participants ---------------------------------------------------------------------------
+			///////// manage participants
 			case "addParticipants":
 				ManageParticipantsClass.addMultipleParticipants(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants");
@@ -165,7 +165,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				ManageParticipantsClass.setTime(request, connection);
 				response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
 				break;
-			/// USER MANAGEMENT --------------------------------------------------------------------------------------
+			/// USER MANAGEMENT
 			case "adminUser": 
 				session.setAttribute("allUser",UserClass.getAllUsers(request, connection));
 				try {
@@ -177,7 +177,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				e.printStackTrace();
 				}
 
-				response.sendRedirect("jsp/admin/adminUsers.jsp");
+				response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
@@ -186,7 +186,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 			
 
-				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); 
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
@@ -195,7 +195,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				UserClass.editUser(request, connection);
 				session.setAttribute("history", UserClass.getHistory(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
-				response.sendRedirect("jsp/admin/adminManageUsers.jsp");
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
@@ -205,7 +205,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 				
-				response.sendRedirect("jsp/admin/adminUsers.jsp");
+				response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
@@ -213,14 +213,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
 				
 				UserClass.createUser(request, connection);
-				response.sendRedirect("dbcontrol?requestType=adminUser"); 
+				response.sendRedirect("dbcontrol?requestType=adminUser"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "adminEditPassword": 
 				session.setAttribute("oneUser",UserClass.getUserById(request, connection));
 				UserClass.editUserPassword(request, connection);
-				response.sendRedirect("jsp/admin/adminManageUsers.jsp");
+				response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
@@ -235,24 +235,24 @@ public class DatabaseControllerServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				response.sendRedirect("jsp/admin/adminHome.jsp");
+				response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "editSelfPassword": 
 				UserClass.editUserPassword(request, connection);
-				response.sendRedirect("jsp/admin/adminAccount.jsp"); 
+				response.sendRedirect("jsp/admin/adminAccount.jsp"); // change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "editSelfInfo": 
 				
 				session.setAttribute("user",UserClass.editSelf(request, connection));
-				response.sendRedirect("jsp/admin/adminAccount.jsp");
+				response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
 				// else if coordinator0
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
-			// ANNOUNCEMENTS :)) --------------------------------------------------------------------------------------
+			// ANNOUNCEMENTS :))
 			case "addAnnouncement":
 					AnnouncementClass.createAnnouncement(request, connection);
 					try {
@@ -261,7 +261,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-						response.sendRedirect("jsp/admin/adminHome.jsp");
+						response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 				break;
 			case  "announcementEdit":
 				AnnouncementClass.editAnnouncement(request, connection);
@@ -271,36 +271,29 @@ public class DatabaseControllerServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-					response.sendRedirect("jsp/admin/adminHome.jsp");
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 					break;
 			case  "announcementDelete":
 				AnnouncementClass.deleteAnnouncement(request, connection);
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-					response.sendRedirect("jsp/admin/adminHome.jsp");
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 					break;
-			// personal management --------------------------------------------------------------------------------
 			case  "home":
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-					response.sendRedirect("jsp/admin/adminHome.jsp");
+					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 					break;
 			case  "myAccount":
-					response.sendRedirect("jsp/admin/adminAccount.jsp");
+					response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
 					break;
-			// college management --------------------------------------------------------------------------------
-			case "goToAdminColleges":
-				session.setAttribute("collegeDetails", CollegeClass.retrieveColleges(connection));
-				response.sendRedirect("jsp/admin/adminColleges.jsp");
-				break;
-			case 
-			
 		}
 	}
 

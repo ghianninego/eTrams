@@ -50,39 +50,11 @@
 								<tr>
 									<td><%= rs.getInt(1) %></td>
 									<td><%= rs.getString(2) %></td>
-									<td><a href="#" data-toggle="modal" data-target="#editVenueModal">Edit</a> - <a href="../../dbcontrol?requestType=deleteVenue&venueID=<%= rs.getInt(1) %>">Delete</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editVenueModal<%= venues %>">Edit</a> - <a href="../../dbcontrol?requestType=deleteVenue&venueID=<%= rs.getInt(1) %>">Delete</a></td>
 								</tr>
 								
-								
-							
-								<% venues++; } rs.first(); rs.previous(); %>
-							</tbody>
-						</table>
-						
-						<br>
-						<div class="someButton">
-  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newVenueModal">
-  								<span class="glyphicon glyphicon-plus"></span> Add New Venue
-  							</button>
-  						</div>
-  						
-		 			</div>
-		 			<!-- End of Content -->
-		 			
-		 			<!-- Modals -->
-					<%@ include file= "../modals/othersModals.jsp" %>
-					<!-- End of Modals -->
-					
-		 		</div>
-		 	</div>
-		</div>
-		<!-- End of Container -->
-				
-		<!-- Footer -->
-		<%@ include file= "../footer.jsp" %>
-		<!-- End of Footer -->
 								<!-- EDIT VENUE MODAL -->
-								<div class="modal fade" id="editVenueModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal fade" id="editVenueModal<%= venues %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -132,6 +104,34 @@
 									</div>
 								</div>
 								<!-- DELETE MODAL -->
+							
+								<% venues++; } rs.first(); rs.previous(); %>
+							</tbody>
+						</table>
+						
+						<br>
+						<div class="someButton">
+  							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newVenueModal">
+  								<span class="glyphicon glyphicon-plus"></span> Add New Venue
+  							</button>
+  						</div>
+  						
+		 			</div>
+		 			<!-- End of Content -->
+		 			
+		 			<!-- Modals -->
+					<%@ include file= "../modals/othersModals.jsp" %>
+					<!-- End of Modals -->
+					
+		 		</div>
+		 	</div>
+		</div>
+		<!-- End of Container -->
+				
+		<!-- Footer -->
+		<%@ include file= "../footer.jsp" %>
+		<!-- End of Footer -->
+				
 	</body>
 	
 	<script src="../../js/jquery.js"></script>

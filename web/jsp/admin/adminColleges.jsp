@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.sql.ResultSet" %>
 <!DOCTYPE html>
 
 <html>
@@ -40,15 +39,24 @@
 								</tr>
 							</thead>
 							<tbody>
-							<%	ResultSet rs = (ResultSet)session.getAttribute("collegeDetails");
-								while (rs.next()) { %>
 								<tr>
-									<td><%= rs.getInt(1) %></td>
-									<td><%= rs.getString(2) %></td>
-									<td><a href="../../dbcontrol?requestType=goToAdminManageDepartments">View/Manage</a></td>
+									<td>001</td>
+									<td>College/Faculty/Institute</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
 									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
 								</tr>
-								<% } rs.first(); rs.previous(); %>
+								<tr>
+									<td>002</td>
+									<td>College/Faculty/Institute</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
+								</tr>
+								<tr>
+									<td>003</td>
+									<td>College/Faculty/Institute</td>
+									<td><a href="adminDepartments.jsp">View/Manage</a></td>
+									<td><a href="#" data-toggle="modal" data-target="#editFacultyModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
+								</tr>
 							</tbody>
 						</table>
 						
@@ -65,6 +73,23 @@
 		 			<!-- Modals -->
 					<%@ include file= "../modals/othersModals.jsp" %>
 					
+					<!-- DELETE MODAL -->
+					<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content">
+							<form>
+								<div class="modal-body text-center">
+									<p>Are you sure you want to delete this item?</p>
+									<div class="someButton text-center">
+										<button type="submit" class="btn btn-default">Yes</button>
+										<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+									</div>
+								</div>
+								</form>
+							</div>	
+						</div>
+					</div>
+					<!-- DELETE MODAL -->
 					<!-- End of Modals -->
 					
 		 		</div>
@@ -75,56 +100,7 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
-	
-	
-								<!-- EDIT FACULTY MODAL -->
-								<div class="modal fade" id="editFacultyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Edit College</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<!-- College Name-->
-								            	<div class="form-group">
-								            		<label for="college" class="col-sm-3 control-label">College Name</label>
-								                    <div class="col-sm-9">
-								                    	<input type="hidden" name="collegeID" value="<%= rs.getInt(1) %>">
-								                    	<input type="hidden" name="requestType" value="editCollege">
-								                    	<input type="text" class="form-control" id="college" name="college" value="<%= rs.getString(2) %>" required />
-								                    </div>
-								            	</div>
-								            </div>
-								            
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-								        </div>
-										</form>
-									</div>
-								</div>
-								<!-- EDIT FACULTY MODAL -->
-								<!-- DELETE MODAL -->
-								<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-										<div class="modal-content">
-										<form>
-											<div class="modal-body text-center">
-												<p>Are you sure you want to delete this item?</p>
-												<div class="someButton text-center">
-								                    <input type="hidden" name="requestType" value="editCollege">
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-											</form>
-										</div>	
-									</div>
-								</div>
-								<!-- DELETE MODAL -->			
+				
 	</body>
 	
 	<script src="../../js/jquery.js"></script>

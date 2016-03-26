@@ -68,14 +68,13 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="gridSystemModalLabel">Create New Venue</h4>
 			</div>
-		<form class="form-horizontal" action="../../dbcontrol" method="post">
+		<form class="form-horizontal" action="modals.html" method="post">
             <div class="modal-body">
             
             	<!-- Venue Name-->
             	<div class="form-group">
             		<label for="venue" class="col-sm-3 control-label">Venue Building</label>
                     <div class="col-sm-9">
-                    	<input type="hidden" name="requestType" value="createVenue">
                     	<input type="text" class="form-control" id="venue" name="venue" placeholder="Venue Name" required />
                     </div>
             	</div>

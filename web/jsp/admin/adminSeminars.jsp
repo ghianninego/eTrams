@@ -42,8 +42,8 @@
   									data-content="
   									<p><%= rs.getString(4) %></p><br>
   									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal<%=seminars%>'>Edit</a>
+  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal<%= seminars %>'>Delete</a>
 									</div>
   									<div class='someButton'>
   										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
@@ -59,25 +59,7 @@
   								</button>
   							</div>
   							
-  							
-  					</div>
-			 		<!-- End of Content -->
-					
-			 		<!-- Modals -->
-			 		<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
-					<!--INCREMENT DITO -->
-					<!-- End of Modals -->
-	
-			 	</div>
-			</div>
-		</div>
-		<!-- End of Container -->		
-				
-		<!-- Footer -->
-		<%@ include file= "../footer.jsp" %>
-		<!-- End of Footer -->
-							<!-- EDIT SEMINAR  -->
-							<div class="modal fade" id="editSeminarModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  							<div class="modal fade" id="editSeminarModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   								<div class="modal-dialog modal-lg" role="document">
   									<div class="modal-content">
 										<div class="modal-header">
@@ -113,9 +95,9 @@
 								</form>
 								</div>
 							</div>
-							<!--  EDIT SEMINAR -->
+							
 							<!-- DELETE MODAL -->
-							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal fade" id="deleteModal<%= seminars %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 								<div class="modal-dialog modal-sm" role="document">
 								<form action="../../dbcontrol" method="post">
 									<div class="modal-content">
@@ -141,7 +123,24 @@
   						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#seminarModal">
   								<span class="glyphicon glyphicon-plus"></span> New Seminar</button>
-  						</div>	
+  						</div>
+  					</div>
+			 		<!-- End of Content -->
+					
+			 		<!-- Modals -->
+			 		<%@ include file= "../modals/SeminarsAndSessionsModals.jsp" %>
+					<!--INCREMENT DITO -->
+					<!-- End of Modals -->
+	
+			 	</div>
+			</div>
+		</div>
+		<!-- End of Container -->		
+				
+		<!-- Footer -->
+		<%@ include file= "../footer.jsp" %>
+		<!-- End of Footer -->
+				
 	</body>
 	
 	<script src="../../js/jquery.js"></script>
