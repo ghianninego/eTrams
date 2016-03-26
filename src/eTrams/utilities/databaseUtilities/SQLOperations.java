@@ -469,7 +469,7 @@ public synchronized static PreparedStatement selectCollege(Connection connection
 		try 
 		{
 			if (selectCollege == null)
-				selectCollege = connection.prepareStatement("SELECT * FROM collegeTable");
+				selectCollege = connection.prepareStatement("SELECT * FROM collegeTable WHERE Active = 1");
 		} 
 		catch (SQLException e) 
 		{
