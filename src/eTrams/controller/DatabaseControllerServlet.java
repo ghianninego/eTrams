@@ -299,6 +299,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("collegeDetails", CollegeClass.retrieveColleges(connection));
 				response.sendRedirect("jsp/admin/adminColleges.jsp");
 				break;
+			case 
 			
 		}
 	}
