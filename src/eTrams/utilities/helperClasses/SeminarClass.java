@@ -89,19 +89,39 @@ public class SeminarClass {
 	}
 	
 	
-	public static int completeSeminar(HttpServletRequest request, Connection connection)
+	public static void completeSeminar(HttpServletRequest request, Connection connection)
 	{
-		PreparedStatement ps = SQLOperations.updateSeminarStatus(connection);
+		PreparedStatement ps = SQLOperations.countSessions(connection);
+		PreparedStatement ps2 = SQLOperations.countSessionsC(connection);
 		try
 		{
-			ps.setInt(1, 1);
-			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
-			
-			if (ps.executeUpdate() > 0)
+			ResultSet allSeminar = SQLOperations.selectSeminar(connection).executeQuery();
+			while(allSeminar.next()){
+			ps.setInt(1, allSeminar.getInt(1));
+			ps2.setInt(1, allSeminar.getInt(1));
+			ResultSet rs = ps.executeQuery();
+			ResultSet rs2 = ps2.executeQuery();
+			rs.next();rs2.next();
+			if(rs.getInt(1) == rs2.getInt(1))	
 			{
+				PreparedStatement q = SQLOperations.updateSeminarStatus(connection);
+				q.setInt(1,1);
+				q.setInt(2,allSeminar.getInt(1));
+				System.out.println("t "  +q.executeUpdate());
 				connection.commit();
-				return 1;
+				
 			}
+			else{
+				PreparedStatement q = SQLOperations.updateSeminarStatus(connection);
+				q.setInt(1,0);
+				q.setInt(2,allSeminar.getInt(1));
+				System.out.println("f "+q.executeUpdate());
+				connection.commit();
+					
+				
+			}
+		}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,6 +129,6 @@ public class SeminarClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		
 	}
 }

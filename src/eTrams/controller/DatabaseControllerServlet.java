@@ -226,7 +226,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "login": 
-				System.out.println("SEMINAR  " + SeminarClass.completeSeminar(request, connection));
+				SeminarClass.completeSeminar(request, connection);
 				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user",UserClass.login(request, connection));
