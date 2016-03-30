@@ -7,17 +7,15 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - All Users - Manage Users</title>
+	<title>UST eTrams - All Users - Manage Users</title>
 </head>
 
 <body>
@@ -94,7 +92,7 @@
 									<div class="someButton">
 										<button class="btn btn-yellow" data-toggle="modal"
 											data-target="#editProfileModal"
-											data-fname="<%=oneUser.getString("lastName") %>"
+											data-fname="<%=oneUser.getString("firstName") %>"
 											data-mname="<%=oneUser.getString("middleName") %>"
 											data-lname="<%=oneUser.getString("lastName") %>"
 											data-email="<%=oneUser.getString("email") %>"
@@ -119,6 +117,12 @@
 						<!-- End of Profile Tab -->
 
 						<!-- Attendance Tab -->
+						<%if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) { %>
+			 			<div role="tabpanel" class="tab-pane fade" id="attendance">
+			 				<br>
+			 				<h4 style="padding-left: 35px;">There is no attendance history for this type of user.</h4>
+			 			</div>
+			 			<% } else { %>
 						<div role="tabpanel" class="tab-pane fade" id="attendance">
 							<br> <br>
 							<table class="table table-condensed table-striped table-hover ">
@@ -159,6 +163,7 @@
 
 							</table>
 						</div>
+						<% } %>
 						<!-- End of Attendance Tab -->
 
 					</div>

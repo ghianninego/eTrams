@@ -166,6 +166,7 @@
 							</tbody>
 						</table>
 						
+						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>

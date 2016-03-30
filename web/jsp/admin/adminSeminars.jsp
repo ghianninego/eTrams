@@ -5,17 +5,15 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - Seminars & Sessions</title>
+	<title>UST eTrams - Seminars & Sessions</title>
 </head>
 
 <body>
@@ -39,36 +37,62 @@
 							while (rs.next()) {
 						%>
 						<div class="col-sm-6 col-md-3">
-							<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
-								data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
-								data-content="
-  									<p><%=rs.getString(4)%></p><br>
-  									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+							
+							<%if (rs.getInt(6) == 1) { %>
+								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
+									data-content="
+  										<p><%=rs.getString(4)%></p><br>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
+  										</div>
+  									">
+									<div class="caption complete">
+										<div class="seminarTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Date Created:</strong>
+											<%=rs.getDate(5)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>COMPLETED</span>
+										</p>
 									</div>
-  									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  									</div>
-  								">
-								<div class="caption">
-									<div class="seminarTitle">
-										<h3><%=rs.getString(3)%></h3>
+								</button>
+							<% } else { %>
+								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
+									data-content="
+  										<p><%=rs.getString(4)%></p><br>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
+  										</div>
+  									">
+									<div class="caption">
+										<div class="seminarTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Date Created:</strong>
+											<%=rs.getDate(5)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>ONGOING</span>
+										</p>
 									</div>
-									<p>
-										<strong>Date Created:</strong>
-										<%=rs.getDate(5)%></p>
-									<p>
-										<strong>Completed:</strong>
-										<%
-											if (rs.getInt(6) == 1)
-													out.print("Completed");
-												else
-													out.print("Ongoing");
-										%>
-									</p>
-								</div>
-							</button>
+								</button>
+							<% } %>
 						</div>
 
 
