@@ -62,7 +62,7 @@
 							int z = 1;
 							while (announcement.next()) {
 						%>
-							<div class="paginateClass announcements"
+							<div class="paginateClass" id="announcements"
 									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
 									data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>">
 
@@ -272,7 +272,6 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 <script type="text/javascript" src="../../js/jPages.min.js"></script>
 <script type="text/javascript" src="../../js/pagination.js"></script>
 
@@ -285,7 +284,7 @@
 	$(".viewAnnouncementModal").on(
 			"show.bs.modal",
 			function(event) {
-				var url = $("#announcementList");
+				var url = $("#announcements");
 				var dateCreated = url.data("datecreated");
 				var title = url.data("anntitle");
 				var content = url.data("anncontent");
@@ -300,7 +299,7 @@
 			});
 
 	$(".editAnnouncementModal").on("show.bs.modal", function(event) {
-		var url = $("#announcementList");
+		var url = $("#announcements");
 		var title = url.data("anntitle");
 		var content = url.data("anncontent");
 		var id = url.data("annid");
@@ -314,7 +313,7 @@
 	});
 
 	$(".deleteModal").on("show.bs.modal", function(event) {
-		var url = $("#announcementList");
+		var url = $("#announcements");
 		var id = url.data("annid");
 
 		var modal = $(this);

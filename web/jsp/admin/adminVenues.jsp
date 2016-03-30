@@ -159,8 +159,6 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-<script type="text/javascript" src="../../js/myscript.js"></script>
 <script type="text/javascript">
 		$(".editVenueModal").on(
 				"show.bs.modal",
