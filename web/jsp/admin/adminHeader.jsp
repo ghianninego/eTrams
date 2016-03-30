@@ -58,9 +58,9 @@
         				<ul class="dropdown-menu">
             				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminColleges">Faculties/Colleges/Institutes</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminVenues.jsp">Venues</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminVenue">Venues</a></li>
           				</ul>
         			</li>
 				<% } %>

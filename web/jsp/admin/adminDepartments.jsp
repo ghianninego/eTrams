@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.ResultSet" %>
 <!DOCTYPE html>
 
 <html>
@@ -42,21 +43,14 @@
 								</tr>
 							</thead>
 							<tbody>
+								<% ResultSet rs = (ResultSet) session.getAttribute("departments");
+									while(rs.next()) {%>
 								<tr>
-									<td>001</td>
-									<td>something</td>
-									<td><a href="#" data-toggle="modal" data-target="#editDepartmentModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
+									<td><%= rs.getInt(1) %></td>
+									<td><%= rs.getString(2) %></td>
+									<td><a href="#" data-toggle="modal" data-target="#editDepartmentModal" data-deptid="<%= rs.getInt(1) %>" data-deptname="<%= rs.getString(2)%>">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal' data-deptid="<%= rs.getInt(1) %>">Delete</a></td>
 								</tr>
-								<tr>
-									<td>002</td>
-									<td>Computer Science</td>
-									<td><a href="#" data-toggle="modal" data-target="#editDepartmentModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
-								</tr>
-								<tr>
-									<td>003</td>
-									<td>Chemical Engineering</td>
-									<td><a href="#" data-toggle="modal" data-target="#editDepartmentModal">Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal'>Delete</a></td>
-								</tr>
+								<% } rs.first(); rs.previous(); %>
 							</tbody>
 						</table>
 						
@@ -71,13 +65,14 @@
 		 			<!-- End of Content -->
 		 			
 		 			<!-- Modals -->
-					<%@ include file= "../modals/othersModals.jsp" %>
 					
 					<!-- DELETE MODAL -->
-					<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal fade deleteModal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 						<div class="modal-dialog modal-sm" role="document">
 							<div class="modal-content">
-							<form>
+							<form action="../../dbcontrol" method="post">
+								<input type="hidden" name="requestType" value="adminDeleteDepartment" />
+								<input type="hidden" id="deptID" name="deptID" value="" />
 								<div class="modal-body text-center">
 									<p>Are you sure you want to delete this item?</p>
 									<div class="someButton text-center">
@@ -95,19 +90,20 @@
 					<div class="modal fade" id="newDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="post" action="../../dbcontrol">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Create New Department</h4>
 								</div>
-								
 								<div class="modal-body">
 								
+								<input type="hidden" name="requestType" value="adminCreateDepartment" />
+								<input type="hidden" name="collegeID" value="<%= session.getAttribute("collegeID") %>" />
 									<!-- Department Name-->
 									<div class="form-group">
 										<label for="college" class="col-sm-3 control-label">Dept. Name</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="college" name="college" placeholder="Department Name" required />
+											<input type="text" class="form-control" id="deptName" name="deptName" placeholder="Department Name" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 								</div>
@@ -123,10 +119,10 @@
 					<!-- NEW DEPARTMENT MODAL -->
 					
 					<!-- EDIT DEPARTMENT MODAL -->
-					<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal fade editDepartmentModal" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
-							<form class="form-horizontal">
+							<form class="form-horizontal" action="../../dbcontrol" method="post">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Department</h4>
@@ -134,11 +130,13 @@
 								
 								<div class="modal-body">
 								
+								<input type="hidden" name="requestType" value="adminEditDepartment" />
 									<!-- Department Name-->
 									<div class="form-group">
 										<label for="college" class="col-sm-3 control-label">Dept. Name</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="college" name="college" value="Department name" required />
+										    <input type="hidden" id="deptID" name="deptID" value="" />
+											<input type="text" class="form-control" id="deptName" name="deptName" value="" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 								</div>
@@ -172,5 +170,31 @@
 		
 	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 	<script type="text/javascript" src="../../js/myscript.js"></script>
+	<script type="text/javascript">
+		$(".deleteModal").on(
+				"show.bs.modal",
+				function(event) {
+					var url = $(event.relatedTarget);
+					var deptID = url.data("deptid");
+					
+					var modal = $(this);
+					modal.find("#deptID").val(deptID);
+	
+		});
 		
+		$(".editDepartmentModal").on(
+				"show.bs.modal",
+				function(event) {
+					var url = $(event.relatedTarget);
+					var deptID = url.data("deptid");
+					var deptName = url.data("deptname");
+
+					var modal = $(this);
+					modal.find("#deptID").val(deptID);
+					modal.find("#deptName").val(deptName);
+	
+		});
+		
+
+	</script>	
 </html>

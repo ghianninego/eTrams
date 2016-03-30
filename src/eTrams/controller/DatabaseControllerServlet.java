@@ -16,6 +16,7 @@ import eTrams.utilities.databaseUtilities.DatabaseDataSource;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.helperClasses.AnnouncementClass;
 import eTrams.utilities.helperClasses.CalendarClass;
+import eTrams.utilities.helperClasses.CollegeClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
@@ -294,7 +295,53 @@ public class DatabaseControllerServlet extends HttpServlet {
 			case  "myAccount":
 					response.sendRedirect("jsp/admin/adminAccount.jsp");// change to URL mapping (hehe)
 					break;
+			////////////////////////////////
+			//////// COLLEGE AND DEPARTMENTS
+			case "goToAdminColleges":
+				session.setAttribute("colleges", CollegeClass.retrieveColleges(connection));
+				response.sendRedirect("jsp/admin/adminColleges.jsp");
+				break;
+			
+			case "adminCreateCollege":
+				CollegeClass.createCollege(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminColleges");
+				break;
+				
+			case "adminEditCollege":
+				CollegeClass.editCollege(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminColleges");
+				break;
+			
+			case "adminDeleteCollege":
+				CollegeClass.deleteCollege(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToAdminColleges");
+				break;
+			
+			case "goToCollegeDepartments":
+				session.setAttribute("departments", CollegeClass.retrieveDepartments(Integer.parseInt(request.getParameter("collegeID")), connection));
+				session.setAttribute("collegeID", request.getParameter("collegeID"));
+				response.sendRedirect("jsp/admin/adminDepartments.jsp");
+				break;
+			
+			case "goToCollegeDepartmentsFromAction":
+				session.setAttribute("departments", CollegeClass.retrieveDepartments(Integer.parseInt((String)session.getAttribute("collegeID")), connection));
+				response.sendRedirect("jsp/admin/adminDepartments.jsp");
+				break;
+				
+			case "adminCreateDepartment":
+				CollegeClass.createDepartment(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToCollegeDepartmentsFromAction");
+				break;
+				
+			case "adminEditDepartment":
+				CollegeClass.editDepartment(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToCollegeDepartmentsFromAction");
+				break;
+			
+			case "adminDeleteDepartment":
+				CollegeClass.deleteDepartment(request, connection);
+				response.sendRedirect("dbcontrol?requestType=goToCollegeDepartmentsFromAction");
+				break;
 		}
 	}
-
 }
