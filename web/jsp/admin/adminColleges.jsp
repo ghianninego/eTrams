@@ -48,7 +48,7 @@
 								<tr>
 									<td><%= rs.getInt(1) %></td>
 									<td><%= rs.getString(2) %></td>
-									<td><a href="../../dbcontrol?requestType=goToCollegeDepartments&collegeID=<%=rs.getInt(1)%>">View/Manage</a></td>
+									<td><a href="../../dbcontrol?requestType=goToCollegeDepartments&collegeID=<%=rs.getInt(1)%>&collegeName=<%= rs.getString(2)%>">View/Manage</a></td>
 									<td><a href="#" data-collegeid="<%=rs.getInt(1)%>"  data-collegename="<%=rs.getString(2)%>" data-toggle="modal" data-target="#editFacultyModal" >Edit</a> - <a href="#" data-toggle='modal' data-target='#deleteModal' data-collegeid="<%=rs.getInt(1)%>" >Delete</a></td>
 								</tr>
 							<% } rs.first(); rs.previous(); %>
@@ -99,7 +99,7 @@
 					<!-- EDIT FACULTY MODAL -->
 					<div class="modal fade editFacultyModal" id="editFacultyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 						<div class="modal-dialog" role="document">
-							<div class="modal-content">
+							<div class="modal-content"> 
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit College</h4>

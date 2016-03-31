@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a> /</small>
+			 		<h1 class="page-header"><small><a href="../../dbcontrol?requestType=goToAdminColleges"><%= session.getAttribute("collegeName") %></a> /</small>
 			 			Departments
 			 		</h1>
 			 		
