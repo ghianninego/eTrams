@@ -19,6 +19,7 @@ import eTrams.utilities.helperClasses.AnnouncementClass;
 import eTrams.utilities.helperClasses.CalendarClass;
 import eTrams.utilities.helperClasses.CollegeClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
+import eTrams.utilities.helperClasses.Search;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
 import eTrams.utilities.helperClasses.UserClass;
@@ -92,8 +93,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
 					break;
 				case "goToAdminSeminar":
+					if(request.getParameter("flag")==null){
 					ResultSet seminars = SeminarClass.retrieveSeminars(connection);
 					session.setAttribute("seminars", seminars);
+					}
 					response.sendRedirect("jsp/admin/adminSeminars.jsp");
 					break;
 				//////// sessions
@@ -160,6 +163,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("allParticipants", allParticipantAccounts);
 					session.setAttribute("sessionDetails", oneSession);
 					session.setAttribute("sessionParticipants", sessionParticipants);
+					
+					
 					response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
 					break;
 				case "goToAdminManageParticipantsFromAdminSessions":
@@ -197,7 +202,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				/// USER MANAGEMENT
 				case "adminUser": 
-					session.setAttribute("allUser",UserClass.getAllUsers(request, connection));
+					if(request.getParameter("flag")==null){
+						session.setAttribute("allUser",UserClass.getAllUsers(request, connection));	
+					}
 					try {
 						session.setAttribute("college",SQLOperations.selectCollege(connection).executeQuery());
 						session.setAttribute("department",SQLOperations.selectDepartment(connection).executeQuery());
@@ -334,6 +341,15 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "adminDeleteDepartment":
 					CollegeClass.deleteDepartment(request, connection);
 					response.sendRedirect("dbcontrol?requestType=goToCollegeDepartmentsFromAction");
+					break;
+				//search
+				case "searchName":
+					session.setAttribute("allUser",Search.searchedUser(request, connection));
+					response.sendRedirect("dbcontrol?requestType=adminUser&flag=1");
+					break;
+				case "searchSeminar":
+					session.setAttribute("seminars", Search.searchedSeminar(request, connection));
+					response.sendRedirect("dbcontrol?requestType=goToAdminSeminar&flag=1");
 					break;
 			}
 		}
