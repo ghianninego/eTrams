@@ -130,7 +130,7 @@ small {
 }
 
 .thumbnail {
-	height: 250px;
+	height: 270px;
 	width: 100%;
 	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
 }
@@ -146,8 +146,9 @@ small {
 }
 
 .caption p {
+	font-size: 13px;
 	padding-right: 5px;
-	text-align: right !important;
+	text-align: left !important;
 }
 
 .caption p span {
@@ -163,8 +164,8 @@ small {
 	padding: 2px 8px !important;
 	text-align: left;
 	border-bottom: 2px solid #2E2E2E;
-	margin-bottom: 10px;
-	height: 130px;
+	margin-bottom: 5px;
+	height: 100px;
 }
 
 .sessionTitle h3, .seminarTitle h3 {
@@ -242,7 +243,7 @@ small {
 
 .btn-yellow:hover {
 	color: #282828 !important;
-    background: rgb(255, 217, 52) !important;
+    background: rgb(252, 193, 29) !important;
     border-color: #F6C533;
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;

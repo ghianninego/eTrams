@@ -68,6 +68,8 @@
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  											<a class='btn btn-yellow btn-block' href=''>Manage Certification</a>
+  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
   										</div>
   									">
 
@@ -91,17 +93,14 @@
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
 									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
 									data-content="
-  										<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
-  											<strong>Date:</strong> <%=rs.getDate(7)%><br>
-  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
-  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  										</p>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Info</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
   										</div>
   									">
 
@@ -110,12 +109,17 @@
 											<h3><%=rs.getString(3)%></h3>
 										</div>
 										<p>
-											<strong>Capacity:</strong>
-											<%=rs.getInt(6)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>ONGOING</span>
+											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%>
+											<br>
+  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
+  											<br>
+											<strong>Time:</strong> <%=str%> - <%=str2%>
+											<br>
+  											<strong>Date:</strong> <%=rs.getDate(7)%>
+  											<br>
+											<strong>Capacity:</strong> <%=rs.getInt(6)%>
+											<br>
+											<strong>Status:</strong> <span>ONGOING</span>
 										</p>
 									</div>
 								</button>
