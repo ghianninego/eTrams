@@ -87,7 +87,7 @@ a:hover {
 }
 
 .someContainer {
-	padding: 5px;
+	padding: 0px 5px;
 	height: 500px;
 	background: rgba(255, 255, 255, 0.7);
 	position: relative;
@@ -120,48 +120,6 @@ a:hover {
 	position: absolute;
     bottom: 0;
     width: 100%;
-}
-
-.holder {
-	
-}
-
-.holder a {
-	font-size: 15px;
-	cursor: pointer;
-	margin: 0 5px;
-	color: #444444 !important;
-	-webkit-transition: all 0.2s ease-in-out; 
-	transition: all 0.2s ease-in-out;
-}
-
-.holder a:hover {
-	color: #7A7A7A !important;
-	-webkit-transition: all 0.2s ease-in-out; 
-	transition: all 0.2s ease-in-out;
-}
-
-.holder a.jp-previous {
-	margin-right: 15px;
-}
-
-.holder a.jp-next {
-	margin-left: 15px;
-}
-
-.holder a.jp-current, a.jp-current:hover {
-	color: #F8C11A !important;
-	font-weight: bold;
-}
-
-.holder a.jp-disabled, a.jp-disabled:hover {
-	color: #7A7A7A !important;
-	cursor: default;
-}
-
-
-.holder span {
-	margin: 0 5px;
 }
 /******************** End of Announcements Style ********************/
 
@@ -264,7 +222,7 @@ small {
 	padding-bottom: 5px;
 }
 
-.btn {
+.btn-yellow, .btn-gray {
 	font-size: 16px !important;
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, .15);
 }
@@ -355,3 +313,69 @@ small {
 }
 
 /******************** End of Tables ********************/
+
+
+/******************** Pagination ********************/
+#legend1 {
+	margin-left: 10px;
+	color: #7A7A7A;
+	float: left;
+}
+
+.holder a {
+	font-size: 15px;
+	cursor: pointer;
+	margin: 0 5px;
+	color: #444444 !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.holder a:hover {
+	color: #F8C11A !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.holder a.jp-previous {
+	margin-right: 10px;
+	font-size: 16px;
+	background: #bbb;
+	padding: 0px 6px;
+}
+
+.holder a.jp-next {
+	margin-left: 10px;
+	font-size: 16px;
+	background: #bbb;
+	padding: 0px 6px;
+}
+
+.holder a.jp-last, .holder a.jp-first {
+	font-size: 16px;
+	background: #bbb;
+	padding: 0px 4px;
+}
+
+.holder a.jp-current, a.jp-current:hover {
+	color: #7A7A7A !important;
+	font-weight: bold;
+}
+
+.holder a.jp-disabled, a.jp-disabled:hover {
+	color: #7A7A7A !important;
+	cursor: default;
+}
+
+.holder span {
+	margin: 0 5px;
+}
+/******************** End of Pagination ********************/
+
+
+/******************** Others ********************/
+.options {
+	padding: 0px 0px 10px 0px;
+}
+
+/******************** End of Others ********************/

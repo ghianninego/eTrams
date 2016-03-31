@@ -64,6 +64,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 				response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
 				break;
 			case "goToAdminSeminar":
+				SeminarClass.completeSeminar(request, connection);
+				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
 				ResultSet seminars = SeminarClass.retrieveSeminars(connection);
 				session.setAttribute("seminars", seminars);
 				response.sendRedirect("jsp/admin/adminSeminars.jsp");
@@ -226,7 +228,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//	request.getRequestDispatcher("coordinatorSeminars.jsp");
 				break;
 			case "login": 
-				System.out.println("SEMINAR  " + SeminarClass.completeSeminar(request, connection));
+				SeminarClass.completeSeminar(request, connection);
 				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user",UserClass.login(request, connection));
@@ -285,6 +287,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 					break;
 			case  "home":
+				SeminarClass.completeSeminar(request, connection);
+				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
+				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				try {
 					session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 				} catch (SQLException e) {
