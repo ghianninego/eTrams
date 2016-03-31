@@ -115,8 +115,15 @@ a:hover {
 	text-align: center;
 }
 
+.paginationHolder {
+	padding-bottom: 10px;
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .holder {
-	margin: auto;
+	
 }
 
 .holder a {

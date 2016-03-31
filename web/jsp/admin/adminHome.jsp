@@ -51,17 +51,20 @@
 
 					<!-- Announcements Container -->
 					<div class="someContainer">
-
+					<%
+						int z = 1;
+						boolean q = announcement.next();
+						if(!q){
+					%>
 						<!-- No announcement -->
 						<div class="noAnnouncement">No announcement.</div>
 						<!-- End of No announcement -->
-
+					<%
+						} else {
+							while (q) {								
+					%>
 						<!-- List of announcements -->
 						<div id="announcementList">
-						<%
-							int z = 1;
-							while (announcement.next()) {
-						%>
 							<div class="paginateClass" id="announcements"
 									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
 									data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>">
@@ -74,7 +77,9 @@
 								</p>
 							</div>
 						<%
-							z++;
+								z++;
+								q = announcement.next();
+								}
 							}
 							announcement.first();
 							announcement.previous();
@@ -83,8 +88,10 @@
 						<!-- End of List of announcements -->
 
 						<!-- Announcements pagination -->
-						<div class="holder text-center">
-        				</div>
+						<div class="paginationHolder">
+							<div class="holder text-center">
+        					</div>
+						</div>
 						<!-- End of Announcements pagination -->
 
 					</div>

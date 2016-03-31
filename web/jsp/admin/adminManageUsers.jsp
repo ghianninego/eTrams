@@ -141,7 +141,7 @@
 								<%
 									while (history.next()) {
 								%>
-								<tbody>
+								<tbody id="someTable">
 									<tr>
 										<td><%=history.getInt("attendanceID")%></td>
 										<td><%=history.getString("seminarName")%></td>
@@ -162,6 +162,12 @@
 								%>
 
 							</table>
+							
+							<!-- Announcements pagination -->
+							<div class="holder text-center">
+        					</div>
+							<!-- End of Announcements pagination -->
+							
 						</div>
 						<% } %>
 						<!-- End of Attendance Tab -->
@@ -193,17 +199,17 @@
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="firstName"
-												id="firstName name" value="" placeholder="First name"
+												id="firstName" value="" placeholder="First name"
 												required />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="middleName"
-												id="middleName name" value="" placeholder="Middle name"
+												id="middleName" value="" placeholder="Middle name"
 												required />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName"
-												id="lastName name" value="" placeholder="Last name" required />
+												id="lastName" value="" placeholder="Last name" required />
 										</div>
 									</div>
 
@@ -343,7 +349,6 @@
 				</div>
 				<!-- CERTIFY MODAL -->
 
-
 				<%
 					oneUser.first();
 					oneUser.previous();
@@ -365,9 +370,11 @@
 
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bootstrap/bootstrap.js"></script>
-<script type="text/javascript"
-	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
+<script type="text/javascript" src="../../js/jPages.min.js"></script>
+<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 <script type="text/javascript">
 	$(".editProfileModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);

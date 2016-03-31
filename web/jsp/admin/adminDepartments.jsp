@@ -42,7 +42,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 								<% ResultSet rs = (ResultSet) session.getAttribute("departments");
 									while(rs.next()) {%>
 								<tr>
@@ -53,6 +53,11 @@
 								<% } rs.first(); rs.previous(); %>
 							</tbody>
 						</table>
+						
+						<!-- Announcements pagination -->
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
 						
 						<br>
 						<div class="someButton">
@@ -168,7 +173,9 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 		
-	<script type="text/javascript" src="../../js/myscript.js"></script>
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 	<script type="text/javascript">
 		$(".deleteModal").on(
 				"show.bs.modal",
