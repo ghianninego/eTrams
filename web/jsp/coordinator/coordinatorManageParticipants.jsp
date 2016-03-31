@@ -185,7 +185,4 @@
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
 		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
-		
 </html>

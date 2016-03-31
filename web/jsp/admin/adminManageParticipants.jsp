@@ -60,7 +60,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 								<%
 									while(rs2.next())
 									{
@@ -86,6 +86,11 @@
 								    } rs2.first(); rs2.previous();%>
 							</tbody>
 						</table>
+						
+						<!-- Announcements pagination -->
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
   							
 			 			<br>
 			 			
@@ -150,7 +155,7 @@
 									<th>Status</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 							<% 
 								while (rs2.next())
 								{
@@ -166,6 +171,12 @@
 							</tbody>
 						</table>
 						
+						<!-- Announcements pagination -->
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
+						
+						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
@@ -254,10 +265,10 @@
 								            	<div class="form-group">`
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
-															<select name="status">
-								        						<option value="Complete">Complete</option>
-								        						<option value="Incomplete">Incomplete</option>
-								        					</select>
+								        				<div class="bfh-selectbox" data-name="status" id="status">
+								        					<div data-value="Complete">Complete</div>
+								        					<div data-value="Incomplete">Incomplete</div>
+								        				</div>
 								            		</div>
 								            	</div>
 								            </div>
@@ -323,7 +334,6 @@
 								            		</div>
 								            	</div>
 								            	
-								            	<p><br><br></p>
 								            </div>
 								            <div class="modal-footer">
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
@@ -335,20 +345,18 @@
 								</div>
 								<!-- ATTENDANCE MODAL -->
 	</body>
-	
-	
 
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
-		
+	
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
-
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
 	
 	<script type="text/javascript">
 		$(".setStatusModal").on(

@@ -72,7 +72,7 @@
 									<th>Placeholder C</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 								<tr>
 									<td>Placeholder A1</td>
 									<td>Placeholder B1</td>
@@ -90,6 +90,12 @@
 								</tr>
 							</tbody>
 						</table>
+						
+						<!-- Announcements pagination -->
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
+			 		
 			 		</div>
 			 		<!-- End of Content -->
 			 		
@@ -107,8 +113,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
-		
+	
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
 </html>

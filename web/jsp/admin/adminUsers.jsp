@@ -33,6 +33,38 @@
 						
 			 		<!-- Content -->
 			 		<div class="content">
+			 			<div class="row options">
+			 				<!-- Filter Data -->
+							<div class="col-sm-offset-5 col-sm-3">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="All">All</div>
+											<div data-value="Name">Name</div>
+											<div data-value="Amazing">Amazing</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Filter -->
+							
+							<!-- Search -->
+							<div class="col-sm-4">
+								<form>
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Search for...">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+			 			</div>
+			 			
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -44,7 +76,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 							<%while(allUser.next()){ %>
 								<tr>
 									<td><%=allUser.getString("accountID")%></td>
@@ -65,6 +97,12 @@
 						
 							</tbody>
 						</table>
+						
+						<!-- Announcements pagination -->
+						<p id="legend1"></p>
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
 						
 						<br>
 						<div class="someButton">
@@ -190,8 +228,8 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
 	
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
 </html>

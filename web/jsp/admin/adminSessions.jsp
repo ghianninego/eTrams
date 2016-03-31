@@ -7,17 +7,15 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - Seminars & Sessions</title>
+	<title>UST eTrams - Seminars & Sessions</title>
 </head>
 
 
@@ -53,45 +51,75 @@
 								String editDate = df.format(rs.getDate(7));
 						%>
 						<div class="col-sm-6 col-md-3">
-							<button class="thumbnail" id="dataContent" data-toggle="popover"
-								data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=rs.getDate(7)%>"
-										data-timein="<%= str%>" data-timeout="<%= str%>" data-venue="<%=rs.getInt(16)%>" 
-										data-remarks="<%= rs.getString(5)%>" data-capacity="<%=rs.getInt(6)%>"
-										data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
-								data-content="
-  									<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
-  										<strong>Date:</strong> <%=rs.getDate(7)%><br>
-  										<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
-  										<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  									</p>
-  									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'
-										>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
-									</div>
-  									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
-  									</div>
-  								">
+							<% if (rs.getInt(11) == 1) { %>
+								<button class="thumbnail" id="dataContent" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
+									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
+									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
+									data-content="
+  										<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
+  											<strong>Date:</strong> <%=rs.getDate(7)%><br>
+  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
+  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
+  										</p>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  										</div>
+  									">
 
-								<div class="caption">
-									<div class="sessionTitle">
-										<h3><%=rs.getString(3)%></h3>
+									<div class="caption complete">
+										<div class="sessionTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Capacity:</strong>
+											<%=rs.getInt(6)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>COMPLETED</span>
+										</p>
 									</div>
-									<p>
-										<strong>Capacity:</strong>
-										<%=rs.getInt(6)%></p>
-									<p>
-										<strong>Status:</strong>
-										<%
-											if (rs.getInt(6) == 1)
-													out.print("Completed");
-												else
-													out.print("Ongoing");
-										%>
-									</p>
-								</div>
-							</button>
+								</button>
+							<% } else { %>
+								<button class="thumbnail" id="dataContent" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
+									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
+									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
+									data-content="
+  										<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
+  											<strong>Date:</strong> <%=rs.getDate(7)%><br>
+  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
+  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
+  										</p>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  										</div>
+  									">
+
+									<div class="caption">
+										<div class="sessionTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Capacity:</strong>
+											<%=rs.getInt(6)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>ONGOING</span>
+										</p>
+									</div>
+								</button>
+							<% } %>
 						</div>
 
 						<%
@@ -396,7 +424,6 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
 <!-- FOR SESSION MODAL -->

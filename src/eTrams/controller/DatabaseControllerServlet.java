@@ -54,7 +54,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 			try 
 			{
 				FinalUserBean fub = UserClass.login(request, connection);
-				System.out.println("SEMINAR  " + SeminarClass.completeSeminar(request, connection));
+				//System.out.println("SEMINAR  " + SeminarClass.completeSeminar(request, connection));
 				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user", fub);

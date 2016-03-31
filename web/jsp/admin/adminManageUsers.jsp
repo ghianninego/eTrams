@@ -7,17 +7,15 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - All Users - Manage Users</title>
+	<title>UST eTrams - All Users - Manage Users</title>
 </head>
 
 <body>
@@ -94,7 +92,7 @@
 									<div class="someButton">
 										<button class="btn btn-yellow" data-toggle="modal"
 											data-target="#editProfileModal"
-											data-fname="<%=oneUser.getString("lastName") %>"
+											data-fname="<%=oneUser.getString("firstName") %>"
 											data-mname="<%=oneUser.getString("middleName") %>"
 											data-lname="<%=oneUser.getString("lastName") %>"
 											data-email="<%=oneUser.getString("email") %>"
@@ -119,6 +117,12 @@
 						<!-- End of Profile Tab -->
 
 						<!-- Attendance Tab -->
+						<%if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) { %>
+			 			<div role="tabpanel" class="tab-pane fade" id="attendance">
+			 				<br>
+			 				<h4 style="padding-left: 35px;">There is no attendance history for this type of user.</h4>
+			 			</div>
+			 			<% } else { %>
 						<div role="tabpanel" class="tab-pane fade" id="attendance">
 							<br> <br>
 							<table class="table table-condensed table-striped table-hover ">
@@ -137,7 +141,7 @@
 								<%
 									while (history.next()) {
 								%>
-								<tbody>
+								<tbody id="someTable">
 									<tr>
 										<td><%=history.getInt("attendanceID")%></td>
 										<td><%=history.getString("seminarName")%></td>
@@ -158,7 +162,14 @@
 								%>
 
 							</table>
+							
+							<!-- Announcements pagination -->
+							<div class="holder text-center">
+        					</div>
+							<!-- End of Announcements pagination -->
+							
 						</div>
+						<% } %>
 						<!-- End of Attendance Tab -->
 
 					</div>
@@ -188,17 +199,17 @@
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="firstName"
-												id="firstName name" value="" placeholder="First name"
+												id="firstName" value="" placeholder="First name"
 												required />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="middleName"
-												id="middleName name" value="" placeholder="Middle name"
+												id="middleName" value="" placeholder="Middle name"
 												required />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName"
-												id="lastName name" value="" placeholder="Last name" required />
+												id="lastName" value="" placeholder="Last name" required />
 										</div>
 									</div>
 
@@ -338,7 +349,6 @@
 				</div>
 				<!-- CERTIFY MODAL -->
 
-
 				<%
 					oneUser.first();
 					oneUser.previous();
@@ -360,11 +370,11 @@
 
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bootstrap/bootstrap.js"></script>
-<script type="text/javascript"
-	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-<script type="text/javascript" src="../../js/myscript.js"></script>
+<script type="text/javascript" src="../../js/jPages.min.js"></script>
+<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 <script type="text/javascript">
 	$(".editProfileModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);

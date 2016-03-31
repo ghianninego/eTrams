@@ -45,16 +45,16 @@
                  	<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
-            				<li><a href="../../dbcontrol?requestType=adminUser">Users</a></li>
+            				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminColleges">Faculties/Colleges/Institutes</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminVenues.jsp">Venues</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminVenue">Venues</a></li>
           				</ul>
         			</li>
                	<% } else { %>
 					<li class="dropdown">
-        			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
             				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>
