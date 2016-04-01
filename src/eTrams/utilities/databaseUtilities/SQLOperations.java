@@ -80,7 +80,6 @@ public class SQLOperations
 	
 //-----------select COUNT RECORDS
 	private static PreparedStatement countSessions;
-	private static PreparedStatement countSessionsC;
 	
 //-----------login
 	private static PreparedStatement login;
@@ -916,24 +915,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return updateSeminar;
 	}
 	
-
 	public synchronized static PreparedStatement updateSeminarStatus(Connection connection)
 	{
 		try 
 		{
 			if (updateSeminarStatus == null)
-				updateSeminarStatus = connection.prepareStatement("UPDATE SeminarTable  SET completion = ? where seminarID =? ");
+				updateSeminarStatus = connection.prepareStatement("UPDATE seminarTable  SET completion = ?  WHERE dateCreated < ? ");
 		} 
 		catch (SQLException e) 
 		{
-			System.err.println("update updateSeminarStatus_ERR");
+			System.err.println("update seminarTable_ERR");
 			e.printStackTrace();
 		}
-		System.out.println("update updateSeminarStatus");         
+		System.out.println("update seminarTable");         
 		return updateSeminarStatus;
 	}
-	
-	
+
 	public synchronized static PreparedStatement updateSessionStatus(Connection connection)
 	{
 		try 
@@ -1118,24 +1115,6 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("countSessions sessionTable");         
 		return countSessions;
 	}
-	
-	public synchronized static PreparedStatement countSessionsC(Connection connection)
-	{
-		try 
-		{
-			if (countSessionsC == null)
-				countSessionsC = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ? and completion > 0");
-		} 
-		catch (SQLException e) 
-		{
-			System.err.println("countSessionsC sessionTable_ERR");
-			e.printStackTrace();
-		}
-		System.out.println("countSessionsC sessionTable");         
-		return countSessionsC;
-	}
-	
-	
 	
 	public synchronized static PreparedStatement login(Connection connection)
 	{
