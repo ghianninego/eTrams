@@ -91,10 +91,11 @@
 							</tbody>
 						</table>
 						
-						<!-- Announcements pagination -->
+						<!-- pagination -->
+						<p id="legend1"></p>
 						<div class="holder text-center">
         				</div>
-						<!-- End of Announcements pagination -->
+						<!-- End of pagination -->
 			 		
 			 		</div>
 			 		<!-- End of Content -->

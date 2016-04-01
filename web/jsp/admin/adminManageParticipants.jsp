@@ -47,7 +47,59 @@
 					{
 					%>
 			 		<div class="content">
-			 			<h3>Certified Participants</h3>
+			 			
+			 			<div class="row options">
+			 				<!-- Filter Data -->
+							<div class="col-sm-2">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="All">All</div>
+											<div data-value="Complete">Complete</div>
+											<div data-value="Incomplete">Incomplete</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Filter -->
+						
+							<!-- Other Filter Data -->
+							<div class="col-sm-3">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+											<div data-value="DateAsc">By Date (Asc)</div>
+											<div data-value="DateAsc">By Date (Desc)</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Other Filter -->
+						
+							<!-- Search -->
+							<div class="col-sm-offset-4 col-sm-3">
+								<form method="post" action="">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+						</div>
+						
+						<br>
+						
   						<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -88,6 +140,7 @@
 						</table>
 						
 						<!-- Announcements pagination -->
+						<p id="legend1"></p>
 						<div class="holder text-center">
         				</div>
 						<!-- End of Announcements pagination -->
@@ -100,7 +153,59 @@
 			 		<!-- For Ongoing/Unfinished Sessions -->
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<h3>Registered Participants</h3>
+			 			<div class="row options">
+			 			
+			 				<!-- Filter Data -->
+							<div class="col-sm-2">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="All">All</div>
+											<div data-value="Complete">Complete</div>
+											<div data-value="Incomplete">Incomplete</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Filter -->
+						
+							<!-- Other Filter Data -->
+							<div class="col-sm-3">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+											<div data-value="DateAsc">By Date (Asc)</div>
+											<div data-value="DateAsc">By Date (Desc)</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Other Filter -->
+						
+							<!-- Search -->
+							<div class="col-sm-offset-4 col-sm-3">
+								<form method="post" action="">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+						</div>
+						
+						<br>
+						
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -127,6 +232,7 @@
 						</table>
 						
 						<!-- Announcements pagination -->
+						<p id="legend1"></p>
 						<div class="holder text-center">
         				</div>
 						<!-- End of Announcements pagination -->

@@ -34,25 +34,9 @@
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<div class="row options">
-			 				<!-- Filter Data -->
-							<div class="col-sm-offset-5 col-sm-3">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
-											<div data-value="All">All</div>
-											<div data-value="Name">Name</div>
-											<div data-value="Amazing">Amazing</div>
-										</div>
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Filter -->
-							
-							<!-- Search -->
-							<div class="col-sm-4">
+			 			
+			 				<!-- Search -->
+							<div class="col-sm-offset-9 col-sm-3">
 								<form method="post" action="../../dbcontrol">
 									<input type="hidden" name="requestType" value="searchName">
 									<div class="input-group">
@@ -64,7 +48,10 @@
 								</form>
 							</div>
 							<!-- End of Search -->
+							
 			 			</div>
+			 			
+			 			<br>
 			 			
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>

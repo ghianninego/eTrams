@@ -37,8 +37,8 @@
 			 		<h1 class="page-header"><small><a href="adminSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
 			 			<a href="adminSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Certifications</h1>
 			 			
-			 		<!-- For Completed Sessions -->
 			 		<!-- Content -->
+			 		<div class="content">
 			 		<% ResultSet rs = (ResultSet) session.getAttribute("sessionDetails"); 
 			 		DateFormat format = new SimpleDateFormat( "h:mm a" );
 	 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");	
@@ -46,8 +46,57 @@
 					if (rs.getInt(11) == 1) 
 					{
 					%>
-			 		<div class="content">
-			 			<h3>Certified Participants</h3>
+			 			<div class="row options">
+			 			<!-- Search -->
+						<div class="col-sm-3">
+							<form method="post" action="">
+								<div class="input-group">
+									<input name="search" type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Search -->
+			 			<!-- Filter Data -->
+						<div class="col-sm-offset-4 col-sm-2">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="All">All</div>
+										<div data-value="Complete">Complete</div>
+										<div data-value="Incomplete">Incomplete</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Filter -->
+						
+						<!-- Other Filter Data -->
+						<div class="col-sm-3">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+										<div data-value="DateAsc">By Date (Asc)</div>
+										<div data-value="DateAsc">By Date (Desc)</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Other Filter -->
+						</div>
+						
+						<br>
+						
   						<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -92,52 +141,6 @@
         				</div>
 						<!-- End of Announcements pagination -->
   							
-			 			<br>
-			 			
-			 			<h3>Uncertified Participants</h3>
-						<table class="table table-condensed table-striped table-hover ">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Time In</th>
-									<th>Time Out</th>
-									<th>Status</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								 
-								int uncertParticipants = certParticipants;
-								int counter = 1;
-									while(rs2.next())
-									{
-										String timeIn = format.format(rs2.getTime(4));
-										String timeOut = format.format(rs2.getTime(5));
-										if (rs2.getInt(7) == 0)
-										{ System.out.println("U: " + uncertParticipants);
-								%>
-								<tr>
-									<td><%= counter %></td>
-									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
-									<td><%= rs2.getString(12) %></td>
-									<td><%= timeIn %></td>
-									<td><%= timeOut%></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>" >
-			 							<%=rs2.getString(6) %>
-			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="1">Certify</a> - 
-										<a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1)%>">Set Attendance</a>
-									</td>			
-								</tr>
-								
-								<% 
-								uncertParticipants++; counter++;}
-								    } rs2.first(); rs2.previous();%>
-							</tbody>
-						</table>
 			 		</div>
 			 		<!-- End of Content -->
 					

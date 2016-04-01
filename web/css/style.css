@@ -114,13 +114,6 @@ a:hover {
 	font-style: italic;
 	text-align: center;
 }
-
-.paginationHolder {
-	padding-bottom: 10px;
-	position: absolute;
-    bottom: 0;
-    width: 100%;
-}
 /******************** End of Announcements Style ********************/
 
 
@@ -265,6 +258,12 @@ small {
 	transition: all 0.2s ease-in-out;
 }
 
+.btn-default {
+	
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
 .btn-link {
 	font-size: 14px !important;
 	color: #848484 !important;
@@ -318,54 +317,76 @@ small {
 
 /******************** Pagination ********************/
 #legend1 {
-	margin-left: 10px;
-	color: #7A7A7A;
-	float: left;
+	margin: auto;
+	color: #2E2E2E;
+	text-align: center;
+	width: 135px;
+	padding: 3px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+#legend2 {
+	color: #424242;
+	font-size: 13px !important;
+	text-align: center;
+}
+
+.paginationHomeHolder {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .holder a {
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
+	padding: 5px 10px;
+	background: rgba(250, 250, 250, 0.9);
 	font-size: 15px;
 	cursor: pointer;
-	margin: 0 5px;
-	color: #444444 !important;
+	margin: 0px;
+	color: #2E2E2E !important;
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;
 }
 
 .holder a:hover {
-	color: #F8C11A !important;
+	background: #FFE156;
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;
 }
 
 .holder a.jp-previous {
-	margin-right: 10px;
-	font-size: 16px;
-	background: #bbb;
-	padding: 0px 6px;
+	font-size: 15px;
+	background: ;
 }
 
 .holder a.jp-next {
-	margin-left: 10px;
-	font-size: 16px;
-	background: #bbb;
-	padding: 0px 6px;
+	font-size: 15px;
 }
 
-.holder a.jp-last, .holder a.jp-first {
-	font-size: 16px;
-	background: #bbb;
-	padding: 0px 4px;
+.holder a.jp-last {
+	font-size: 15px;
+}
+
+.holder a.jp-first {
+	
 }
 
 .holder a.jp-current, a.jp-current:hover {
-	color: #7A7A7A !important;
+	background: #FFE156;
+	color: #424242 !important;
 	font-weight: bold;
 }
 
 .holder a.jp-disabled, a.jp-disabled:hover {
-	color: #7A7A7A !important;
-	cursor: default;
+	color: #A4A4A4 !important;
+	background: rgba(250, 250, 250, 0.9);
 }
 
 .holder span {
@@ -379,4 +400,23 @@ small {
 	padding: 0px 0px 10px 0px;
 }
 
+.options > .col-sm-2 {
+	padding-left: 15px !important;
+	padding-right: 0px !important;
+}
+
+a.bfh-selectbox-toggle.form-control {
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+a.bfh-selectbox-toggle.form-control:hover {
+	color: #555 !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.bfh-selectbox .bfh-selectbox-options ul li > a {
+	color: #555 !important;
+}
 /******************** End of Others ********************/

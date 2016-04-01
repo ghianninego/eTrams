@@ -8,7 +8,7 @@ jQuery(function($) {
 		next: "›",
 		last: "»",
 		callback: function (pages, items) {
-			$("#legend1").html(items.range.start + " - " + items.range.end + " of " + items.count);
+			$("#legend2").html(items.range.start + " - " + items.range.end + " of " + items.count);
 		}
 	});
 	
