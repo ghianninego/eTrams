@@ -43,7 +43,6 @@ public class CollegeClass {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 		return 0;
 	}
@@ -63,7 +62,6 @@ public class CollegeClass {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 		return 0;
 	}
@@ -115,7 +113,6 @@ public class CollegeClass {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 		return 0;
 	}
@@ -154,7 +151,6 @@ public class CollegeClass {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 		return 0;
 	}

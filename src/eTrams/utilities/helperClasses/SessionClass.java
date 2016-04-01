@@ -49,6 +49,25 @@ public class SessionClass {
 		return rs;
 	}
 	
+
+	public static ResultSet filteredSessions(Connection connection, int seminarID, String filter)
+	{
+		PreparedStatement ps = SQLOperations.FilterSessionsComp(connection);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, seminarID);
+			ps.setString(2, filter);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	
+
+	
 	public static int editSession(HttpServletRequest request, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.updateSession(connection);

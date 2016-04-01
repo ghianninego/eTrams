@@ -5,17 +5,15 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - Seminars & Sessions</title>
+	<title>UST eTrams - Seminars & Sessions</title>
 </head>
 
 <body>
@@ -32,6 +30,61 @@
 
 				<!-- Content -->
 				<div class="content">
+				
+			 		<div class="row options">
+			 			<!-- Filter Data -->
+						<div class="col-sm-2">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="All">All</div>
+										<div data-value="Ongoing">Ongoing</div>
+										<div data-value="Completed">Completed</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Filter -->
+						
+						<!-- Other Filter Data -->
+						<div class="col-sm-3">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+										<div data-value="DateAsc">By Date (Asc)</div>
+										<div data-value="DateAsc">By Date (Desc)</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Other Filter -->
+						
+						<!-- Search -->
+						<div class="col-sm-offset-4 col-sm-3">
+							<form method="post" action="../../dbcontrol">
+								<input type="hidden" name="requestType" value="searchSeminar">
+								<div class="input-group">
+									<input name="search" type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Search -->
+							
+			 		</div>
+			 		
+			 		<br>
+			 		
 					<div class="row">
 						<%
 							ResultSet rs = (ResultSet) session.getAttribute("seminars");
@@ -39,36 +92,62 @@
 							while (rs.next()) {
 						%>
 						<div class="col-sm-6 col-md-3">
-							<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
-								data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
-								data-content="
-  									<p><%=rs.getString(4)%></p><br>
-  									<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  										<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+							
+							<%if (rs.getInt(6) == 1) { %>
+								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
+									data-content="
+  										<p><%=rs.getString(4)%></p><br>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
+  										</div>
+  									">
+									<div class="caption complete">
+										<div class="seminarTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Date Created:</strong>
+											<%=rs.getDate(5)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>COMPLETED</span>
+										</p>
 									</div>
-  									<div class='someButton'>
-  										<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  									</div>
-  								">
-								<div class="caption">
-									<div class="seminarTitle">
-										<h3><%=rs.getString(3)%></h3>
+								</button>
+							<% } else { %>
+								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
+									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
+									data-content="
+  										<p><%=rs.getString(4)%></p><br>
+  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+										</div>
+  										<div class='someButton'>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
+  										</div>
+  									">
+									<div class="caption">
+										<div class="seminarTitle">
+											<h3><%=rs.getString(3)%></h3>
+										</div>
+										<p>
+											<strong>Date Created:</strong>
+											<%=rs.getDate(5)%>
+										</p>
+										<p>
+											<strong>Status:</strong>
+											<span>ONGOING</span>
+										</p>
 									</div>
-									<p>
-										<strong>Date Created:</strong>
-										<%=rs.getDate(5)%></p>
-									<p>
-										<strong>Completed:</strong>
-										<%
-											if (rs.getInt(6) == 1)
-													out.print("Completed");
-												else
-													out.print("Ongoing");
-										%>
-									</p>
-								</div>
-							</button>
+								</button>
+							<% } %>
 						</div>
 
 
@@ -178,7 +257,6 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
 <!-- FOR SESSION MODAL -->

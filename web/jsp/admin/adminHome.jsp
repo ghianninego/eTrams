@@ -6,23 +6,20 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 
-<script src="../../js/jquery.js"></script>
+	<script src="../../js/jquery.js"></script>
+	
+	<link rel='stylesheet' href='../../Calendar/fullcalendar.css' />
+	<link rel='stylesheet' href='../../css/calendar.css' />
 
-<link rel='stylesheet' href='../../Calendar/fullcalendar.css' />
-<link rel='stylesheet' href='../../css/calendar.css' />
-
-
-<title>UST eTrams - Home</title>
+	<title>UST eTrams - Home</title>
 </head>
 
 <body>
@@ -54,45 +51,49 @@
 
 					<!-- Announcements Container -->
 					<div class="someContainer">
-
+					<%
+						int z = 1;
+						boolean q = announcement.next();
+						if(!q){
+					%>
 						<!-- No announcement -->
 						<div class="noAnnouncement">No announcement.</div>
 						<!-- End of No announcement -->
-
+					<%
+						} else {
+							while (q) {								
+					%>
 						<!-- List of announcements -->
-						<%
-							int z = 1;
-							while (announcement.next()) {
-						%>
-						<div id="announcementList" data-datecreated="<%=announcement.getString("datecreated") %>"
-										data-anntitle="<%=announcement.getString("title")%>"
-										data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>" >
-							<div class="paginateClass announcements fade in"
-								id="announcement">
+						<div id="announcementList">
+							<div class="paginateClass" id="announcements"
+									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
+									data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>">
 
 								<h4><%=announcement.getString("title")%></h4>
 								<p>
-                                        
-									<a href="#" data-toggle="modal"
-										data-target="#viewAnnouncementModal">View</a> |
-									<a href="#" data-toggle="modal"
-										data-target="#editAnnouncementModal">Edit</a> |
+									<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal">View</a> |
+									<a href="#" data-toggle="modal" data-target="#editAnnouncementModal">Edit</a> |
 									<a href="#" data-toggle="modal" data-target="#deleteModal">Delete</a>
 								</p>
 							</div>
-						</div>
-
-
-
 						<%
-							z++;
+								z++;
+								q = announcement.next();
+								}
 							}
 							announcement.first();
 							announcement.previous();
 						%>
+						</div>
 						<!-- End of List of announcements -->
-
+						
+						<p id="legend2"></p>
 						<!-- Announcements pagination -->
+						<div class="paginationHomeHolder text-center">
+							
+							<div class="holder text-center">
+        					</div>
+						</div>
 						<!-- End of Announcements pagination -->
 
 					</div>
@@ -174,6 +175,7 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
+	
 	<!-- VIEW ANNOUNCEMENT MODAL -->
 	<div class="modal fade viewAnnouncementModal"
 		id="viewAnnouncementModal" tabindex="-1" role="dialog"
@@ -279,8 +281,8 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-<script type="text/javascript" src="../../js/myscript.js"></script>
+<script type="text/javascript" src="../../js/jPages.min.js"></script>
+<script type="text/javascript" src="../../js/pagination.js"></script>
 
 <script src='../../Calendar/jquery.min.js'></script>
 <script src='../../Calendar/moment.min.js'></script>
@@ -291,7 +293,7 @@
 	$(".viewAnnouncementModal").on(
 			"show.bs.modal",
 			function(event) {
-				var url = $("#announcementList");
+				var url = $("#announcements");
 				var dateCreated = url.data("datecreated");
 				var title = url.data("anntitle");
 				var content = url.data("anncontent");
@@ -306,7 +308,7 @@
 			});
 
 	$(".editAnnouncementModal").on("show.bs.modal", function(event) {
-		var url = $("#announcementList");
+		var url = $("#announcements");
 		var title = url.data("anntitle");
 		var content = url.data("anncontent");
 		var id = url.data("annid");
@@ -320,7 +322,7 @@
 	});
 
 	$(".deleteModal").on("show.bs.modal", function(event) {
-		var url = $("#announcementList");
+		var url = $("#announcements");
 		var id = url.data("annid");
 
 		var modal = $(this);

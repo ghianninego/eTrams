@@ -33,6 +33,26 @@
 						
 			 		<!-- Content -->
 			 		<div class="content">
+			 			<div class="row options">
+			 			
+			 				<!-- Search -->
+							<div class="col-sm-offset-9 col-sm-3">
+								<form method="post" action="../../dbcontrol">
+									<input type="hidden" name="requestType" value="searchName">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+							
+			 			</div>
+			 			
+			 			<br>
+			 			
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -44,7 +64,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 							<%while(allUser.next()){ %>
 								<tr>
 									<td><%=allUser.getString("accountID")%></td>
@@ -65,6 +85,12 @@
 						
 							</tbody>
 						</table>
+						
+						<!-- Announcements pagination -->
+						<p id="legend1"></p>
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
 						
 						<br>
 						<div class="someButton">
@@ -190,8 +216,8 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
 	
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
 </html>

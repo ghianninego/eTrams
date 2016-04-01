@@ -18,7 +18,7 @@
 	<body>
 				
 		<!-- Header -->
-		<%@ include file= "adminHeader.jsp" %>
+		<%@ include file= "coordinatorHeader.jsp" %>
 		<!-- End of Header -->
 				
 		<!-- Container -->
@@ -91,11 +91,10 @@
 							</tbody>
 						</table>
 						
-						<!-- pagination -->
-						<p id="legend1"></p>
+						<!-- Announcements pagination -->
 						<div class="holder text-center">
         				</div>
-						<!-- End of pagination -->
+						<!-- End of Announcements pagination -->
 			 		
 			 		</div>
 			 		<!-- End of Content -->

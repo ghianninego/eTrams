@@ -12,7 +12,7 @@
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		
-		<title>UST eTrams - My Account</title>
+		<title>UST eTrams - My Account: Profile</title>
 	</head>
 	
 	<body>
@@ -25,8 +25,8 @@
 		<div class="container">
 			<div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header">My Account</h1>
-			 		
+			 		<h1 class="page-header"><small>My Account:</small> Profile</h1>
+			 			
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<div class="row account">
@@ -72,7 +72,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
 								</div>
-							<form class="form-horizontal" action="." method="">
+							<form class="form-horizontal" action="" method="">
 								<div class="modal-body">
 								
 									<!-- New Password-->
@@ -110,7 +110,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
 								</div>
-							<form class="form-horizontal" action="" method="post">
+							<form class="form-horizontal" action="" method="">
 								<div class="modal-body">
 								
 									<!-- Name-->
@@ -146,7 +146,7 @@
 					</div>
 					<!-- EDIT PROFILE MODAL -->
 					<!-- End of Modals -->
-					
+			 			
 			 	</div>
 			 </div>
 		</div>
@@ -161,8 +161,5 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
 		
 </html>

@@ -28,7 +28,8 @@
 					<li><a href="../../dbcontrol?requestType=home">Home</a></li>
 				<% } %>
 				
-				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp")) { %>
+				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp") || 
+						x.equals("adminManageCertification.jsp") || x.equals("frontDeskInterface.jsp")) { %>
                  	<li class="active"><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
                	<% } else { %>
 					<li><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
@@ -45,16 +46,16 @@
                  	<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
-            				<li><a href="../../dbcontrol?requestType=adminUser">Users</a></li>
+            				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminColleges">Faculties/Colleges/Institutes</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="adminVenues.jsp">Venues</a></li>
+            				<li><a href="../../dbcontrol?requestType=goToAdminVenue">Venues</a></li>
           				</ul>
         			</li>
                	<% } else { %>
 					<li class="dropdown">
-        			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
         				<ul class="dropdown-menu">
             				<li><a href="../../dbcontrol?requestType=adminUser">All Users</a></li>
             				<li role="separator" class="divider"></li>

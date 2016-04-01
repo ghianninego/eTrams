@@ -47,7 +47,59 @@
 					{
 					%>
 			 		<div class="content">
-			 			<h3>Certified Participants</h3>
+			 			
+			 			<div class="row options">
+			 				<!-- Filter Data -->
+							<div class="col-sm-2">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="All">All</div>
+											<div data-value="Complete">Complete</div>
+											<div data-value="Incomplete">Incomplete</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Filter -->
+						
+							<!-- Other Filter Data -->
+							<div class="col-sm-3">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+											<div data-value="DateAsc">By Date (Asc)</div>
+											<div data-value="DateAsc">By Date (Desc)</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Other Filter -->
+						
+							<!-- Search -->
+							<div class="col-sm-offset-4 col-sm-3">
+								<form method="post" action="">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+						</div>
+						
+						<br>
+						
   						<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -60,7 +112,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 								<%
 									while(rs2.next())
 									{
@@ -78,7 +130,7 @@
 									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>">
 			 							<%=rs2.getString(6) %>
 			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="0">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>">Set Attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>">Set Attendance</a></td>			
 								</tr>
 								
 								<% 	
@@ -86,61 +138,74 @@
 								    } rs2.first(); rs2.previous();%>
 							</tbody>
 						</table>
-  							
-			 			<br>
-			 			
-			 			<h3>Uncertified Participants</h3>
-						<table class="table table-condensed table-striped table-hover ">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Time In</th>
-									<th>Time Out</th>
-									<th>Status</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								 
-								int uncertParticipants = certParticipants;
-								int counter = 1;
-									while(rs2.next())
-									{
-										String timeIn = format.format(rs2.getTime(4));
-										String timeOut = format.format(rs2.getTime(5));
-										if (rs2.getInt(7) == 0)
-										{ System.out.println("U: " + uncertParticipants);
-								%>
-								<tr>
-									<td><%= counter %></td>
-									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
-									<td><%= rs2.getString(12) %></td>
-									<td><%= timeIn %></td>
-									<td><%= timeOut%></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>" >
-			 							<%=rs2.getString(6) %>
-			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="1">Certify</a> - 
-										<a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1)%>">Set Attendance</a>
-									</td>			
-								</tr>
-								
-								<% 		
-							    uncertParticipants++; counter++;}
-								    } rs2.first(); rs2.previous();%>
-							</tbody>
-						</table>
-			 		</div>
-			 		<% } else { %>
+						
+						<!-- Announcements pagination -->
+						<p id="legend1"></p>
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
+						
+					</div>
 			 		<!-- End of Content -->
+			 		
+			 		<% } else { %>
 			 		
 			 		<!-- For Ongoing/Unfinished Sessions -->
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<h3>Registered Participants</h3>
+			 			<div class="row options">
+			 			
+			 				<!-- Filter Data -->
+							<div class="col-sm-2">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="All">All</div>
+											<div data-value="Complete">Complete</div>
+											<div data-value="Incomplete">Incomplete</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Filter -->
+						
+							<!-- Other Filter Data -->
+							<div class="col-sm-3">
+								<form action="">
+									<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+											<div data-value="DateAsc">By Date (Asc)</div>
+											<div data-value="DateAsc">By Date (Desc)</div>
+										</div>
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Filter</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Other Filter -->
+						
+							<!-- Search -->
+							<div class="col-sm-offset-4 col-sm-3">
+								<form method="post" action="">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+						</div>
+						
+						<br>
+						
 			 			<table class="table table-condensed table-striped table-hover ">
 							<thead>
 								<tr>
@@ -150,7 +215,7 @@
 									<th>Status</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 							<% 
 								while (rs2.next())
 								{
@@ -166,6 +231,13 @@
 							</tbody>
 						</table>
 						
+						<!-- Announcements pagination -->
+						<p id="legend1"></p>
+						<div class="holder text-center">
+        				</div>
+						<!-- End of Announcements pagination -->
+						
+						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
@@ -254,10 +326,10 @@
 								            	<div class="form-group">`
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
-															<select name="status">
-								        						<option value="Complete">Complete</option>
-								        						<option value="Incomplete">Incomplete</option>
-								        					</select>
+								        				<div class="bfh-selectbox" data-name="status" id="status">
+								        					<div data-value="Complete">Complete</div>
+								        					<div data-value="Incomplete">Incomplete</div>
+								        				</div>
 								            		</div>
 								            	</div>
 								            </div>
@@ -270,29 +342,6 @@
 									</div>
 								</div>
 								<!-- SET STATUS MODAL -->
-								
-								
-								<!-- CERTIFY MODAL -->
-								<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form action="../../dbcontrol" method="post">
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<p id="certText">Are you sure you want to certify this participant?</p>
-												<div class="someButton text-center">
-													<input type="hidden" name="requestType" value="certify" />
-													<input type="hidden" id="certification" name="certification" value="" />
-													<input type="hidden" id="attendanceID" name="attendanceID" value="" />
-												
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-									</div>
-								</div>
-								<!-- CERTIFY MODAL -->
 								
 								<!-- ATTENDANCE MODAL -->
 								<div class="modal fade attendanceModal" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -323,7 +372,6 @@
 								            		</div>
 								            	</div>
 								            	
-								            	<p><br><br></p>
 								            </div>
 								            <div class="modal-footer">
 								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
@@ -335,20 +383,18 @@
 								</div>
 								<!-- ATTENDANCE MODAL -->
 	</body>
-	
-	
 
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
-		
+	
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
-
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
 	
 	<script type="text/javascript">
 		$(".setStatusModal").on(

@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminColleges.jsp">Faculties/Colleges/Institutes</a> /</small>
+			 		<h1 class="page-header"><small><a href="../../dbcontrol?requestType=goToAdminColleges"><%= session.getAttribute("collegeName") %></a> /</small>
 			 			Departments
 			 		</h1>
 			 		
@@ -42,7 +42,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="someTable">
 								<% ResultSet rs = (ResultSet) session.getAttribute("departments");
 									while(rs.next()) {%>
 								<tr>
@@ -53,6 +53,12 @@
 								<% } rs.first(); rs.previous(); %>
 							</tbody>
 						</table>
+						
+						<!-- pagination -->
+						<p id="legend1"></p>
+						<div class="holder text-center">
+        				</div>
+						<!-- End of pagination -->
 						
 						<br>
 						<div class="someButton">
@@ -168,8 +174,9 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 		
-	<script type="text/javascript" src="../../js/jquery.bootpag.min.js"></script>
-	<script type="text/javascript" src="../../js/myscript.js"></script>
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
+	<script type="text/javascript" src="../../js/pagination.js"></script>
+	
 	<script type="text/javascript">
 		$(".deleteModal").on(
 				"show.bs.modal",
