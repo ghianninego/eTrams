@@ -215,8 +215,11 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
 					break;
 				case "adminManageUser": 
+					if(request.getParameter("flag")==null){
 					session.setAttribute("history", UserClass.getHistory(request, connection));
+					}
 					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+					
 					response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 					break;
 				case "adminManageUserDone": 
@@ -350,6 +353,11 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "searchSeminar":
 					session.setAttribute("seminars", Search.searchedSeminar(request, connection));
 					response.sendRedirect("dbcontrol?requestType=goToAdminSeminar&flag=1");
+					break;
+					
+				case "searchHistory":
+					session.setAttribute("history",Search.searchedHistory(request, connection));
+					response.sendRedirect("dbcontrol?requestType=adminManageUser&flag=1&accountId="+request.getParameter("accountId"));
 					break;
 			}
 		}

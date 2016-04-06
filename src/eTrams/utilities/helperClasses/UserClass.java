@@ -165,7 +165,7 @@ public class UserClass {
 
 	public static ResultSet getUserById(HttpServletRequest request, Connection connection) {
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
-		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		//int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
 		try {
 			PreparedStatement ps = SQLOperations.selectOneAccount(connection);
 			ps.setInt(1, accountId);

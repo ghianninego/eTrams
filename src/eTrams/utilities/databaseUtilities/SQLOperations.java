@@ -93,7 +93,7 @@ public class SQLOperations
 //-----------search
 	private static PreparedStatement searchName;
 	private static PreparedStatement searchSeminar;
-	
+	private static PreparedStatement searchHistory;
 /*-----------------------------------------------------------------------------------------
  *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
@@ -1232,5 +1232,23 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return searchSeminar;
 	}
 
+	
+	
+	public synchronized static PreparedStatement SearchHistory(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchHistory == null)
+				searchHistory = connection.prepareStatement("SELECT a.*, s.*, sem.*,ac.*  FROM attendanceTable as a, sessionTable as s, seminarTable as sem, accountTable as ac WHERE sem.seminarID = s.seminarID and a.sessionId = s.sessionId and ac.accountID = a.participantID and  ac.accountID = ? AND (sem.seminarName Like ? OR s.sessionName Like ? OR a.status like ? OR date like ?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchHistory_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchHistory");         
+		return searchHistory;
+	}
 
 }

@@ -78,4 +78,19 @@ public class Search {
 			return null;
 		}
 	}
+	
+	public static ResultSet searchedHistory(HttpServletRequest request, Connection connection) {
+		try {
+			PreparedStatement ps = SQLOperations.SearchHistory(connection);
+			ps.setString(1 , request.getParameter("accountId"));
+			ps.setString(2, "%"+request.getParameter("search")+"%");
+			ps.setString(3, "%"+request.getParameter("search")+"%");
+			ps.setString(4, "%"+request.getParameter("search")+"%");
+			ps.setString(5, "%"+numberToStringDate(request.getParameter("search"))+"%");
+			return ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
