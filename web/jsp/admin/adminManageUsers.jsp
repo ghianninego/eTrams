@@ -117,6 +117,27 @@
 						<!-- End of Profile Tab -->
 
 						<!-- Attendance Tab -->
+									<div class="row options">
+			 			
+			 				<!-- Search -->
+							<div class="col-sm-offset-9 col-sm-3">
+								<form method="post" action="../../dbcontrol">
+									<input type="hidden" name="requestType" value="searchHistory">
+									<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountID")%>">
+									<input type="hidden" name="userInfoId" value="<%=oneUser.getString("userInfoID")%>">
+									
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+							
+			 			</div>
+						
 						<%if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) { %>
 			 			<div role="tabpanel" class="tab-pane fade" id="attendance">
 			 				<br>

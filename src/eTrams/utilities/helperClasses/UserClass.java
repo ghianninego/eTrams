@@ -87,8 +87,8 @@ public class UserClass {
 		try {
 			connection.setAutoCommit(false);
 			PreparedStatement pstmt = SQLOperations.updateUserInfo(connection);
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
+			pstmt.setString(1, lastName);
+			pstmt.setString(2, firstName);
 			pstmt.setString(3, middleName);
 			pstmt.setInt(4, userInfoId);
 
@@ -165,7 +165,7 @@ public class UserClass {
 
 	public static ResultSet getUserById(HttpServletRequest request, Connection connection) {
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
-		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		//int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
 		try {
 			PreparedStatement ps = SQLOperations.selectOneAccount(connection);
 			ps.setInt(1, accountId);

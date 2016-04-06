@@ -38,10 +38,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 					
-				<%
-				if (x.equals("participantAccount_Profile.jsp") || x.equals("participantAccount_Attendance.jsp") || 
-					x.equals("participantAccount_EditProfile.jsp") || x.equals("participantAccount_EditPassword.jsp")) {
-				%>
+				<% if (x.equals("participantAccount_Profile.jsp") || x.equals("participantAccount_Attendance.jsp")) { %>
 					<li class="active dropdown">
                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                  			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>

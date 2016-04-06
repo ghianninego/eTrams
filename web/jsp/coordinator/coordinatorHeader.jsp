@@ -27,10 +27,16 @@
 					<li><a href="coordinatorHome.jsp">Home</a></li>
 				<% } %>
 				
-				<% if (x.equals("coordinatorSeminars.jsp") || x.equals("coordinatorSessions.jsp") || x.equals("coordinatorManageParticipants.jsp")) { %>
+				<% if (x.equals("coordinatorSeminars.jsp") || x.equals("coordinatorSessions.jsp") || x.equals("coordinatorManagecoordinators.jsp")) { %>
                  	<li class="active"><a href="coordinatorSeminars.jsp">Seminars & Sessions</a></li>
                	<% } else { %>
 					<li><a href="coordinatorSeminars.jsp">Seminars & Sessions</a></li>
+				<% } %>
+				
+				<% if (x.equals("coordinatorReports.jsp")) { %>
+                 	<li class="active"><a href="coordinatorReportsjsp">Seminars & Sessions</a></li>
+               	<% } else { %>
+					<li><a href="coordinatorReports.jsp">Seminars & Sessions</a></li>
 				<% } %>
 				
 				<% if (x.equals("coordinatorUsers.jsp") || x.equals("coordinatorManageUsers.jsp")) { %>
@@ -52,10 +58,29 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<% if (x.equals("coordinatorAccount.jsp")) { %>
-                 	<li class="active"><a href="coordinatorAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+				
+				<% if (x.equals("coordinatorAccount_Profile.jsp") || x.equals("coordinatorAccount_Attendance.jsp")) { %>
+					<li class="active dropdown">
+                 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>
+                 		</a>
+        				<ul class="dropdown-menu">
+            				<li><a href="coordinatorAccount_Profile.jsp">Profile</a></li>
+            				<li role="separator" class="divider"></li>
+            				<li><a href="coordinatorAccount_Attendance.jsp">Attendance History</a></li>
+          				</ul>
+        			</li>
                	<% } else { %>
-					<li><a href="coordinatorAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+               		<li class="dropdown">
+                 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>
+                 		</a>
+        				<ul class="dropdown-menu">
+            				<li><a href="coordinatorAccount_Profile.jsp">Profile</a></li>
+            				<li role="separator" class="divider"></li>
+            				<li><a href="coordinatorAccount_Attendance.jsp">Attendance History</a></li>
+          				</ul>
+        			</li>
 				<% } %>
 				
 				<li><a href="../../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

@@ -186,7 +186,20 @@ public class ManageParticipantsClass {
 		return 0;
 	}
 	
-	
+	public static ResultSet filteredAttendance(Connection connection, int seminarID, String filter)
+	{
+		PreparedStatement ps = SQLOperations.FilterSessionsCert(connection);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, Integer.parseInt(filter));
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
 	
 	public static void addMultipleParticipants(HttpServletRequest request, Connection connection)
 	{

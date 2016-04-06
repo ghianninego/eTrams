@@ -86,9 +86,11 @@
 						%>
 						</div>
 						<!-- End of List of announcements -->
-
+						
+						<p id="legend2"></p>
 						<!-- Announcements pagination -->
-						<div class="paginationHolder">
+						<div class="paginationHomeHolder text-center">
+							
 							<div class="holder text-center">
         					</div>
 						</div>

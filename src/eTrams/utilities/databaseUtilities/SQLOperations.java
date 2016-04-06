@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 
 
 public class SQLOperations 
@@ -81,12 +83,19 @@ public class SQLOperations
 //-----------select COUNT RECORDS
 	private static PreparedStatement countSessions;
 	private static PreparedStatement countSessionsC;
+//-----------filter
+	private static PreparedStatement filterComplete;
+	private static PreparedStatement filterCert;
 	
 //-----------login
 	private static PreparedStatement login;
-	
+
+//-----------search
+	private static PreparedStatement searchName;
+	private static PreparedStatement searchSeminar;
+	private static PreparedStatement searchHistory;
 /*-----------------------------------------------------------------------------------------
-*******************************************INSERT****************************************** 
+ *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
 
 	
@@ -1151,4 +1160,95 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("selectOne login");         
 		return login;
 	}
+	
+//---------------filter
+	public synchronized static PreparedStatement FilterSessionsComp(Connection connection)
+	{
+		
+		try 
+		{
+			if (filterComplete == null)
+				filterComplete = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , accountTable.* , VenueTable.* , userInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and seminarTable.seminarID = sessiontable.seminarID and sessiontable.active > 0 and seminarTable.seminarID=? and sessiontable.status = ?  ORDER BY Date DESC");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT filterComplete_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT filterComplete");         
+		return filterComplete;
+	}
+	
+	public synchronized static PreparedStatement FilterSessionsCert(Connection connection)
+	{
+		
+		try 
+		{
+			if (filterCert == null)
+				filterCert = connection.prepareStatement("SELECT AttendanceTable.* , UserInfoTable.*, CollegeTable.* FROM AccountTable, AttendanceTable, UserInfoTable, DepartmentTable, CollegeTable WHERE AttendanceTable.participantID = AccountTable.AccountID AND AccountTable.userInfoID = UserInfoTable.userInfoID AND UserInfoTable.departmentID = DepartmentTable.departmentID AND DepartmentTable.collegeID = CollegeTable.collegeID AND attendanceTable.certification = ?  ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT filterCerte_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT filterCert");         
+		return filterCert;
+	}
+	
+	public synchronized static PreparedStatement SearchName(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchName == null)
+				searchName = connection.prepareStatement("SELECT a.AccountId , a.userName, a.password,a.active , u.userInfoId , u.firstName , u.middleName , u.lastName, "
+						+ "a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
+						+ " where a.active = 1 and a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId and (u.lastName like ? OR u.MiddleName like ? OR u.firstName like ? OR d.departmentName like ? OR c.collegeName like ? OR r.roleName like ?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchName_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchName");         
+		return searchName;
+	}
+	
+	public synchronized static PreparedStatement SearchSeminar(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchSeminar == null)
+				searchSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE Active = 1 AND (seminarName like ? OR DateCreated like ?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchSeminar_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchSeminar");         
+		return searchSeminar;
+	}
+
+	
+	
+	public synchronized static PreparedStatement SearchHistory(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchHistory == null)
+				searchHistory = connection.prepareStatement("SELECT a.*, s.*, sem.*,ac.*  FROM attendanceTable as a, sessionTable as s, seminarTable as sem, accountTable as ac WHERE sem.seminarID = s.seminarID and a.sessionId = s.sessionId and ac.accountID = a.participantID and  ac.accountID = ? AND (sem.seminarName Like ? OR s.sessionName Like ? OR a.status like ? OR date like ?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchHistory_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchHistory");         
+		return searchHistory;
+	}
+
 }

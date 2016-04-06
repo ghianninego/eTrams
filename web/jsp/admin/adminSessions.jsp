@@ -36,6 +36,46 @@
 
 				<!-- Content -->
 				<div class="content">
+				
+					<div class="row options">
+			 			<!-- Filter Data -->
+						<div class="col-sm-2">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="All">All</div>
+										<div data-value="ongoing">Ongoing</div>
+										<div data-value="completed">Completed</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Filter -->
+						
+						<!-- Other Filter Data -->
+						<div class="col-sm-3">
+							<form action="">
+								<div class="input-group">
+									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
+										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
+										<div data-value="DateAsc">By Date (Asc)</div>
+										<div data-value="DateAsc">By Date (Desc)</div>
+									</div>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">Filter</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						<!-- End of Other Filter -->
+			 		</div>
+			 		
+			 		<br>
+			 		
 					<div class="row">
 						<%
 							ResultSet rs = (ResultSet) session.getAttribute("session");
@@ -57,17 +97,14 @@
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
 									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
 									data-content="
-  										<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
-  											<strong>Date:</strong> <%=rs.getDate(7)%><br>
-  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
-  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  										</p>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  											<a class='btn btn-yellow btn-block' href='adminManageCertification.jsp'>Manage Certification</a>
+  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
   										</div>
   									">
 
@@ -76,32 +113,34 @@
 											<h3><%=rs.getString(3)%></h3>
 										</div>
 										<p>
-											<strong>Capacity:</strong>
-											<%=rs.getInt(6)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>COMPLETED</span>
+											<strong>Time:</strong> <%=str%> - <%=str2%>
+											<br>
+  											<strong>Date:</strong> <%=rs.getDate(7)%>
+  											<br>
+  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%>
+  											<br>
+  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
+  											<br>
+  											<strong>Capacity:</strong> <%=rs.getInt(6)%>
+											<br>	
+											<strong>Status:</strong> <span>COMPLETED</span>
 										</p>
 									</div>
 								</button>
+								
 							<% } else { %>
 								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
 									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
 									data-content="
-  										<p><strong>Time:</strong> <%=str%> - <%=str2%><br>
-  											<strong>Date:</strong> <%=rs.getDate(7)%><br>
-  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%><br>
-  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  										</p>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
+  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
   										</div>
   									">
 
@@ -110,12 +149,17 @@
 											<h3><%=rs.getString(3)%></h3>
 										</div>
 										<p>
-											<strong>Capacity:</strong>
-											<%=rs.getInt(6)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>ONGOING</span>
+											<strong>Time:</strong> <%=str%> - <%=str2%>
+											<br>
+  											<strong>Date:</strong> <%=rs.getDate(7)%>
+  											<br>
+  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%>
+											<br>
+  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
+  											<br>
+											<strong>Capacity:</strong> <%=rs.getInt(6)%>
+											<br>
+											<strong>Status:</strong> <span>ONGOING</span>
 										</p>
 									</div>
 								</button>
@@ -129,7 +173,7 @@
 							rs.previous();
 						%>
 					</div>
-
+ 
 					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
@@ -198,7 +242,8 @@
 										<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 										<div class="col-sm-10">
 											<div class="bfh-selectbox" data-name="sessionVenue"
-												id="sessionVenue" data-value="1" data-filter="true">
+												id="sessionVenue" data-value="--" data-filter="true">
+												<div data-value>--</div>
 												<%
 													while (rs2.next()) {
 												%>
@@ -227,7 +272,7 @@
 										</div>
 									</div>
 
-									<!-- Session STEKA PUKINGINA SANDALI. WAG KANG MAGMADALI. INAAYOS dibapeaker -->
+									<!-- Speaker -->
 									<div class="form-group">
 										<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
 										<div class="col-sm-10">
@@ -429,6 +474,9 @@
 <!-- FOR SESSION MODAL -->
 <script type="text/javascript" src="../../js/sessionModal.js"></script>
 <script type="text/javascript">
+	function showInfo(){
+    	$('.popover-content').html($('#moreInfo').html())
+	}
 		$(".editSessionModal").on(
 				"show.bs.modal",
 				function(event) {

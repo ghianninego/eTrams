@@ -28,7 +28,8 @@
 					<li><a href="../../dbcontrol?requestType=home">Home</a></li>
 				<% } %>
 				
-				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp")) { %>
+				<% if (x.equals("adminSeminars.jsp") || x.equals("adminSessions.jsp") || x.equals("adminManageParticipants.jsp") || 
+						x.equals("adminManageCertification.jsp") || x.equals("frontDeskInterface.jsp")) { %>
                  	<li class="active"><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
                	<% } else { %>
 					<li><a href="../../dbcontrol?requestType=goToAdminSeminar">Seminars & Sessions</a></li>
