@@ -12,6 +12,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - Faculties/Colleges/Institutes - Departments</title>
 	</head>
@@ -34,11 +35,11 @@
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<h3>College Name</h3>
-			 			<table class="table table-condensed table-striped table-hover ">
+			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>Department ID #</th>
-									<th>Department</th>
+									<th data-sortable="true">Department ID #</th>
+									<th data-sortable="true">Department</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -173,9 +174,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<script type="text/javascript">
 		$(".deleteModal").on(

@@ -11,6 +11,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - Seminars & Sessions - Front-Desk Interface</title>
 	</head>
@@ -58,15 +59,15 @@
 			 	
   						<br><br>
 			 			<h3>List of Confirmed Attendies</h3>
-  						<table class="table table-condensed table-striped table-hover ">
+  						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
+									<th data-sortable="true">No.</th>
+									<th data-sortable="true">Name</th>
+									<th data-sortable="true">College/Faculty/Institute</th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody>
 								<tr>
 									<td>###</td>
 									<td>Surname, fname mname</td>
@@ -112,8 +113,6 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 </html>

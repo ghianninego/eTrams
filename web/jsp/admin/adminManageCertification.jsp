@@ -15,6 +15,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
 		
@@ -97,15 +98,15 @@
 						
 						<br>
 						
-  						<table class="table table-condensed table-striped table-hover ">
+  						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Time In</th>
-									<th>Time Out</th>
-									<th>Status</th>
+									<th data-sortable="true">#</th>
+									<th data-sortable="true">Name</th>
+									<th data-sortable="true">College/Faculty/Institute</th>
+									<th data-sortable="true">Time In</th>
+									<th data-sortable="true">Time Out</th>
+									<th data-sortable="true">Status</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -181,9 +182,7 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
-	
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>

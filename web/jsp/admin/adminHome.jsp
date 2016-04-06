@@ -90,7 +90,6 @@
 						<p id="legend2"></p>
 						<!-- Announcements pagination -->
 						<div class="paginationHomeHolder text-center">
-							
 							<div class="holder text-center">
         					</div>
 						</div>
@@ -282,7 +281,7 @@
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
 <script type="text/javascript" src="../../js/jPages.min.js"></script>
-<script type="text/javascript" src="../../js/pagination.js"></script>
+<script type="text/javascript" src="../../js/myscript.js"></script>
 
 <script src='../../Calendar/jquery.min.js'></script>
 <script src='../../Calendar/moment.min.js'></script>

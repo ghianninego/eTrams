@@ -11,6 +11,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - Home</title>
 	</head>
@@ -64,15 +65,15 @@
 			 				
 			 			<br>
   						<h3>Data List</h3>
-						<table class="table table-striped table-condensed">
+						<table class="table table-striped table-condensed" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>Placeholder A</th>
-									<th>Placeholder B</th>
-									<th>Placeholder C</th>
+									<th data-field="thTitle1" data-sortable="true">Placeholder A</th>
+									<th data-field="thTitle2" data-sortable="true">Placeholder B</th>
+									<th data-field="thTitle3" data-sortable="true">Placeholder C</th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody>
 								<tr>
 									<td>Placeholder A1</td>
 									<td>Placeholder B1</td>
@@ -90,12 +91,6 @@
 								</tr>
 							</tbody>
 						</table>
-						
-						<!-- pagination -->
-						<p id="legend1"></p>
-						<div class="holder text-center">
-        				</div>
-						<!-- End of pagination -->
 			 		
 			 		</div>
 			 		<!-- End of Content -->
@@ -114,7 +109,5 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 </html>

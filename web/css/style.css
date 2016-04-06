@@ -312,17 +312,15 @@ small {
 	background-color: rgba(255,222, 69, 0.8);
 }
 
+
 /******************** End of Tables ********************/
 
 
 /******************** Pagination ********************/
 #legend1 {
-	margin: auto;
+	float: left;
 	color: #2E2E2E;
-	text-align: center;
-	width: 135px;
 	padding: 3px;
-	margin-top: -10px;
 	margin-bottom: 10px;
 }
 
@@ -344,15 +342,15 @@ small {
 }
 
 .holder a {
+	color: #424242 !important;
+    padding: 8px 12px;
 	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
-	padding: 5px 10px;
-	background: rgba(250, 250, 250, 0.9);
-	font-size: 15px;
+	background: rgba(255, 255, 255, 0.9);
+	font-size: 14px;
 	cursor: pointer;
-	margin: 0px;
-	color: #2E2E2E !important;
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;
+	border: 1px solid #ddd;
 }
 
 .holder a:hover {
@@ -362,31 +360,26 @@ small {
 }
 
 .holder a.jp-previous {
-	font-size: 15px;
-	background: ;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 }
 
 .holder a.jp-next {
-	font-size: 15px;
-}
-
-.holder a.jp-last {
-	font-size: 15px;
-}
-
-.holder a.jp-first {
-	
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-right: 1px solid #ddd;
 }
 
 .holder a.jp-current, a.jp-current:hover {
 	background: #FFE156;
+	border-color: #FFE156;
 	color: #424242 !important;
 	font-weight: bold;
 }
 
 .holder a.jp-disabled, a.jp-disabled:hover {
 	color: #A4A4A4 !important;
-	background: rgba(250, 250, 250, 0.9);
+	background: rgba(255, 255, 255, 0.9);
 }
 
 .holder span {

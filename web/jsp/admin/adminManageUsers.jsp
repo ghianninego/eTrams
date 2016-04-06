@@ -14,6 +14,7 @@
 	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 
 	<title>UST eTrams - All Users - Manage Users</title>
 </head>
@@ -117,79 +118,69 @@
 						<!-- End of Profile Tab -->
 
 						<!-- Attendance Tab -->
-									<div class="row options">
-			 			
-			 				<!-- Search -->
-							<div class="col-sm-offset-9 col-sm-3">
-								<form method="post" action="../../dbcontrol">
-									<input type="hidden" name="requestType" value="searchHistory">
-									<input type="hidden" name="accountId" value="<%=oneUser.getInt("accountID")%>">
-									<input type="hidden" name="userInfoId" value="<%=oneUser.getString("userInfoID")%>">
-									
-									<div class="input-group">
-										<input name="search" type="text" class="form-control" placeholder="Search">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Search -->
-							
-			 			</div>
-						
 						<%if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) { %>
-			 			<div role="tabpanel" class="tab-pane fade" id="attendance">
-			 				<br>
-			 				<h4 style="padding-left: 35px;">There is no attendance history for this type of user.</h4>
-			 			</div>
+			 				<div role="tabpanel" class="tab-pane fade" id="attendance">
+			 					<br>
+			 					<h4 style="padding-left: 35px;">There is no attendance history for this type of user.</h4>
+			 				</div>
+			 			
 			 			<% } else { %>
-						<div role="tabpanel" class="tab-pane fade" id="attendance">
-							<br> <br>
-							<table class="table table-condensed table-striped table-hover ">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Seminar</th>
-										<th>Session</th>
-										<th>Time Start</th>
-										<th>Time End</th>
-										<th>Date</th>
-										<th>Status</th>
-										<th>Certification</th>
-									</tr>
-								</thead>
-								<%
-									while (history.next()) {
-								%>
-								<tbody id="someTable">
-									<tr>
-										<td><%=history.getInt("attendanceID")%></td>
-										<td><%=history.getString("seminarName")%></td>
-										<td><%=history.getString("sessionName")%></td>
-										<td><%=history.getString("TimeIn")%></td>
-										<td><%=history.getString("TimeOut")%></td>
-										<td><%=history.getString("Date")%></td>
-										<td><a href="#" data-toggle="modal"
-											data-target="#setStatusModal"> Completed </a></td>
-										<td>certified</td>
-									</tr>
-								</tbody>
-
-								<%
-									}
-									history.first();
-									history.previous();
-								%>
-
-							</table>
-							
-							<!-- Announcements pagination -->
-							<div class="holder text-center">
-        					</div>
-							<!-- End of Announcements pagination -->
-							
-						</div>
+			 			
+							<div role="tabpanel" class="tab-pane fade" id="attendance">
+								<br>
+								<div class="row options">
+			 					<!-- Search -->
+								<div class="col-sm-offset-9 col-sm-3">
+									<form method="post" action="../../dbcontrol">
+										<input type="hidden" name="requestType" value="searchName">
+										<div class="input-group">
+											<input name="search" type="text" class="form-control" placeholder="Search">
+											<span class="input-group-btn">
+												<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+											</span>
+										</div>
+									</form>
+								</div>
+								<!-- End of Search -->
+			 				</div>
+			 				
+								<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
+									<thead>
+										<tr>
+											<th data-field="historyId" data-sortable="true">#</th>
+											<th data-field="seminarName" data-sortable="true">Seminar</th>
+											<th data-field="sessionName" data-sortable="true">Session</th>
+											<th data-field="timeStart" data-sortable="true">Time Start</th>
+											<th data-field="timeEnd" data-sortable="true">Time End</th>
+											<th data-field="date" data-sortable="true">Date</th>
+											<th data-field="status" data-sortable="true">Status</th>
+											<th data-field="certification" data-sortable="true">Certification</th>
+										</tr>
+									</thead>
+									<tbody id="someTable">
+									<%
+										while (history.next()) {
+									%>
+										<tr>
+											<td><%=history.getInt("attendanceID")%></td>
+											<td><%=history.getString("seminarName")%></td>
+											<td><%=history.getString("sessionName")%></td>
+											<td><%=history.getString("TimeIn")%></td>
+											<td><%=history.getString("TimeOut")%></td>
+											<td><%=history.getString("Date")%></td>
+											<td><a href="#" data-toggle="modal"
+												data-target="#setStatusModal"> Completed </a></td>
+											<td>certified</td>
+										</tr>
+									<%
+										}
+										history.first();
+										history.previous();
+									%>
+									</tbody>
+								</table>
+								
+							</div>
 						<% } %>
 						<!-- End of Attendance Tab -->
 
@@ -392,9 +383,7 @@
 <script src="../../js/jquery.js"></script>
 <script src="../../js/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-
-<script type="text/javascript" src="../../js/jPages.min.js"></script>
-<script type="text/javascript" src="../../js/pagination.js"></script>
+<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 <script type="text/javascript">
 	$(".editProfileModal").on("show.bs.modal", function(event) {

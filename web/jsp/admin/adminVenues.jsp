@@ -5,17 +5,16 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="../../css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="../../css/headerAndFooter.css" />
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet"
-	type="text/css" />
+	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 
-<title>UST eTrams - Venues</title>
+	<title>UST eTrams - Venues</title>
 </head>
 
 <body>
@@ -32,11 +31,11 @@
 
 				<!-- Content -->
 				<div class="content">
-					<table class="table table-condensed table-striped table-hover ">
+					<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 						<thead>
 							<tr>
-								<th>Venue ID #</th>
-								<th>Building</th>
+								<th data-field="venueId" data-sortable="true">Venue ID #</th>
+								<th data-field="building" data-sortable="true">Building</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -56,8 +55,6 @@
 									data-venueid="<%=rs.getInt(1)%>">Delete</a></td>
 							</tr>
 
-
-
 							<%
 								venues++;
 								}
@@ -67,13 +64,6 @@
 						</tbody>
 					</table>
 					
-					<!-- pagination -->
-					<p id="legend1"></p>
-					<div class="holder text-center">
-        			</div>
-					<!-- End of pagination -->
-						
-					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
 							data-target="#newVenueModal">
@@ -163,11 +153,9 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(".editVenueModal").on(
 				"show.bs.modal",
 				function(event) {

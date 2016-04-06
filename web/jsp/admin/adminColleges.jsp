@@ -12,6 +12,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - Faculties/Colleges/Institutes</title>
 	</head>
@@ -32,11 +33,11 @@
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<table class="table table-condensed table-striped table-hover ">
+			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>College ID #</th>
-									<th>College/Faculty/Institute</th>
+									<th data-field="collegeId" data-sortable="true">College ID #</th>
+									<th data-field="collegeName" data-sortable="true">College/Faculty/Institute</th>
 									<th>Departments</th>
 									<th></th>
 								</tr>
@@ -55,13 +56,6 @@
 							</tbody>
 						</table>
 						
-						<!-- pagination -->
-						<p id="legend1"></p>
-						<div class="holder text-center">
-        				</div>
-						<!-- End of pagination -->
-						
-						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newFacultyModal">
   								<span class="glyphicon glyphicon-plus"></span> Add New College
@@ -167,9 +161,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<script type="text/javascript">
 		$(".deleteModal").on(

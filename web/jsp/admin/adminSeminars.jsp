@@ -85,10 +85,11 @@
 			 		
 			 		<br>
 			 		
-					<div class="row">
+					<div class="row" id="ssList">
 						<%
 							ResultSet rs = (ResultSet) session.getAttribute("seminars");
 							int seminars = 0;
+							
 							while (rs.next()) {
 						%>
 						<div class="col-sm-6 col-md-3">
@@ -159,6 +160,14 @@
 							rs.previous();
 						%>
 					</div>
+					
+					<!-- Announcements pagination -->
+					<p id="legend1"></p>
+					<br><br>
+					<div class="holder">
+   					</div>
+					<!-- End of Announcements pagination -->
+					
 					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
@@ -258,6 +267,7 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
+<script type="text/javascript" src="../../js/jPages.min.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
 <!-- FOR SESSION MODAL -->

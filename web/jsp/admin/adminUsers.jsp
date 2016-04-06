@@ -15,6 +15,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - All Users</title>
 	</head>
@@ -53,18 +54,18 @@
 			 			
 			 			<br>
 			 			
-			 			<table class="table table-condensed table-striped table-hover ">
+			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>ID #</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Department</th>
-									<th>Role</th>
+									<th data-field="userId" data-sortable="true">ID #</th>
+									<th data-field="userName" data-sortable="true">Name</th>
+									<th data-field="userCollege" data-sortable="true">College/Faculty/Institute</th>
+									<th data-field="userDepartment" data-sortable="true">Department</th>
+									<th data-field="userRole" data-sortable="true">Role</th>
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody>
 							<%while(allUser.next()){ %>
 								<tr>
 									<td><%=allUser.getString("accountID")%></td>
@@ -86,13 +87,6 @@
 							</tbody>
 						</table>
 						
-						<!-- Announcements pagination -->
-						<p id="legend1"></p>
-						<div class="holder text-center">
-        				</div>
-						<!-- End of Announcements pagination -->
-						
-						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#newAccountModal">
   								<span class="glyphicon glyphicon-plus"></span> Create Account
@@ -216,8 +210,5 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
-	
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 </html>

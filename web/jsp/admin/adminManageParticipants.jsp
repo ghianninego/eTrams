@@ -15,6 +15,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/jquery_ui/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
 		
@@ -66,26 +67,8 @@
 							</div>
 							<!-- End of Filter -->
 						
-							<!-- Other Filter Data -->
-							<div class="col-sm-3">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
-											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
-											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
-											<div data-value="DateAsc">By Date (Asc)</div>
-											<div data-value="DateAsc">By Date (Desc)</div>
-										</div>
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Other Filter -->
-						
 							<!-- Search -->
-							<div class="col-sm-offset-4 col-sm-3">
+							<div class="col-sm-offset-7 col-sm-3">
 								<form method="post" action="">
 									<div class="input-group">
 										<input name="search" type="text" class="form-control" placeholder="Search">
@@ -100,15 +83,15 @@
 						
 						<br>
 						
-  						<table class="table table-condensed table-striped table-hover ">
+  						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Time In</th>
-									<th>Time Out</th>
-									<th>Status</th>
+									<th data-sortable="true">#</th>
+									<th data-sortable="true">Name</th>
+									<th data-sortable="true">College/Faculty/Institute</th>
+									<th data-sortable="true">Time In</th>
+									<th data-sortable="true">Time Out</th>
+									<th data-sortable="true">Status</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -138,12 +121,6 @@
 								    } rs2.first(); rs2.previous();%>
 							</tbody>
 						</table>
-						
-						<!-- Announcements pagination -->
-						<p id="legend1"></p>
-						<div class="holder text-center">
-        				</div>
-						<!-- End of Announcements pagination -->
 						
 					</div>
 			 		<!-- End of Content -->
@@ -206,13 +183,13 @@
 						
 						<br>
 						
-			 			<table class="table table-condensed table-striped table-hover ">
+			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Status</th>
+									<th data-sortable="true">#</th>
+									<th data-sortable="true">Name</th>
+									<th data-sortable="true">College/Faculty/Institute</th>
+									<th data-sortable="true">Status</th>
 								</tr>
 							</thead>
 							<tbody id="someTable">
@@ -231,12 +208,6 @@
 							</tbody>
 						</table>
 						
-						<!-- Announcements pagination -->
-						<p id="legend1"></p>
-						<div class="holder text-center">
-        				</div>
-						<!-- End of Announcements pagination -->
-						
 						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
@@ -247,7 +218,7 @@
 			 		<% } rs.previous(); %>
 			 		<!-- End of Content -->
 			 		
-					<!-- ADD PARTICIPANTS_MODAL -->
+					<!-- ADD PARTICIPANTS MODAL -->
 					<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
@@ -259,32 +230,23 @@
 					            <div class="modal-body">
 					            	<input type="hidden" name="requestType" value="addParticipants"/>
 									<div class="form-group">
-										<label for="Participant Names" class="col-sm-2 control-label" id="participantLabel" >Participants (1)</label>
-										<div class="col-sm-10">
-					                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->	                    	
-						                    <% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants"); %>
-					                    	<select class="participantLists hidden">
-					                    	<% while(rs3.next())
-					                    		{ %>
-					                        	<option value="<%=rs3.getInt(1)%>"> <%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %> </option>
-					                        <% } rs3.first(); rs3.previous();%>
-					                        </select>
-					                    	<!-- MUST STORE ALL NAMES FROM DATABASE TO HIDDEN SELECT -->
-					
-					                        
-											<div class="row participantList">
-												<div id="participantGroup_1">
-													<div class="col-sm-2">
-														<label class="control-label">Participant 1</label>
-													</div>
-													<div class="col-sm-10">
-														<div class="input-group ui-widget">
-															<input type="text" id="participant_1" name="participants" class="form-control" placeholder="Please type the participant's name here" required />
-															<div class="input-group-addon"><button type="button" onclick="return addParticipant()" class="glyphicon glyphicon-plus"></button></div>
-														</div>
-													</div>
-												</div>
-											</div>
+									
+										<div style="padding-left: 15px;">
+											<h4>Select participant/s to register to this session:</h4>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-10">
+										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
+					                    	while(rs3.next())
+					                    	{
+					                   	%>
+					                    	<div class="checkbox">
+					                    		<label>
+					                    			<input type="checkbox" value="<%=rs3.getInt(1)%>">
+					                    				<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>
+					                    		</label>
+					                    	</div>
+					                    <% } rs3.first(); rs3.previous();%>
 											
 										</div>
 									</div>
@@ -297,7 +259,7 @@
 					        </div>
 						</div>
 					</div>
-					<!-- ATTENDANCE MODAL -->
+					<!-- ADD PARTICIPANTS MODAL -->
 					
 			 	</div>
 			</div>
@@ -388,9 +350,7 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
-	
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
-	<script type="text/javascript" src="../../js/pagination.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
