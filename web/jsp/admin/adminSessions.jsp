@@ -52,7 +52,7 @@
 						%>
 						<div class="col-sm-6 col-md-3">
 							<% if (rs.getInt(11) == 1) { %>
-								<button class="thumbnail" id="dataContent" data-toggle="popover"
+								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
 									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
@@ -63,8 +63,8 @@
   											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
   										</p>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
@@ -86,7 +86,7 @@
 									</div>
 								</button>
 							<% } else { %>
-								<button class="thumbnail" id="dataContent" data-toggle="popover"
+								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
 									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
@@ -97,8 +97,8 @@
   											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
   										</p>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
@@ -432,7 +432,9 @@
 		$(".editSessionModal").on(
 				"show.bs.modal",
 				function(event) {
-					var url = $("#dataContent");
+					var event = $(event.relatedTarget);
+					id = event.data("sid");
+					var url = $("#dataContent_" + id);
 					var sessionName = url.data("sessionname");
 					var sessionDate = url.data("sessiondate");
 					var timeIn = url.data("timein");
@@ -461,7 +463,9 @@
 		$(".deleteModal").on(
 				"show.bs.modal",
 				function(event) {
-					var url = $("#dataContent");
+					var event = $(event.relatedTarget);
+					id = event.data("sid");
+					var url = $("#dataContent_" + id);
 					var sessionID = url.data("sessionid");
 
 					var modal = $(this);

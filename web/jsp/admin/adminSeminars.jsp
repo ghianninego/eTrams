@@ -40,12 +40,12 @@
 							
 							<%if (rs.getInt(6) == 1) { %>
 								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
-									data-content="
+									data-trigger="focus" data-html="true" data-placement="auto" 		data-content="
+										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=rs.getString(4) %>' data-semid='<%=rs.getInt(1) %>'></span>
   										<p><%=rs.getString(4)%></p><br>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
@@ -67,12 +67,13 @@
 								</button>
 							<% } else { %>
 								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto" data-semname="<%=rs.getString(3) %>" data-semtopic="<%=rs.getString(4) %>" data-semid="<%=rs.getInt(1) %>"
+									data-trigger="focus" data-html="true" data-placement="auto"
 									data-content="
+										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=rs.getString(4) %>' data-semid='<%=rs.getInt(1) %>'></span>
   										<p><%=rs.getString(4)%></p><br>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal'>Delete</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
+  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
@@ -208,13 +209,14 @@
 <script type="text/javascript" src="../../js/sessionModal.js"></script>
 <script type="text/javascript">
 	$(".editSeminarModal").on("show.bs.modal", function(event) {
-		var url = $("#buttonDivContainer");
+		var event = $(event.relatedTarget);
+		id = event.data("sid");
+		var url = $("#dataContent_" + id);
 		var semName = url.data("semname");
 		var semTopic = url.data("semtopic");
 		var semID = url.data("semid");
 
-		alert(semName);
-
+		
 		var modal = $(this);
 		modal.find("#seminarName").val(semName);
 		modal.find("#seminarID").val(semID);
@@ -223,9 +225,11 @@
 	});
 
 	$(".deleteModal").on("show.bs.modal", function(event) {
-		var url = $("#buttonDivContainer");
+		var event = $(event.relatedTarget);
+		id = event.data("sid");
+		var url = $("#dataContent_" + id);
 		var semID = url.data("semid");
-
+		
 		var modal = $(this);
 		modal.find("#seminarID").val(semID);
 
