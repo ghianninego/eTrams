@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.ResultSet" %>
 <!DOCTYPE html>
 
 <html>
@@ -30,13 +31,18 @@
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<h3	class="text-center"><span style="font-size: 20px !important;">Seminar name:</span><br>Session name</h3>
+			 			<h3	class="text-center"><span style="font-size: 20px !important;"><%= session.getAttribute("seminarName") %>:</span><br><%= session.getAttribute("sessionName") %></h3>
 			 			<br><br>
-			 			
+			 			<% ResultSet rs = (ResultSet) session.getAttribute("sessionDetails");  
+				 			ResultSet rs2 = (ResultSet) session.getAttribute("sessionParticipants");%>
 			 			<!-- Login -->
 			 			<div class="row">
 							<div class="col-sm-4 col-sm-offset-4">
-								<form class="form" action="">
+								<% 
+								rs.next();
+								if ((int)session.getAttribute("participantCount") < rs.getInt(6))
+								{	%>
+								<form class="form" action="../../dbcontrol?requestType=register" method="post">
 									<div class="form-group">
 										<input type="text" class="form-control" id="username" name="username" required="required" placeholder="Username">
 									</div>
@@ -49,10 +55,15 @@
 											<button type="submit" class="btn btn-yellow">Confirm Attendance</button>
 										</div>
 										<div class="btn-group" role="group">
-											<a type="button" class="btn btn-gray" href="adminSessions.jsp">Cancel</a>
+											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToAdminSessions">Return to Sessions</a>
 										</div>
 									</div>
 								</form>
+								<% } else {%>
+								<!--  put the message here -->
+								<% } 
+									rs.beforeFirst();
+								%>
 							</div>
 						</div>
 			 			<!-- End of Login -->
@@ -68,26 +79,17 @@
 								</tr>
 							</thead>
 							<tbody>
+							<%  
+								int attendees = 1;		
+								while (rs2.next())
+								{
+							%>
 								<tr>
-									<td>###</td>
-									<td>Surname, fname mname</td>
-									<td>IICS</td>
+									<td><%= attendees %></td>
+									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
+									<td><%= rs2.getString(12) %></td>
 								</tr>
-								<tr>
-									<td>###</td>
-									<td>Surname, fname mname</td>
-									<td>IICS</td>
-								</tr>
-								<tr>
-									<td>###</td>
-									<td>Surname, fname mname</td>
-									<td>IICS</td>
-								</tr>
-								<tr>
-									<td>###</td>
-									<td>Surname, fname mname</td>
-									<td>IICS</td>
-								</tr>
+							<% attendees++; } rs2.first(); rs2.previous(); %>
 							</tbody>
 						</table>
 						

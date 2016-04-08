@@ -101,8 +101,6 @@
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
-										if (rs2.getInt(7) == 1)
-										{System.out.println("c: " + certParticipants);
 								%>
 								<tr>
 									<td><%= certParticipants %></td>
@@ -118,7 +116,7 @@
 								
 								<% 	
 								certParticipants++;	}
-								    } rs2.first(); rs2.previous();%>
+								     rs2.first(); rs2.previous();%>
 							</tbody>
 						</table>
 						
@@ -260,7 +258,6 @@
 						</div>
 					</div>
 					<!-- ADD PARTICIPANTS MODAL -->
-					
 			 	</div>
 			</div>
 		</div>
@@ -289,8 +286,8 @@
 								            		<label for="status" class="col-sm-3 control-label">Status</label>
 								            		<div class="col-sm-8">
 								        				<div class="bfh-selectbox" data-name="status" id="status">
-								        					<div data-value="Complete">Complete</div>
-								        					<div data-value="Incomplete">Incomplete</div>
+								        					<div value="Complete" data-value="Complete">Complete</div>
+								        					<div value="Incomplete" data-value="Incomplete">Incomplete</div>
 								        				</div>
 								            		</div>
 								            	</div>

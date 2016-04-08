@@ -83,6 +83,7 @@ public class SQLOperations
 //-----------select COUNT RECORDS
 	private static PreparedStatement countSessions;
 	private static PreparedStatement countSessionsC;
+	private static PreparedStatement countSessionParticipants;
 //-----------filter
 	private static PreparedStatement filterComplete;
 	private static PreparedStatement filterCert;
@@ -1140,6 +1141,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("countSessionsC sessionTable");         
 		return countSessionsC;
+	}
+	
+	public synchronized static PreparedStatement countSessionParticipants(Connection connection)
+	{
+		try 
+		{
+			if (countSessionParticipants == null)
+				countSessionParticipants = connection.prepareStatement("SELECT COUNT(AttendanceID) FROM AttendanceTable WHERE SessionID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countSessions attendanceTabele_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countSessions attendanceTable");         
+		return countSessionParticipants;
 	}
 	
 	public synchronized static PreparedStatement login(Connection connection)

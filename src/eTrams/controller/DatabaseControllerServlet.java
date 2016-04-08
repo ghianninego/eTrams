@@ -18,6 +18,7 @@ import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.helperClasses.AnnouncementClass;
 import eTrams.utilities.helperClasses.CalendarClass;
 import eTrams.utilities.helperClasses.CollegeClass;
+import eTrams.utilities.helperClasses.FrontDeskClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
 import eTrams.utilities.helperClasses.Search;
 import eTrams.utilities.helperClasses.SeminarClass;
@@ -188,7 +189,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "certify":
 					ManageParticipantsClass.setCertification(request, connection);
-					response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+					response.sendRedirect("dbcontrol?requestType=goToAdminManageCertification&sessionID="+session.getAttribute("sessionID"));
 					break;
 					
 				case "setStatus":
@@ -199,6 +200,31 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "setAttendance":
 					ManageParticipantsClass.setTime(request, connection);
 					response.sendRedirect("dbcontrol?requestType=goToAdminManageParticipants&sessionID="+session.getAttribute("sessionID"));
+					break;
+					
+				case "goToAdminManageCertification":
+					sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+					sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					session.setAttribute("allParticipants", allParticipantAccounts);
+					session.setAttribute("sessionDetails", oneSession);
+					session.setAttribute("sessionParticipants", sessionParticipants);
+					response.sendRedirect("jsp/admin/adminManageCertification.jsp");
+					break;
+				case "goToAdminManageCertificationFromAdminSessions":
+					// retrieve participants
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					System.out.println(request.getParameter("sessionID"));
+					sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+					sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					session.setAttribute("allParticipants", allParticipantAccounts2);
+					session.setAttribute("sessionDetails", oneSession2);
+					session.setAttribute("sessionName", request.getParameter("sessionName"));
+					session.setAttribute("sessionParticipants", sessionParticipants2);
+					response.sendRedirect("jsp/admin/adminManageCertification.jsp");
 					break;
 				/// USER MANAGEMENT
 				case "adminUser": 
@@ -358,6 +384,39 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "searchHistory":
 					session.setAttribute("history",Search.searchedHistory(request, connection));
 					response.sendRedirect("dbcontrol?requestType=adminManageUser&flag=1&accountId="+request.getParameter("accountId"));
+					break;
+				/// FRONT DESK 
+				case "goToFrontDesk":
+					sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+					int participantCount = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
+					sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					session.setAttribute("allParticipants", allParticipantAccounts);
+					session.setAttribute("sessionDetails", oneSession);
+					session.setAttribute("sessionParticipants", sessionParticipants);
+					session.setAttribute("participantCount", participantCount);
+					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
+					break;
+				case "goToFrontDeskFromSessions":
+					// retrieve participants
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					System.out.println(request.getParameter("sessionID"));
+					sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+					int participantCount2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
+					sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					session.setAttribute("allParticipants", allParticipantAccounts2);
+					session.setAttribute("sessionDetails", oneSession2);
+					session.setAttribute("sessionName", request.getParameter("sessionName"));
+					session.setAttribute("sessionParticipants", sessionParticipants2);
+					session.setAttribute("participantCount", participantCount2);
+					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
+					break;
+				case "register":
+					FrontDeskClass.register(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
 					break;
 			}
 		}

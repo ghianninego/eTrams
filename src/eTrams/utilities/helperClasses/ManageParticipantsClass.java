@@ -207,4 +207,20 @@ public class ManageParticipantsClass {
 		for (int i = 0; i < values.length; i++)
 			addParticipant(request, values[i], connection);
 	}
+	
+	public static int countSessionParticipants(int sessionID, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.countSessionParticipants(connection);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, sessionID);
+			rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }

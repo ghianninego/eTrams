@@ -103,8 +103,7 @@
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
-  											<a class='btn btn-yellow btn-block' href='adminManageCertification.jsp'>Manage Certification</a>
-  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Certification</a>
   										</div>
   									">
 
@@ -140,7 +139,7 @@
 										</div>
   										<div class='someButton'>
   											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
-  											<a class='btn btn-yellow btn-block' href='frontDeskInterface.jsp'>Front-Desk Interface</a>
+  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToFrontDeskFromSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Front-Desk Interface</a>
   										</div>
   									">
 

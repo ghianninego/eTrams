@@ -106,7 +106,7 @@
 									<th data-sortable="true">College/Faculty/Institute</th>
 									<th data-sortable="true">Time In</th>
 									<th data-sortable="true">Time Out</th>
-									<th data-sortable="true">Status</th>
+									<th data-sortable="true">Certification</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -116,8 +116,6 @@
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
-										if (rs2.getInt(7) == 1)
-										{System.out.println("c: " + certParticipants);
 								%>
 								<tr>
 									<td><%= certParticipants %></td>
@@ -125,15 +123,17 @@
 									<td><%= rs2.getString(12) %></td>
 									<td><%= timeIn %></td>
 									<td><%= timeOut %></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>">
-			 							<%=rs2.getString(6) %>
-			 						</a></td>
-									<td><a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="0">Cancel certification</a> - <a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>">Set Attendance</a></td>			
+									<td><% if (rs2.getInt(7) == 1) { %> Certified <% } else { %> Uncertified <% } %> </td>
+			 						<td><% if (rs2.getInt(7) == 1) { %> <a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="0">Cancel Certification</a> <% } else { %> <a href="#" data-toggle="modal" data-target="#certifyModal" data-attendanceid="<%=rs2.getInt(1)%>" data-certification="1">Approve Certification</a> <% } %></td>			
 								</tr>
 								
 								<% 	
-								certParticipants++;	}
-								    } rs2.first(); rs2.previous(); }%>
+								certParticipants++;	} rs2.first(); rs2.previous(); 
+								    } 
+								else {
+								%>
+								<tr> <td>This session is not yet completed. Certification isn't available until session completion</td> </tr>
+								<% } %>
 							</tbody>
 						</table>
 						
