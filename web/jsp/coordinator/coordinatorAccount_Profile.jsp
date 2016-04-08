@@ -11,6 +11,7 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - My Account: Profile</title>
 	</head>
@@ -72,7 +73,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
 								</div>
-							<form class="form-horizontal" action="" method="">
+							<form class="form-horizontal" action="">
 								<div class="modal-body">
 								
 									<!-- New Password-->
@@ -96,8 +97,8 @@
 									<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
 									<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								</div>
-							</div>
 							</form>
+							</div>
 						</div>
 					</div>
 					<!-- EDIT PASSWORD MODAL -->
@@ -110,7 +111,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
 								</div>
-							<form class="form-horizontal" action="" method="">
+							<form class="form-horizontal" action="">
 								<div class="modal-body">
 								
 									<!-- Name-->
@@ -140,8 +141,8 @@
 									<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
 									<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								</div>
-							</div>
 							</form>
+							</div>
 						</div>
 					</div>
 					<!-- EDIT PROFILE MODAL -->
@@ -161,5 +162,6 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+
 </html>

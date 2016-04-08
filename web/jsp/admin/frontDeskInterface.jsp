@@ -59,8 +59,11 @@
 										</div>
 									</div>
 								</form>
+								
 								<% } else {%>
-								<!--  put the message here -->
+								
+								<h3>All Participants have been able to confirm their attendance for this session.</h3>
+								
 								<% } 
 									rs.beforeFirst();
 								%>

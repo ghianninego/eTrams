@@ -27,16 +27,18 @@
 					<li><a href="coordinatorHome.jsp">Home</a></li>
 				<% } %>
 				
-				<% if (x.equals("coordinatorSeminars.jsp") || x.equals("coordinatorSessions.jsp") || x.equals("coordinatorManagecoordinators.jsp")) { %>
+				<% if (x.equals("coordinatorSeminars.jsp") || x.equals("coordinatorSessions.jsp") || 
+						x.equals("coordinatorManageParticipants.jsp") || x.equals("coordinatorManageCertification.jsp")) {
+				%>
                  	<li class="active"><a href="coordinatorSeminars.jsp">Seminars & Sessions</a></li>
                	<% } else { %>
 					<li><a href="coordinatorSeminars.jsp">Seminars & Sessions</a></li>
 				<% } %>
 				
 				<% if (x.equals("coordinatorReports.jsp")) { %>
-                 	<li class="active"><a href="coordinatorReportsjsp">Seminars & Sessions</a></li>
+                 	<li class="active"><a href="coordinatorReportsjsp">Reports</a></li>
                	<% } else { %>
-					<li><a href="coordinatorReports.jsp">Seminars & Sessions</a></li>
+					<li><a href="coordinatorReports.jsp">Reports</a></li>
 				<% } %>
 				
 				<% if (x.equals("coordinatorUsers.jsp") || x.equals("coordinatorManageUsers.jsp")) { %>
@@ -67,7 +69,7 @@
         				<ul class="dropdown-menu">
             				<li><a href="coordinatorAccount_Profile.jsp">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="coordinatorAccount_Attendance.jsp">Attendance History</a></li>
+            				<li><a href="coordinatorAccount_History.jsp">Attendance History</a></li>
           				</ul>
         			</li>
                	<% } else { %>
@@ -78,7 +80,7 @@
         				<ul class="dropdown-menu">
             				<li><a href="coordinatorAccount_Profile.jsp">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="coordinatorAccount_Attendance.jsp">Attendance History</a></li>
+            				<li><a href="coordinatorAccount_History.jsp">Attendance History</a></li>
           				</ul>
         			</li>
 				<% } %>

@@ -216,8 +216,7 @@ small {
 	padding-bottom: 5px;
 }
 
-.btn-yellow, .btn-gray {
-	font-size: 16px !important;
+.someButton .btn, .btn-yellow {
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, .15);
 }
 
@@ -226,6 +225,7 @@ small {
 }
 
 .btn-yellow {
+	font-size: 16px !important;
 	color: #282828 !important;
     background: rgb(255,222, 69) !important;
     border-color: #F6C533 !important;
@@ -243,6 +243,7 @@ small {
 }
 
 .btn-gray {
+	font-size: 16px !important;
 	color: white !important;
     background: #2E2E2E !important;
     border-color: #585858 !important;

@@ -105,8 +105,8 @@
 									<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
 									<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								</div>
-							</div>
 							</form>
+							</div>
 						</div>
 					</div>
 					<!-- EDIT PASSWORD MODAL -->
@@ -153,8 +153,8 @@
 									<button type="submit" class="btn btn-yellow pull-left">Save Changes</button>
 									<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 								</div>
-							</div>
 							</form>
+							</div>
 						</div>
 					</div>
 					<!-- EDIT PROFILE MODAL -->

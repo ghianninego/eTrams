@@ -25,7 +25,7 @@
 	<body>
 				
 		<!-- Header -->
-		<%@ include file= "adminHeader.jsp" %>
+		<%@ include file= "coordinatorHeader.jsp" %>
 		<!-- End of Header -->
 		<% ResultSet rs2 = (ResultSet) session.getAttribute("sessionParticipants"); 
 			int participants = 1;
@@ -35,8 +35,8 @@
 		<div class="container">
 			 <div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
-			 			<a href="adminSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Certifications</h1>
+			 		<h1 class="page-header"><small><a href="coordinatorSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
+			 			<a href="coordinatorSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Certifications</h1>
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
@@ -125,27 +125,29 @@
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
 								
-								<!-- CERTIFY MODAL -->
-								<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form action="../../dbcontrol" method="post">
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<p id="certText">Are you sure you want to certify this participant?</p>
-												<div class="someButton text-center">
-													<input type="hidden" name="requestType" value="certify" />
-													<input type="hidden" id="certification" name="certification" value="" />
-													<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+		<!-- MODALS -->
+			<!-- CERTIFY MODAL -->
+			<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<form action="../../dbcontrol" method="post">
+						<div class="modal-content">
+							<div class="modal-body text-center">
+								<p id="certText">Are you sure you want to certify this participant?</p>
+								<div class="someButton text-center">
+									<input type="hidden" name="requestType" value="certify" />
+									<input type="hidden" id="certification" name="certification" value="" />
+									<input type="hidden" id="attendanceID" name="attendanceID" value="" />
 												
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-									</div>
+									<button type="submit" class="btn btn-default">Yes</button>
+									<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 								</div>
-								<!-- CERTIFY MODAL -->
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- CERTIFY MODAL -->
+		<!-- MODALS -->
 								
 	</body>
 

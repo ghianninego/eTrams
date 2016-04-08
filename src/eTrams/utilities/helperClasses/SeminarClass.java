@@ -20,6 +20,9 @@ public class SeminarClass {
 		int creatorID = accountID;
 		String seminarName = request.getParameter("seminarName");
 		String description = request.getParameter("seminarTopic");
+		
+		description = description.replaceAll("\n","<br />");
+		
 		java.sql.Date dateOfCreation = new java.sql.Date(new java.util.Date().getTime());
 		int completion = 0;
 		int active = 1;
@@ -49,8 +52,11 @@ public class SeminarClass {
 	{
 		PreparedStatement ps = SQLOperations.updateSeminar(connection);
 		try {
+			String description = request.getParameter("seminarTopic");
+			description = description.replaceAll("\n","<br />");
+			
 			ps.setString(1, request.getParameter("seminarName"));
-			ps.setString(2, request.getParameter("seminarTopic"));
+			ps.setString(2, description);
 			ps.setInt(3, Integer.parseInt(request.getParameter("seminarID")));
 			
 			if (ps.executeUpdate() > 0)

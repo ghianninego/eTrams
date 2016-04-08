@@ -61,13 +61,15 @@
 						<!-- End of No announcement -->
 					<%
 						} else {
-							while (q) {								
+							while (q) {	
+								String content = announcement.getString("content");
+								content = content.replaceAll("<br />","");
 					%>
 						<!-- List of announcements -->
 						<div id="announcementList">
 							<div class="paginateClass" id="announcements"
 									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
-									data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>">
+									data-anncontent="<%=content%>" data-annid="<%=announcement.getInt("announcementID") %>">
 
 								<h4><%=announcement.getString("title")%></h4>
 								<p>
@@ -107,60 +109,6 @@
 					</div>
 					<!-- New Announcement -->
 
-					<!-- NEW ANNOUNCEMENT MODAL -->
-					<div class="modal fade" id="createAnnouncementModal" tabindex="-1"
-						role="dialog" aria-labelledby="gridSystemModalLabel">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<h4 class="modal-title" id="gridSystemModalLabel">New
-										Announcement</h4>
-								</div>
-								<form class="form-horizontal" action="../../dbcontrol"
-									method="post">
-									<div class="modal-body">
-
-										<!-- Announcement Title -->
-										<div class="form-group">
-											<label for="Title" class="col-sm-2 control-label">Title</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control"
-													id="announcementTitle" name="announcementTitle"
-													placeholder="Title" required />
-											</div>
-										</div>
-
-										<!-- Announcement Content -->
-										<div class="form-group">
-											<label for="Content" class="col-sm-2 control-label">Content</label>
-											<div class="col-sm-10">
-												<textarea class="form-control" name="announcementContent"
-													id="announcementContent" rows="5" required></textarea>
-											</div>
-										</div>
-									</div>
-
-									<div class="modal-footer">
-										<input name="requestType" value="addAnnouncement"
-											type="hidden" /> <input name="creatorID"
-											value="<%=user.getAccountID()%>" type="hidden" /> <input
-											name="userInfoID" value="<%=user.getUserInfoID()%>"
-											type="hidden" />
-
-										<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-										<button type="button" class="btn btn-gray pull-left"
-											data-dismiss="modal">Cancel</button>
-									</div>
-							</div>
-							</form>
-						</div>
-					</div>
-					<!-- NEW ANNOUNCEMENT_MODAL -->
-
 				</div>
 				<!-- End of content -->
 
@@ -174,6 +122,54 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
+	
+	<!-- MODALS -->
+	<!-- NEW ANNOUNCEMENT MODAL -->
+	<div class="modal fade" id="createAnnouncementModal" tabindex="-1"
+		role="dialog" aria-labelledby="gridSystemModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="gridSystemModalLabel">New Announcement</h4>
+				</div>
+			<form class="form-horizontal" action="../../dbcontrol" method="post">
+				<div class="modal-body">
+
+					<!-- Announcement Title -->
+					<div class="form-group">
+						<label for="Title" class="col-sm-2 control-label">Title</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="announcementTitle" 
+								name="announcementTitle" placeholder="Title" required />
+						</div>
+					</div>
+
+					<!-- Announcement Content -->
+					<div class="form-group">
+						<label for="Content" class="col-sm-2 control-label">Content</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="announcementContent"
+								id="announcementContent" rows="5" required></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<input name="requestType" value="addAnnouncement" type="hidden" />
+					<input name="creatorID" value="<%=user.getAccountID()%>" type="hidden" />
+					<input name="userInfoID" value="<%=user.getUserInfoID()%>" type="hidden" />
+
+					<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+					<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+	<!-- NEW ANNOUNCEMENT_MODAL -->
 	
 	<!-- VIEW ANNOUNCEMENT MODAL -->
 	<div class="modal fade viewAnnouncementModal"
@@ -191,7 +187,7 @@
 				<div class="modal-body">
 					<p id="announcementContent"></p>
 					<p>
-						<em style="color: #848484 !important" id="announcementCreated">Date
+						<em style="color: #848484 !important;" id="announcementCreated">Date
 							created: </em>
 					</p>
 				</div>
@@ -214,39 +210,39 @@
 					<h4 class="modal-title" id="gridSystemModalLabel">Edit
 						Announcement</h4>
 				</div>
-				<form class="form-horizontal" action="../../dbcontrol" method="post">
-					<div class="modal-body">
+			<form class="form-horizontal" action="../../dbcontrol" method="post">
+				<div class="modal-body">
 
-						<!-- Announcement Title -->
-						<div class="form-group">
-							<label for="Title" class="col-sm-2 control-label">Title</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="announcementTitle"
-									name="announcementTitle" value="" required />
-							</div>
-						</div>
-
-						<!-- Announcement Content -->
-						<div class="form-group">
-							<label for="Content" class="col-sm-2 control-label">Content</label>
-							<div class="col-sm-10">
-								<textarea class="form-control" name="announcementContent"
-									id="announcementContent" rows="5" required></textarea>
-							</div>
+					<!-- Announcement Title -->
+					<div class="form-group">
+						<label for="Title" class="col-sm-2 control-label">Title</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="announcementTitle"
+								name="announcementTitle" value="" required />
 						</div>
 					</div>
 
-					<div class="modal-footer">
-						<input type="hidden" name="announcementID" id="announcementID"
-							value=""> <input type="hidden" name="requestType"
-							value="announcementEdit">
-
-						<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-						<button type="button" class="btn btn-gray pull-left"
-							data-dismiss="modal">Cancel</button>
+					<!-- Announcement Content -->
+					<div class="form-group">
+						<label for="Content" class="col-sm-2 control-label">Content</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="announcementContent"
+								id="announcementContent" rows="5" required></textarea>
+						</div>
 					</div>
-			</div>
+				</div>
+
+				<div class="modal-footer">
+					<input type="hidden" name="announcementID" id="announcementID"
+						value=""> <input type="hidden" name="requestType"
+						value="announcementEdit">
+
+					<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+					<button type="button" class="btn btn-gray pull-left"
+						data-dismiss="modal">Cancel</button>
+				</div>
 			</form>
+			</div>
 		</div>
 	</div>
 	<!-- EDIT ANNOUNCEMENT MODAL -->

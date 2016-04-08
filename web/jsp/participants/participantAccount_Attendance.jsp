@@ -11,6 +11,7 @@
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="../../css/style.css" />
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
+		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - My Account: Attendance History</title>
 	</head>
@@ -30,17 +31,36 @@
 			 			
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<table class="table table-condensed table-striped table-hover ">
+			 			<div class="row options">
+			 				
+			 				<!-- Search -->
+							<div class="col-sm-offset-9 col-sm-3">
+								<form method="post" action="../../dbcontrol">
+									<input type="hidden" name="requestType" value="searchName">
+									<div class="input-group">
+										<input name="search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<!-- End of Search -->
+	 					
+	 					</div>
+			 			<br>
+			 			
+			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>Seminar</th>
-									<th>Session</th>
-									<th>Time Start</th>
-									<th>Time End</th>
-									<th>Date</th>
-									<th>Status</th>
-									<th>Certification</th>
+									<th data-sortable="true">#</th>
+									<th data-sortable="true">Seminar</th>
+									<th data-sortable="true">Session</th>
+									<th data-sortable="true">Time Start</th>
+									<th data-sortable="true">Time End</th>
+									<th data-sortable="true">Date</th>
+									<th data-sortable="true">Status</th>
+									<th data-sortable="true">Certification</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -83,5 +103,6 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 		
 </html>

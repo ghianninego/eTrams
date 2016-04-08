@@ -1,6 +1,9 @@
 <jsp:useBean id="oneUser" type="java.sql.ResultSet" scope="session" />
 <jsp:useBean id="history" type="java.sql.ResultSet" scope="session" />
 
+<%@ page import = "java.text.DateFormat" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -129,48 +132,61 @@
 							<div role="tabpanel" class="tab-pane fade" id="attendance">
 								<br>
 								<div class="row options">
-			 					<!-- Search -->
-								<div class="col-sm-offset-9 col-sm-3">
-									<form method="post" action="../../dbcontrol">
-										<input type="hidden" name="requestType" value="searchName">
-										<div class="input-group">
-											<input name="search" type="text" class="form-control" placeholder="Search">
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-											</span>
-										</div>
-									</form>
-								</div>
-								<!-- End of Search -->
-			 				</div>
+			 						<!-- Search -->
+									<div class="col-sm-offset-9 col-sm-3">
+										<form method="post" action="../../dbcontrol">
+											<input type="hidden" name="requestType" value="searchName">
+											<div class="input-group">
+												<input name="search" type="text" class="form-control" placeholder="Search">
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+												</span>
+											</div>
+										</form>
+									</div>
+									<!-- End of Search -->
+			 					</div>
 			 				
 								<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 									<thead>
 										<tr>
-											<th data-field="historyId" data-sortable="true">#</th>
-											<th data-field="seminarName" data-sortable="true">Seminar</th>
-											<th data-field="sessionName" data-sortable="true">Session</th>
-											<th data-field="timeStart" data-sortable="true">Time Start</th>
-											<th data-field="timeEnd" data-sortable="true">Time End</th>
-											<th data-field="date" data-sortable="true">Date</th>
+											<th data-sortable="true">#</th>
+											<th data-sortable="true">Seminar</th>
+											<th data-sortable="true">Session</th>
+											<th data-sortable="true">Time Start</th>
+											<th data-sortable="true">Time End</th>
+											<th data-sortable="true">Date</th>
 											<th data-field="status" data-sortable="true">Status</th>
 											<th data-field="certification" data-sortable="true">Certification</th>
 										</tr>
 									</thead>
 									<tbody id="someTable">
 									<%
+										DateFormat timeFormat = new SimpleDateFormat("h:mm a");
+										DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+										
 										while (history.next()) {
+											String timeIn = timeFormat.format(history.getTime("TimeIn"));
+											String timeOut = timeFormat.format(history.getTime("TimeOut"));
 									%>
 										<tr>
 											<td><%=history.getInt("attendanceID")%></td>
 											<td><%=history.getString("seminarName")%></td>
 											<td><%=history.getString("sessionName")%></td>
-											<td><%=history.getString("TimeIn")%></td>
-											<td><%=history.getString("TimeOut")%></td>
+											<td><%=timeIn%></td>
+											<td><%=timeOut%></td>
 											<td><%=history.getString("Date")%></td>
-											<td><a href="#" data-toggle="modal"
-												data-target="#setStatusModal"> Completed </a></td>
-											<td>certified</td>
+											<td><a href="#" data-toggle="modal" data-target="#setStatusModal"
+												data-attendanceid="<%=history.getInt("attendanceID")%>" data-status="<%=history.getString("Status")%>">
+												<%=history.getString("Status") %>
+											</a></td>
+											<td>
+												<% if(history.getInt("Certification") == 1)  { %>
+													Certified
+												<% } else { %>
+													<a href="#" data-toggle="modal" data-target="#certificationModal">Uncertified</a>
+												<% } %>
+											</td>
 										</tr>
 									<%
 										}
@@ -361,11 +377,6 @@
 				</div>
 				<!-- CERTIFY MODAL -->
 
-				<%
-					oneUser.first();
-					oneUser.previous();
-				%>
-
 				<%@ include file="../modals/SeminarsAndSessionsModals.jsp"%>
 				<!-- End of Modals -->
 
@@ -416,6 +427,36 @@
 
 	});
 
+	$(".setStatusModal").on("show.bs.modal", function(event) {
+		var url = $(event.relatedTarget);
+		var attendanceID = url.data("attendanceid");
+		var status = url.data("status");
+
+		var modal = $(this);
+		modal.find("#attendanceID").val(attendanceID);
+		modal.find("#status").val(status);
+
+	})
+	
+	$(".certifyModal").on("show.bs.modal", function(event) {
+		var url = $(event.relatedTarget);
+		var attendanceID = url.data("attendanceid");
+		var certification = url.data("certification");
+				
+		alert(attendanceID);
+				
+		var modal = $(this);
+				
+		if(certification == "1"){
+			modal.find("#certText").text("Are you sure you want to certify this participant?");
+		}else if(certification == "0"){
+			modal.find("#certText").text("Are you sure you want to uncertify this participant?");
+		}
+		modal.find("#certification").val(certification);
+		modal.find("#attendanceID").val(attendanceID);
+
+	})
+	
 	$(".deleteModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);
 		var accountID = url.data("accountid");

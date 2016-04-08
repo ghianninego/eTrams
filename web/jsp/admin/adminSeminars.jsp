@@ -91,14 +91,17 @@
 							int seminars = 0;
 							
 							while (rs.next()) {
+								String desc = rs.getString(4);
+								desc = desc.replaceAll("<br />","");
 						%>
 						<div class="col-sm-6 col-md-3">
 							
 							<%if (rs.getInt(6) == 1) { %>
 								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto" 		data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=rs.getString(4) %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=rs.getString(4)%></p><br>
+									data-trigger="focus" data-html="true" data-placement="auto"
+									data-content="
+										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
+  										<p><%=desc%></p><br>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
@@ -125,7 +128,7 @@
 								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="auto"
 									data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=rs.getString(4) %>' data-semid='<%=rs.getInt(1) %>'></span>
+										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
   										<p><%=rs.getString(4)%></p><br>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>

@@ -454,7 +454,7 @@
 			<form action="../../dbcontrol" method="post">
 				<div class="modal-content">
 					<div class="modal-body text-center">
-						<p>1Are you sure you want to delete this item?</p>
+						<p>Are you sure you want to delete this session?</p>
 						<div class="someButton text-center">
 							<input type="hidden" name="sessionID" id="sessionID"
 								value="" /> <input type="hidden"
@@ -481,9 +481,7 @@
 <!-- FOR SESSION MODAL -->
 <script type="text/javascript" src="../../js/sessionModal.js"></script>
 <script type="text/javascript">
-	function showInfo(){
-    	$('.popover-content').html($('#moreInfo').html())
-	}
+
 		$(".editSessionModal").on(
 				"show.bs.modal",
 				function(event) {
@@ -520,9 +518,11 @@
 					id = event.data("sid");
 					var url = $("#dataContent_" + id);
 					var sessionID = url.data("sessionid");
+					var sessionName = url.data("sessionname");
 
 					var modal = $(this);
 					modal.find("#sessionID").val(sessionID);
+					modal.find("#sessionName").val(sessionName);
 	
 		});
 		

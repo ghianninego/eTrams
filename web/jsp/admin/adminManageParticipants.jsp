@@ -66,19 +66,6 @@
 								</form>
 							</div>
 							<!-- End of Filter -->
-						
-							<!-- Search -->
-							<div class="col-sm-offset-7 col-sm-3">
-								<form method="post" action="">
-									<div class="input-group">
-										<input name="search" type="text" class="form-control" placeholder="Search">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Search -->
 						</div>
 						
 						<br>
@@ -108,15 +95,16 @@
 									<td><%= rs2.getString(12) %></td>
 									<td><%= timeIn %></td>
 									<td><%= timeOut %></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>">
+									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>" data-status="<%=rs2.getString(6) %>">
 			 							<%=rs2.getString(6) %>
 			 						</a></td>
-									<td><a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>">Set Attendance</a></td>			
+									<td><a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>" data-timein="<%=timeIn%>" data-timeout="<%=timeOut%>">Set Attendance</a></td>			
 								</tr>
 								
 								<% 	
-								certParticipants++;	}
-								     rs2.first(); rs2.previous();%>
+									certParticipants++;	}
+									rs2.first(); rs2.previous();
+								%>
 							</tbody>
 						</table>
 						
@@ -146,37 +134,6 @@
 								</form>
 							</div>
 							<!-- End of Filter -->
-						
-							<!-- Other Filter Data -->
-							<div class="col-sm-3">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
-											<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
-											<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
-											<div data-value="DateAsc">By Date (Asc)</div>
-											<div data-value="DateAsc">By Date (Desc)</div>
-										</div>
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Other Filter -->
-						
-							<!-- Search -->
-							<div class="col-sm-offset-4 col-sm-3">
-								<form method="post" action="">
-									<div class="input-group">
-										<input name="search" type="text" class="form-control" placeholder="Search">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Search -->
 						</div>
 						
 						<br>
@@ -187,21 +144,21 @@
 									<th data-sortable="true">#</th>
 									<th data-sortable="true">Name</th>
 									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Status</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody id="someTable">
 							<% 
 								while (rs2.next())
 								{
-									
 							%>
 								<tr>
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
-									<td><a href="../../dbcontrol?requestType=cancelRegistration&attendanceID=<%= rs2.getInt(1) %>">Cancel Registration</a></td>			
+									<td><a href="#" data-target="#unregisterModal" data-attendanceid="<%=rs2.getInt(1)%>">Cancel Registration</a></td>			
 								</tr>
+								
 							<% participants++; } rs2.first(); rs2.previous(); %>
 							</tbody>
 						</table>
@@ -216,48 +173,6 @@
 			 		<% } rs.previous(); %>
 			 		<!-- End of Content -->
 			 		
-					<!-- ADD PARTICIPANTS MODAL -->
-					<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title">Add Participants</h4>
-								</div>
-							<form class="form-horizontal" action="../../dbcontrol" method="post">
-					            <div class="modal-body">
-					            	<input type="hidden" name="requestType" value="addParticipants"/>
-									<div class="form-group">
-									
-										<div style="padding-left: 15px;">
-											<h4>Select participant/s to register to this session:</h4>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-10">
-										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
-					                    	while(rs3.next())
-					                    	{
-					                   	%>
-					                    	<div class="checkbox">
-					                    		<label>
-					                    			<input type="checkbox" value="<%=rs3.getInt(1)%>">
-					                    				<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>
-					                    		</label>
-					                    	</div>
-					                    <% } rs3.first(); rs3.previous();%>
-											
-										</div>
-									</div>
-					            </div>
-					            <div class="modal-footer">
-					            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-					            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-					            </div>
-							</form>
-					        </div>
-						</div>
-					</div>
-					<!-- ADD PARTICIPANTS MODAL -->
 			 	</div>
 			</div>
 		</div>
@@ -266,81 +181,147 @@
 		<!-- Footer -->
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
+		
+		<!-- MODALS -->
+			<!-- ADD PARTICIPANTS MODAL -->
+			<div class="modal fade addParticipantsModal" id="addParticipantsModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Add Participants</h4>
+						</div>
+					<form class="form-horizontal" action="../../dbcontrol" method="post">
+			            <div class="modal-body">
+			            	
+			            	<input type="hidden" name="requestType" value="addParticipants"/>
+							
+							<div class="form-group">
+								<div style="padding-left: 15px;">
+									<h4>Select participant/s to register to this session:</h4>
+								</div>
 								
+								<div class="col-sm-offset-1 col-sm-10">
+								<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
+									while(rs3.next()) {
+								%>
+									<div class="checkbox">
+					                    <label>
+					                    	<input type="checkbox" value="<%=rs3.getInt(1)%>">
+					                   			<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>
+					                   	</label>
+									</div>
+								<% } rs3.first(); rs3.previous();%>
+								</div>
+							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+							<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+			<!-- ADD PARTICIPANTS MODAL -->
+			
+			<!-- UNREGISTER MODAL -->
+			<div class="modal fade unregisterModal" id="unregisterModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+				<form action="../../dbcontrol">
+					<div class="modal-content">
+						<div class="modal-body text-center">
+							<p id="unregisterCaption">Are you sure you want to unregister this participant?</p>
+							<div class="someButton text-center">	
+								<input type="hidden" name="requestType" value="unregister" />
+								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+															
+								<button type="submit" class="btn btn-default">Yes</button>
+								<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+			<!-- UNREGISTER MODAL -->
 								
-								
-								<!-- SET STATUS MODAL -->
-								<div class="modal fade setStatusModal" id="setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setStatus"/>
-								            	<input type="hidden" id="attendanceID" name="attendanceID" value="" />
-								            	<!-- Status -->
-								            	<div class="form-group">`
-								            		<label for="status" class="col-sm-3 control-label">Status</label>
-								            		<div class="col-sm-8">
-								        				<div class="bfh-selectbox" data-name="status" id="status">
-								        					<div value="Complete" data-value="Complete">Complete</div>
-								        					<div value="Incomplete" data-value="Incomplete">Incomplete</div>
-								        				</div>
-								            		</div>
-								            	</div>
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
+			<!-- SET STATUS MODAL -->
+			<div class="modal fade setStatusModal" id="setStatusModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="gridSystemModalLabel">Set Status</h4>
+						</div>
+					<form class="form-horizontal" action="../../dbcontrol" method="post">
+						<div class="modal-body">
+							<input type="hidden" name="requestType" value="setStatus"/>
+							<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+							
+							<!-- Status -->
+							<div class="form-group">
+								<label for="status" class="col-sm-3 control-label">Status</label>
+								<div class="col-sm-8">
+									<div class="bfh-selectbox" data-name="status" id="status">
+										<div data-value="Complete">Complete</div>
+										<div data-value="Incomplete">Incomplete</div>
 									</div>
 								</div>
-								<!-- SET STATUS MODAL -->
-								
-								<!-- ATTENDANCE MODAL -->
-								<div class="modal fade attendanceModal" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel">Set Attendance</h4>
-											</div>
-										<form class="form-horizontal" action="../../dbcontrol" method="post">
-								            <div class="modal-body">
-								            	<input type="hidden" name="requestType" value="setAttendance"/>
-								            	<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+							<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+			<!-- SET STATUS MODAL -->
+			
+			<!-- ATTENDANCE MODAL -->
+			<div class="modal fade attendanceModal" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="gridSystemModalLabel">Set Attendance</h4>
+						</div>
+					<form class="form-horizontal" action="../../dbcontrol" method="post">
+						<div class="modal-body">
+							<input type="hidden" name="requestType" value="setAttendance"/>
+							<input type="hidden" id="attendanceID" name="attendanceID" value="" />
 								            	
-								            	<!-- Time In -->
-								            	<div class="form-group">
-								            		<label for="Time In" class="col-sm-2 control-label">Time In</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeIn" data-name="timeIn"></div>
-								            		</div>
-								            	</div>
-								            	
-								            	<!-- Time Out -->
-								            	<div class="form-group">
-								            		<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
-								            		<div class="col-sm-10">
-								            			<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut"></div>
-								            		</div>
-								            	</div>
-								            	
-								            </div>
-								            <div class="modal-footer">
-								            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-								            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-								            </div>
-										</form>
-								        </div>
-									</div>
+							<!-- Time In -->
+							<div class="form-group">
+								<label for="Time In" class="col-sm-2 control-label">Time In</label>
+								<div class="col-sm-10">
+									<div class="bfh-timepicker" data-mode="12h" id="timeIn" data-name="timeIn"></div>
 								</div>
-								<!-- ATTENDANCE MODAL -->
+							</div>
+							
+							<!-- Time Out -->
+							<div class="form-group">
+								<label for="Time Out" class="col-sm-2 control-label">Time Out</label>
+								<div class="col-sm-10">
+									<div class="bfh-timepicker" data-mode="12h" id="timeOut" data-name="timeOut"></div>
+								</div>
+							</div>
+								            	
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+							<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+			<!-- ATTENDANCE MODAL -->
+		<!-- MODALS -->
+		
 	</body>
 
 	<script src="../../js/jquery.js"></script>
@@ -354,36 +335,31 @@
 	<script type="text/javascript" src="../../js/addParticipantModal.js"></script>
 	
 	<script type="text/javascript">
+		$(".unregisterModal").on(
+			"show.bs.modal",
+			function(event) {
+				var url = $(event.relatedTarget);
+				var attendanceID = url.data("attendanceid");
+				
+				alert(attendanceID);
+				
+				var modal = $(this);
+				
+				modal.find("#unregisterCaption").text("Are you sure you want to unregister this participant?");
+				modal.find("#attendanceID").val(attendanceID);
+
+		})
+	
 		$(".setStatusModal").on(
 				"show.bs.modal",
 				function(event) {
 					var url = $(event.relatedTarget);
 					var attendanceID = url.data("attendanceid");
-					
+					var status = url.data("status");
 	
 					var modal = $(this);
 					modal.find("#attendanceID").val(attendanceID);
-	
-		})
-		
-		$(".certifyModal").on(
-				"show.bs.modal",
-				function(event) {
-					var url = $(event.relatedTarget);
-					var attendanceID = url.data("attendanceid");
-					var certification = url.data("certification");
-					
-					alert(attendanceID);
-					
-					var modal = $(this);
-					
-					if(certification == "1"){
-						modal.find("#certText").text("Are you sure you want to certify this participant?");
-					}else if(certification == "0"){
-						modal.find("#certText").text("Are you sure you want to uncertify this participant?");
-					}
-					modal.find("#certification").val(certification);
-					modal.find("#attendanceID").val(attendanceID);
+					modal.find("#status").val(status);
 	
 		})
 		
@@ -392,11 +368,14 @@
 				function(event) {
 					var url = $(event.relatedTarget);
 					var attendanceID = url.data("attendanceid");
-					
+					var timeIn = url.data("timein");
+					var timeOut = url.data("timeout");
 					
 					var modal = $(this);
 					
 					modal.find("#attendanceID").val(attendanceID);
+					modal.find("#timeIn").val(timeIn);
+					modal.find("#timeOut").val(timeOut);
 	
 		})
 	</script>
