@@ -314,6 +314,27 @@ small {
 }
 
 
+.listTable tbody{
+	border: 1px solid #ddd;
+}
+.listTable tr:first-child {
+	text-align: center;
+}
+
+.listTable th, .listTable td {
+	text-align: left;
+}
+
+.listTable td {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+.listTable th {
+	border: 1px solid #ddd !important;
+}
+
 /******************** End of Tables ********************/
 
 

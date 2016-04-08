@@ -82,7 +82,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody>
 								<%
 									while(rs2.next())
 									{
@@ -196,23 +196,30 @@
 			            	
 			            	<input type="hidden" name="requestType" value="addParticipants"/>
 							
-							<div class="form-group">
-								<div style="padding-left: 15px;">
-									<h4>Select participant/s to register to this session:</h4>
-								</div>
+							<div style="padding-left: 15px;">
+								<h4>Select participant/s to register to this session:</h4>
+							</div>
+							
+							<div style="padding: 5px 50px;">
+								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true">
+									<thead>
+										<tr>
+											<th data-checkbox="true"></th>
+											<th data-sortable="true">Select all</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
+											while(rs3.next()) {
+										%>
+											<td><input name="participants" type="checkbox" value="<%= rs3.getInt(1)%>"></td>
+											<td><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
+										</tr>
 								
-								<div class="col-sm-offset-1 col-sm-10">
-								<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
-									while(rs3.next()) {
-								%>
-									<div class="checkbox">
-					                    <label>
-					                    	<input type="checkbox" value="<%=rs3.getInt(1)%>">
-					                   			<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>
-					                   	</label>
-									</div>
-								<% } rs3.first(); rs3.previous();%>
-								</div>
+										<% } rs3.first(); rs3.previous(); %>
+									</tbody>
+								</table>
 							</div>
 						</div>
 						
