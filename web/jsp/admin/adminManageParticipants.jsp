@@ -177,7 +177,7 @@
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
-									<td><a href="#" data-target="#unregisterModal" data-attendanceid="<%=rs2.getInt(1)%>">Cancel Registration</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#unregisterModal" data-attendanceid="<%=rs2.getInt(1)%>">Cancel Registration</a></td>			
 								</tr>
 								
 							<% participants++; } rs2.first(); rs2.previous(); %>
@@ -266,7 +266,7 @@
 				<form action="../../dbcontrol">
 					<div class="modal-content">
 						<div class="modal-body text-center">
-							<p id="unregisterCaption">Are you sure you want to unregister this participant?</p>
+							<p>Are you sure you want to unregister this participant?</p>
 							<div class="someButton text-center">	
 								<input type="hidden" name="requestType" value="unregister" />
 								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
@@ -375,13 +375,8 @@
 				var url = $(event.relatedTarget);
 				var attendanceID = url.data("attendanceid");
 				
-				alert(attendanceID);
-				
 				var modal = $(this);
-				
-				modal.find("#unregisterCaption").text("Are you sure you want to unregister this participant?");
 				modal.find("#attendanceID").val(attendanceID);
-
 		})
 	
 		$(".setStatusModal").on(
