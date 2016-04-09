@@ -56,8 +56,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 			try 
 			{
 				FinalUserBean fub = UserClass.login(request, connection);
-				//System.out.println("SEMINAR  " + SeminarClass.completeSeminar(request, connection));
-				System.out.println("SEMSSION  " + SessionClass.completeSession(request, connection));
+				SeminarClass.completeSeminar(request, connection);
+				System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user", fub);
 				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -94,6 +94,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
 					break;
 				case "goToAdminSeminar":
+
+					SeminarClass.completeSeminar(request, connection);
 					if(request.getParameter("flag")==null){
 					ResultSet seminars = SeminarClass.retrieveSeminars(connection);
 					session.setAttribute("seminars", seminars);
@@ -114,6 +116,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "goToAdminSession":
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
 					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
 					ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
@@ -315,6 +319,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 						response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 						break;
 				case  "home":
+					SeminarClass.completeSeminar(request, connection);
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
