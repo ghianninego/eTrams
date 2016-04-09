@@ -15,6 +15,7 @@ public class FrontDeskClass {
 	{
 		PreparedStatement ps = SQLOperations.login(connection);
 		ResultSet rs = null;
+		
 		try {
 			ps.setString(1, request.getParameter("username"));
 			ps.setString(2, request.getParameter("password"));
@@ -26,7 +27,12 @@ public class FrontDeskClass {
 			else 
 			{
 				rs.next();
-				ManageParticipantsClass.addParticipant(request, Integer.toString(rs.getInt(1)), connection);
+				int sessionID = Integer.parseInt(request.getParameter("sessionID"));
+				int accountID = rs.getInt(1);
+				PreparedStatement ps2 = SQLOperations.updateTimeIn(connection);
+				ps2.setTime(1, new java.sql.Time(new java.util.Date().getTime()));
+				ps2.setInt(2, accountID);
+				ps2.setInt(3, accountID);
 				return 1;
 			}
 		} catch (SQLException e) {

@@ -48,7 +48,7 @@ public class SQLOperations
 	private static PreparedStatement updateAccount;
 	private static PreparedStatement updateDepartment;
 	private static PreparedStatement updateAttendanceCertification;
-	//private static PreparedStatement updateAnnouncement;
+	private static PreparedStatement updateTimeIn;
 //-----------select CHECK
 	private static PreparedStatement selectCollege;
 	private static PreparedStatement selectCollegeDepartment;
@@ -328,22 +328,6 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return selectOneUserAccount;
 	}
 	
-	public synchronized static PreparedStatement selectOneSeminar(Connection connection)
-	{
-		try 
-		{
-			if (selectOneSeminar == null)
-				selectOneSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE seminarID = ?");
-		} 
-		catch (SQLException e) 
-		{
-			System.err.println("selectOne seminarTable_ERR");
-			e.printStackTrace();
-		}
-		System.out.println("selectOne seminarTable");         
-		return selectOneSeminar;
-	}
-	
 	public synchronized static PreparedStatement selectOneUserInfo(Connection connection)
 	{
 		try 
@@ -360,6 +344,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return selectOneUserInfo;
 	}
 	
+	public synchronized static PreparedStatement selectOneSeminar(Connection connection)
+	{
+		try 
+		{
+			if (selectOneSeminar == null)
+				selectOneSeminar = connection.prepareStatement("SELECT * FROM seminarTable WHERE seminarID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne seminarTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne seminarTable");         
+		return selectOneSeminar;
+	}
+
 	public synchronized static PreparedStatement selectOneSession(Connection connection)
 	{
 		try 
@@ -992,6 +992,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return updateTime;
 	}
 	
+	public synchronized static PreparedStatement updateTimeIn(Connection connection)
+	{
+		try 
+		{
+			if (updateTimeIn == null)
+				updateTimeIn = connection.prepareStatement("UPDATE attendanceTable  SET timeIn = ? WHERE accountID = ? AND sessionID = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("updateTimeIn updateTimeIn_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("updateTimeIn updateTimeIn");         
+		return updateTimeIn;
+	}
+	
 	public synchronized static PreparedStatement updateStatus(Connection connection)
 	{
 		try 
@@ -1087,6 +1103,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("update attendanceTable");         
 		return updateAttendanceCertification;
 	}
+	
 	
 	public synchronized static PreparedStatement updateCertificationRelease(Connection connection)
 	{

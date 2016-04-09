@@ -87,6 +87,15 @@
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
+										if (timeIn.equals("12:00 AM"))
+										{
+											timeIn = "00:00:00";
+										}
+										
+										if (timeOut.equals("12:00 AM"))
+										{
+											timeOut = "00:00:00";
+										}
 								%>
 								<tr>
 									<td><%= certParticipants %></td>

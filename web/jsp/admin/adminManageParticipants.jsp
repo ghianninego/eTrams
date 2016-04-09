@@ -88,6 +88,16 @@
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
+										
+										if (timeIn.equals("12:00 AM"))
+										{
+											timeIn = "00:00:00";
+										}
+										
+										if (timeOut.equals("12:00 AM"))
+										{
+											timeOut = "00:00:00";
+										}
 								%>
 								<tr>
 									<td><%= certParticipants %></td>
@@ -191,7 +201,7 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title">Add Participants</h4>
 						</div>
-					<form class="form-horizontal" action="../../dbcontrol" method="post">
+					<form class="form-horizontal" action="../../dbcontrol" method="get">
 			            <div class="modal-body">
 			            	
 			            	<input type="hidden" name="requestType" value="addParticipants"/>
