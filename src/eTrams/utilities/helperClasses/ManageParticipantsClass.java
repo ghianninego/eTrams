@@ -208,6 +208,22 @@ public class ManageParticipantsClass {
 			addParticipant(request, values[i], connection);
 	}
 	
+	public static int countRegisteredSessionParticipants(int sessionID, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.countRegisteredSessionParticipants(connection);
+		ResultSet rs = null;
+		try {
+			ps.setInt(1, sessionID);
+			rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 	public static int countSessionParticipants(int sessionID, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.countSessionParticipants(connection);

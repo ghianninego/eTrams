@@ -125,6 +125,17 @@
 			 		
 			 		<!-- For Ongoing/Unfinished Sessions -->
 			 		<!-- Content -->
+			 		
+			 		
+			 		
+			 		<!--  PLACE THIS KUNG SAAN PWEDE ILAGAY HA 
+			 		 -->
+			 		<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
+						{	%>
+						<!-- MESSAGE HERE NA PUNO NA YUNG SESSION -->
+					<% } %>
+			 		<!--  END OF STUFF -->
+			 		
 			 		<div class="content">
 			 			<div class="row options">
 			 			
@@ -174,11 +185,14 @@
 						</table>
 						
 						<br>
+						<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
+							{	%>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
   						
+						<% } %>
 			 		</div>
 			 		<% } rs.previous(); %>
 			 		<!-- End of Content -->

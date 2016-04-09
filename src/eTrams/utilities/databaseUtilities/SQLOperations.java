@@ -84,6 +84,7 @@ public class SQLOperations
 	private static PreparedStatement countSessions;
 	private static PreparedStatement countSessionsC;
 	private static PreparedStatement countSessionParticipants;
+	private static PreparedStatement countRegisteredSessionParticipants;
 //-----------filter
 	private static PreparedStatement filterComplete;
 	private static PreparedStatement filterCert;
@@ -997,7 +998,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateTimeIn == null)
-				updateTimeIn = connection.prepareStatement("UPDATE attendanceTable  SET timeIn = ? WHERE accountID = ? AND sessionID = ? ");
+				updateTimeIn = connection.prepareStatement("UPDATE attendanceTable  SET timeIn = ? WHERE participantID = ? AND sessionID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -1174,6 +1175,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("countSessions attendanceTable");         
 		return countSessionParticipants;
+	}
+	
+	public synchronized static PreparedStatement countRegisteredSessionParticipants(Connection connection)
+	{
+		try 
+		{
+			if (countRegisteredSessionParticipants == null)
+				countRegisteredSessionParticipants = connection.prepareStatement("SELECT COUNT(AttendanceID) FROM AttendanceTable WHERE SessionID = ? AND TimeIn <> \"00:00:00\"");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countSessions attendanceTabele_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countSessions attendanceTable");         
+		return countRegisteredSessionParticipants;
 	}
 	
 	public synchronized static PreparedStatement login(Connection connection)

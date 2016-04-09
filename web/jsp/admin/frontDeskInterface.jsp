@@ -44,7 +44,7 @@
 							<div class="col-sm-4 col-sm-offset-4">
 								<% 
 								rs.next();
-								if ((int)session.getAttribute("participantCount") < rs.getInt(6))
+								if ((int)session.getAttribute("registeredParticipantCount") < (int) session.getAttribute("participantCount"))
 								{	%>
 								<form class="form" action="../../dbcontrol" method="post">
 									<div class="form-group">
@@ -94,6 +94,7 @@
 								{
 									String timeIn = format.format(rs2.getTime(4));
 									if (!timeIn.equals("12:00 AM"))
+									{
 							%>
 									<tr>
 										<td><%= attendees %></td>
@@ -101,7 +102,8 @@
 										<td><%= rs2.getString(12) %></td>
 										<td><%= timeIn %></td>
 									</tr>
-							<% 		attendees++; 
+							<% 		attendees++;
+									}
 								
 								} rs2.first(); rs2.previous(); %>
 							</tbody>

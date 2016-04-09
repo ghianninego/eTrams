@@ -164,8 +164,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("allParticipants", allParticipantAccounts);
 					session.setAttribute("sessionDetails", oneSession);
 					session.setAttribute("sessionParticipants", sessionParticipants);
-					
-					
+					int participants = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
+					session.setAttribute("countParticipants", participants);					
 					response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
 					break;
 				case "goToAdminManageParticipantsFromAdminSessions":
@@ -180,6 +180,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("sessionDetails", oneSession2);
 					session.setAttribute("sessionName", request.getParameter("sessionName"));
 					session.setAttribute("sessionParticipants", sessionParticipants2);
+					int participants2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
+					session.setAttribute("countParticipants", participants2);
 					response.sendRedirect("jsp/admin/adminManageParticipants.jsp");
 					break;
 					
@@ -390,12 +392,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 					sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
 					allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
 					oneSession = SessionClass.retrieveOneSession(connection, sessionID);
-					int participantCount = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
+					int participantCount = ManageParticipantsClass.countRegisteredSessionParticipants(sessionID, connection);
 					sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					int countSessionParticipants = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
 					session.setAttribute("allParticipants", allParticipantAccounts);
 					session.setAttribute("sessionDetails", oneSession);
 					session.setAttribute("sessionParticipants", sessionParticipants);
-					session.setAttribute("participantCount", participantCount);
+					session.setAttribute("registeredParticipantCount", participantCount);
+					session.setAttribute("participantCount", countSessionParticipants);
 					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
 					break;
 				case "goToFrontDeskFromSessions":
@@ -405,13 +409,15 @@ public class DatabaseControllerServlet extends HttpServlet {
 					sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
 					allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
 					oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
-					int participantCount2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
+					int participantCount2 = ManageParticipantsClass.countRegisteredSessionParticipants(sessionID2, connection);
 					sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					int countSessionParticipants2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
 					session.setAttribute("allParticipants", allParticipantAccounts2);
 					session.setAttribute("sessionDetails", oneSession2);
 					session.setAttribute("sessionName", request.getParameter("sessionName"));
 					session.setAttribute("sessionParticipants", sessionParticipants2);
-					session.setAttribute("participantCount", participantCount2);
+					session.setAttribute("registeredParticipantCount", participantCount2);
+					session.setAttribute("participantCount", countSessionParticipants2);
 					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
 					break;
 				case "register":

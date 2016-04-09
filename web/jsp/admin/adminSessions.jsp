@@ -181,10 +181,11 @@
 					<!-- End of Announcements pagination -->
 					
 					<br>
+					
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
 							data-target="#sessionModal">
-							<span class="glyphicon glyphicon-plus"></span> New session
+							<span class="glyphicon glyphicon-plus"></span> New Session
 						</button>
 					</div>
 				</div>
