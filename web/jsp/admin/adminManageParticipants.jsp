@@ -211,11 +211,13 @@
 							</div>
 							
 							<div style="padding: 5px 50px;">
-								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true">
+								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true"
+										data-id-field="id" data-select-item-name="participants">
 									<thead>
 										<tr>
-											<th data-checkbox="true"></th>
-											<th data-sortable="true">Select all</th>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id" data-visible="false" data-switchable="false" class="hidden">ID</th>
+											<th data-field="name" data-sortable="true">Select all</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -223,7 +225,8 @@
 										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
 											while(rs3.next()) {
 										%>
-											<td><input name="participants" type="checkbox" value="<%= rs3.getInt(1)%>"></td>
+											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>"></td>
+											<td class="hidden"><%= rs3.getInt(1)%></td>
 											<td><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
 										</tr>
 								
