@@ -61,8 +61,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user", fub);
 				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
-				
-				if (fub.getRoleName().equals("Admin"))
+				if(fub==null)
+					response.sendRedirect("index.jsp?flag=1");
+				else if (fub.getRoleName().equals("Admin"))
 					response.sendRedirect("jsp/admin/adminHome.jsp");
 				else if (fub.getRoleName().equals("Coordinator"))
 					response.sendRedirect("jsp/admin/coordinatorHome.jsp");
