@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -152,6 +154,7 @@ public class SessionClass {
 		{
 			ps.setInt(1, 1);
 			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
+			ps.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
 			
 			if (ps.executeUpdate() > 0)
 			{

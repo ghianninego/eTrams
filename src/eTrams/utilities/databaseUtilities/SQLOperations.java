@@ -948,7 +948,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateSessionStatus == null)
-				updateSessionStatus = connection.prepareStatement("UPDATE sessionTable  SET completion = ?  WHERE date < ? ");
+				updateSessionStatus = connection.prepareStatement("UPDATE sessionTable  SET completion = ?  WHERE date < ? AND  EndTime < ?");
 		} 
 		catch (SQLException e) 
 		{
