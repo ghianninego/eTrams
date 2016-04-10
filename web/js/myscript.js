@@ -8,8 +8,9 @@ jQuery(function($) {
 		keyBrowse: true,
 		previous: "‹",
 		next: "›",
+		delay: 10,
 		callback: function (pages, items) {
-			if (items.range.start == 0) {
+			if (items.count == 0) {
 				$("#legend1").html("There are no items here.");
 			}
 			else {

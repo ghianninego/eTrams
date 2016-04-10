@@ -59,15 +59,17 @@
 						<!-- No announcement -->
 						<div class="noAnnouncement">No announcement.</div>
 						<!-- End of No announcement -->
-					<%
-						} else {
-							while (q) {								
-					%>
+					<% } else { %>
 						<!-- List of announcements -->
 						<div id="announcementList">
+						<%
+							while (q) {
+								String content = announcement.getString("content");
+								content = content.replaceAll("<br />","");
+						%>
 							<div class="paginateClass" id="announcements"
-									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
-									data-anncontent="<%=announcement.getString("content")%>" data-annid="<%=announcement.getInt("announcementID") %>">
+								data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
+								data-anncontent="<%=content%>" data-annid="<%=announcement.getInt("announcementID") %>">
 
 								<h4><%=announcement.getString("title")%></h4>
 								<p>

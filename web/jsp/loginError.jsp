@@ -13,7 +13,7 @@
 		<script src="../js/bootstrap/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/myscript.js"></script>
 		
-		<title>UST eTrams</title>
+		<title>UST eTrams - Login Error</title>
 	</head>
 	
 	<body>
@@ -22,18 +22,36 @@
 			<div class="outer">
 				<div class="middle">
 					<div class="inner">
-						
+					
 						<!-- Error Message-->
 						<div class="row">
 							<div class="col-sm-8 col-sm-offset-2">
-								<h2>Oops! Something went wrong the system.</h2>
-								<h4>Click <a href="../index.jsp">here</a> to redirect to the index page.</h4>
-								<br>
-								<h4>Or contact us: (contact numbers here)</h4>
-								<br><br><br>
+								<h3>The username and password you entered didn't match.</h3>
+								<h3>Please try again.</h3>
 							</div>
 						</div>
 						<!-- End of Error Message -->
+						
+						<!-- Login Form-->
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<form class="form login" action="dbcontrol" method="post">
+									<input type="hidden" value="login" name="requestType">
+									<div class="form-group">
+										<input type="text" class="form-control" id="username" name="username" required="required" placeholder="Username">
+									</div>
+									<div class="form-group">
+									<input type="password" class="form-control" id="password" name="password" required="required" placeholder="Password">
+									</div>
+									<button type="submit" class="btn btn-yellow">Login</button>
+								</form>
+								
+								<div style="padding-top: 10px;">
+									<p><em>Forgot your password? Contact us at: (contact numbers here)</em></p>
+								</div>
+							</div>
+						</div>
+						<!-- End of Login Form -->
 						
 						<!-- Footer -->
 						<div class="row">

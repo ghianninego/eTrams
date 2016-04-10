@@ -37,6 +37,20 @@
 				<!-- Content -->
 				<div class="content">
 				
+				<%
+					ResultSet rs = (ResultSet) session.getAttribute("session");
+					ResultSet rs2 = (ResultSet) session.getAttribute("venue");
+					ResultSet rs3 = (ResultSet) session.getAttribute("speakers");
+					int sessions = 0;
+					DateFormat format = new SimpleDateFormat("h:mm a");
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
+					if (!rs.next()) {
+				%>
+					<div style="padding: 5px 0px;">
+						<h4>There are currently no sessions for this seminar.</h4>
+					</div>
+				<% } else { %>
 					<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
@@ -63,7 +77,7 @@
 										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
 										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
 										<div data-value="DateAsc">By Date (Asc)</div>
-										<div data-value="DateAsc">By Date (Desc)</div>
+										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
 										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Filter</button>
@@ -78,13 +92,6 @@
 			 		
 					<div class="row" id="ssList">
 						<%
-							ResultSet rs = (ResultSet) session.getAttribute("session");
-							ResultSet rs2 = (ResultSet) session.getAttribute("venue");
-							ResultSet rs3 = (ResultSet) session.getAttribute("speakers");
-							int sessions = 0;
-							DateFormat format = new SimpleDateFormat("h:mm a");
-							DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-
 							while (rs.next()) {
 								String str = format.format(rs.getTime(8));
 								String str2 = format.format(rs.getTime(9));
@@ -118,7 +125,7 @@
 											<br>
   											<strong>Date:</strong> <%=rs.getDate(7)%>
   											<br>
-  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%>
+  											<strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
   											<br>
   											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
   											<br>
@@ -156,7 +163,7 @@
 											<br>
   											<strong>Date:</strong> <%=rs.getDate(7)%>
   											<br>
-  											<strong>Venue:</strong> <%=rs.getString(5)%>, <%=rs.getString(4)%>
+  											<strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<br>
   											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
   											<br>
@@ -184,6 +191,7 @@
    					</div>
 					<!-- End of Announcements pagination -->
 					
+					<% } %>
 					<br>
 					
 					<div class="someButton">
@@ -316,8 +324,8 @@
 									<button type="button" class="btn btn-gray pull-left"
 										data-dismiss="modal">Cancel</button>
 								</div>
-						</div>
 						</form>
+						</div>
 					</div>
 				</div>
 				<!--  CREATE SESSION MODAL -->
@@ -331,6 +339,8 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
+	
+	
 	<!-- EDIT SESSION MODAL -->
 	<div class="modal fade editSessionModal" id="editSessionModal" tabindex="-1"
 		role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -446,8 +456,8 @@
 						<button type="button" class="btn btn-gray pull-left"
 							data-dismiss="modal">Cancel</button>
 					</div>
-			</div>
 			</form>
+			</div>
 		</div>
 	</div>
 	<!-- EDIT SESSION MODAL -->

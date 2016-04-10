@@ -31,6 +31,16 @@
 				<!-- Content -->
 				<div class="content">
 				
+				<%
+					ResultSet rs = (ResultSet) session.getAttribute("seminars");
+					int seminars = 0;
+				
+					if (!rs.next()) {
+				%>
+					<div style="padding: 5px 0px;">
+						<h4>There are no seminars.</h4>
+					</div>
+				<% } else { %>
 			 		<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
@@ -87,9 +97,6 @@
 			 		
 					<div class="row" id="ssList">
 						<%
-							ResultSet rs = (ResultSet) session.getAttribute("seminars");
-							int seminars = 0;
-							
 							while (rs.next()) {
 								String desc = rs.getString(4);
 								desc = desc.replaceAll("<br />","");
@@ -103,7 +110,7 @@
 									data-trigger="focus" data-html="true" data-placement="auto" 
 									data-content="
 										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=desc%></p><br>
+  										<p><%=rs.getString(4)%></p><br>
   										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
   											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
@@ -175,6 +182,7 @@
    					</div>
 					<!-- End of Announcements pagination -->
 					
+					<% } %>
 					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
@@ -236,10 +244,10 @@
 						<button type="button" class="btn btn-gray pull-left"
 							data-dismiss="modal">Cancel</button>
 					</div>
-			</div>
 			<input type="hidden" name="seminarID" id="seminarID" value="" /> <input
 				type="hidden" name="requestType" value="editSeminar" />
 			</form>
+			</div>
 		</div>
 	</div>
 	<!-- EDIT SEMINAR MODAL -->

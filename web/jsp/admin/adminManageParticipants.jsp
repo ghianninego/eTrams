@@ -124,18 +124,7 @@
 			 		<% } else { %>
 			 		
 			 		<!-- For Ongoing/Unfinished Sessions -->
-			 		<!-- Content -->
-			 		
-			 		
-			 		
-			 		<!--  PLACE THIS KUNG SAAN PWEDE ILAGAY HA 
-			 		 -->
-			 		<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
-						{	%>
-						<!-- MESSAGE HERE NA PUNO NA YUNG SESSION -->
-					<% } %>
-			 		<!--  END OF STUFF -->
-			 		
+			 		<!-- Content -->			 		
 			 		<div class="content">
 			 			<div class="row options">
 			 			
@@ -184,14 +173,16 @@
 							</tbody>
 						</table>
 						
-						<br>
 						<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
 							{	%>
+						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
-  						
+						<% } else { %>
+						<br>
+						<em>Participant capacity for this session is already full.</em>
 						<% } %>
 			 		</div>
 			 		<% } rs.previous(); %>

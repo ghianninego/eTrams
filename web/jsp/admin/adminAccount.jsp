@@ -129,7 +129,7 @@
 											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" required />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" required />
+											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" required />

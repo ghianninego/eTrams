@@ -1,3 +1,5 @@
+<jsp:useBean id="user" class="eTrams.model.FinalUserBean"  scope="session"/>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +13,6 @@
 		<link type="text/css" rel="stylesheet" href="../../css/headerAndFooter.css" />
 		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<link href="../../css/bootstrap-formhelpers.css" rel="stylesheet" type="text/css" />
-		<link href="../../css/bootstrap-table.css" rel="stylesheet" type="text/css" />
 		
 		<title>UST eTrams - My Account: Profile</title>
 	</head>
@@ -27,32 +28,35 @@
 			<div class="row">
 			 	<div class="col-md-12">
 			 		<h1 class="page-header"><small>My Account:</small> Profile</h1>
-			 			
+			 		
 			 		<!-- Content -->
 			 		<div class="content">
 			 			<div class="row account">
 			 				<div class="col-sm-8 accountLeft">
 			 					<h4>Name</h4>
-			 					<h4><span>Something S. Something</span></h4>
+			 					<h4><span>${user.firstName }  ${user.middleName } ${user.lastName }</span></h4>
+			 					<br>
+			 					<h4>Username</h4>
+			 					<h4><span>${user.username}</span></h4>
 			 					<br>
 			 					<h4>Email</h4>
-								<h4><span>2013-xxxxxx@ust-ics.mygbiz.com</span></h4>
+								<h4><span>${user.email}</span></h4>
 								<br>
 								<h4>Faculty/College/Institute</h4>
-								<h4><span>Institute of Information and Computing Sciences</span></h4>
+								<h4><span>${user.collegeName}</span></h4>
 								<br>
 								<h4>Department</h4>
-								<h4><span>Department</span></h4>
+								<h4><span>${user.departmentName}</span></h4>
 								<br>
 								<h4>User Type</h4>
-								<h4><span>Coordinator</span></h4>
+								<h4><span>${user.roleName}</span></h4>
 			 				</div>
-			 					
+			 				
 			 				<div class="col-sm-4 accountRight">
 			 					<div class="someButton">
-			 						<button class="btn btn-yellow" data-toggle="modal" data-target="#editProfileModal">
+			 						<a class="btn btn-yellow" data-toggle="modal" data-target="#editProfileModal">
 			 							Edit Information
-			 						</button>
+			 						</a>
 			 					</div>
 			 					<div class="someButton">
 			 						<a class="btn btn-yellow" data-toggle="modal" data-target="#editPasswordModal">
@@ -73,7 +77,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
 								</div>
-							<form class="form-horizontal" action="">
+							<form class="form-horizontal" action="../../dbcontrol" method="post">
 								<div class="modal-body">
 								
 									<!-- New Password-->
@@ -91,6 +95,10 @@
 											<input type="password" class="form-control" id="password" name="password" required />
 										</div>
 									</div>
+									
+									<input type="hidden" name="requestType" value="editSelfPassword">
+									<input type="hidden" name="accountId" value="<%=user.getAccountID()%>">
+									<input type="hidden" name="userInfoId" value="<%=user.getUserInfoID()%>">
 								</div>
 								
 								<div class="modal-footer">
@@ -111,7 +119,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
 								</div>
-							<form class="form-horizontal" action="">
+							<form class="form-horizontal" action="../../dbcontrol" method="post">
 								<div class="modal-body">
 								
 									<!-- Name-->
@@ -121,7 +129,7 @@
 											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" required />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" required />
+											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" required />
@@ -135,6 +143,10 @@
 											<input type="text" class="form-control" id="email" name="email" value="${user.email }" required />
 										</div>
 									</div>
+									
+									<input type="hidden" name="requestType" value="editSelfInfo">
+									<input type="hidden" name="accountId" value="<%=user.getAccountID()%>">
+									<input type="hidden" name="userInfoId" value="<%=user.getUserInfoID()%>">
 								</div>
 								
 								<div class="modal-footer">
@@ -146,10 +158,11 @@
 						</div>
 					</div>
 					<!-- EDIT PROFILE MODAL -->
+					
 					<!-- End of Modals -->
-			 			
+					
 			 	</div>
-			 </div>
+			</div>
 		</div>
 		<!-- End of Container -->
 				
@@ -162,6 +175,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
-
+		
+	<script type="text/javascript" src="../../js/myscript.js"></script>
+	
 </html>

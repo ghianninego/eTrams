@@ -160,7 +160,7 @@
 											<th data-field="certification" data-sortable="true">Certification</th>
 										</tr>
 									</thead>
-									<tbody id="someTable">
+									<tbody>
 									<%
 										DateFormat timeFormat = new SimpleDateFormat("h:mm a");
 										DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -173,20 +173,22 @@
 											<td><%=history.getInt("attendanceID")%></td>
 											<td><%=history.getString("seminarName")%></td>
 											<td><%=history.getString("sessionName")%></td>
+										<% if (history.getInt("completion") == 0) { %>
+											<td>n/a</td>
+											<td>n/a</td>
+											<td>n/a</td>
+											<td>n/a</td>
+											<td>n/a</td>
+										<% } else { %>
 											<td><%=timeIn%></td>
 											<td><%=timeOut%></td>
 											<td><%=history.getString("Date")%></td>
-											<td><a href="#" data-toggle="modal" data-target="#setStatusModal"
-												data-attendanceid="<%=history.getInt("attendanceID")%>" data-status="<%=history.getString("Status")%>">
-												<%=history.getString("Status") %>
-											</a></td>
+											<td><%=history.getString("Status") %></td>
 											<td>
-												<% if(history.getInt("Certification") == 1)  { %>
-													Certified
-												<% } else { %>
-													<a href="#" data-toggle="modal" data-target="#certificationModal">Uncertified</a>
-												<% } %>
+												<% if(history.getInt("Certification") == 1) {%>
+													Certified <% } else { %> Uncertified <% } %>
 											</td>
+										<% } %>
 										</tr>
 									<%
 										}
@@ -232,8 +234,7 @@
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="middleName"
-												id="middleName" value="" placeholder="Middle name"
-												required />
+												id="middleName" value="" placeholder="Middle name" />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName"
@@ -357,29 +358,6 @@
 				</div>
 				<!-- DELETE MODAL -->
 
-				<!-- CERTIFY MODAL -->
-				<div class="modal fade" id="certifyModal" tabindex="-1"
-					role="dialog" aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog modal-sm" role="document">
-						<form>
-							<div class="modal-content">
-								<div class="modal-body text-center">
-									<p>Are you sure you want to certify this participant?</p>
-									<div class="someButton text-center">
-										<button type="submit" class="btn btn-default">Yes</button>
-										<button type="button" class="btn btn-gray"
-											data-dismiss="modal">Cancel</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- CERTIFY MODAL -->
-
-				<%@ include file="../modals/SeminarsAndSessionsModals.jsp"%>
-				<!-- End of Modals -->
-
 			</div>
 		</div>
 	</div>
@@ -427,36 +405,6 @@
 
 	});
 
-	$(".setStatusModal").on("show.bs.modal", function(event) {
-		var url = $(event.relatedTarget);
-		var attendanceID = url.data("attendanceid");
-		var status = url.data("status");
-
-		var modal = $(this);
-		modal.find("#attendanceID").val(attendanceID);
-		modal.find("#status").val(status);
-
-	})
-	
-	$(".certifyModal").on("show.bs.modal", function(event) {
-		var url = $(event.relatedTarget);
-		var attendanceID = url.data("attendanceid");
-		var certification = url.data("certification");
-				
-		alert(attendanceID);
-				
-		var modal = $(this);
-				
-		if(certification == "1"){
-			modal.find("#certText").text("Are you sure you want to certify this participant?");
-		}else if(certification == "0"){
-			modal.find("#certText").text("Are you sure you want to uncertify this participant?");
-		}
-		modal.find("#certification").val(certification);
-		modal.find("#attendanceID").val(attendanceID);
-
-	})
-	
 	$(".deleteModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);
 		var accountID = url.data("accountid");
