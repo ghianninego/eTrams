@@ -42,7 +42,7 @@
 						<div class="col-sm-2">
 							<form action="">
 								<div class="input-group">
-									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
 										<div data-value="ongoing">Ongoing</div>
 										<div data-value="completed">Completed</div>
@@ -57,19 +57,19 @@
 						
 						<!-- Other Filter Data -->
 						<div class="col-sm-3">
-							<form action="">
+
 								<div class="input-group">
-									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+									<div class="bfh-selectbox" data-name="sortData" data-value="AlphabeticalAsc" id="sortData">
 										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
 										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
 										<div data-value="DateAsc">By Date (Asc)</div>
 										<div data-value="DateAsc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Filter</button>
+										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Filter</button>
 									</span>
 								</div>
-							</form>
+
 						</div>
 						<!-- End of Other Filter -->
 			 		</div>
@@ -90,8 +90,10 @@
 								String str2 = format.format(rs.getTime(9));
 								String editDate = df.format(rs.getDate(7));
 						%>
-						<div class="col-sm-6 col-md-3">
+						<div class="col-sm-6 col-md-3" id="datavalues">
 							<% if (rs.getInt(11) == 1) { %>
+								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
+								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
 								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
@@ -128,6 +130,8 @@
 								</button>
 								
 							<% } else { %>
+								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
+								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
 								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
@@ -432,7 +436,7 @@
 								</div>
 							</div>
 						</div>
-						<input type="hidden" name="sessionID" value=""> <input
+						<input type="hidden" name="sessionID" id="sessionID" value=""> <input
 							type="hidden" name="requestType" value="editSession">
 
 					</div>
@@ -481,6 +485,8 @@
 
 <!-- FOR SESSION MODAL -->
 <script type="text/javascript" src="../../js/sessionModal.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
+
 <script type="text/javascript">
 
 		$(".editSessionModal").on(

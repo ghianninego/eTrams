@@ -34,36 +34,36 @@
 			 		<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-							<form action="">
+							
 								<div class="input-group">
-									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
 										<div data-value="Ongoing">Ongoing</div>
 										<div data-value="Completed">Completed</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Filter</button>
+										<button class="btn btn-default" id="filterDataBtn">Filter</button>
 									</span>
 								</div>
-							</form>
+							
 						</div>
 						<!-- End of Filter -->
 						
 						<!-- Other Filter Data -->
 						<div class="col-sm-3">
-							<form action="">
+							
 								<div class="input-group">
-									<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+									<div class="bfh-selectbox" data-name="sortData" data-value="AlphabeticalAsc" id="sortData">
 										<div data-value="AlphabeticalAsc">By Alphabetical (Asc)</div>
 										<div data-value="AlphabeticalDesc">By Alphabetical (Desc)</div>
 										<div data-value="DateAsc">By Date (Asc)</div>
-										<div data-value="DateAsc">By Date (Desc)</div>
+										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Filter</button>
+										<button class="btn btn-default" onclick="sort('sortData')">Filter</button>
 									</span>
 								</div>
-							</form>
+							
 						</div>
 						<!-- End of Other Filter -->
 						
@@ -94,11 +94,13 @@
 								String desc = rs.getString(4);
 								desc = desc.replaceAll("<br />","");
 						%>
-						<div class="col-sm-6 col-md-3">
-							
+						<div class="col-sm-6 col-md-3" id="datavalues">
+							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
+							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
+							<span class="hidden" id="status">COMPLETED</span>
 							<%if (rs.getInt(6) == 1) { %>
 								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto"
+									data-trigger="focus" data-html="true" data-placement="auto" 
 									data-content="
 										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
   										<p><%=desc%></p><br>
@@ -125,6 +127,8 @@
 									</div>
 								</button>
 							<% } else { %>
+							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
+							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
 								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="auto"
 									data-content="
@@ -275,6 +279,8 @@
 
 <!-- FOR SESSION MODAL -->
 <script type="text/javascript" src="../../js/sessionModal.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
+
 <script type="text/javascript">
 	$(".editSeminarModal").on("show.bs.modal", function(event) {
 		var event = $(event.relatedTarget);

@@ -139,7 +139,7 @@
 			 		<div class="content">
 			 			<div class="row options">
 			 			
-			 				<!-- Filter Data -->
+			 				<!-- Filter Data --
 							<div class="col-sm-2">
 								<form action="">
 									<div class="input-group">
