@@ -1,5 +1,5 @@
 
-    <%@ page import="eTrams.model.EventBean, java.util.ArrayList" %>
+    <%@ page import="eTrams.model.EventBean, java.util.ArrayList " %>
 
   <!-- TO JESSIE:
   
@@ -53,8 +53,8 @@ $(document).ready(function() {
               end: new Date("<%=temp2%>"),
               allDay: false,
               seminar: ' <%=eBean.get(i).getSeminarName()%> ',
-              startTime: ' <%=eBean.get(i).getStartTime()%> ',
-              endTime: ' <%=eBean.get(i).getEndTime()%> ',
+              startTime: ' <%=TimeDateConverterClass.convertTime(eBean.get(i).getStartTime())%> ',
+              endTime: ' <%=TimeDateConverterClass.convertTime(eBean.get(i).getEndTime())%> ',
               capacity: ' <%=eBean.get(i).getCapacity()%> ',
               venue: ' <%=eBean.get(i).getVenueName()%> ',
               venueRemarks: ' <%=eBean.get(i).getVenueRemarks()%> ',
@@ -77,8 +77,8 @@ $(document).ready(function() {
             end: new Date("<%=temp2%>"),
             allDay: false,
             seminar: ' <%=eBean.get(i).getSeminarName()%> ',
-            startTime: ' <%=eBean.get(i).getStartTime()%> ',
-            endTime: ' <%=eBean.get(i).getEndTime()%> ',
+            startTime: ' <%=TimeDateConverterClass.convertTime(eBean.get(i).getStartTime())%> ',
+            endTime: ' <%=TimeDateConverterClass.convertTime(eBean.get(i).getEndTime())%> ',
             capacity: ' <%=eBean.get(i).getCapacity()%> ',
             venue: ' <%=eBean.get(i).getVenueName()%> ',
             venueRemarks: ' <%=eBean.get(i).getVenueRemarks()%> ',
