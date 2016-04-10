@@ -86,19 +86,19 @@ a:hover {
 	transition: all 0.2s ease-in-out;
 }
 
-.someContainer {
-	padding: 0px 5px;
-	height: 500px;
-	background: rgba(255, 255, 255, 0.7);
-	position: relative;
-	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
-}
-
 .calendar {
 	margin-top: 10px;
 }
 
 /******************** Announcements Style ********************/
+.someContainer {
+	padding: 0px 5px;
+	height: 520px;
+	background: rgba(255, 255, 255, 0.7);
+	position: relative;
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
+}
+
 .paginateClass {
 	height: 85px;
 	padding: 8px;
