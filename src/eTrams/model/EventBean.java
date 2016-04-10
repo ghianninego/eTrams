@@ -1,6 +1,8 @@
 package eTrams.model;
 
-public class EventBean {
+import java.io.Serializable;
+
+public class EventBean implements Serializable {
 	  
 	 private int sessionID;
 	 private String seminarName;
@@ -80,7 +82,4 @@ public class EventBean {
 	public void setCompletion(int completion) {
 		this.completion = completion;
 	}
-	 
-	
-
 }

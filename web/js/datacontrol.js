@@ -65,14 +65,14 @@ function returnTags(dir){
 	}
 }
 
-function filter(dir){
-	var $rows = $('#ssList #datavalues');
-	$('#filterDataBtn').click(function() {
+var $rows = $('#ssList #datavalues');
+$('#filterDataBtn').click(function() {
 	    var val = $.trim($('#filterData').val()).replace(/ +/g, ' ').toLowerCase();
-	    
+	    if(val == "all"){
+	    	val = "";
+	    }
 	    $rows.show().filter(function() {
-	        var text = $(this).children().eq(0).text().replace(/\s+/g, ' ').toLowerCase();
+	        var text = $('#status').text().replace(/\s+/g, ' ').toLowerCase();
 	        return !~text.indexOf(val);
 	    }).hide();
 	});
-}

@@ -70,7 +70,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" onclick="sort('sortData')">Filter</button>
+										<button class="btn btn-default" onclick="sort('sortData')">Sort</button>
 									</span>
 								</div>
 							
@@ -136,6 +136,7 @@
 							<% } else { %>
 							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
+							<span class="hidden" id="status">ONGOING</span>
 								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="auto"
 									data-content="

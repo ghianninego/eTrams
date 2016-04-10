@@ -54,18 +54,18 @@
 					<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-							<form action="">
+						
 								<div class="input-group">
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
-										<div data-value="ongoing">Ongoing</div>
-										<div data-value="completed">Completed</div>
+										<div data-value="Ongoing">Ongoing</div>
+										<div data-value="Completed">Completed</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Filter</button>
+										<button class="btn btn-default" id="filterDataBtn">Filter</button>
 									</span>
 								</div>
-							</form>
+							
 						</div>
 						<!-- End of Filter -->
 						
@@ -80,7 +80,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Filter</button>
+										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Sort</button>
 									</span>
 								</div>
 
@@ -101,6 +101,7 @@
 							<% if (rs.getInt(11) == 1) { %>
 								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
+								<span class="hidden" id="status">COMPLETED</span>
 								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
@@ -139,6 +140,7 @@
 							<% } else { %>
 								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
+								<span class="hidden" id="status">ONGOING</span>
 								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
 									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 

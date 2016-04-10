@@ -51,18 +51,16 @@
 			 			
 			 				<!-- Filter Data -->
 							<div class="col-sm-2">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+								<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 											<div data-value="All">All</div>
-											<div data-value="Complete">Certified</div>
-											<div data-value="Incomplete">Uncertified</div>
+											<div data-value="Certified">Certified</div>
+											<div data-value="Uncertified">Uncertified</div>
 										</div>
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
+											<button class="btn btn-default" id="filterDataBtn">Filter</button>
 										</span>
 									</div>
-								</form>
 							</div>
 							<!-- End of Filter -->
 						
@@ -81,7 +79,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="dataValues">
 								<%
 									while(rs2.next())
 									{
@@ -163,6 +161,7 @@
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../../js/datacontrol_2.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>

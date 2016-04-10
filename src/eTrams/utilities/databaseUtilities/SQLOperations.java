@@ -85,6 +85,9 @@ public class SQLOperations
 	private static PreparedStatement countSessionsC;
 	private static PreparedStatement countSessionParticipants;
 	private static PreparedStatement countRegisteredSessionParticipants;
+	private static PreparedStatement countAllSeminars;
+	private static PreparedStatement countAllSessions;
+	private static PreparedStatement countAllAttendees;
 //-----------filter
 	private static PreparedStatement filterComplete;
 	private static PreparedStatement filterCert;
@@ -1191,6 +1194,54 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("countSessions attendanceTable");         
 		return countRegisteredSessionParticipants;
+	}
+	
+	public synchronized static PreparedStatement countAllSessions(Connection connection)
+	{
+		try 
+		{
+			if (countAllSessions == null)
+				countAllSessions = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countAllSessions sessionTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countAllSessions sessionTable");         
+		return countAllSessions;
+	}
+	
+	public synchronized static PreparedStatement countAllSeminars(Connection connection)
+	{
+		try 
+		{
+			if (countAllSeminars == null)
+				countAllSeminars = connection.prepareStatement("SELECT COUNT(SeminarID) FROM SeminarTable");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countAllSeminars seminarTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countAllSeminars seminarTable");         
+		return countAllSeminars;
+	}
+	
+	public synchronized static PreparedStatement countAllAttendees(Connection connection)
+	{
+		try 
+		{
+			if (countAllAttendees == null)
+				countAllAttendees = connection.prepareStatement("SELECT COUNT(AttendanceID) FROM AttendanceTable");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("countAllAttendees attendanceTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("countAllAttendees attendanceTable_ERR");         
+		return countAllAttendees;
 	}
 	
 	public synchronized static PreparedStatement login(Connection connection)

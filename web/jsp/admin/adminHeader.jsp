@@ -36,9 +36,9 @@
 				<% } %>
 				
 				<% if (x.equals("adminReports.jsp")) { %>
-                 	<li class="active"><a href="adminReports.jsp">Reports</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=goToAdminReports">Reports</a></li>
                	<% } else { %>
-					<li><a href="adminReports.jsp">Reports</a></li>
+					<li><a href="../../dbcontrol?requestType=goToAdminReports">Reports</a></li>
 				<% } %>
 				
 				<% if (x.equals("adminUsers.jsp") || x.equals("adminColleges.jsp") || x.equals("adminVenues.jsp") || 

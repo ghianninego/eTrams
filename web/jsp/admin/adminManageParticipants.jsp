@@ -52,24 +52,23 @@
 			 			<div class="row options">
 			 				<!-- Filter Data -->
 							<div class="col-sm-2">
-								<form action="">
+							
 									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 											<div data-value="All">All</div>
 											<div data-value="Complete">Complete</div>
 											<div data-value="Incomplete">Incomplete</div>
 										</div>
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
+											<button class="btn btn-default" id="filterDataBtn">Filter</button>
 										</span>
 									</div>
-								</form>
+								
 							</div>
 							<!-- End of Filter -->
 						</div>
 						
 						<br>
-						
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
@@ -82,7 +81,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="dataValues">
 								<%
 									while(rs2.next())
 									{
@@ -352,7 +351,9 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers.js"></script>
+		<script type="text/javascript" src="../../js/datacontrol_2.js"></script>
+	
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->

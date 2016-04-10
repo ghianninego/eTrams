@@ -20,6 +20,7 @@ import eTrams.utilities.helperClasses.CalendarClass;
 import eTrams.utilities.helperClasses.CollegeClass;
 import eTrams.utilities.helperClasses.FrontDeskClass;
 import eTrams.utilities.helperClasses.ManageParticipantsClass;
+import eTrams.utilities.helperClasses.ReportsClass;
 import eTrams.utilities.helperClasses.Search;
 import eTrams.utilities.helperClasses.SeminarClass;
 import eTrams.utilities.helperClasses.SessionClass;
@@ -83,7 +84,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				// ADMIN ACCOUNT
 				//////// seminar
 				case "createSeminar": 
-					SeminarClass.createSeminar(request, connection, 1); // temporary ID (must get from session)
+					SeminarClass.createSeminar(request, connection, ((FinalUserBean)session.getAttribute("user")).getAccountID()); // temporary ID (must get from session)
 					response.sendRedirect("dbcontrol?requestType=goToAdminSeminar"); 
 					break;
 				case "editSeminar":
@@ -432,6 +433,19 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "register":
 					FrontDeskClass.register(request, connection);
 					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
+					break;
+				////// REPORTS
+				case "goToAdminReports":
+					int countAllSessions = ReportsClass.countAllSessions(connection);
+					int countAllSeminars = ReportsClass.countAllSeminars(connection);
+					int countAllAttendees = ReportsClass.countAllAttendees(connection);
+					session.setAttribute("countAllSessions",countAllSessions);
+					session.setAttribute("countAllSeminars",countAllSeminars);
+					session.setAttribute("countAllAttendees",countAllAttendees);
+					response.sendRedirect("jsp/admin/adminReports.jsp");
+					break;
+				case "generateReport":
+					ReportsClass.generateReport(response, connection);
 					break;
 			}
 		}
