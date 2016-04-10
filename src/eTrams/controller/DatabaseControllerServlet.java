@@ -106,6 +106,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//////// sessions
 				case "createSession":
 					SessionClass.createSession(request, connection);
+					session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID")); // change to URL mapping (hehe)
 					break;
 				case "editSession":
