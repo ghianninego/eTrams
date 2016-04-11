@@ -70,7 +70,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" onclick="sort('sortData')">Sort</button>
+										<button class="btn btn-default" onclick="sort('sortData')">Filter</button>
 									</span>
 								</div>
 							
@@ -105,66 +105,43 @@
 							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
 							<span class="hidden" id="status">COMPLETED</span>
-							<%if (rs.getInt(6) == 1) { %>
-								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto" 
-									data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=rs.getString(4)%></p><br>
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  										</div>
-  									">
-									<div class="caption complete">
-										<div class="seminarTitle">
-											<h3><%=rs.getString(3)%></h3>
-										</div>
-										<p>
-											<strong>Date Created:</strong>
-											<%=rs.getDate(5)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>COMPLETED</span>
-										</p>
+							
+							<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-semname="<%=rs.getString(3)%>" 
+									data-semtopic="<%=desc %>" data-semid="<%=rs.getInt(1) %>">
+								<div class="panel-body">
+									<div class="seminarTitle">
+										<h3><%=rs.getString(3)%></h3>
 									</div>
-								</button>
-							<% } else { %>
-							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
-							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
-							<span class="hidden" id="status">ONGOING</span>
-								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto"
-									data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=rs.getString(4)%></p><br>
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  										</div>
-  									">
-									<div class="caption">
-										<div class="seminarTitle">
-											<h3><%=rs.getString(3)%></h3>
-										</div>
-										<p>
-											<strong>Date Created:</strong>
-											<%=rs.getDate(5)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>ONGOING</span>
-										</p>
-									</div>
-								</button>
-							<% } %>
+								</div>
+									
+								<ul class="list-group">
+									<li class="list-group-item status">
+										<p><strong>Date Created:</strong><%=rs.getDate(5)%><br></p>
+									</li>
+								<%if (rs.getInt(6) == 1) { %>
+									<li class="list-group-item status complete">
+										<p><span>COMPLETE</span></p>
+									</li>
+								<% } else { %>
+									<li class="list-group-item status">
+										<p><span>ONGOING</span></p>
+									</li>
+								<% } %>
+									<li class="list-group-item">
+										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
+												data-placement="bottom" data-content="
+											<p><strong>Description:</strong></p>
+											<p><%=rs.getString(4)%></p>
+  										">More Info</button> &bull; 
+  										<button class="btn btn-link" data-toggle="modal" data-target="#editSeminarModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
+  										 &bull; 
+  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+									</li>
+									<li class="list-group-item setting1">
+  										<a href="../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>">View Sessions</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 
 

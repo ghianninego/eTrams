@@ -71,9 +71,7 @@
 								String content = announcement.getString("content");
 								content = content.replaceAll("<br />","");
 						%>
-							<div class="paginateClass" id="announcements"
-									data-datecreated="<%=announcement.getString("datecreated") %>" data-anntitle="<%=announcement.getString("title")%>"
-									data-anncontent="<%=content%>" data-annid="<%=announcement.getInt("announcementID") %>">
+							<div class="paginateClass" id="announcements">
 
 								<h4><%=announcement.getString("title")%></h4>
 								<p>
@@ -97,7 +95,7 @@
 			</div>
 			<div class="modal-body">
 				<p><%=announcement.getString("Content") %></p>
-				<p><em>Date created: <%=TimeDateConverterClass.convertToStringDate(announcement.getString("datecreated"))%></em></p>
+				<p><em style="color: #848484 !important;">Date created: <%=TimeDateConverterClass.convertToStringDate(announcement.getString("datecreated"))%></em></p>
 			</div>
 		</div>
 	</div>
@@ -130,7 +128,7 @@
                     <div class="form-group">
                         <label for="Content" class="col-sm-2 control-label">Content</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required> <%=announcement.getString("content") %></textarea>
+                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required><%=content%></textarea>
                         </div>
                     </div>
     				
@@ -270,52 +268,25 @@
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
 <script type="text/javascript" src="../../js/jPages.min.js"></script>
-<script type="text/javascript" src="../../js/myscript.js"></script>
+
+
+<script>
+$(document).ready(function($) {
+	$("div.holder").jPages({
+		containerID: "announcementList",
+		perPage: 5,
+		keyBrowse: true,
+		previous: "‹",
+		next: "›",
+		delay: 10,
+		callback: function (pages, items) {
+			$("#legend2").html("Showing " + items.range.start + " - " + items.range.end + " of " + items.count + " items");
+		}
+	});
+});
+</script>
 
 <script src='../../Calendar/jquery.min.js'></script>
 <script src='../../Calendar/moment.min.js'></script>
 <script src='../../Calendar/fullcalendar.js'></script>
-
-
-<script type="text/javascript">
-	$(".viewAnnouncementModal").on(
-			"show.bs.modal",
-			function(event) {
-				var url = $("#announcements");
-				var dateCreated = url.data("datecreated");
-				var title = url.data("anntitle");
-				var content = url.data("anncontent");
-
-				alert(content);
-				
-				var modal = $(this);
-				modal.find("#gridSystemModalLabel").text(title);
-				modal.find("#announcementContent").val(content);
-				modal.find("#announcementCreated").text(
-						"Date created: " + dateCreated);
-			});
-
-	$(".editAnnouncementModal").on("show.bs.modal", function(event) {
-		var url = $("#announcements");
-		var title = url.data("anntitle");
-		var content = url.data("anncontent");
-		var id = url.data("annid");
-
-		
-		var modal = $(this);
-		modal.find("#announcementTitle").val(title);
-		modal.find("#announcementContent").val(content);
-		modal.find("#announcementID").val(id);
-
-	});
-
-	$(".deleteModal").on("show.bs.modal", function(event) {
-		var url = $("#announcements");
-		var id = url.data("annid");
-
-		var modal = $(this);
-		modal.find("#announcementID").val(id);
-
-	});
-</script>
 </html>

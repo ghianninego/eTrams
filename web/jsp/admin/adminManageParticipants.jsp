@@ -36,7 +36,7 @@
 			 <div class="row">
 			 	<div class="col-md-12">
 			 		<h1 class="page-header"><small><a href="../../dbcontrol?requestType=goToAdminSeminar"><%= (String) session.getAttribute("seminarName") %></a> / 
-			 			<a href="../../dbcontrol?requestType=goToAdminSession"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Participants</h1>
+			 			<a href="adminSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Participants</h1>
 			 			
 			 		<!-- For Completed Sessions -->
 			 		<!-- Content -->

@@ -54,18 +54,18 @@
 					<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-						
+							<form action="">
 								<div class="input-group">
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
-										<div data-value="Ongoing">Ongoing</div>
-										<div data-value="Completed">Completed</div>
+										<div data-value="ongoing">Ongoing</div>
+										<div data-value="completed">Completed</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" id="filterDataBtn">Filter</button>
+										<button class="btn btn-default" type="submit">Filter</button>
 									</span>
 								</div>
-							
+							</form>
 						</div>
 						<!-- End of Filter -->
 						
@@ -80,7 +80,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Sort</button>
+										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Filter</button>
 									</span>
 								</div>
 
@@ -101,80 +101,82 @@
 							<% if (rs.getInt(11) == 1) { %>
 								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
-								<span class="hidden" id="status">COMPLETED</span>
-								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
-									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
-									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
-									data-content="
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Certification</a>
-  										</div>
-  									">
-
-									<div class="caption complete">
+								
+								<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
+										data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
+										data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>">
+									
+									<div class="panel-body">
 										<div class="sessionTitle">
 											<h3><%=rs.getString(3)%></h3>
 										</div>
-										<p>
-											<strong>Time:</strong> <%=str%> - <%=str2%>
-											<br>
-  											<strong>Date:</strong> <%=rs.getDate(7)%>
-  											<br>
-  											<strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
-  											<br>
-  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  											<br>
-  											<strong>Capacity:</strong> <%=rs.getInt(6)%>
-											<br>	
-											<strong>Status:</strong> <span>COMPLETED</span>
-										</p>
 									</div>
-								</button>
+									
+									<ul class="list-group">
+										<li class="list-group-item status complete">
+											<p><span>COMPLETE</span></p>
+										</li>
+										<li class="list-group-item">
+											<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
+													data-placement="bottom" data-content="
+  												<p><strong>Time:</strong> <%=str%> - <%=str2%></p>
+  												<p><strong>Date:</strong> <%=rs.getDate(7)%></p>
+			  									<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
+												<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
+												<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
+  											">More Info</button> &bull; 
+  											<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
+  											 &bull; 
+  											<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+										</li>
+										<li class="list-group-item setting1">
+  											<a href="../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
+										</li>
+										<li class="list-group-item setting2">
+											<a href="../../dbcontrol?requestType=goToAdminManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
+										</li>
+									</ul>
+								</div>
 								
 							<% } else { %>
 								<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 								<span class="hidden" id="date"><%=rs.getDate(7)%></span>
-								<span class="hidden" id="status">ONGOING</span>
-								<button class="thumbnail" id="dataContent_<%= rs.getInt(1)%>" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="bottom" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
-									data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
-									data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>"
-									data-content="
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSessionModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Manage Participants</a>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToFrontDeskFromSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>'>Front-Desk Interface</a>
-  										</div>
-  									">
-
-									<div class="caption">
+								
+								<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-sessionname="<%= rs.getString(3)%>" data-sessiondate="<%=editDate%>"
+										data-timein="<%= str%>" data-timeout="<%= str2%>" data-venue="<%=rs.getInt(16)%>" data-remarks="<%= rs.getString(5)%>" 
+										data-capacity="<%=rs.getInt(6)%>" data-speaker="<%=rs.getInt(10)%>" data-sessionid="<%= rs.getInt(1)%>">
+									
+									<div class="panel-body">
 										<div class="sessionTitle">
 											<h3><%=rs.getString(3)%></h3>
 										</div>
-										<p>
-											<strong>Time:</strong> <%=str%> - <%=str2%>
-											<br>
-  											<strong>Date:</strong> <%=rs.getDate(7)%>
-  											<br>
-  											<strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
-											<br>
-  											<strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%>
-  											<br>
-											<strong>Capacity:</strong> <%=rs.getInt(6)%>
-											<br>
-											<strong>Status:</strong> <span>ONGOING</span>
-										</p>
 									</div>
-								</button>
+									
+									<ul class="list-group">
+										<li class="list-group-item status">
+											<p><span>ONGOING</span></p>
+										</li>
+										<li class="list-group-item">
+											<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
+													data-placement="bottom" data-content="
+  												<p><strong>Time:</strong> <%=str%> - <%=str2%></p>
+  												<p><strong>Date:</strong> <%=rs.getDate(7)%></p>
+			  									<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
+												<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
+												<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
+  											">More Info</button> &bull; 
+  											<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
+  											 &bull; 
+  											<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+										</li>
+										<li class="list-group-item setting1">
+  											<a href="../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
+										</li>
+										<li class="list-group-item setting2">
+											<a href="../../dbcontrol?requestType=goToFrontDeskFromSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Front Desk Interface</a>
+										</li>
+									</ul>
+								</div>
 							<% } %>
 						</div>
 
@@ -485,6 +487,25 @@
 		</div>
 	</div>
 	<!-- DELETE MODAL -->
+	
+	<!-- INFO MODAL -->
+	<div class="modal fade infoModal" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<br>
+					<div class="text-center" style="padding: 5px;">
+						<p>The capacity for this session is already full.</p>
+						<p>You cannot add another participant.</p>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- INFO MODAL -->
+	
 </body>
 
 <script src="../../js/jquery.js"></script>
