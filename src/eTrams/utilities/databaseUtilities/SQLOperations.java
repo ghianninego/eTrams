@@ -99,6 +99,7 @@ public class SQLOperations
 	private static PreparedStatement searchName;
 	private static PreparedStatement searchSeminar;
 	private static PreparedStatement searchHistory;
+	private static PreparedStatement searchAnnouncementToDelete;
 /*-----------------------------------------------------------------------------------------
  *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
@@ -643,6 +644,8 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("SELECT announcementTable");         
 		return selectAnnouncement;
 	}
+	
+	
 	public synchronized static PreparedStatement selectVenue(Connection connection)
 	{
 		try 
@@ -842,6 +845,25 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("delete announcementTable");         
 		return deleteAnnouncement;
 	}	
+	
+	public synchronized static PreparedStatement autoDeleteAnnouncement(Connection connection)
+	{
+		try 
+		{
+			if (searchAnnouncementToDelete == null)
+				searchAnnouncementToDelete = connection.prepareStatement("UPDATE announcementTable SET active = '0' WHERE dateCreated < ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("delete searchAnnouncementToDelete_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("delete searchAnnouncementToDelete");         
+		return searchAnnouncementToDelete;
+	}
+	
+	
+	
 
 	public synchronized static PreparedStatement deleteVenue(Connection connection)
 	{
@@ -1201,7 +1223,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllSessions == null)
-				countAllSessions = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable");
+				countAllSessions = connection.prepareStatement("SELECT COUNT(m.sessionID) FROM seminarTable AS g LEFT JOIN sessionTable AS m USING(seminarID) where g.active=1");
 		} 
 		catch (SQLException e) 
 		{
@@ -1217,7 +1239,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllSeminars == null)
-				countAllSeminars = connection.prepareStatement("SELECT COUNT(SeminarID) FROM SeminarTable");
+				countAllSeminars = connection.prepareStatement("SELECT COUNT(SeminarID) FROM SeminarTable WHERE active=1");
 		} 
 		catch (SQLException e) 
 		{
@@ -1270,7 +1292,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (filterComplete == null)
-				filterComplete = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , accountTable.* , VenueTable.* , userInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and seminarTable.seminarID = sessiontable.seminarID and sessiontable.active > 0 and seminarTable.seminarID=? and sessiontable.status = ?  ORDER BY Date DESC");
+				filterComplete = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , accountTable.* , VenueTable.* , userInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTAble.Active = 1 and seminarTable.seminarID = sessiontable.seminarID and sessiontable.active > 0 and seminarTable.seminarID=? and sessiontable.status = ? ORDER BY Date DESC");
 		} 
 		catch (SQLException e) 
 		{
@@ -1287,7 +1309,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (filterCert == null)
-				filterCert = connection.prepareStatement("SELECT AttendanceTable.* , UserInfoTable.*, CollegeTable.* FROM AccountTable, AttendanceTable, UserInfoTable, DepartmentTable, CollegeTable WHERE AttendanceTable.participantID = AccountTable.AccountID AND AccountTable.userInfoID = UserInfoTable.userInfoID AND UserInfoTable.departmentID = DepartmentTable.departmentID AND DepartmentTable.collegeID = CollegeTable.collegeID AND attendanceTable.certification = ?  ");
+				filterCert = connection.prepareStatement("SELECT AttendanceTable.* , UserInfoTable.*, CollegeTable.* FROM AccountTable, AttendanceTable, UserInfoTable, DepartmentTable, CollegeTable WHERE AttendanceTable.participantID = AccountTable.AccountID AND AccountTable.userInfoID = UserInfoTable.userInfoID AND UserInfoTable.departmentID = DepartmentTable.departmentID AND DepartmentTable.collegeID = CollegeTable.collegeID AND attendanceTable.certification = ? ");
 		} 
 		catch (SQLException e) 
 		{

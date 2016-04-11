@@ -56,6 +56,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 		{
 			try 
 			{
+				AnnouncementClass.beGoneAnnouncement(request, connection);
 				FinalUserBean fub = UserClass.login(request, connection);
 				SeminarClass.completeSeminar(request, connection);
 				System.out.println("SESSION  " + SessionClass.completeSession(request, connection));

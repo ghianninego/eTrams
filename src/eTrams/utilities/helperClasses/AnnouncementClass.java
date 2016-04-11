@@ -2,6 +2,7 @@ package eTrams.utilities.helperClasses;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,27 @@ public class AnnouncementClass {
 			return updated;
 		}
 		return updated;
+	}
+	
+	public static void beGoneAnnouncement(HttpServletRequest request, Connection connection) {
+		java.sql.Date dateToday = new java.sql.Date(new java.util.Date().getTime());
+		try {
+			
+				String[] temp = dateToday.toString().split("-");
+				temp[1] = (Integer.parseInt(temp[1])-1)+"";
+				String DeletetionDate = temp[0]+"-"+temp[1]+"-"+temp[2];
+				PreparedStatement p = SQLOperations.autoDeleteAnnouncement(connection);
+				p.setString(1, DeletetionDate );
+				
+				if(p.executeUpdate()>0){
+					connection.commit();
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
