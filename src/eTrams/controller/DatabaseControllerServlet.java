@@ -258,7 +258,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/admin/adminManageUsers.jsp"); // change to URL mapping (hehe)
 					break;
 				case "adminManageUserDone": 
-					System.out.println("dumaan3");
 					UserClass.editUser(request, connection);
 					session.setAttribute("history", UserClass.getHistory(request, connection));
 					session.setAttribute("oneUser",UserClass.getUserById(request, connection));

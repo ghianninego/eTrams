@@ -178,7 +178,7 @@
             				<div data-value="--">--</div>
             				<%while(role.next()){ %>
             				<div data-value="<%=role.getString("roleID") %>"><%=role.getString("roleName") %> </div>
-            				<%} %>
+            				<%} role.first();role.previous();%>
             			</div>
             		</div>
             	</div>

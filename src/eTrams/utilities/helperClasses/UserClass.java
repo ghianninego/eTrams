@@ -80,8 +80,10 @@ public class UserClass {
 		String middleName = request.getParameter("middleName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
+		int roleID = Integer.parseInt(request.getParameter("roleID"));
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
 		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		System.out.println(roleID);
 
 		int updated = 0;
 		try {
@@ -91,13 +93,17 @@ public class UserClass {
 			pstmt.setString(2, firstName);
 			pstmt.setString(3, middleName);
 			pstmt.setInt(4, userInfoId);
+			
+			
 
 			updated = pstmt.executeUpdate();
 			connection.commit();
 
 			PreparedStatement pstmt2 = SQLOperations.updateAccount(connection);
 			pstmt2.setString(1, email);
-			pstmt2.setInt(2, accountId);
+			pstmt2.setInt(2, roleID);
+			pstmt2.setInt(3, accountId);
+			
 			updated = pstmt2.executeUpdate();
 			connection.commit();
 

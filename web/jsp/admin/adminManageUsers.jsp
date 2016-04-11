@@ -1,5 +1,6 @@
 <jsp:useBean id="oneUser" type="java.sql.ResultSet" scope="session" />
 <jsp:useBean id="history" type="java.sql.ResultSet" scope="session" />
+<jsp:useBean id="role" type="java.sql.ResultSet" scope="session" />
 
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
@@ -257,16 +258,16 @@
 					            		<label for="Role" class="col-sm-2 control-label">User Type</label>
 					            		<div class="col-sm-9">
 					            			<div class="bfh-selectbox" data-name="roleID" id="role">
-					            				<%//while(role.next()){ %>
-					            				<div data-value="<%//=role.getString("roleID") %>"><%=oneUser.getString("roleName") %> </div>
-					            				<%//} %>
+					            				<%while(role.next()){
+					            				%>
+					            				<div data-value="<%=role.getInt("roleID") %>"><%=role.getString("roleName") %> </div>
+					            				<%}role.first();role.previous(); %>
 					            			</div>
 					            		</div>
 					            	</div>
 
-									<input type="hidden" name="requestType"
-										value="adminManageUserDone"> <input type="hidden"
-										name="accountId" id="accountId" value=""> <input
+									<input type="hidden" name="requestType" value="adminManageUserDone"> <input type="hidden"
+										name="accountId" id="accountId" value="">										<input
 										type="hidden" name="userInfoId" id="userInfoId" value="">
 								</div>
 
@@ -317,7 +318,7 @@
 											New Password</label>
 										<div class="col-sm-8">
 											<input type="password" class="form-control" id="password"
-												name="password_confirm" required />
+												name="password" required />
 										</div>
 									</div>
 
@@ -397,6 +398,8 @@
 		var userID = url.data("userid");
 		var email = url.data("email");
 		var role = url.data("role");
+		var password = url.data("password");
+
 
 		var modal = $(this);
 		modal.find("#firstName").val(fName);
@@ -406,6 +409,7 @@
 		modal.find("#userInfoId").val(userID);
 		modal.find("#email").val(email);
 		modal.find("#roleID").val(role);
+		modal.find("#password").val(password);
 
 	});
 
@@ -431,4 +435,6 @@
 
 	});
 </script>
+!-->
+
 </html>

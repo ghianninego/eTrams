@@ -46,8 +46,8 @@
 					DateFormat format = new SimpleDateFormat("h:mm a");
 					DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 					DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-
-					if (!rs.next()) {
+					boolean isNotEmpty = rs.next();
+					if (!isNotEmpty) {
 				%>
 					<div style="padding: 5px 0px;">
 						<h4>There are currently no sessions for this seminar.</h4>
@@ -94,7 +94,7 @@
 			 		
 					<div class="row" id="ssList">
 						<%
-							while (rs.next()) {
+							while (isNotEmpty) {
 								String str = format.format(rs.getTime(8));
 								String str2 = format.format(rs.getTime(9));
 								String editDate = df.format(rs.getDate(7));
@@ -172,6 +172,7 @@
 
 						<%
 							sessions++;
+							isNotEmpty = rs.next();
 							}
 							rs.first();
 							rs.previous();

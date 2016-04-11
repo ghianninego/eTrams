@@ -36,8 +36,8 @@
 				<%
 					ResultSet rs = (ResultSet) session.getAttribute("seminars");
 					int seminars = 0;
-				
-					if (!rs.next()) {
+					boolean isNotEmpty= rs.next();
+					if (!isNotEmpty) {
 				%>
 					<div style="padding: 5px 0px;">
 						<h4>There are no seminars.</h4>
@@ -99,7 +99,7 @@
 			 		
 					<div class="row" id="ssList">
 						<%
-							while (rs.next()) {
+							while (isNotEmpty) {
 								String desc = rs.getString(4);
 								desc = desc.replaceAll("<br />","");
 								
@@ -152,7 +152,8 @@
 
 						<%
 							seminars++;
-							}
+							isNotEmpty =rs.next();
+ 							}
 							rs.first();
 							rs.previous();
 						%>
