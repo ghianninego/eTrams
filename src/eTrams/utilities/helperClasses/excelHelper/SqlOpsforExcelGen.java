@@ -12,6 +12,38 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 //paakidelete para makaconnect sa db niyo. :)
 	
 	/**SQL OPS + APACHE POI EXCEL GENERATION**/
+	public static Connection getConnection(){
+		Connection conn = null;
+		String url = "jdbc:mysql://127.0.0.1/personaldb";
+
+	    try {
+	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
+		} 
+		catch (ClassNotFoundException e1){
+			e1.printStackTrace();
+		} 
+	    catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	    catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			conn = DriverManager.getConnection (url, "root", "!Qaz2wsx");
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return conn;
+	}
+
+	
+	/**SQL OPS + APACHE POI EXCEL GENERATION**/
+	
+	
 	public static void colleges(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFRow row, XSSFCell cell, CellStyle style){
 		try{
 			int x = 6;

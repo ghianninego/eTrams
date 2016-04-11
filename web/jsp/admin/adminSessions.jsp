@@ -238,7 +238,7 @@
 										<label for="Session Date" class="col-sm-2 control-label">Date</label>
 										<div class="col-sm-10">
 											<div class="bfh-datepicker" date-close="false"
-												id="sessionDate" data-name="sessionDate"></div>
+												id="sessionDate" data-name="sessionDate" data-min="today"></div>
 										</div>
 									</div>
 
@@ -262,9 +262,19 @@
 									<div class="form-group">
 										<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 										<div class="col-sm-10">
+											
+											<select class="form-control" id="sessionVenue" name="sessionVenue" required>
+					            				<option class="hidden" disabled selected> -- select an option -- </option>
+					            				<%while (rs2.next()) {%>
+												<option value="<%=rs2.getInt(1)%>"><%=rs2.getString(2)%></option>
+												<%}
+													rs2.first();
+													rs2.previous();
+												%>
+					            			</select>
+											<!--
 											<div class="bfh-selectbox" data-name="sessionVenue"
-												id="sessionVenue" data-value="--" data-filter="true">
-												<div data-value>--</div>
+												id="sessionVenue" data-value="" data-filter="true">
 												<%
 													while (rs2.next()) {
 												%>
@@ -274,9 +284,13 @@
 													rs2.first();
 													rs2.previous();
 												%>
-												<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags -->
-											</div>
-										</div>
+												USE <div data-value="(value)">(NAME)</div> instead of <option> tags
+											</div>-->
+											
+											
+										</div>	
+									</div>
+									<div class="form-group">
 										<div class="col-sm-offset-2 col-sm-10">
 											<textarea class="form-control" id="venueRemarks"
 												name="venueRemarks" placeholder="Venue Remarks" rows="3"></textarea>
@@ -289,7 +303,7 @@
 										<div class="col-sm-10">
 											<input type="number" class="form-control" name="capacity"
 												id="capacity" placeholder="Number of Participants allowed"
-												required />
+												required min="0"/>
 										</div>
 									</div>
 
@@ -297,13 +311,28 @@
 									<div class="form-group">
 										<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
 										<div class="col-sm-10">
-											<div class="bfh-selectbox" data-name="sessionSpeaker"
-												id="sessionSpeaker" data-value="--" data-filter="true">
-												<div data-value>--</div>
+										
+											<select class="form-control" id="sessionSpeaker" name="sessionSpeaker" required>
+					            				<option class="hidden" disabled selected> -- select an option -- </option>
+					            				<%
+													while (rs3.next()) {
+												%>
+												<option value="<%=rs3.getInt(1)%>"><%=rs3.getString(2)%>,
+													<%=rs3.getString(3)%>
+													<%=rs3.getString(4)%></option>
+												<%
+													}
+													rs3.first();
+													rs3.previous();
+												%>
+					            			</select>
+										
+										<!-- <div class="bfh-selectbox" data-name="sessionSpeaker"
+												id="sessionSpeaker" data-filter="true" >
 												<%
 													while (rs3.next()) {
 												%>
-												<div data-value="<%=rs3.getInt(1)%>"><%=rs3.getString(2)%>,
+												<div data-input="hidden" data-value="<%=rs3.getInt(1)%>"><%=rs3.getString(2)%>,
 													<%=rs3.getString(3)%>
 													<%=rs3.getString(4)%></div>
 												<%
@@ -311,8 +340,8 @@
 													rs3.first();
 													rs3.previous();
 												%>
-												<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags -->
-											</div>
+												<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags
+											</div> -->
 										</div>
 									</div>
 

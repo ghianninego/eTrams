@@ -64,7 +64,7 @@ function returnTags(dir){
 			return "#alpha";
 	}
 }
-
+/*
 var $rows = $('#ssList #datavalues');
 $('#filterDataBtn').click(function() {
 	    var val = $.trim($('#filterData').val()).replace(/ +/g, ' ').toLowerCase();
@@ -75,4 +75,29 @@ $('#filterDataBtn').click(function() {
 	        var text = $('#status').text().replace(/\s+/g, ' ').toLowerCase();
 	        return !~text.indexOf(val);
 	    }).hide();
-	});
+	});*/
+
+$(document).ready(function () {
+
+    (function ($) {
+
+        $('#filterDataBtn').click(function () {
+
+        	
+            var rex;
+            if($('#filterData').val() == "All"){
+            	rex = new RegExp($('').val());
+            }else{
+            	rex = new RegExp($('#filterData').val().toUpperCase());
+            }
+            
+            $('#ssList #datavalues').hide();
+            $('#ssList #datavalues').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});

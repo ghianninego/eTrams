@@ -1,7 +1,8 @@
 
     <%@ page import="eTrams.model.EventBean, java.util.ArrayList " %>
-
-  <!-- TO JESSIE:
+    <%@ page import= "eTrams.utilities.helperClasses.TimeDateConverterClass" %>
+    
+  <!--  TO JESSIE:
   
   		I AM SO SORRY
   		DON'T TOUCH THIS ANYMORE WITHOUT MY CONSENT

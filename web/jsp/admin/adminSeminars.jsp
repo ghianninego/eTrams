@@ -102,10 +102,10 @@
 								desc = desc.replaceAll("<br />","");
 						%>
 						<div class="col-sm-6 col-md-3" id="datavalues">
+							<%if (rs.getInt(6) == 1) { %>
 							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
 							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
 							<span class="hidden" id="status">COMPLETED</span>
-							<%if (rs.getInt(6) == 1) { %>
 								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
 									data-trigger="focus" data-html="true" data-placement="auto" 
 									data-content="

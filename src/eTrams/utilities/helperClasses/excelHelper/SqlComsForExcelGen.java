@@ -31,7 +31,7 @@ public interface SqlComsForExcelGen {
 	String count_session_monthly =  
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
 			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable  "  +
-			 " WHERE SessionTable.SessionID = AttendanceTable.SessionID  "  + //
+			 " WHERE AttendanceTable.SessionID = SessionTable.SessionID  "  + //
 			 " AND  "  +
 			 " SessionTable.SeminarID = SeminarTable.SeminarID  "  + //SessionTable.SeminarID = SeminarTable.SeminarID
 			 " AND "  +
@@ -42,7 +42,7 @@ public interface SqlComsForExcelGen {
 	String count_session = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
 			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable "  +
-			 " WHERE SessionTable.SessionID = AttendanceTable.SessionID  "  + //
+			 " WHERE AttendanceTable.SessionID = SessionTable.SessionID  "  + //
 			 " AND  "  +
 			 " SessionTable.SeminarID = SeminarTable.SeminarID  "  + //SessionTable.SeminarID = SeminarTable.SeminarID
 			 " AND "  +
@@ -53,7 +53,7 @@ public interface SqlComsForExcelGen {
 	String count_session_weekly = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
 			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable "  +
-			 " WHERE SessionTable.SessionID = AttendanceTable.SessionID  "  + //
+			 " WHERE AttendanceTable.SessionID = SessionTable.SessionID  "  + //
 			 " AND  "  +
 			 " SessionTable.SeminarID = SeminarTable.SeminarID  "  + //SessionTable.SeminarID = SeminarTable.SeminarID
 			 " AND "  +
@@ -103,7 +103,7 @@ public interface SqlComsForExcelGen {
 			 " AccountTable.UserInfoID = AttendanceTable.ParticipantID  "  +
 			 " and  "  +
 			 " (AccountTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) = ?  " +
-			 " and EXTRACT(DAY from attendanceTable.CertificationRelease) between ? and ? and AttendanceTable.Certification = ? )" ;
+			 " and EXTRACT(DAY from AttendanceTable.CertificationRelease) between ? and ? and AttendanceTable.Certification = ? )" ;
 	
 	String certification_count = 
 			" select COUNT(DISTINCT AttendanceTable.SessionID) as Certs " + 

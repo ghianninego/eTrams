@@ -148,12 +148,12 @@
             	<div class="form-group">
             		<label for="College" class="col-sm-2 control-label">College</label>
             		<div class="col-sm-9">
-            			<div class="bfh-selectbox" data-name="collegeID" id="college"  data-value="--" data-filter="true">
-            				<div data-value="--">--</div>
+            			<select class="form-control" id="college" name="collegeID" required>
+            				<option class="hidden" disabled selected> -- select an option -- </option>
             				<%while(college.next()){ %>
-            				<div data-value="<%=college.getString("collegeID") %>"><%=college.getString("collegeName") %> </div>
+            				<option value="<%=college.getString("collegeID") %>"><%=college.getString("collegeName") %> </option>
             				<%} %>
-            			</div>
+            			</select>
             		</div>
             	</div>
             	
@@ -161,12 +161,12 @@
             	<div class="form-group">
             		<label for="Department" class="col-sm-2 control-label">Department</label>
             		<div class="col-sm-9">
-            			<div class="bfh-selectbox" data-name="departmentID" id="department" data-value="--" data-filter="true">
-            				<div data-value="--">--</div>
+            			<select class="form-control" id="department" name="departmentID" disabled required>
+            				<option class="hidden" disabled selected></option>
             				<%while(department.next()){ %>
-            				<div data-value="<%=department.getString("departmentID") %>"><%=department.getString("departmentName") %> </div>
+            				<option id="<%=department.getString("collegeID") %>" value="<%=department.getString("departmentID") %>"><%=department.getString("departmentName") %> </option>
             				<%} %>
-            			</div>
+            			</select>
             		</div>
             	</div>
             	
@@ -175,7 +175,6 @@
             		<label for="Role" class="col-sm-2 control-label">User Type</label>
             		<div class="col-sm-9">
             			<div class="bfh-selectbox" data-name="roleID" id="role" data-value="--">
-            				<div data-value="--">--</div>
             				<%while(role.next()){ %>
             				<div data-value="<%=role.getString("roleID") %>"><%=role.getString("roleName") %> </div>
             				<%} %>
@@ -211,4 +210,6 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="../../js/addUsers.js"></script>
+	
 </html>
