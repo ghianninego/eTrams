@@ -44,7 +44,7 @@
 			 		<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-							
+						
 								<div class="input-group">
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
@@ -70,7 +70,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" onclick="sort('sortData')">Filter</button>
+										<button class="btn btn-default" onclick="sort('sortData')">Sort</button>
 									</span>
 								</div>
 							

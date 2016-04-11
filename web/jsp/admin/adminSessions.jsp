@@ -54,18 +54,18 @@
 					<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-							<form action="">
+						
 								<div class="input-group">
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
-										<div data-value="ongoing">Ongoing</div>
-										<div data-value="completed">Completed</div>
+										<div data-value="Ongoing">Ongoing</div>
+										<div data-value="Completed">Completed</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Filter</button>
+										<button class="btn btn-default" id="filterDataBtn">Filter</button>
 									</span>
 								</div>
-							</form>
+							
 						</div>
 						<!-- End of Filter -->
 						
@@ -80,7 +80,7 @@
 										<div data-value="DateDesc">By Date (Desc)</div>
 									</div>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Filter</button>
+										<button class="btn btn-default" type="submit" onclick="sort('sortData')">Sort</button>
 									</span>
 								</div>
 
