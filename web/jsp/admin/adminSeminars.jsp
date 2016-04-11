@@ -107,67 +107,6 @@
 								String editDate = df.format(rs.getDate(5));
 						%>
 						<div class="col-sm-6 col-md-3" id="datavalues">
-							<%if (rs.getInt(6) == 1) { %>
-							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
-							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
-							<span class="hidden" id="status">COMPLETED</span>
-								<button class="thumbnail complete" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto" 
-									data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=rs.getString(4)%></p><br>
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  										</div>
-  									">
-									<div class="caption complete">
-										<div class="seminarTitle">
-											<h3><%=rs.getString(3)%></h3>
-										</div>
-										<p>
-											<strong>Date Created:</strong>
-											<%=rs.getDate(5)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>COMPLETED</span>
-										</p>
-									</div>
-								</button>
-							<% } else { %>
-							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
-							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
-							<span class="hidden" id="status">ONGOING</span>
-								<button class="thumbnail" id="buttonDivContainer" data-toggle="popover"
-									data-trigger="focus" data-html="true" data-placement="auto"
-									data-content="
-										<span id='dataContent_<%= rs.getInt(1)%>' data-semname='<%=rs.getString(3) %>' data-semtopic='<%=desc %>' data-semid='<%=rs.getInt(1) %>'></span>
-  										<p><%=rs.getString(4)%></p><br>
-  										<div class='btn-group btn-group-justified' role='group' aria-label='...'>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#editSeminarModal' data-sid='<%= rs.getInt(1)%>'>Edit</a>
-  											<a class='btn btn-gray' data-toggle='modal' data-target='#deleteModal' data-sid='<%= rs.getInt(1)%>'>Delete</a>
-										</div>
-  										<div class='someButton'>
-  											<a class='btn btn-yellow btn-block' href='../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>'>View Sessions</a>
-  										</div>
-  									">
-									<div class="caption">
-										<div class="seminarTitle">
-											<h3><%=rs.getString(3)%></h3>
-										</div>
-										<p>
-											<strong>Date Created:</strong>
-											<%=rs.getDate(5)%>
-										</p>
-										<p>
-											<strong>Status:</strong>
-											<span>ONGOING</span>
-										</p>
-							
 							<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-semname="<%=rs.getString(3)%>" 
 									data-semtopic="<%=desc %>" data-semid="<%=rs.getInt(1) %>">
 								<div class="panel-body">
@@ -223,7 +162,7 @@
    					</div>
 					<!-- End of Announcements pagination -->
 					
-					<% } }%>
+					<% } %>
 					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
@@ -324,7 +263,7 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jPages.min.js"></script>
+<script type="text/javascript" src="../../js/jPages.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
 <!-- FOR SESSION MODAL -->

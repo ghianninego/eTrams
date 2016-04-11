@@ -81,93 +81,89 @@
 								</p>
 							</div>
 							
+							<!-- MODALS -->
+
+							<!-- VIEW ANNOUNCEMENT MODAL -->
+							<div class="modal fade" id="viewAnnouncementModal<%=g%>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="gridSystemModalLabel">"<%=announcement.getString("Title") %>"</h4>
+										</div>
+										<div class="modal-body">
+											<p><%=announcement.getString("Content") %></p>
+											<p><em style="color: #848484 !important;">Date created: <%=TimeDateConverterClass.convertToStringDate(announcement.getString("datecreated"))%></em></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- VIEW ANNOUNCEMENT MODAL -->
 							
+							<!-- EDIT ANNOUNCEMENT MODAL -->
+							<div class="modal fade" id="editAnnouncementModal<%=g %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
+										</div>
+									<form class="form-horizontal" action="../../dbcontrol" method="post">
+									<input type="hidden" name="requestType" value="announcementEdit" />
+									<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
+							            <div class="modal-body">
+							            
+							            	<!-- Announcement Title -->
+							            	<div class="form-group">
+							            		<label for="Title" class="col-sm-2 control-label">Title</label>
+							            		<div class="col-sm-10">
+							            			<input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<%=announcement.getString("title") %>" required />
+							            		</div>
+							            	</div>
+							            	
+							            	<!-- Announcement Content -->
+							            	<div class="form-group">
+							            		<label for="Content" class="col-sm-2 control-label">Content</label>
+							            		<div class="col-sm-10">
+							            			<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required><%=content%></textarea>
+							            		</div>
+							            	</div>
+							    				
+							            </div>
+							            <div class="modal-footer">
+							            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+							            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
+							            </div>
+									</form>
+									</div>
+								</div>
+							</div>
+							<!-- EDIT ANNOUNCEMENT_MODAL -->
 							
-
-
-<!-- VIEW ANNOUNCEMENT MODAL -->
-<div class="modal fade" id="viewAnnouncementModal<%=g%>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">"<%=announcement.getString("Title") %>"</h4>
-			</div>
-			<div class="modal-body">
-				<p><%=announcement.getString("Content") %></p>
-				<p><em style="color: #848484 !important;">Date created: <%=TimeDateConverterClass.convertToStringDate(announcement.getString("datecreated"))%></em></p>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- VIEW ANNOUNCEMENT MODAL -->
-
-
-<!-- EDIT ANNOUNCEMENT MODAL -->
-<div class="modal fade" id="editAnnouncementModal<%=g %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
-			</div>
-		<form class="form-horizontal" action="../../dbcontrol" method="post">
-		<input type="hidden" name="requestType" value="announcementEdit" />
-		<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
-            <div class="modal-body">
-            		
-                    <!-- Announcement Title -->
-                    <div class="form-group">
-                        <label for="Title" class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<%=announcement.getString("title") %>" required />
-                        </div>
-                    </div>
-
-                    <!-- Announcement Content -->
-                    <div class="form-group">
-                        <label for="Content" class="col-sm-2 control-label">Content</label>
-                        <div class="col-sm-10">
-                        <textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required><%=content%></textarea>
-                        </div>
-                    </div>
-    				
-            </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-yellow pull-left">Submit</button>
-                    <button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-		</form>
-	</div>
-</div>
-<!-- EDIT ANNOUNCEMENT_MODAL -->
-<!-- DELETE MODAL -->
-	<div class="modal fade deleteModal" id="deleteModal<%=g %>" tabindex="-1"
-		role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				<form class="form-horizontal" action="../../dbcontrol">
-					<div class="modal-body text-center">
-						<p>Are you sure you want to delete this account?</p>
-
-						<	<input type="hidden" name="requestType" value="announcementDelete" />
-					<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
-
-						<div class="someButton text-center">
-							<button type="submit" class="btn btn-default">Yes</button>
-							<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- DELETE MODAL -->
+							<!-- DELETE MODAL -->
+							<div class="modal fade deleteModal" id="deleteModal<%=g %>" tabindex="-1"
+								role="dialog" aria-labelledby="gridSystemModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										<form class="form-horizontal" action="../../dbcontrol">
+											<div class="modal-body text-center">
+												<p>Are you sure you want to delete this account?</p>
 							
+												<input type="hidden" name="requestType" value="announcementDelete" />
+												<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
+							
+												<div class="someButton text-center">
+													<button type="submit" class="btn btn-default">Yes</button>
+													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- DELETE MODAL -->
 							
 						<%
-								
 								g++;
 								q = announcement.next();
 								}
@@ -267,8 +263,7 @@
 <script type="text/javascript"
 	src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 
-<script type="text/javascript" src="../../js/jPages.min.js"></script>
-
+<script type="text/javascript" src="../../js/jPages.js"></script>
 
 <script>
 $(document).ready(function($) {
