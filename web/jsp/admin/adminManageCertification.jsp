@@ -70,12 +70,12 @@
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Time In</th>
-									<th data-sortable="true">Time Out</th>
-									<th data-sortable="true">Certification</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
+									<th>Time In</th>
+									<th>Time Out</th>
+									<th>Certification</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -132,27 +132,27 @@
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
 								
-								<!-- CERTIFY MODAL -->
-								<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-									<div class="modal-dialog modal-sm" role="document">
-									<form action="../../dbcontrol" method="post">
-										<div class="modal-content">
-											<div class="modal-body text-center">
-												<p id="certText">Are you sure you want to certify this participant?</p>
-												<div class="someButton text-center">
-													<input type="hidden" name="requestType" value="certify" />
-													<input type="hidden" id="certification" name="certification" value="" />
-													<input type="hidden" id="attendanceID" name="attendanceID" value="" />
-												
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</div>
-									</form>
-									</div>
-								</div>
-								<!-- CERTIFY MODAL -->
+		<!-- CERTIFY MODAL -->
+		<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+			<div class="modal-dialog modal-sm" role="document">
+				<form action="../../dbcontrol" method="post">
+					<div class="modal-content">
+						<div class="modal-body text-center">
+							<p id="certText">Are you sure you want to certify this participant?</p>
+							<div class="someButton text-center">
+								<input type="hidden" name="requestType" value="certify" />
+								<input type="hidden" id="certification" name="certification" value="" />
+								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+								
+								<button type="submit" class="btn btn-default">Yes</button>
+								<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- CERTIFY MODAL -->
 								
 	</body>
 
@@ -174,8 +174,6 @@
 					var url = $(event.relatedTarget);
 					var attendanceID = url.data("attendanceid");
 					var certification = url.data("certification");
-					
-					alert(attendanceID);
 					
 					var modal = $(this);
 					

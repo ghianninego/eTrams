@@ -36,7 +36,7 @@
 			 						<h4>Total Seminars:</h4>
 			 					</div>
 			 					<div class="col-xs-3">
-			 						<h4 class="text-right">#####</h4>
+			 						<h4 class="text-right"><%= session.getAttribute("countAllSeminars") %></h4>
 			 					</div>
 			 				</div>
 			 				<div class="row">
@@ -44,53 +44,24 @@
 			 						<h4>Total Sessions:</h4>
 			 					</div>
 			 					<div class="col-xs-3">
-			 						<h4 class="text-right">#####</h4>
+			 						<h4 class="text-right"><%= session.getAttribute("countAllSessions") %></h4>
 			 					</div>
 			 				</div>
 			 				<div class="row">
 			 					<div class="col-xs-5 col-xs-offset-2">
-			 						<h4>Total Attendies:</h4>
+			 						<h4>Total Attendees:</h4>
 			 					</div>
 			 					<div class="col-xs-3">
-			 						<h4 class="text-right">#####</h4>
+			 						<h4 class="text-right"><%= session.getAttribute("countAllAttendees") %></h4>
 			 					</div>
 			 				</div>
 			 				<br>
 			 				<div class="row">
 			 					<div class="col-xs-10 col-xs-offset-1">
-  									<a class="btn btn-yellow btn-block" href="">Generate Report in Excel</a>
+  									<a class="btn btn-yellow btn-block" href="../../dbcontrol?requestType=generateReport">Generate Full Report in Excel</a>
   								</div>
   							</div>
 			 			</div>
-			 				
-			 			<br>
-  						<h3>Data List</h3>
-						<table class="table table-striped table-condensed" data-toggle="table" data-pagination="true">
-							<thead>
-								<tr>
-									<th data-field="thTitle1" data-sortable="true">Placeholder A</th>
-									<th data-field="thTitle2" data-sortable="true">Placeholder B</th>
-									<th data-field="thTitle3" data-sortable="true">Placeholder C</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Placeholder A1</td>
-									<td>Placeholder B1</td>
-									<td>Placeholder C1</td>
-								</tr>
-								<tr>
-									<td>Placeholder A2</td>
-									<td>Placeholder B2</td>
-									<td>Placeholder C2</td>
-								</tr>
-								<tr>
-									<td>Placeholder A3</td>
-									<td>Placeholder B3</td>
-									<td>Placeholder C3</td>
-								</tr>
-							</tbody>
-						</table>
 			 		
 			 		</div>
 			 		<!-- End of Content -->

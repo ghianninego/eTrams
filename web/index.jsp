@@ -24,11 +24,10 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b class="text-center"><strong>Oops!</strong> Invalid credentials.</b>
+				<b><strong>Oops!</strong> Invalid credentials.</b>
 			</div>
 		</div>
 	<% }%>
-		<div class="wrapper">
 			
 			<div class="outer">
 				<div class="middle">
@@ -71,6 +70,5 @@
 				</div>				
 			</div>
 			
-		</div>
 	</body>
 </html>

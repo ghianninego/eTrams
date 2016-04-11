@@ -52,42 +52,51 @@
 			 			<div class="row options">
 			 				<!-- Filter Data -->
 							<div class="col-sm-2">
-								<form action="">
+							
 									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+										<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 											<div data-value="All">All</div>
 											<div data-value="Complete">Complete</div>
 											<div data-value="Incomplete">Incomplete</div>
 										</div>
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
+											<button class="btn btn-default" id="filterDataBtn">Filter</button>
 										</span>
 									</div>
-								</form>
+								
 							</div>
 							<!-- End of Filter -->
 						</div>
 						
 						<br>
-						
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Time In</th>
-									<th data-sortable="true">Time Out</th>
-									<th data-sortable="true">Status</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
+									<th>Time In</th>
+									<th>Time Out</th>
+									<th>Status</th>
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody id="dataValues">
 								<%
 									while(rs2.next())
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
+										
+										if (timeIn.equals("12:00 AM"))
+										{
+											timeIn = "00:00:00";
+										}
+										
+										if (timeOut.equals("12:00 AM"))
+										{
+											timeOut = "00:00:00";
+										}
 								%>
 								<tr>
 									<td><%= certParticipants %></td>
@@ -114,11 +123,11 @@
 			 		<% } else { %>
 			 		
 			 		<!-- For Ongoing/Unfinished Sessions -->
-			 		<!-- Content -->
+			 		<!-- Content -->			 		
 			 		<div class="content">
 			 			<div class="row options">
 			 			
-			 				<!-- Filter Data -->
+			 				<!-- Filter Data --
 							<div class="col-sm-2">
 								<form action="">
 									<div class="input-group">
@@ -141,9 +150,9 @@
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -156,21 +165,26 @@
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
-									<td><a href="#" data-target="#unregisterModal" data-attendanceid="<%=rs2.getInt(1)%>">Cancel Registration</a></td>			
+									<td><a href="#" data-toggle="modal" data-target="#unregisterModal" data-attendanceid="<%=rs2.getInt(1)%>">Cancel Registration</a></td>			
 								</tr>
 								
 							<% participants++; } rs2.first(); rs2.previous(); %>
 							</tbody>
 						</table>
 						
+						<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
+							{	%>
 						<br>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">
   							<span class="glyphicon glyphicon-plus"></span> Add Participants</button>
   						</div>
-  						
+						<% } else { %>
+						<br>
+						<em>Participant capacity for this session is already full.</em>
+						<% } %>
 			 		</div>
-			 		<% } rs.previous(); %>
+			 		<% } rs.beforeFirst(); %>
 			 		<!-- End of Content -->
 			 		
 			 	</div>
@@ -191,28 +205,38 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title">Add Participants</h4>
 						</div>
-					<form class="form-horizontal" action="../../dbcontrol" method="post">
+					<form class="form-horizontal" action="../../dbcontrol" method="get">
 			            <div class="modal-body">
 			            	
 			            	<input type="hidden" name="requestType" value="addParticipants"/>
 							
-							<div class="form-group">
-								<div style="padding-left: 15px;">
-									<h4>Select participant/s to register to this session:</h4>
-								</div>
+							<div style="padding-left: 15px;">
+								<h4>Select participant/s to register to this session:</h4>
+							</div>
+							
+							<div style="padding: 5px 50px;">
+								<table class="listTable table-condensed table-hover" data-pagination="true"
+										data-id-field="id" data-select-item-name="participants">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id" data-visible="false" data-switchable="false" class="hidden">ID</th>
+											<th data-field="name">Select all</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
+											while(rs3.next()) {
+										%>
+											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>"></td>
+											<td class="hidden"><%= rs3.getInt(1)%></td>
+											<td><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
+										</tr>
 								
-								<div class="col-sm-offset-1 col-sm-10">
-								<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
-									while(rs3.next()) {
-								%>
-									<div class="checkbox">
-					                    <label>
-					                    	<input type="checkbox" value="<%=rs3.getInt(1)%>">
-					                   			<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>
-					                   	</label>
-									</div>
-								<% } rs3.first(); rs3.previous();%>
-								</div>
+										<% } rs3.first(); rs3.previous(); %>
+									</tbody>
+								</table>
 							</div>
 						</div>
 						
@@ -232,9 +256,9 @@
 				<form action="../../dbcontrol">
 					<div class="modal-content">
 						<div class="modal-body text-center">
-							<p id="unregisterCaption">Are you sure you want to unregister this participant?</p>
+							<p>Are you sure you want to unregister this participant?</p>
 							<div class="someButton text-center">	
-								<input type="hidden" name="requestType" value="unregister" />
+								<input type="hidden" name="requestType" value="cancelRegistration" />
 								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
 															
 								<button type="submit" class="btn btn-default">Yes</button>
@@ -327,7 +351,9 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers.js"></script>
+		<script type="text/javascript" src="../../js/datacontrol_2.js"></script>
+	
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->
@@ -341,13 +367,8 @@
 				var url = $(event.relatedTarget);
 				var attendanceID = url.data("attendanceid");
 				
-				alert(attendanceID);
-				
 				var modal = $(this);
-				
-				modal.find("#unregisterCaption").text("Are you sure you want to unregister this participant?");
 				modal.find("#attendanceID").val(attendanceID);
-
 		})
 	
 		$(".setStatusModal").on(

@@ -72,12 +72,12 @@
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Time In</th>
-									<th data-sortable="true">Time Out</th>
-									<th data-sortable="true">Status</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
+									<th>Time In</th>
+									<th>Time Out</th>
+									<th>Status</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -150,13 +150,13 @@
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="someTable">
+							<tbody>
 							<% 
 								while (rs2.next())
 								{
@@ -215,13 +215,13 @@
 							</div>
 							
 							<div style="padding: 5px 50px;">
-								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true"
+								<table class="listTable table-condensed table-hover" data-pagination="true"
 										data-id-field="id" data-select-item-name="participants">
 									<thead>
 										<tr>
 											<th data-field="state" data-checkbox="true"></th>
 											<th data-field="id" data-visible="false" data-switchable="false" class="hidden">ID</th>
-											<th data-field="name" data-sortable="true">Select all</th>
+											<th data-field="name">Select all</th>
 										</tr>
 									</thead>
 									<tbody>

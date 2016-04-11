@@ -85,10 +85,10 @@
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">No.</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Time In</th>
+									<th>No.</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
+									<th>Time In</th>
 								</tr>
 							</thead>
 							<tbody>

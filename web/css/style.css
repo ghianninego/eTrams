@@ -219,9 +219,14 @@ small {
 .reports {
 	padding: 25px;
 	text-align: center;
-	width: 400px;
+	width: 430px;
 	margin: auto;
 }
+
+.reports > .row > .col-xs-5 {
+	text-align: left;
+}
+
 /******************** End of Reports Style ********************/
 
 
@@ -340,17 +345,18 @@ small {
 }
 
 .table td {
-  border-right: solid 1px #FACC02; 
+	border-right: solid 1px #FACC02; 
 }
 .table td:last-child{
-  border-right: none; 
+	border-right: none; 
 }
 .table th {
-  border-right: solid 1px #FACC02;
-  border-bottom: 2px solid #FACC02 !important;
+	padding: 0px 3px !important;
+	border-right: solid 1px #FACC02;
+	border-bottom: 2px solid #FACC02 !important;
 }
 .table th:last-child{
-  border-right: none; 
+	border-right: none; 
 }
 
 .table-striped > tbody > tr:nth-child(2n) > td,

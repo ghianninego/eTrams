@@ -61,7 +61,7 @@
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
 										<div data-value="Ongoing">Ongoing</div>
-										<div data-value="Completed">Completed</div>
+										<div data-value="Complete">Complete</div>
 									</div>
 									<span class="input-group-btn">
 										<button class="btn btn-default" id="filterDataBtn">Filter</button>
@@ -418,8 +418,7 @@
 							<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
 							<div class="col-sm-10">
 								<div class="bfh-selectbox" data-name="sessionVenue"
-									id="sessionVenue" data-filter="true" data-value="--">
-									<div data-value="--">--</div>
+									id="sessionVenue" data-filter="true">
 									<%
 										while (rs2.next()) {
 									%>
@@ -507,24 +506,6 @@
 		</div>
 	</div>
 	<!-- DELETE MODAL -->
-	
-	<!-- INFO MODAL -->
-	<div class="modal fade infoModal" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<br>
-					<div class="text-center" style="padding: 5px;">
-						<p>The capacity for this session is already full.</p>
-						<p>You cannot add another participant.</p>
-					</div>
-				
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- INFO MODAL -->
 	
 </body>
 

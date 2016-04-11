@@ -51,18 +51,16 @@
 			 			
 			 				<!-- Filter Data -->
 							<div class="col-sm-2">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
+								<div class="input-group">
+										<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 											<div data-value="All">All</div>
-											<div data-value="Complete">Certified</div>
-											<div data-value="Incomplete">Uncertified</div>
+											<div data-value="Certified">Certified</div>
+											<div data-value="Uncertified">Uncertified</div>
 										</div>
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
+											<button class="btn btn-default" id="filterDataBtn">Filter</button>
 										</span>
 									</div>
-								</form>
 							</div>
 							<!-- End of Filter -->
 						
@@ -72,21 +70,30 @@
   						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Name</th>
-									<th data-sortable="true">College/Faculty/Institute</th>
-									<th data-sortable="true">Time In</th>
-									<th data-sortable="true">Time Out</th>
-									<th data-sortable="true">Certification</th>
+									<th>#</th>
+									<th>Name</th>
+									<th>College/Faculty/Institute</th>
+									<th>Time In</th>
+									<th>Time Out</th>
+									<th>Certification</th>
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="dataValues">
 								<%
 									while(rs2.next())
 									{
 										String timeIn = format.format(rs2.getTime(4));
 										String timeOut = format.format(rs2.getTime(5));
+										if (timeIn.equals("12:00 AM"))
+										{
+											timeIn = "00:00:00";
+										}
+										
+										if (timeOut.equals("12:00 AM"))
+										{
+											timeOut = "00:00:00";
+										}
 								%>
 								<tr>
 									<td><%= certParticipants %></td>
@@ -104,7 +111,7 @@
 								else {
 								%>
 								<tr> <td>This session is not yet completed. Certification isn't available until session completion</td> </tr>
-								<% } %>
+								<% } rs.beforeFirst();%>
 							</tbody>
 						</table>
 						
@@ -125,29 +132,27 @@
 		<%@ include file= "../footer.jsp" %>
 		<!-- End of Footer -->
 								
-		<!-- MODALS -->
-			<!-- CERTIFY MODAL -->
-			<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-				<div class="modal-dialog modal-sm" role="document">
-					<form action="../../dbcontrol" method="post">
-						<div class="modal-content">
-							<div class="modal-body text-center">
-								<p id="certText">Are you sure you want to certify this participant?</p>
-								<div class="someButton text-center">
-									<input type="hidden" name="requestType" value="certify" />
-									<input type="hidden" id="certification" name="certification" value="" />
-									<input type="hidden" id="attendanceID" name="attendanceID" value="" />
-												
-									<button type="submit" class="btn btn-default">Yes</button>
-									<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-								</div>
+		<!-- CERTIFY MODAL -->
+		<div class="modal fade certifyModal" id="certifyModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+			<div class="modal-dialog modal-sm" role="document">
+				<form action="../../dbcontrol" method="post">
+					<div class="modal-content">
+						<div class="modal-body text-center">
+							<p id="certText">Are you sure you want to certify this participant?</p>
+							<div class="someButton text-center">
+								<input type="hidden" name="requestType" value="certify" />
+								<input type="hidden" id="certification" name="certification" value="" />
+								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
+								
+								<button type="submit" class="btn btn-default">Yes</button>
+								<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
-			<!-- CERTIFY MODAL -->
-		<!-- MODALS -->
+		</div>
+		<!-- CERTIFY MODAL -->
 								
 	</body>
 
@@ -156,6 +161,7 @@
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelper.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../../js/datacontrol_2.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->
 	<script type="text/javascript" src="../../js/jquery_ui/jquery-ui.js"></script>
@@ -168,8 +174,6 @@
 					var url = $(event.relatedTarget);
 					var attendanceID = url.data("attendanceid");
 					var certification = url.data("certification");
-					
-					alert(attendanceID);
 					
 					var modal = $(this);
 					

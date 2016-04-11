@@ -53,14 +53,14 @@
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">#</th>
-									<th data-sortable="true">Seminar</th>
-									<th data-sortable="true">Session</th>
-									<th data-sortable="true">Time Start</th>
-									<th data-sortable="true">Time End</th>
-									<th data-sortable="true">Date</th>
-									<th data-sortable="true">Status</th>
-									<th data-sortable="true">Certification</th>
+									<th>#</th>
+									<th>Seminar</th>
+									<th>Session</th>
+									<th>Time Start</th>
+									<th>Time End</th>
+									<th>Date</th>
+									<th>Status</th>
+									<th>Certification</th>
 								</tr>
 							</thead>
 							<tbody>

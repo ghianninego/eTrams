@@ -1,5 +1,9 @@
-<%@ page import = "java.text.DateFormat" %>
+<jsp:useBean id="oneUser" type="java.sql.ResultSet" scope="session" />
+<jsp:useBean id="history" type="java.sql.ResultSet" scope="session" />
+<jsp:useBean id="role" type="java.sql.ResultSet" scope="session" />
+
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -29,9 +33,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				<%
+					oneUser.next();
+				%>
 				<h1 class="page-header">
 					<small><a href="coordinatorUsers.jsp">All Users</a> /</small>
-					User Name
+					<%=oneUser.getString("userName")%>
 				</h1>
 
 				<!-- Content -->
@@ -52,55 +59,53 @@
 						<!-- Profile Tab -->
 						<div role="tabpanel" class="tab-pane fade in active" id="profile">
 							<div class="row account">
-								<div class="col-sm-8 accountLeft">
+								<div class="col-sm-8">
 
 									<h4>Name</h4>
 									<h4>
-										<span>id=firstName id=middleName id=lastName</span>
+										<span><%=oneUser.getString("firstName")%> <%=oneUser.getString("middleName")%>
+											<%=oneUser.getString("lastName")%></span>
 									</h4>
 									<br>
 									<h4>Username</h4>
 									<h4>
-										<span>id=username</span>
+										<span><%=oneUser.getString("userName")%></span>
 									</h4>
 									<br>
 									<h4>Email</h4>
 									<h4>
-										<span>id=email</span>
+										<span><%=oneUser.getString("email")%></span>
 									</h4>
 									<br>
 									<h4>Faculty/College/Institute</h4>
 									<h4>
-										<span>id=collegeName</span>
+										<span><%=oneUser.getString("collegeName")%></span>
 									</h4>
 									<br>
 									<h4>Department</h4>
 									<h4>
-										<span>id=departmentName</span>
+										<span><%=oneUser.getString("departmentName")%></span>
 									</h4>
 									<br>
 									<h4>User Type</h4>
 									<h4>
-										<span>id=roleName</span>
+										<span><%=oneUser.getString("roleName")%></span>
 									</h4>
 								</div>
-
 							</div>
 						</div>
 						<!-- End of Profile Tab -->
 
 						<!-- Attendance Tab -->
-					<!--
-						if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) {
+						<%if (oneUser.getString("roleName").equals("Admin") || oneUser.getString("roleName").equals("Staff")) { %>
 			 				<div role="tabpanel" class="tab-pane fade" id="attendance">
 			 					<br>
 			 					<h4 style="padding-left: 35px;">There is no attendance history for this type of user.</h4>
 			 				</div>
 			 			
-			 			} else {
+			 			<% } else { %>
 			 			
-					 -->
-					 		<div role="tabpanel" class="tab-pane fade" id="attendance">
+							<div role="tabpanel" class="tab-pane fade" id="attendance">
 								<br>
 								<div class="row options">
 			 						<!-- Search -->
@@ -121,239 +126,61 @@
 								<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 									<thead>
 										<tr>
-											<th data-sortable="true">#</th>
-											<th data-sortable="true">Seminar</th>
-											<th data-sortable="true">Session</th>
-											<th data-sortable="true">Time Start</th>
-											<th data-sortable="true">Time End</th>
-											<th data-sortable="true">Date</th>
-											<th data-field="status" data-sortable="true">Status</th>
-											<th data-field="certification" data-sortable="true">Certification</th>
+											<th>#</th>
+											<th>Seminar</th>
+											<th>Session</th>
+											<th>Time Start</th>
+											<th>Time End</th>
+											<th>Date</th>
+											<th data-field="status">Status</th>
+											<th data-field="certification">Certification</th>
 										</tr>
 									</thead>
 									<tbody>
 									<%
-										DateFormat timeFormat = new SimpleDateFormat("h:mm a");
-										DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+										SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+										SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 										
-										//while (history.next()) {
-											//String timeIn = timeFormat.format(history.getTime("TimeIn"));
-											//String timeOut = timeFormat.format(history.getTime("TimeOut"));
+										while (history.next()) {
+											String timeIn = timeFormat.format(history.getTime("TimeIn"));
+											String timeOut = timeFormat.format(history.getTime("TimeOut"));
 									%>
 										<tr>
-											<td><%//=history.getInt("attendanceID")%></td>
-											<td><%//=history.getString("seminarName")%></td>
-											<td><%//=history.getString("sessionName")%></td>
-										<% //if (history.getInt("completion") == 0) { %>
+											<td><%=history.getInt("attendanceID")%></td>
+											<td><%=history.getString("seminarName")%></td>
+											<td><%=history.getString("sessionName")%></td>
+										<% if (history.getInt("completion") == 0) { %>
 											<td>n/a</td>
 											<td>n/a</td>
 											<td>n/a</td>
 											<td>n/a</td>
 											<td>n/a</td>
-										<% //} else { %>
-										<!-- 
-											<td><%//=timeIn%></td>
-											<td><%//=timeOut%></td>
-											<td><%//=history.getString("Date")%></td>
-											<td><%//=history.getString("Status") %></td>
+										<% } else { %>
+											<td><%=timeIn%></td>
+											<td><%=timeOut%></td>
+											<td><%=TimeDateConverterClass.convertToStringDate(history.getString("Date"))%></td>
+											<td><%=history.getString("Status") %></td>
 											<td>
-												<% //if(history.getInt("Certification") == 1) {%>
-													Certified <%// } else { %> Uncertified <%// } %>
+												<% if(history.getInt("Certification") == 1) {%>
+													Certified <% } else { %> Uncertified <% } %>
 											</td>
-										 -->
-										<% //} %>
+										<% } %>
 										</tr>
-									<!--  
+									<%
 										}
 										history.first();
 										history.previous();
-									-->
+									%>
 									</tbody>
 								</table>
 								
 							</div>
-					<!-- } -->
+						<% } %>
 						<!-- End of Attendance Tab -->
 
 					</div>
 				</div>
 				<!-- End of Content -->
-
-				<!-- Modals -->
-				<!-- EDIT PROFILE MODAL -->
-				<div class="modal fade editProfileModal" id="editProfileModal"
-					tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="gridSystemModalLabel">Edit
-									Profile</h4>
-							</div>
-							<form class="form-horizontal" action="../../dbcontrol"
-								method="post">
-								<div class="modal-body">
-
-									<!-- Name-->
-									<div class="form-group">
-										<label for="Name" class="col-sm-2 control-label">Name</label>
-										<div class="col-sm-3">
-											<input type="text" class="form-control" name="firstName"
-												id="firstName" value="" placeholder="First name"
-												required />
-										</div>
-										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName"
-												id="middleName" value="" placeholder="Middle name"
-												required />
-										</div>
-										<div class="col-sm-3">
-											<input type="text" class="form-control" name="lastName"
-												id="lastName" value="" placeholder="Last name" required />
-										</div>
-									</div>
-
-									<!-- Email -->
-									<div class="form-group">
-										<label for="email" class="col-sm-2 control-label">Email</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" id="email"
-												name="email" value="" required />
-										</div>
-									</div>
-
-									<input type="hidden" name="requestType"
-										value="adminManageUserDone"> <input type="hidden"
-										name="accountId" id="accountId" value=""> <input
-										type="hidden" name="userInfoId" id="userInfoId" value="">
-								</div>
-
-								<div class="modal-footer">
-									<button type="submit" class="btn btn-yellow pull-left">Save
-										Changes</button>
-									<button type="button" class="btn btn-gray pull-left"
-										data-dismiss="modal">Cancel</button>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-				<!-- EDIT PROFILE MODAL -->
-
-				<!-- EDIT OTHER USER'S PASSWORD MODAL -->
-				<div class="modal fade editUserPasswordModal"
-					id="editUserPasswordModal" tabindex="-1" role="dialog"
-					aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="gridSystemModalLabel">Edit
-									Password</h4>
-							</div>
-							<form class="form-horizontal" action="../../dbcontrol"
-								method="post">
-								<div class="modal-body">
-
-									<!-- New Password-->
-									<div class="form-group">
-										<label for="New Password1" class="col-sm-4 control-label">New
-											Password</label>
-										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"
-												required />
-										</div>
-									</div>
-
-									<!-- Re-enter New Password-->
-									<div class="form-group">
-										<label for="New Password2" class="col-sm-4 control-label">Re-enter
-											New Password</label>
-										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"
-												name="password_confirm" required />
-										</div>
-									</div>
-
-									<input type="hidden" name="requestType"
-										value="adminEditPassword"> <input type="hidden"
-										name="accountId" id="accountId"
-										value="<%//=oneUser.getInt("accountId")%>"> <input
-										type="hidden" name="userInfoId" id="userInfoId"
-										value="<%//=oneUser.getInt("userInfoId")%>">
-								</div>
-
-								<div class="modal-footer">
-									<button type="submit" class="btn btn-yellow pull-left">Save
-										Changes</button>
-									<button type="button" class="btn btn-gray pull-left"
-										data-dismiss="modal">Cancel</button>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-				<!-- EDIT OTHER USER'S PASSWORD MODAL -->
-
-				<!-- DELETE MODAL -->
-				<div class="modal fade deleteModal" id="deleteModal" tabindex="-1"
-					role="dialog" aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog modal-sm" role="document">
-						<div class="modal-content">
-							<form class="form-horizontal" action="../../dbcontrol"
-								method="post">
-								<div class="modal-body text-center">
-									<p>Are you sure you want to delete this account?</p>
-
-									<input type="hidden" name="requestType"
-										value="adminManageUserDelete"> <input type="hidden"
-										name="accountId" id="accountId"
-										value="<%//=oneUser.getInt("accountId")%>"> <input
-										type="hidden" name="userInfoId" id="userInfoId"
-										value="<%//=oneUser.getInt("userInfoId")%>">
-
-									<div class="someButton text-center">
-										<button type="submit" class="btn btn-default">Yes</button>
-										<button type="button" class="btn btn-gray"
-											data-dismiss="modal">Cancel</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<!-- DELETE MODAL -->
-
-				<!-- CERTIFY MODAL -->
-				<div class="modal fade" id="certifyModal" tabindex="-1"
-					role="dialog" aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog modal-sm" role="document">
-						<form>
-							<div class="modal-content">
-								<div class="modal-body text-center">
-									<p>Are you sure you want to certify this participant?</p>
-									<div class="someButton text-center">
-										<button type="submit" class="btn btn-default">Yes</button>
-										<button type="button" class="btn btn-gray"
-											data-dismiss="modal">Cancel</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- CERTIFY MODAL -->
-
-				<%@ include file="../modals/SeminarsAndSessionsModals.jsp"%>
-				<!-- End of Modals -->
 
 			</div>
 		</div>
@@ -370,47 +197,5 @@
 <script src="../../js/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 <script type="text/javascript" src="../../js/bootstrap-table.js"></script>
-	
-<script type="text/javascript">
-	$(".editProfileModal").on("show.bs.modal", function(event) {
-		var url = $(event.relatedTarget);
-		var fName = url.data("fname");
-		var mName = url.data("mname");
-		var lName = url.data("lname");
-		var accountID = url.data("accountid");
-		var userID = url.data("userid");
-		var email = url.data("email");
 
-		var modal = $(this);
-		modal.find("#firstName").val(fName);
-		modal.find("#middleName").val(mName);
-		modal.find("#lastName").val(lName);
-		modal.find("#accountId").val(accountID);
-		modal.find("#userInfoId").val(userID);
-		modal.find("#email").val(email);
-
-	});
-
-	$(".editUserPasswordModal").on("show.bs.modal", function(event) {
-		var url = $(event.relatedTarget);
-		var accountID = url.data("accountid");
-		var userID = url.data("userid");
-
-		var modal = $(this);
-		modal.find("#accountId").val(accountID);
-		modal.find("#userInfoId").val(userID);
-
-	});
-	
-	$(".deleteModal").on("show.bs.modal", function(event) {
-		var url = $(event.relatedTarget);
-		var accountID = url.data("accountid");
-		var userID = url.data("userid");
-
-		var modal = $(this);
-		modal.find("#accountId").val(accountID);
-		modal.find("#userInfoId").val(userID);
-
-	});
-</script>
 </html>

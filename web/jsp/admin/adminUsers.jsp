@@ -57,11 +57,11 @@
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-field="userId" data-sortable="true">ID #</th>
-									<th data-field="userName" data-sortable="true">Name</th>
-									<th data-field="userCollege" data-sortable="true">College/Faculty/Institute</th>
-									<th data-field="userDepartment" data-sortable="true">Department</th>
-									<th data-field="userRole" data-sortable="true">Role</th>
+									<th data-field="userId">ID #</th>
+									<th data-field="userName">Name</th>
+									<th data-field="userCollege">College/Faculty/Institute</th>
+									<th data-field="userDepartment">Department</th>
+									<th data-field="userRole">Role</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -124,16 +124,16 @@
             	</div>
             	<!-- Username -->
             	<div class="form-group">
-            		<label for="User Name" class="col-sm-2 control-label">username</label>
+            		<label for="User Name" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-9">
-                    	<input type="text" class="form-control" id="" name="username" placeholder="username" required />
+                    	<input type="text" class="form-control" id="" name="username" placeholder="Username" required />
                     </div>
             	</div>
             	<!-- Password -->
             	<div class="form-group">
-            		<label for="Email" class="col-sm-2 control-label">password</label>
+            		<label for="Email" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-9">
-                    	<input type="password" class="form-control" id="" name="password" placeholder="password" required />
+                    	<input type="password" class="form-control" id="" name="password" placeholder="Password" required />
                     </div>
             	</div>
             	<!-- Email -->

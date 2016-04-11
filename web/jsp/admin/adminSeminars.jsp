@@ -51,7 +51,7 @@
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
 										<div data-value="Ongoing">Ongoing</div>
-										<div data-value="Complete">Completed</div>
+										<div data-value="Complete">Complete</div>
 									</div>
 									<span class="input-group-btn">
 										<button class="btn btn-default" id="filterDataBtn">Filter</button>
@@ -116,9 +116,6 @@
 								</div>
 									
 								<ul class="list-group">
-									<li class="list-group-item status">
-										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
-									</li>
 								<%if (rs.getInt(6) == 1) { %>
 									<li class="list-group-item status complete">
 										<p><span>COMPLETE</span></p>
@@ -128,6 +125,9 @@
 										<p><span>ONGOING</span></p>
 									</li>
 								<% } %>
+									<li class="list-group-item status">
+										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
+									</li>
 									<li class="list-group-item">
 										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
 												data-placement="bottom" data-content="

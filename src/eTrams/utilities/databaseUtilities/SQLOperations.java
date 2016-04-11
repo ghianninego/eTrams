@@ -634,7 +634,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectAnnouncement == null)
-				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable where active=1 ORDER BY DateCreated DESC ");
+				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable where active=1 ORDER BY AnnouncementID DESC ");
 		} 
 		catch (SQLException e) 
 		{

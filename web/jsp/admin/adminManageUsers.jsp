@@ -101,9 +101,9 @@
 											data-mname="<%=oneUser.getString("middleName") %>"
 											data-lname="<%=oneUser.getString("lastName") %>"
 											data-email="<%=oneUser.getString("email") %>"
+											data-role="<%=oneUser.getString("roleName") %>"
 											data-accountid="<%=oneUser.getInt("accountID") %>"
-											data-userid="<%=oneUser.getInt("userinfoid") %>"
-											data-role="<%=oneUser.getString("roleName") %>">Edit Information</button>
+											data-userid="<%=oneUser.getInt("userinfoid") %>">Edit Information</button>
 									</div>
 									<div class="someButton">
 										<a class="btn btn-yellow" data-toggle="modal"
@@ -152,14 +152,14 @@
 								<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 									<thead>
 										<tr>
-											<th data-sortable="true">#</th>
-											<th data-sortable="true">Seminar</th>
-											<th data-sortable="true">Session</th>
-											<th data-sortable="true">Time Start</th>
-											<th data-sortable="true">Time End</th>
-											<th data-sortable="true">Date</th>
-											<th data-field="status" data-sortable="true">Status</th>
-											<th data-field="certification" data-sortable="true">Certification</th>
+											<th>#</th>
+											<th>Seminar</th>
+											<th>Session</th>
+											<th>Time Start</th>
+											<th>Time End</th>
+											<th>Date</th>
+											<th data-field="status">Status</th>
+											<th data-field="certification">Certification</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -257,11 +257,16 @@
 					            	<div class="form-group">
 					            		<label for="Role" class="col-sm-2 control-label">User Type</label>
 					            		<div class="col-sm-9">
-					            			<div class="bfh-selectbox" data-name="roleID" id="role">
-					            				<%while(role.next()){
+					            			<div class="bfh-selectbox" data-name="roleID" id="role" data-value="">
+					            				<%
+					            					while(role.next()){
 					            				%>
 					            				<div data-value="<%=role.getInt("roleID") %>"><%=role.getString("roleName") %> </div>
-					            				<%}role.first();role.previous(); %>
+					            				<%
+					            					}
+					            					role.first();
+					            					role.previous();
+					            				%>
 					            			</div>
 					            		</div>
 					            	</div>
@@ -408,7 +413,7 @@
 		modal.find("#accountId").val(accountID);
 		modal.find("#userInfoId").val(userID);
 		modal.find("#email").val(email);
-		modal.find("#roleID").val(role);
+		modal.find("#role").val(role);
 		modal.find("#password").val(password);
 
 	});
@@ -435,6 +440,5 @@
 
 	});
 </script>
-!-->
 
 </html>
