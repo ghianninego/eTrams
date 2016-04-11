@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 <!DOCTYPE html>
 
 <html>
@@ -100,6 +102,9 @@
 							while (rs.next()) {
 								String desc = rs.getString(4);
 								desc = desc.replaceAll("<br />","");
+								
+								SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+								String editDate = df.format(rs.getDate(5));
 						%>
 						<div class="col-sm-6 col-md-3" id="datavalues">
 							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
@@ -116,7 +121,7 @@
 									
 								<ul class="list-group">
 									<li class="list-group-item status">
-										<p><strong>Date Created:</strong><%=rs.getDate(5)%><br></p>
+										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
 									</li>
 								<%if (rs.getInt(6) == 1) { %>
 									<li class="list-group-item status complete">
@@ -181,6 +186,7 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
+	
 	<!-- EDIT SEMINAR MODAL -->
 	<div class="modal fade editSeminarModal" id="editSeminarModal"
 		tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
