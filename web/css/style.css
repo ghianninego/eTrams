@@ -122,47 +122,95 @@ small {
 	color: #151515 !important;
 }
 
-.thumbnail {
-	height: 270px;
+.panel {
+	position: relative;
+	height: 250px;
 	width: 100%;
-	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125);
+	box-shadow: 4px 5px 8px rgba(0, 0, 0, .125) !important;
 }
 
-.thumbnail:hover, .thumbnail:active, .thumbnail:focus {
-	text-decoration: none;
-	border-color: #F6C533 !important;
+.panel-body {
+	position: relative;
 }
 
-.btn.btn-block, .btn-group-justified>.btn {
-	font-size: 15px !important;
-	padding: 4px !important
+.panel > .list-group {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
-.caption p {
-	font-size: 13px;
-	padding-right: 5px;
+.status.list-group-item {
+	padding: 0px 15px !important;
 	text-align: left !important;
+	border: none;
 }
 
-.caption p span {
+.status p span {
 	color: #5FB404;
 	font-weight: bold;
 }
 
-.caption.complete p span {
+.status.complete p span {
 	color: #0489B1;
 }
 
+.list-group-item {
+	text-align: center;
+	padding: 7px 15px !important;
+}
+
+.list-group-item > .btn-link {
+	padding: 0px 5px !important;
+}
+
+.popover-content > p {
+	margin: 0 0 5px;
+	font-size: 13px;
+}
+
+.setting1, .setting2 {
+	padding: 0 !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.setting1:hover {
+	background: rgba(46, 46, 46, 0.9) !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.setting2:hover {
+	background: rgba(252, 193, 29, 0.8) !important;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.setting1 a, .setting2 a {
+	padding: 8px 15px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.2s ease-in-out; 
+	transition: all 0.2s ease-in-out;
+}
+
+.setting1 a:hover {
+	color: white !important;
+}
+
+.setting2 a:hover {
+	color: #282828 !important;
+}
+
 .sessionTitle, .seminarTitle {
-	padding: 2px 8px !important;
 	text-align: left;
-	border-bottom: 2px solid #2E2E2E;
 	margin-bottom: 5px;
-	height: 100px;
 }
 
 .sessionTitle h3, .seminarTitle h3 {
 	margin-top: 10px !important;
+	font-size: 21px !important;
 }
 /******************** End of Seminars & Sessions Style ********************/
 
@@ -271,7 +319,7 @@ small {
 	padding: 0px !important;
 }
 
-.btn-link:hover {
+.btn-link:hover, .btn-link:active, .btn-link:focus {
 	color: #FFBF00 !important;
 	text-decoration: none !important;
 }

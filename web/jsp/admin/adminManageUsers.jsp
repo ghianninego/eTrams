@@ -1,8 +1,9 @@
 <jsp:useBean id="oneUser" type="java.sql.ResultSet" scope="session" />
 <jsp:useBean id="history" type="java.sql.ResultSet" scope="session" />
+<jsp:useBean id="role" type="java.sql.ResultSet" scope="session" />
 
-<%@ page import = "java.text.DateFormat" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -101,7 +102,8 @@
 											data-lname="<%=oneUser.getString("lastName") %>"
 											data-email="<%=oneUser.getString("email") %>"
 											data-accountid="<%=oneUser.getInt("accountID") %>"
-											data-userid="<%=oneUser.getInt("userinfoid") %>">Edit Information</button>
+											data-userid="<%=oneUser.getInt("userinfoid") %>"
+											data-role="<%=oneUser.getString("roleName") %>">Edit Information</button>
 									</div>
 									<div class="someButton">
 										<a class="btn btn-yellow" data-toggle="modal"
@@ -162,8 +164,8 @@
 									</thead>
 									<tbody>
 									<%
-										DateFormat timeFormat = new SimpleDateFormat("h:mm a");
-										DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+										SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+										SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 										
 										while (history.next()) {
 											String timeIn = timeFormat.format(history.getTime("TimeIn"));
@@ -182,7 +184,7 @@
 										<% } else { %>
 											<td><%=timeIn%></td>
 											<td><%=timeOut%></td>
-											<td><%=history.getString("Date")%></td>
+											<td><%=TimeDateConverterClass.convertToStringDate(history.getString("Date"))%></td>
 											<td><%=history.getString("Status") %></td>
 											<td>
 												<% if(history.getInt("Certification") == 1) {%>
@@ -250,10 +252,22 @@
 												name="email" value="" required />
 										</div>
 									</div>
+									
+									<!-- User Type -->
+					            	<div class="form-group">
+					            		<label for="Role" class="col-sm-2 control-label">User Type</label>
+					            		<div class="col-sm-9">
+					            			<div class="bfh-selectbox" data-name="roleID" id="role">
+					            				<%while(role.next()){
+					            				%>
+					            				<div data-value="<%=role.getInt("roleID") %>"><%=role.getString("roleName") %> </div>
+					            				<%}role.first();role.previous(); %>
+					            			</div>
+					            		</div>
+					            	</div>
 
-									<input type="hidden" name="requestType"
-										value="adminManageUserDone"> <input type="hidden"
-										name="accountId" id="accountId" value=""> <input
+									<input type="hidden" name="requestType" value="adminManageUserDone"> <input type="hidden"
+										name="accountId" id="accountId" value="">										<input
 										type="hidden" name="userInfoId" id="userInfoId" value="">
 								</div>
 
@@ -304,7 +318,7 @@
 											New Password</label>
 										<div class="col-sm-8">
 											<input type="password" class="form-control" id="password"
-												name="password_confirm" required />
+												name="password" required />
 										</div>
 									</div>
 
@@ -383,6 +397,9 @@
 		var accountID = url.data("accountid");
 		var userID = url.data("userid");
 		var email = url.data("email");
+		var role = url.data("role");
+		var password = url.data("password");
+
 
 		var modal = $(this);
 		modal.find("#firstName").val(fName);
@@ -391,6 +408,8 @@
 		modal.find("#accountId").val(accountID);
 		modal.find("#userInfoId").val(userID);
 		modal.find("#email").val(email);
+		modal.find("#roleID").val(role);
+		modal.find("#password").val(password);
 
 	});
 
@@ -416,4 +435,6 @@
 
 	});
 </script>
+!-->
+
 </html>

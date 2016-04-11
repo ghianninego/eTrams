@@ -91,7 +91,7 @@ public class TimeDateConverterClass {
 	
 	public static String convertToStringDate(String date){
 		String[] newDate = date.split("-");
-		return numberToStringDate(newDate[2])+" "+newDate[1] + " " + newDate[0];
+		return numberToStringDate(newDate[1])+" "+newDate[2] + " " + newDate[0];
 	}
 	
 }

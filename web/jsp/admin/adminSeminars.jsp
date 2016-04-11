@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 <!DOCTYPE html>
 
 <html>
@@ -34,8 +36,8 @@
 				<%
 					ResultSet rs = (ResultSet) session.getAttribute("seminars");
 					int seminars = 0;
-				
-					if (!rs.next()) {
+					boolean isNotEmpty= rs.next();
+					if (!isNotEmpty) {
 				%>
 					<div style="padding: 5px 0px;">
 						<h4>There are no seminars.</h4>
@@ -44,7 +46,7 @@
 			 		<div class="row options">
 			 			<!-- Filter Data -->
 						<div class="col-sm-2">
-							
+						
 								<div class="input-group">
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
@@ -97,9 +99,12 @@
 			 		
 					<div class="row" id="ssList">
 						<%
-							while (rs.next()) {
+							while (isNotEmpty) {
 								String desc = rs.getString(4);
 								desc = desc.replaceAll("<br />","");
+								
+								SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+								String editDate = df.format(rs.getDate(5));
 						%>
 						<div class="col-sm-6 col-md-3" id="datavalues">
 							<%if (rs.getInt(6) == 1) { %>
@@ -162,15 +167,50 @@
 											<strong>Status:</strong>
 											<span>ONGOING</span>
 										</p>
+							
+							<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-semname="<%=rs.getString(3)%>" 
+									data-semtopic="<%=desc %>" data-semid="<%=rs.getInt(1) %>">
+								<div class="panel-body">
+									<div class="seminarTitle">
+										<h3><%=rs.getString(3)%></h3>
 									</div>
-								</button>
-							<% } %>
+								</div>
+									
+								<ul class="list-group">
+									<li class="list-group-item status">
+										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
+									</li>
+								<%if (rs.getInt(6) == 1) { %>
+									<li class="list-group-item status complete">
+										<p><span>COMPLETE</span></p>
+									</li>
+								<% } else { %>
+									<li class="list-group-item status">
+										<p><span>ONGOING</span></p>
+									</li>
+								<% } %>
+									<li class="list-group-item">
+										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
+												data-placement="bottom" data-content="
+											<p><strong>Description:</strong></p>
+											<p><%=rs.getString(4)%></p>
+  										">More Info</button> &bull; 
+  										<button class="btn btn-link" data-toggle="modal" data-target="#editSeminarModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
+  										 &bull; 
+  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+									</li>
+									<li class="list-group-item setting1">
+  										<a href="../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>">View Sessions</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 
 
 						<%
 							seminars++;
-							}
+							isNotEmpty =rs.next();
+ 							}
 							rs.first();
 							rs.previous();
 						%>
@@ -183,7 +223,7 @@
    					</div>
 					<!-- End of Announcements pagination -->
 					
-					<% } %>
+					<% } }%>
 					<br>
 					<div class="someButton">
 						<button type="button" class="btn btn-yellow" data-toggle="modal"
@@ -204,6 +244,7 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
+	
 	<!-- EDIT SEMINAR MODAL -->
 	<div class="modal fade editSeminarModal" id="editSeminarModal"
 		tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">

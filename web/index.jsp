@@ -19,14 +19,14 @@
 	<body>
 	<%if(request.getParameter("flag") == null){} 
 		else if(request.getParameter("flag").equals("1")){ %>
-			<div class="row" >
-		<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		<center>	<b><strong>Oops!</strong> Invalid credentials.</b></center>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b class="text-center"><strong>Oops!</strong> Invalid credentials.</b>
+			</div>
 		</div>
-	</div>
 	<% }%>
 		<div class="wrapper">
 			

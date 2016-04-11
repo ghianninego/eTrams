@@ -41,11 +41,12 @@
 	 						DateFormat df = new SimpleDateFormat("MM/dd/yyyy");	%>
 			 			<!-- Login -->
 			 			<div class="row">
-							<div class="col-sm-4 col-sm-offset-4">
-								<% 
-								rs.next();
-								if ((int)session.getAttribute("registeredParticipantCount") < (int) session.getAttribute("participantCount"))
-								{	%>
+			 			<% 
+							rs.next();
+							if ((int)session.getAttribute("registeredParticipantCount") < (int) session.getAttribute("participantCount"))
+							{
+						%>
+							<div class="col-sm-4 col-sm-offset-4">	
 								<form class="form" action="../../dbcontrol" method="post">
 									<div class="form-group">
 										<input type="text" class="form-control" id="username" name="username" required="required" placeholder="Username">
@@ -64,15 +65,18 @@
 										</div>
 									</div>
 								</form>
-								
-								<% } else {%>
-								
-								<h3>All Participants have been able to confirm their attendance for this session.</h3>
-								
-								<% } 
-									rs.beforeFirst();
-								%>
 							</div>
+						<% } else {%>
+							<div class="col-sm-8 col-sm-offset-2">
+								<h4 class="text-center">All Participants have been able to confirm their attendance for this session.</h4>
+								<div class="text-center">
+									<a type="button" class="btn btn-gray" href="adminSessions.jsp">Return to Sessions</a>
+								</div>
+							</div>
+						<% } 
+							rs.beforeFirst();
+						%>
+							
 						</div>
 			 			<!-- End of Login -->
 			 	

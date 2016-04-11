@@ -75,6 +75,7 @@ $('#filterDataBtn').click(function() {
 	        var text = $('#status').text().replace(/\s+/g, ' ').toLowerCase();
 	        return !~text.indexOf(val);
 	    }).hide();
+<<<<<<< HEAD
 	});*/
 
 $(document).ready(function () {

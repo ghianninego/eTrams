@@ -633,7 +633,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectAnnouncement == null)
-				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable where active=1");
+				selectAnnouncement = connection.prepareStatement("SELECT * FROM announcementTable where active=1 ORDER BY DateCreated DESC ");
 		} 
 		catch (SQLException e) 
 		{
@@ -887,7 +887,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateAccount== null)
-				updateAccount = connection.prepareStatement("UPDATE AccountTable  SET email = ? WHERE accountID = ? ");
+				updateAccount = connection.prepareStatement("UPDATE AccountTable  SET email = ? , roleID=? WHERE accountID = ? ");
 		} 
 		catch (SQLException e) 
 		{
