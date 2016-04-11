@@ -124,7 +124,8 @@ public class ManageParticipantsClass {
 			int attendanceID = Integer.parseInt(request.getParameter("attendanceID"));
 			
 			ps.setInt(1, Integer.parseInt(request.getParameter("certification")));
-			ps.setInt(2, attendanceID);
+			ps.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
+			ps.setInt(3, attendanceID);
 			
 			if (ps.executeUpdate() > 0)
 			{

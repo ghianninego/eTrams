@@ -1097,7 +1097,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateAttendanceCertification == null)
-				updateAttendanceCertification = connection.prepareStatement("UPDATE AttendanceTable SET Certification = ? WHERE attendanceId = ? ");
+				updateAttendanceCertification = connection.prepareStatement("UPDATE AttendanceTable SET Certification = ?, CertificationRelease = ? WHERE attendanceId = ? ");
 		} 
 		catch (SQLException e) 
 		{

@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">
-					<small><a href="adminSeminars.jsp"><%=(String) session.getAttribute("seminarName")%></a>
+					<small><a href="../../dbcontrol?requestType=goToAdminSeminar"><%=(String) session.getAttribute("seminarName")%></a>
 						/ </small> Sessions
 				</h1>
 

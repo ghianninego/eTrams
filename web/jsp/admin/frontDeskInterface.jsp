@@ -60,7 +60,7 @@
 											<button type="submit" class="btn btn-yellow">Confirm Attendance</button>
 										</div>
 										<div class="btn-group" role="group">
-											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToAdminSessions">Return to Sessions</a>
+											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToAdminSession">Return to Sessions</a>
 										</div>
 									</div>
 								</form>

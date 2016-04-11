@@ -37,7 +37,7 @@ public interface SqlComsForExcelGen {
 			 " AND "  +
 			 " AttendanceTable.ParticipantID = AccountTable.AccountID  "  + //
 			 " AND  "  +
-			 " (AttendanceTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Completion = ?) " ;
+			 " (AccountTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Completion = ?) " ;
 	
 	String count_session = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
@@ -48,7 +48,7 @@ public interface SqlComsForExcelGen {
 			 " AND "  +
 			 " AttendanceTable.ParticipantID = AccountTable.AccountID  "  + //
 			 " AND  "  +
-			 " (AttendanceTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Completion = ?) " ;
+			 " (AccountTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Completion = ?) " ;
 	
 	String count_session_weekly = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
@@ -59,7 +59,7 @@ public interface SqlComsForExcelGen {
 			 " AND "  +
 			 " AttendanceTable.ParticipantID = AccountTable.AccountID  "  + //
 			 " AND  "  +
-			 " (AttendanceTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and  EXTRACT(DAY FROM SessionTable.Date) between ? and ?  "  +
+			 " (AccountTable.RoleID = ? and AccountTable.UserInfoID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and  EXTRACT(DAY FROM SessionTable.Date) between ? and ?  "  +
 			 " and SessionTable.Completion = ?) " ;
 	
 //---------------
@@ -94,9 +94,7 @@ public interface SqlComsForExcelGen {
 			 " where  "  +
 			 " AccountTable.UserInfoID = AttendanceTable.ParticipantID  "  +
 			 " and  "  +
-			 " AccountTable.RoleID = RoleTable.RoleID  "  +
-			 " AND  "  +
-			 " (RoleTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) = ? and AttendanceTable.Certification = ? " ;
+			 " (AccountTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) = ? and AttendanceTable.Certification = ?) " ;
 			
 	String certification_weekly = 
 			 " select COUNT(DISTINCT AttendanceTable.SessionID) as Certs  "  + 
@@ -104,20 +102,17 @@ public interface SqlComsForExcelGen {
 			 " where  "  +
 			 " AccountTable.UserInfoID = AttendanceTable.ParticipantID  "  +
 			 " and  "  +
-			 " AccountTable.RoleID = RoleTable.RoleID  "  +
-			 " AND  "  +
-			 " (RoleTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) = ?  " +
-			 " and EXTRACT(DAY from atten.CertificationRelease) between ? and ? AttendanceTable.Certification = ? " ;
+			 " (AccountTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) = ?  " +
+			 " and EXTRACT(DAY from attendanceTable.CertificationRelease) between ? and ? and AttendanceTable.Certification = ? )" ;
 	
 	String certification_count = 
-			 " select COUNT(DISTINCT AttendanceTable.SessionID) as Certs  "  + 
-			 " FROM AttendanceTable, RoleTable, AccountTable   "  +
-			 " where  "  +
-			 " AccountTable.UserInfoID = AttendanceTable.ParticipantID  "  +
-			 " and  "  +
-			 " AccountTable.RoleID = RoleTable.RoleID  "  +
-			 " AND  "  +
-			 " (RoleTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) between ? and ? and AttendanceTable.Certification = ? " ;
+			" select COUNT(DISTINCT AttendanceTable.SessionID) as Certs " + 
+			" FROM AttendanceTable, RoleTable, AccountTable " +
+			" where " +
+			" AccountTable.UserInfoID = AttendanceTable.ParticipantID  "+  
+			" and   " +
+			" (AccountTable.RoleID = ? and AttendanceTable.ParticipantID = ? and EXTRACT(MONTH FROM AttendanceTable.CertificationRelease) between ? and ? and AttendanceTable.Certification = ? )" ;
+	
 	
 	String coordinate_monthly =
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) from SessionTable, AccountTable  "  +
@@ -135,7 +130,7 @@ public interface SqlComsForExcelGen {
 		     " SELECT COUNT(DISTINCT SessionTable.SessionID) from SessionTable, AccountTable  "  +
 			 " where  "  +
 			 " AccountTable.accountid = SessionTable.speakerID  "  +
-			 " and (SessionTable.speakerid = ? and SessionTable.active = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and AccountTable.roleid = ?  " 
+			 " and (SessionTable.speakerid = ? and SessionTable.active = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and AccountTable.roleid = ?  " 
 			+  " and EXTRACT(DAY from SessionTable.date) between ? and ?) " ;
 	
 	String attendee_count = 
@@ -143,7 +138,7 @@ public interface SqlComsForExcelGen {
 			 " where  "  +
 			 " AttendanceTable.participantid = AccountTable.accountid  "  +
 			 " and AttendanceTable.sessionID = SessionTable.SessionID  "  +
-			 " and ON SessionTable.seminarId = SeminarTable.seminarId   "  +
+			 " and SessionTable.seminarId = SeminarTable.seminarId   "  +
 			 " and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Active = ?) " ;
 	
 	String attendee_count_perterm = 

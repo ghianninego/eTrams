@@ -35,8 +35,8 @@
 		<div class="container">
 			 <div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="adminSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
-			 			<a href="adminSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Participants</h1>
+			 		<h1 class="page-header"><small><a href="../../dbcontrol?requestType=goToAdminSeminar"><%= (String) session.getAttribute("seminarName") %></a> / 
+			 			<a href="../../dbcontrol?requestType=goToAdminSession"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Participants</h1>
 			 			
 			 		<!-- For Completed Sessions -->
 			 		<!-- Content -->
@@ -184,7 +184,7 @@
 						<em>Participant capacity for this session is already full.</em>
 						<% } %>
 			 		</div>
-			 		<% } rs.previous(); %>
+			 		<% } rs.beforeFirst(); %>
 			 		<!-- End of Content -->
 			 		
 			 	</div>
