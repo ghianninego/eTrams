@@ -51,7 +51,7 @@
 									<div class="bfh-selectbox" data-name="filterData" data-value="All" id="filterData">
 										<div data-value="All">All</div>
 										<div data-value="Ongoing">Ongoing</div>
-										<div data-value="Completed">Completed</div>
+										<div data-value="Complete">Completed</div>
 									</div>
 									<span class="input-group-btn">
 										<button class="btn btn-default" id="filterDataBtn">Filter</button>
