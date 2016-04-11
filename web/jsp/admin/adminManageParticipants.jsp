@@ -258,7 +258,7 @@
 						<div class="modal-body text-center">
 							<p>Are you sure you want to unregister this participant?</p>
 							<div class="someButton text-center">	
-								<input type="hidden" name="requestType" value="unregister" />
+								<input type="hidden" name="requestType" value="cancelRegistration" />
 								<input type="hidden" id="attendanceID" name="attendanceID" value="" />
 															
 								<button type="submit" class="btn btn-default">Yes</button>
