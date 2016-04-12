@@ -129,7 +129,7 @@
   										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 									<li class="list-group-item setting2">
-										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
+										<a href="frontDeskInterface.jsp">Front Desk Interface</a>
 									</li>
 								</ul>
 							<% } else { %>
@@ -146,10 +146,13 @@
 			  								<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
 											<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
-  										">More Info</button> &bull; 
+  										">More Info</button> 
   									</li>
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
+									</li>
+									<li class="list-group-item">
+										 &bull;  &bull;  &bull;
 									</li>
 								</ul>
 							<% } %>

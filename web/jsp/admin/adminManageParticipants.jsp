@@ -125,27 +125,6 @@
 			 		<!-- For Ongoing/Unfinished Sessions -->
 			 		<!-- Content -->			 		
 			 		<div class="content">
-			 			<div class="row options">
-			 			
-			 				<!-- Filter Data --
-							<div class="col-sm-2">
-								<form action="">
-									<div class="input-group">
-										<div class="bfh-selectbox" data-name="filterUsers" data-value="All" id="filterUsers">
-											<div data-value="All">All</div>
-											<div data-value="Complete">Complete</div>
-											<div data-value="Incomplete">Incomplete</div>
-										</div>
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Filter</button>
-										</span>
-									</div>
-								</form>
-							</div>
-							<!-- End of Filter -->
-						</div>
-						
-						<br>
 						
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
@@ -215,7 +194,7 @@
 							</div>
 							
 							<div style="padding: 5px 50px;">
-								<table class="listTable table-condensed table-hover" data-pagination="true"
+								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true"
 										data-id-field="id" data-select-item-name="participants">
 									<thead>
 										<tr>

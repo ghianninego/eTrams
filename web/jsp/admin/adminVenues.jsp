@@ -34,8 +34,8 @@
 					<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 						<thead>
 							<tr>
-								<th data-field="venueId" data-sortable="true">Venue ID #</th>
-								<th data-field="building" data-sortable="true">Building</th>
+								<th data-field="venueId">Venue ID #</th>
+								<th data-field="building">Building</th>
 								<th></th>
 							</tr>
 						</thead>

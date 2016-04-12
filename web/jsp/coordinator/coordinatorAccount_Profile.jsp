@@ -79,6 +79,14 @@
 								</div>
 							<form class="form-horizontal" action="../../dbcontrol" method="post">
 								<div class="modal-body">
+									
+									<!-- Old Password-->
+									<div class="form-group">
+										<label for="New Password1" class="col-sm-4 control-label">Old Password</label>
+										<div class="col-sm-8">
+											<input type="password" class="form-control" id="password" required />
+										</div>
+									</div>
 								
 									<!-- New Password-->
 									<div class="form-group">

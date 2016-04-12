@@ -37,7 +37,7 @@
 					oneUser.next();
 				%>
 				<h1 class="page-header">
-					<small><a href="../../dbcontrol?requestType=adminManageUser">All Users</a> /</small>
+					<small><a href="../../dbcontrol?requestType=adminUser">All Users</a> /</small>
 					<%=oneUser.getString("userName")%>
 				</h1>
 
@@ -101,7 +101,7 @@
 											data-mname="<%=oneUser.getString("middleName") %>"
 											data-lname="<%=oneUser.getString("lastName") %>"
 											data-email="<%=oneUser.getString("email") %>"
-											data-role="<%=oneUser.getString("roleName") %>"
+											data-role="<%=oneUser.getString("roleID") %>"
 											data-accountid="<%=oneUser.getInt("accountID") %>"
 											data-userid="<%=oneUser.getInt("userinfoid") %>">Edit Information</button>
 									</div>
@@ -381,7 +381,8 @@
 		</div>
 	</div>
 	<!-- End of Container -->
-
+	
+	<%oneUser.previous(); %>
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
@@ -440,5 +441,4 @@
 
 	});
 </script>
-
 </html>

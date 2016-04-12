@@ -148,6 +148,9 @@
 									<li class="list-group-item setting1">
   										<a href="staffManageParticipants.jsp">Manage Participants</a>
 									</li>
+									<li class="list-group-item setting2">
+  										<a href="frontDeskInterface.jsp">Front Desk Interface</a>
+									</li>
 								</ul>
 							<% } %>
 								

@@ -467,8 +467,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneAccount == null)
-				selectOneAccount = connection.prepareStatement("SELECT a.AccountId , u.userInfoId , a.userName, u.firstName , u.middleName , u.lastName, "
-						+ "a.email , r.roleName , d.departmentName , c.collegeName FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
+				selectOneAccount = connection.prepareStatement("SELECT a.* , u.* , r.* , d.* , c.* FROM AccountTable as a , userInfoTable as u , departmentTable as d , collegeTable as c , roleTable as r"
 						+ " where a.userInfoId = u.userInfoId and u.departmentId = d.departmentId and d.collegeId = c.collegeId and a.roleId = r.roleId and a.AccountId=?");
 		} 
 		catch (SQLException e) 
@@ -1256,7 +1255,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllAttendees == null)
-				countAllAttendees = connection.prepareStatement("SELECT COUNT(AttendanceID) FROM AttendanceTable");
+				countAllAttendees = connection.prepareStatement("select count(t.attendanceID) from (select attendancetable.AttendanceID , sessiontable.SessionID , seminartable.SeminarID from attendancetable, sessiontable , seminartable where attendancetable.sessionID = sessiontable.SessionID and seminartable.SeminarID = sessiontable.SeminarID and seminartable.Active=1 and sessiontable.completion > 0) as t ");
 		} 
 		catch (SQLException e) 
 		{

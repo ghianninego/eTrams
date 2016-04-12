@@ -61,7 +61,9 @@
 											<button type="submit" class="btn btn-yellow">Confirm Attendance</button>
 										</div>
 										<div class="btn-group" role="group">
-											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToAdminSession">Return to Sessions</a>
+											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToCoordinatorSession&seminarID=<%= session.getAttribute("seminarID")%>&seminarName=<%= session.getAttribute("seminarName")%>">
+											Return to Sessions
+											</a>
 										</div>
 									</div>
 								</form>
@@ -70,7 +72,9 @@
 							<div class="col-sm-8 col-sm-offset-2">
 								<h4 class="text-center">All Participants have been able to confirm their attendance for this session.</h4>
 								<div class="text-center">
-									<a type="button" class="btn btn-gray" href="adminSessions.jsp">Return to Sessions</a>
+									<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToCoordinatorSession&seminarID=<%= session.getAttribute("seminarID")%>&seminarName=<%= session.getAttribute("seminarName")%>">
+										Return to Sessions
+									</a>
 								</div>
 							</div>
 						<% } 

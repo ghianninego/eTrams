@@ -640,11 +640,11 @@ public class DatabaseControllerServlet extends HttpServlet {
 				
 				case "editSelfPassword": 
 					UserClass.editUserPassword(request, connection);
-					response.sendRedirect("jsp/coordinator/Account_Profile.jsp"); // change to URL mapping (hehe)
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp"); // change to URL mapping (hehe)
 					break;
 				case "editSelfInfo": 
 					session.setAttribute("user",UserClass.editSelf(request, connection));
-					response.sendRedirect("jsp/coordinator/Account_Profile.jsp");
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp");
 					break;
 				// ANNOUNCEMENTS :))
 				case "addAnnouncement":

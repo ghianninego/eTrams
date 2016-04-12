@@ -36,8 +36,8 @@
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-field="collegeId" data-sortable="true">College ID #</th>
-									<th data-field="collegeName" data-sortable="true">College/Faculty/Institute</th>
+									<th data-field="collegeId">College ID #</th>
+									<th data-field="collegeName">College/Faculty/Institute</th>
 									<th>Departments</th>
 									<th></th>
 								</tr>

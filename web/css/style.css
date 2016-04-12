@@ -313,9 +313,12 @@ small {
 }
 
 .btn-default {
-	
 	-webkit-transition: all 0.2s ease-in-out; 
 	transition: all 0.2s ease-in-out;
+}
+
+a.btn.btn-default {
+	color: #333 !important;
 }
 
 .btn-link {

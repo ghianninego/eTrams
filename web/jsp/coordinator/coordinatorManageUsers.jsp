@@ -37,7 +37,7 @@
 					oneUser.next();
 				%>
 				<h1 class="page-header">
-					<small><a href="../../dbcontrol?requestType=coordinatorManageUser">All Users</a> /</small>
+					<small><a href="../../dbcontrol?requestType=coordinatorUser">All Users</a> /</small>
 					<%=oneUser.getString("userName")%>
 				</h1>
 
