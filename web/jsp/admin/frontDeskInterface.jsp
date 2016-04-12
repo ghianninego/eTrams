@@ -20,6 +20,30 @@
 	</head>
 	
 	<body>
+		<center>
+			<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("0")){ %>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Not Found</strong> </b>
+			</div>
+		</div>
+	<% } else if(request.getParameter("flag").equals("1")){ %>
+		<div class="row" id="successfulUpdate">
+		<div class="alert alert-success alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<b><strong> Successfully Confirmed!</strong> </b>
+		</div>
+	</div>
+		<%} %>
+
+		</center>
+				
 				
 		<!-- Header -->
 		<%@ include file= "adminHeader.jsp" %>
@@ -36,14 +60,14 @@
 			 			<h3	class="text-center"><span style="font-size: 20px !important;"><%= session.getAttribute("seminarName") %>:</span><br><%= session.getAttribute("sessionName") %></h3>
 			 			<br><br>
 			 			<% ResultSet rs = (ResultSet) session.getAttribute("sessionDetails");  
-				 			ResultSet rs2 = (ResultSet) session.getAttribute("sessionParticipants");
+			 			ResultSet rs2 = (ResultSet) session.getAttribute("sessionParticipants");
 				 			DateFormat format = new SimpleDateFormat( "h:mm a" );
 	 						DateFormat df = new SimpleDateFormat("MM/dd/yyyy");	%>
 			 			<!-- Login -->
 			 			<div class="row">
 			 			<% 
 							rs.next();
-							if ((int)session.getAttribute("registeredParticipantCount") < (int) session.getAttribute("participantCount"))
+							if (Integer.parseInt(session.getAttribute("registeredParticipantCount").toString()) < Integer.parseInt(session.getAttribute("participantCount").toString()))
 							{
 						%>
 							<div class="col-sm-4 col-sm-offset-4">	
