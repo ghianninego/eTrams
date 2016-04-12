@@ -50,12 +50,15 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		return verdict;
 	}
 	
-	public static boolean partOfSeshTable(Connection conn, int sessionID){
+	public static boolean partOfSeshTable(Connection conn, int sessionID, int m1, int m2){
 		boolean verdict = false;
 		try{
 			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(member2);
+			PreparedStatement pstmt = conn.prepareStatement(member4);
 			pstmt.setInt(1, sessionID);
+			pstmt.setInt(2, 1);
+			pstmt.setInt(3, m1);
+			pstmt.setInt(4, m2);
 				
 			rs = pstmt.executeQuery();
 				
@@ -523,49 +526,53 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				row = spst.createRow(x);
-				if(row != null){
-					
-					c1 = row.createCell(0);
-					c1.setCellValue(rs.getString(1));
-					
-					c2 = row.createCell(1);
-					c2.setCellValue(rs.getString(2));
-					
-					c3 = row.createCell(2);
-					c3.setCellValue(rs.getString(3));
-					
-					c4 = row.createCell(3);
-					c4.setCellValue(rs.getString(4));
-					
-					c5 = row.createCell(4);
-					c5.setCellValue(rs.getString(5));
-					
-					c6 = row.createCell(5);
-					int f = rs.getInt(6);
-					if(f==1){
-						c6.setCellValue("COMPLETED");
+			for(int i = 1; i <= SessionTotal(conn); i++){
+				if(partOfSeshTable2(conn,i,month)){
+					while(rs.next()){
+						row = spst.createRow(x);
+						if(row != null){
+							
+							c1 = row.createCell(0);
+							c1.setCellValue(rs.getString(1));
+							
+							c2 = row.createCell(1);
+							c2.setCellValue(rs.getString(2));
+							
+							c3 = row.createCell(2);
+							c3.setCellValue(rs.getString(3));
+							
+							c4 = row.createCell(3);
+							c4.setCellValue(rs.getString(4));
+							
+							c5 = row.createCell(4);
+							c5.setCellValue(rs.getString(5));
+							
+							c6 = row.createCell(5);
+							int f = rs.getInt(6);
+							if(f==1){
+								c6.setCellValue("COMPLETED");
+							}
+							else{
+								c6.setCellValue("NOT YET COMPLETED");
+							}
+							
+							c7 = row.createCell(6);
+							c7.setCellValue(rs.getInt(7));
+							c7.setCellStyle(style);
+							
+							c1.setCellStyle(style);
+							c2.setCellStyle(style);
+							c3.setCellStyle(style);
+							c4.setCellStyle(style);
+							c5.setCellStyle(style);
+							c6.setCellStyle(style);
+							c7.setCellStyle(style);
+							
+							//x++;
+						}
+						x++;
 					}
-					else{
-						c6.setCellValue("NOT YET COMPLETED");
-					}
-					
-					c7 = row.createCell(6);
-					c7.setCellValue(rs.getInt(7));
-					c7.setCellStyle(style);
-					
-					c1.setCellStyle(style);
-					c2.setCellStyle(style);
-					c3.setCellStyle(style);
-					c4.setCellStyle(style);
-					c5.setCellStyle(style);
-					c6.setCellStyle(style);
-					c7.setCellStyle(style);
-					
-					//x++;
 				}
-				x++;
 			}
 		}
 		catch(Exception x){
@@ -578,6 +585,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			int x = 6;
 			PreparedStatement pstmt = conn.prepareStatement(seminar_session);
 			ResultSet rs = null;
+			int sesh = SessionTotal(conn);
 			
 			c1 = null;
 			XSSFCell c2 = null;
@@ -594,47 +602,51 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				row = spst.createRow(x);
-				if(row != null){
-					c1 = row.createCell(column);
-					c1.setCellValue(rs.getString(1));
-					
-					c2 = row.createCell(column+1);
-					c2.setCellValue(rs.getString(2));
-					
-					c3 = row.createCell(column+2);
-					c3.setCellValue(rs.getString(3));
-					
-					c4 = row.createCell(column+3);
-					c4.setCellValue(rs.getString(4));
-					
-					c5 = row.createCell(column+4);
-					c5.setCellValue(rs.getString(5));
-					
-					c6 = row.createCell(column+5);
-					int f = rs.getInt(6);
-					if(f==1){
-						c6.setCellValue("COMPLETED");
+			for(int i = 1; i <= sesh; i++){
+				if(partOfSeshTable(conn,i,month1,month5)){
+					while(rs.next()){
+						row = spst.createRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							c1.setCellValue(rs.getString(1));
+							
+							c2 = row.createCell(column+1);
+							c2.setCellValue(rs.getString(2));
+							
+							c3 = row.createCell(column+2);
+							c3.setCellValue(rs.getString(3));
+							
+							c4 = row.createCell(column+3);
+							c4.setCellValue(rs.getString(4));
+							
+							c5 = row.createCell(column+4);
+							c5.setCellValue(rs.getString(5));
+							
+							c6 = row.createCell(column+5);
+							int f = rs.getInt(6);
+							if(f==1){
+								c6.setCellValue("COMPLETED");
+							}
+							else{
+								c6.setCellValue("NOT YET COMPLETED");
+							}
+							
+							c7 = row.createCell(column+6);
+							c7.setCellValue(rs.getInt(7));
+							
+							c1.setCellStyle(style);
+							c2.setCellStyle(style);
+							c3.setCellStyle(style);
+							c4.setCellStyle(style);
+							c5.setCellStyle(style);
+							c6.setCellStyle(style);
+							c7.setCellStyle(style);
+							
+							//x++;
+						}
+						x++;
 					}
-					else{
-						c6.setCellValue("NOT YET COMPLETED");
-					}
-					
-					c7 = row.createCell(column+6);
-					c7.setCellValue(rs.getInt(7));
-					
-					c1.setCellStyle(style);
-					c2.setCellStyle(style);
-					c3.setCellStyle(style);
-					c4.setCellStyle(style);
-					c5.setCellStyle(style);
-					c6.setCellStyle(style);
-					c7.setCellStyle(style);
-					
-					//x++;
 				}
-				x++;
 			}
 		}
 		catch(Exception x){
@@ -956,7 +968,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(4, 1);
 			
 			for(int i = 1; i <= session; i++){
-				if(partOfSeshTable(conn,i)){
+				if(partOfSeshTable(conn,i, month1, month5)){
 					pstmt.setInt(1, i);
 					
 					rs = pstmt.executeQuery();
@@ -1060,5 +1072,3 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 }
-
-

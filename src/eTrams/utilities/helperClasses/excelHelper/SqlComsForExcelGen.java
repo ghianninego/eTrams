@@ -45,6 +45,10 @@ public interface SqlComsForExcelGen {
 			" select * from sessiontable where sessionid = ? and active = ? " +
 			" and EXTRACT(month from date) = ? "; 
 	
+	String member4 = 
+			" select * from sessiontable where sessionid = ? and active = ? and "
+			+ "EXTRACT(month from date) between ? and ?";
+	
 	String count_session_monthly =  
 			"  SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED " +
 			"  FROM AttendanceTable,SessionTable,SeminarTable,AccountTable " +    
@@ -102,8 +106,7 @@ public interface SqlComsForExcelGen {
 //---------------
 	String seminar_session_monthly = 
 			//" SELECT CollegeTable.CollegeName, SessionTable.Date, SeminarTable.SeminarName, SessionTable.SessionName, VenueTable.VenueName, SessionTable.Completion as status, SessionTable.Capacity  "  +
-
-			 " SELECT DISTINCT CollegeTable.CollegeName, SessionTable.Date, SeminarTable.SeminarName, SessionTable.SessionName, VenueTable.VenueName, SessionTable.Completion as status, SessionTable.Capacity  "  +
+			" SELECT DISTINCT CollegeTable.CollegeName, SessionTable.Date, SeminarTable.SeminarName, SessionTable.SessionName, VenueTable.VenueName, SessionTable.Completion as status, SessionTable.Capacity  "  +
 			 " FROM CollegeTable, SessionTable, SeminarTable, VenueTable, UserInfoTable, DepartmentTable, AccountTable  "  +
 			 " Where SessionTable.SeminarID = SeminarTable.SeminarID  "  +
 			 " and SessionTable.VenueID = VenueTable.VenueID  "  +
@@ -113,7 +116,7 @@ public interface SqlComsForExcelGen {
 			 " and DepartmentTable.CollegeID = CollegeTable.CollegeID  "  +
 			 " and  "  +
 			 " (EXTRACT(MONTH FROM SessionTable.Date) = ? and SeminarTable.Active = ? and SessionTable.Active = ?) " +
-			 " ORDER BY SeminarTable.seminarid ASC, SessionTable.Date ASC";
+			 " ORDER BY SessionTable.SessionID";
 	String seminar_session = 
 			//" SELECT CollegeTable.CollegeName, SessionTable.Date, SeminarTable.SeminarName, SessionTable.SessionName, VenueTable.VenueName, SessionTable.Completion as status, SessionTable.Capacity  "  +
 
@@ -127,7 +130,7 @@ public interface SqlComsForExcelGen {
 			 " and DepartmentTable.CollegeID = CollegeTable.CollegeID  "  +
 			 " and  "  +
 			 " (EXTRACT(MONTH FROM SessionTable.Date) between ? and ? and SeminarTable.Active = ? and SessionTable.Active = ?) " +
-			 " ORDER BY SeminarTable.seminarid ASC, SessionTable.Date ASC";
+			 " ORDER BY SessionTable.SessionID";
 	
 //---------------------	
 	String certification_monthly = 
@@ -181,8 +184,7 @@ public interface SqlComsForExcelGen {
 			 " AttendanceTable.participantid = AccountTable.accountid    " +
 			 " and SessionTable.sessionID = AttendanceTable.SessionID    " +
 			 " and SessionTable.seminarid = seminartable.seminarid " +
-			 " and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Active = ?) " +
-	         " ORDER BY SeminarTable.SeminarID ASC, SessionTable.Date ASC";
+			 " and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Active = ?) ";
 	
 	String attendee_count_perterm = 
 			" SELECT COUNT(distinct AttendanceTable.participantid) FROM AttendanceTable, SessionTable, AccountTable, SeminarTable   " +
@@ -190,7 +192,6 @@ public interface SqlComsForExcelGen {
 			" AttendanceTable.participantid = AccountTable.accountid    " +
 			" and SessionTable.sessionID = AttendanceTable.SessionID    " +
 			" and SessionTable.seminarid = seminartable.seminarid " +
-			" and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Active = ?) " +
-			" ORDER BY SeminarTable.SeminarID ASC, SessionTable.Date ASC";
+			" and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Active = ?) " ;
 
 }
