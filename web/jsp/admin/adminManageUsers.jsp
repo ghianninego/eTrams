@@ -37,7 +37,7 @@
 					oneUser.next();
 				%>
 				<h1 class="page-header">
-					<small><a href="adminUsers.jsp">All Users</a> /</small>
+					<small><a href="../../dbcontrol?requestType=adminManageUser">All Users</a> /</small>
 					<%=oneUser.getString("userName")%>
 				</h1>
 

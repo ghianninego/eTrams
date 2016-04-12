@@ -35,8 +35,8 @@
 		<div class="container">
 			 <div class="row">
 			 	<div class="col-md-12">
-			 		<h1 class="page-header"><small><a href="coordinatorSeminars.jsp"><%= (String) session.getAttribute("seminarName") %></a> / 
-			 			<a href="coordinatorSessions.jsp"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Certifications</h1>
+			 		<h1 class="page-header"><small><a href="../../dbcontrol?requestType=goToCoordinatorSeminar"><%= (String) session.getAttribute("seminarName") %></a> / 
+			 			<a href="../../dbcontrol?requestType=goToCoordinatorSession&seminarID=<%= session.getAttribute("seminarID")%>&seminarName=<%= session.getAttribute("seminarName")%>"><%= (String) session.getAttribute("sessionName") %></a> /</small> Manage Certifications</h1>
 			 			
 			 		<!-- Content -->
 			 		<div class="content">

@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">
-					<small><a href="coordinatorSeminars.jsp"><%=(String) session.getAttribute("seminarName")%></a>
+					<small><a href="../../dbcontrol?requestType=goToCoordinatorSeminar"><%=(String) session.getAttribute("seminarName")%></a>
 						/ </small> Sessions
 				</h1>
 
@@ -126,10 +126,10 @@
   										">More Info</button>
 									</li>
 									<li class="list-group-item setting1">
-  										<a href="coordinatorManageParticipants.jsp">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 									<li class="list-group-item setting2">
-										<a href="coordinatorManageCertification.jsp">Manage Certification</a>
+										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
 									</li>
 								</ul>
 							<% } else { %>
@@ -149,7 +149,7 @@
   										">More Info</button> &bull; 
   									</li>
 									<li class="list-group-item setting1">
-  										<a href="coordinatorManageParticipants.jsp">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 								</ul>
 							<% } %>

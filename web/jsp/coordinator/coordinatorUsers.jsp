@@ -75,7 +75,7 @@
 									<td><%=allUser.getString("roleName")%></td>
 									
 									<td><form method="post" action="../../dbcontrol">
-									<input type="hidden" name="requestType" value="adminManageUser">
+									<input type="hidden" name="requestType" value="coordinatorManageUser">
 									<input type="hidden" name="accountId" value="<%=allUser.getString("accountID")%>">
 									<input type="hidden" name="userInfoId" value="<%=allUser.getString("userInfoID")%>">
 									

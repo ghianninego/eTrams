@@ -204,18 +204,18 @@ public static void F1(Connection conn, XSSFWorkbook wb){
 		
 		for(int i = 2; i <= 37;){
 			if(month < i-x){
-				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s13, i, i-x, 1, month, i-x);
-				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s13, i+1, i-x, 0,month, i-x);
+				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s13, i, i-x, "Complete", month, i-x);
+				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s13, i+1, i-x, "Incomplete",month, i-x);
 				SqlOpsforExcelGen.certification_monthly(conn, wb, row, cell, sp, s13, i-x, i+2, month, i-x);
-				System.out.println(i-x);
+			
 				x = x + 2;
 				i = i + 3;
 			}
 			else{
-				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s11, i, i-x, 1,month, i-x);
-				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s11, i+1, i-x, 0,month, i-x);
+				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s11, i, i-x, "Complete",month, i-x);
+				SqlOpsforExcelGen.session_monthly(conn, wb, sp, cell, s11, i+1, i-x, "Incomplete",month, i-x);
 				SqlOpsforExcelGen.certification_monthly(conn, wb, row, cell, sp, s11, i-x, i+2, month, i-x);
-				System.out.println(i-x);
+		
 				x = x + 2;
 				i = i + 3;
 			}
@@ -386,42 +386,42 @@ public static void F1(Connection conn, XSSFWorkbook wb){
 		SqlOpsforExcelGen.faculty(conn, wb, sp, row, cell, s11);
 		
 		if(month > 7){ //1st term
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, 1, 8, 12, month, 7);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, 0, 8, 12, month,7);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, "Complete", 8, 12, month, 7);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, "Incomplete", 8, 12, month,7);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 4, 8, 12, month,7);
 
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 5, 1, 1, 5, 7, month);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 6, 0, 1, 5, 7, month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 5, "Complete", 1, 5, 7, month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 6, "Incomplete", 1, 5, 7, month);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s13, 7, 1, 5, 7, month);
 			
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 8, 1, 6, 7, 7, month);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 9, 0, 6, 7, 7, month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 8, "Complete", 6, 7, 7, month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 9, "Incomplete", 6, 7, 7, month);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s13, 10, 6, 7, 7, month);
 		}
 		else if(month < 6){ //2nd term
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, 1, 8, 12, 6,month);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, 0, 8, 12, 6,month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, "Complete", 8, 12, 6,month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, "Incomplete", 8, 12, 6,month);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 4, 8, 12, 6,month);
 
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 5, 1, 1, 5, 6,month);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 6, 0, 1, 5, 6,month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 5, "Complete", 1, 5, 6,month);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 6, "Incomplete", 1, 5, 6,month);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 7, 1, 5, 6,month);
 			
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 8, 1, 6, 7, month, 6);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 9, 0, 6, 7, month, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 8, "Complete", 6, 7, month, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s13, 9, "Incomplete", 6, 7, month, 6);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s13, 10, 6, 7, month, 6);
 		}
 		else if(month == 6 || month == 7){ //third term
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, 1, 8, 12, 7, 6);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, 0, 8, 12, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 2, "Complete", 8, 12, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 3, "Incomplete", 8, 12, 7, 6);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 4, 8, 12, 7, 6);
 
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 5, 1, 1, 5, 7, 6);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 6, 0, 1, 5, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 5, "Complete", 1, 5, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 6, "Inomplete", 1, 5, 7, 6);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 7, 1, 5, 7, 6);
 			
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 8, 1, 6, 7, 7, 6);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 9, 0, 6, 7, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 8, "Complete", 6, 7, 7, 6);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s11, 9, "Incomplete", 6, 7, 7, 6);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s11, 10, 6, 7, 7, 6);
 		}
 		else{
@@ -570,18 +570,18 @@ public static void F1(Connection conn, XSSFWorkbook wb){
 		SqlOpsforExcelGen.faculty(conn, wb, sp, row, cell, s6);
 		
 		if(month == 1 || month == 2 || month == 3 || month == 4 || month == 5){
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, 1, 1, 5, 2, 1); // randome number lang yung 2 and 1
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, 0, 1, 5, 2,1);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, "Complete", 1, 5, 2, 1); // randome number lang yung 2 and 1
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, "Incomplete", 1, 5, 2,1);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s6, 4, 1, 5, 2,1);
 		}
 		else if(month == 8 || month == 9 || month == 10 || month == 11 || month == 12){
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, 1, 8, 12, 2,1);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, 0, 8, 12, 2,1);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, "Complete", 8, 12, 2,1);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, "Incomplete", 8, 12, 2,1);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s6, 4, 8, 12, 2,1);
 		}
 		else if(month == 6 || month == 7){
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, 1, 6, 7,2,1);
-			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, 0, 6, 7, 2,1);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 2, "Complete", 6, 7,2,1);
+			SqlOpsforExcelGen.session_count(conn, wb, sp, cell, s6, 3, "Incomplete", 6, 7, 2,1);
 			SqlOpsforExcelGen.certificationPerterm(conn, wb, row, cell, sp, s6, 4, 6, 7, 2,1);
 		}
 		//SET CELL FORMULA
@@ -754,8 +754,8 @@ public static void F1(Connection conn, XSSFWorkbook wb){
 		
 		SqlOpsforExcelGen.faculty(conn, wb, sp, row, cell, s6);
 		
-		SqlOpsforExcelGen.count_session_weekly(conn, wb, cell, sp, s6, 1, 2, month, exactDate, weekDate);;
-		SqlOpsforExcelGen.count_session_weekly(conn, wb, cell, sp, s6, 0, 3, month, exactDate, weekDate);;
+		SqlOpsforExcelGen.count_session_weekly(conn, wb, cell, sp, s6, "Complete", 2, month, exactDate, weekDate);;
+		SqlOpsforExcelGen.count_session_weekly(conn, wb, cell, sp, s6, "Incomplete", 3, month, exactDate, weekDate);;
 		SqlOpsforExcelGen.certificationWeekly(conn, wb, row, cell, sp, s6, 4, month, exactDate, weekDate);
 		
 		int y = sp.getLastRowNum(); 

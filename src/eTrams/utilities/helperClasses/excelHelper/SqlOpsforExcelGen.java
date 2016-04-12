@@ -12,37 +12,43 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 //paakidelete para makaconnect sa db niyo. :)
 	
 	/**SQL OPS + APACHE POI EXCEL GENERATION**/
-	public static Connection getConnection(){
-		Connection conn = null;
-		String url = "jdbc:mysql://127.0.0.1/personaldb";
-
-	    try {
-	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
-		} 
-		catch (ClassNotFoundException e1){
-			e1.printStackTrace();
-		} 
-	    catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	    catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+	public static int countcollege(Connection conn){
+		int x = 0; 
+		try{
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(count_college);
+			
+			while(rs.next()){
+				x = x  + rs.getInt(1);
+			}
 		}
-		try {
-			conn = DriverManager.getConnection (url, "root", "!Qaz2wsx");
-		} 
-		catch (SQLException e1) {
-			e1.printStackTrace();
+		catch(Exception y){
+			y.printStackTrace();
+		}
+		return x;
+	}
+	
+	public static boolean partOf(Connection conn, int roleID, int accountID){
+		boolean verdict = false;
+		try{
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(member);
+			pstmt.setInt(2, roleID);
+			pstmt.setInt(1, accountID);
+				
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){
+				verdict = true;
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
 		}
 		
-		return conn;
+		return verdict;
 	}
-
-	
-	/**SQL OPS + APACHE POI EXCEL GENERATION**/
-	
 	
 	public static void colleges(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFRow row, XSSFCell cell, CellStyle style){
 		try{
@@ -80,6 +86,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 	
 	public static void faculty(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFRow row, XSSFCell cell, CellStyle style){
 		try{
+			int countcollege = countcollege(conn);
 			int x = 6;
 			XSSFCell cell2 = null;
 			XSSFCell cell3 = null;
@@ -91,22 +98,21 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				row = spst.createRow(x);
-				
-				cell = row.createCell(0);
-				cell2 = row.createCell(1);
-				cell3 = row.createCell(2);
-				
-				cell.setCellValue(rs.getString(2));
-				cell.setCellStyle(style);
-				
-				cell2.setCellValue(rs.getString(3));
-				cell2.setCellStyle(style);
-				
-				x++;
-				
-			}
+				while(rs.next()){
+					row = spst.createRow(x);
+					
+					cell = row.createCell(0);
+					cell2 = row.createCell(1);
+					cell3 = row.createCell(2);
+					
+					cell.setCellValue(rs.getString(2));
+					cell.setCellStyle(style);
+					
+					cell2.setCellValue(rs.getString(3));
+					cell2.setCellStyle(style);
+					
+					x++;
+				}
 		}
 		catch(Exception x){
 			x.printStackTrace();
@@ -149,6 +155,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 	}
 	
 	public static int UserAccountTotal(Connection conn){
+		
 		int x = 0;
 		try{
 			Statement stmt = conn.createStatement();
@@ -184,37 +191,43 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		return x;
 	}
 	
-	public static void session_monthly(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month, int seshComplete, int d1, int d2){
+	public static void session_monthly(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month, String seshComplete, int d1, int d2){
 		try{
 			int facultyCt = UserAccountTotal(conn);
+			//System.out.println(facultyCt + "-facultyct");
 			int x = 6;
 			
 			ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(count_session_monthly); 
 			pstmt.setInt(1, 3);
 			pstmt.setInt(3, month);
-			pstmt.setInt(4, seshComplete);
+			pstmt.setString(4, seshComplete);
 			
 			for(int j = 1; j <= facultyCt; j++){
-				pstmt.setInt(2, j);
-				
-				rs = pstmt.executeQuery();
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
 					
-				while(rs.next()){
-					XSSFRow row = spst.getRow(x);
-					if(row != null){
-						cell = row.createCell(column);
-						if(d1 < d2){
-							cell.setCellValue("NOT YET AVAILABLE");
-							cell.setCellStyle(style);
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							if(d1 < d2){
+								cell.setCellValue("NOT YET AVAILABLE");
+								cell.setCellStyle(style);
+							}
+							else{
+								cell.setCellValue(rs.getInt(1));
+								cell.setCellStyle(style);
+							}
 						}
-						else{
-							cell.setCellValue(rs.getInt(1));
-							cell.setCellStyle(style);
-						}
+						
+						x = x + 1;
 					}
-					
-					x = x + 1;
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -223,7 +236,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 	
-	public static void session_count(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int seshComplete, int month1, int month5, int d1, int d2){
+	public static void session_count(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, String seshComplete, int month1, int month5, int d1, int d2){
 		try{
 			int facultyCt = UserAccountTotal(conn);
 			int x = 6;
@@ -233,28 +246,34 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(1, 3);
 			pstmt.setInt(3, month1);
 			pstmt.setInt(4, month5);
-			pstmt.setInt(5, seshComplete);
+			pstmt.setString(5, seshComplete);
 
 			
 			for(int j = 1; j <= facultyCt; j++){
-				pstmt.setInt(2, j);
-				
-				rs = pstmt.executeQuery();
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
 					
-				while(rs.next()){
-					XSSFRow row = spst.getRow(x);
-					if(row != null){
-						cell = row.createCell(column);
-						if(d1 < d2){
-							cell.setCellValue("NOT YET AVAILABLE");
-							cell.setCellStyle(style);
-						}
-						else{
-							cell.setCellValue(rs.getInt(1));
-							cell.setCellStyle(style);
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							if(d1 < d2){
+								cell.setCellValue("NOT YET AVAILABLE");
+								cell.setCellStyle(style);
+							}
+							else{
+								cell.setCellValue(rs.getInt(1));
+								cell.setCellStyle(style);
+							}
+							//x = x + 1;
 						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -263,7 +282,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 	
-	public static void count_session_weekly(Connection conn, XSSFWorkbook wb, XSSFCell cell, XSSFSheet spst, CellStyle style, int seshComp, int column, int month, int date, int date1){
+	public static void count_session_weekly(Connection conn, XSSFWorkbook wb, XSSFCell cell, XSSFSheet spst, CellStyle style, String seshComp, int column, int month, int date, int date1){
 		try{
 			int facultyCt = UserAccountTotal(conn);
 			int x = 6;
@@ -274,22 +293,28 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(3, month);
 			pstmt.setInt(4, date);
 			pstmt.setInt(5, date1);
-			pstmt.setInt(6, seshComp);
+			pstmt.setString(6, seshComp);
 
 			
 			for(int j = 1; j <= facultyCt; j++){
-				pstmt.setInt(2, j);
-				
-				rs = pstmt.executeQuery();
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
 					
-				while(rs.next()){
-					XSSFRow row = spst.getRow(x);
-					if(row != null){
-						cell = row.createCell(column);
-						cell.setCellValue(rs.getInt(1));
-						cell.setCellStyle(style);
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							cell.setCellValue(rs.getInt(1));
+							cell.setCellStyle(style);
+							//x = x + 1;
+						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -357,8 +382,9 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 					c6.setCellStyle(style);
 					c7.setCellStyle(style);
 					
-					x++;
+					//x++;
 				}
+				x++;
 			}
 		}
 		catch(Exception x){
@@ -425,8 +451,9 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 					c6.setCellStyle(style);
 					c7.setCellStyle(style);
 					
-					x++;
+					//x++;
 				}
+				x++;
 			}
 		}
 		catch(Exception x){
@@ -445,25 +472,29 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(4, 1);
 			
 			for(int i = 1; i <= userCount; i++){
-				pstmt.setInt(2, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						if(d1 < d2){
-							c1.setCellValue("NOT YET AVAILABLE");
-							c1.setCellStyle(style);
+				if(partOf(conn,3,i)){
+					pstmt.setInt(2, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							if(d1 < d2){
+								c1.setCellValue("NOT YET AVAILABLE");
+								c1.setCellStyle(style);
+							}
+							else{
+								c1.setCellValue(rs.getInt(1));
+								c1.setCellStyle(style);
+							}
 						}
-						else{
-							c1.setCellValue(rs.getInt(1));
-							c1.setCellStyle(style);
-						}
-						
-						x = x + 1;
+						x++;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -485,25 +516,31 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(5, 1);
 			
 			for(int i = 1; i <= userCount; i++){
-				pstmt.setInt(2, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						if(d1 < d2){
-							c1.setCellValue("NOT YET AVAILABLE");
-							c1.setCellStyle(style);
+				if(partOf(conn,3,i)){
+					pstmt.setInt(2, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							if(d1 < d2){
+								c1.setCellValue("NOT YET AVAILABLE");
+								c1.setCellStyle(style);
+							}
+							else{
+								c1.setCellValue(rs.getInt(1));
+								c1.setCellStyle(style);
+							}
+							
+							//x = x + 1;
 						}
-						else{
-							c1.setCellValue(rs.getInt(1));
-							c1.setCellStyle(style);
-						}
-						
-						x = x + 1;
+						x++;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -526,20 +563,26 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(6, 1);
 			
 			for(int i = 1; i <= userCount; i++){
-				pstmt.setInt(2, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						
-						c1.setCellValue(rs.getInt(1));
-						c1.setCellStyle(style);
-						
+				if(partOf(conn,3,i)){
+					pstmt.setInt(2, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							
+							c1.setCellValue(rs.getInt(1));
+							c1.setCellStyle(style);
+							
+							//x = x + 1;
+						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing;
 				}
 			}
 		}
@@ -560,25 +603,30 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(4, 2);
 			
 			for(int i = 1; i <= userCount; i++){
-				
-				pstmt.setInt(1, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						if(d1<d2){
-							c1.setCellValue("NOT YET AVAILABLE");
-							c1.setCellStyle(style);
-						}
-						else{
-							c1.setCellValue(rs.getInt(1));
-							c1.setCellStyle(style);
+				if(partOf(conn,2,i)){
+					pstmt.setInt(1, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							if(d1<d2){
+								c1.setCellValue("NOT YET AVAILABLE");
+								c1.setCellStyle(style);
+							}
+							else{
+								c1.setCellValue(rs.getInt(1));
+								c1.setCellStyle(style);
+							}
+							//x = x + 1;
 						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -600,25 +648,30 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(5, 2);
 			
 			for(int i = 1; i <= userCount; i++){
-				
-				pstmt.setInt(1, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						if(d1<d2){
-							c1.setCellValue("NOT YET AVAILABLE");
-							c1.setCellStyle(style);	
-						}
-						else{
-							c1.setCellValue(rs.getInt(1));
-							c1.setCellStyle(style);
+				if(partOf(conn,2,i)){
+					pstmt.setInt(1, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							if(d1<d2){
+								c1.setCellValue("NOT YET AVAILABLE");
+								c1.setCellStyle(style);	
+							}
+							else{
+								c1.setCellValue(rs.getInt(1));
+								c1.setCellStyle(style);
+							}
+							//x = x + 1;
 						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -641,20 +694,26 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(6, date2);
 			
 			for(int i = 1; i <= userCount; i++){
-				pstmt.setInt(1, i);
-				
-				rs = pstmt.executeQuery(); 
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						c1 = row.createCell(column);
-						
-						c1.setCellValue(rs.getInt(1));
-						c1.setCellStyle(style);
-						
+				if(partOf(conn,2,i)){
+					pstmt.setInt(1, i);
+					
+					rs = pstmt.executeQuery(); 
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							c1 = row.createCell(column);
+							
+							c1.setCellValue(rs.getInt(1));
+							c1.setCellStyle(style);
+							
+							//x = x + 1;
+						}
 						x = x + 1;
 					}
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
