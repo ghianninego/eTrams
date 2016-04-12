@@ -231,7 +231,7 @@
 <script type="text/javascript">
 	$(".registrationModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);
-		var sessionId = url.data("sessionid");
+		var sessionID = url.data("sessionid");
 		var register = url.data("register");
 					
 		var modal = $(this);
@@ -242,8 +242,8 @@
 			modal.find("#myText").text("Are you sure you want to unregister to this session?");
 		}
 		
-		modal.find("#certification").val(certification);
-		modal.find("#attendanceID").val(attendanceID);
+		modal.find("#register").val(register);
+		modal.find("#sessionID").val(sessionID);
 	
 		})
 </script>
