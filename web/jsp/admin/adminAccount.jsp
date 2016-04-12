@@ -18,7 +18,38 @@
 	</head>
 	
 	<body>
-				
+				<center>
+			<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("0")){ %>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Password Mismatch!</strong> </b>
+			</div>
+		</div>
+	<% } else if(request.getParameter("flag").equals("1")){ %>
+		<div class="row" id="successfulUpdate">
+		<div class="alert alert-success alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<b><strong>Password Successfully Changed</strong> </b>
+		</div>
+	</div>
+		<%} else if(request.getParameter("flag").equals("2")){ %>
+		<div class="row" id="successfulUpdate">
+		<div class="alert alert-success alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<b><strong>Information Successfully Changed</strong> </b>
+		</div>
+	</div>
+		<%} %>	
+		</center>
+		
 		<!-- Header -->
 		<%@ include file= "adminHeader.jsp" %>
 		<!-- End of Header -->
@@ -84,7 +115,7 @@
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">Old Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password" required />
+											<input type="password" class="form-control" name="oldPassword" id="password" required />
 										</div>
 									</div>
 									
