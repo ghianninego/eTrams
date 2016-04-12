@@ -46,7 +46,7 @@
             	<div class="form-group">
             		<label for="venue" class="col-sm-3 control-label">Venue Building</label>
                     <div class="col-sm-9">
-                    	<input type="text" class="form-control" id="venue" name="venue" placeholder="Venue Name" required />
+                    	<input type="text" class="form-control" id="venue" name="venue" placeholder="Venue Name" pattern="[a-zA-Z0-9 ]+" required />
                     </div>
             	</div>
             </div>

@@ -18,9 +18,8 @@
 	</head>
 	
 	<body>
-				<center>
-			<%if(request.getParameter("flag") == null){} 
-		else if(request.getParameter("flag").equals("0")){ %>
+		<%if(request.getParameter("flag") == null){} 
+			else if(request.getParameter("flag").equals("0")){ %>
 		<div class="row" >
 			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,26 +28,25 @@
 				<b><strong>Password Mismatch!</strong> </b>
 			</div>
 		</div>
-	<% } else if(request.getParameter("flag").equals("1")){ %>
+		<% } else if(request.getParameter("flag").equals("1")){ %>
 		<div class="row" id="successfulUpdate">
-		<div class="alert alert-success alert-dismissible fade in" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<b><strong>Password Successfully Changed</strong> </b>
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Password Successfully Changed</strong> </b>
+			</div>
 		</div>
-	</div>
 		<%} else if(request.getParameter("flag").equals("2")){ %>
 		<div class="row" id="successfulUpdate">
-		<div class="alert alert-success alert-dismissible fade in" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<b><strong>Information Successfully Changed</strong> </b>
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Information Successfully Changed</strong> </b>
+			</div>
 		</div>
-	</div>
-		<%} %>	
-		</center>
+		<%} %>
 		
 		<!-- Header -->
 		<%@ include file= "adminHeader.jsp" %>
@@ -108,14 +106,14 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
 								</div>
-							<form class="form-horizontal" action="../../dbcontrol" method="post">
+							<form class="form-horizontal" id="formCheckPassword" action="../../dbcontrol" method="post">
 								<div class="modal-body">
 									
 									<!-- Old Password-->
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">Old Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" name="oldPassword" id="password" required />
+											<input type="password" class="form-control" name="oldPassword" id="oldPassword" required />
 										</div>
 									</div>
 									
@@ -123,7 +121,7 @@
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">New Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"  required />
+											<input type="password" class="form-control" id="newPassword1" placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 									
@@ -131,7 +129,7 @@
 									<div class="form-group">
 										<label for="New Password2" class="col-sm-4 control-label">Re-enter New Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password" name="password" required />
+											<input type="password" class="form-control" id="newPassword2" name="password" placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 									
@@ -165,13 +163,13 @@
 									<div class="form-group">
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" required />
+											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" pattern="[a-zA-Z- ]+" required />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" />
+											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" pattern="[a-zA-Z- ]+" />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" required />
+											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 									
@@ -179,7 +177,7 @@
 									<div class="form-group">
 										<label for="email" class="col-sm-2 control-label">Email</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="email" name="email" value="${user.email }" required />
+											<input type="email" class="form-control" id="email" name="email" value="${user.email }" required />
 										</div>
 									</div>
 									

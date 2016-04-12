@@ -238,16 +238,16 @@
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="firstName"
-												id="firstName" value="" placeholder="First name"
+												id="firstName" value="" placeholder="First name" pattern="[a-zA-Z- ]+"
 												required />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="middleName"
-												id="middleName" value="" placeholder="Middle name" />
+												id="middleName" value="" placeholder="Middle name" pattern="[a-zA-Z- ]+" />
 										</div>
 										<div class="col-sm-3">
 											<input type="text" class="form-control" name="lastName"
-												id="lastName" value="" placeholder="Last name" required />
+												id="lastName" value="" placeholder="Last name" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 
