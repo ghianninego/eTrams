@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">
-					<small><a href="staffSeminars.jsp"><%=(String) session.getAttribute("seminarName")%></a>
+					<small><a href="../../dbcontrol?requestType=goToStaffSeminar"><%=(String) session.getAttribute("seminarName")%></a>
 						/ </small> Sessions
 				</h1>
 
@@ -126,7 +126,7 @@
   										">More Info</button>
 									</li>
 									<li class="list-group-item setting1">
-  										<a href="staffManageParticipants.jsp">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToStaffManageParticipantsFromStaffSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 								</ul>
 							<% } else { %>
@@ -146,10 +146,10 @@
   										">More Info</button>
   									</li>
 									<li class="list-group-item setting1">
-  										<a href="staffManageParticipants.jsp">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToStaffManageParticipantsFromStaffSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 									<li class="list-group-item setting2">
-  										<a href="frontDeskInterface.jsp">Front Desk Interface</a>
+  										<a href="../../dbcontrol?requestType=goToFrontDeskFromSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Front Desk Interface</a>
 									</li>
 								</ul>
 							<% } %>

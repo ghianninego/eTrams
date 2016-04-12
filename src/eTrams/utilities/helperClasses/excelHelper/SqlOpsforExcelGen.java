@@ -55,7 +55,6 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		try{
 			ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(member2);
-			pstmt.setInt(2, 1);
 			pstmt.setInt(1, sessionID);
 				
 			rs = pstmt.executeQuery();
@@ -916,7 +915,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(3, 1);
 			
 			for(int i = 1; i <= session; i++){
-				if(partOfSeshTable(conn,i)){
+				if(partOfSeshTable2(conn,i,month1)){
 					pstmt.setInt(1, i);
 					
 					rs = pstmt.executeQuery();
@@ -957,7 +956,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(4, 1);
 			
 			for(int i = 1; i <= session; i++){
-				if(partOfSeshTable2(conn,i,term)){
+				if(partOfSeshTable(conn,i)){
 					pstmt.setInt(1, i);
 					
 					rs = pstmt.executeQuery();
@@ -1061,7 +1060,5 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 }
-
-
 
 

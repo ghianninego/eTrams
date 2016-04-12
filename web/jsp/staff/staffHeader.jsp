@@ -22,24 +22,24 @@
 			<ul class="nav navbar-nav">
 				
 				<% if (x.equals("staffHome.jsp")) { %>
-                 	<li class="active"><a href="staffHome.jsp">Home</a></li>
+                 	<li class="active"><a href="s../../dbcontrol?requestType=home">Home</a></li>
                	<% } else { %>
-					<li><a href="staffHome.jsp">Home</a></li>
+					<li><a href="../../dbcontrol?requestType=home">Home</a></li>
 				<% } %>
 				
 				<% if (x.equals("staffSeminars.jsp") || x.equals("staffSessions.jsp") || x.equals("staffManageParticipants.jsp")) { %>
-                 	<li class="active"><a href="staffSeminars.jsp">Seminars & Sessions</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=goToStaffSeminar">Seminars & Sessions</a></li>
                	<% } else { %>
-					<li><a href="staffSeminars.jsp">Seminars & Sessions</a></li>
+					<li><a href="../../dbcontrol?requestType=goToStaffSeminar">Seminars & Sessions</a></li>
 				<% } %>
 				
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<% if (x.equals("staffAccount.jsp")) { %>
-                 	<li class="active"><a href="staffAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=myAccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
                	<% } else { %>
-					<li><a href="staffAccount.jsp"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="../../dbcontrol?requestType=myAccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 				<% } %>
 				
 				<li><a href="../../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

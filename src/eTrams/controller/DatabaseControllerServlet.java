@@ -455,7 +455,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					ReportsClass.generateReport(response, connection);
 					break;
 			}
-		} else if (fub.getRoleName().equals("Coordinator"))
+		} 
+		else if (fub.getRoleName().equals("Coordinator"))
 		{
 			switch(requestType)
 			{
@@ -771,7 +772,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					ReportsClass.generateReport(response, connection);
 					break;
 			}
-		}else if (fub.getRoleName().equals("Participant"))
+		}
+		else if (fub.getRoleName().equals("Participant"))
 		{
 			switch(requestType)
 			{
@@ -837,6 +839,284 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "searchMyHistory":
 					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
 					response.sendRedirect("jsp/participants/participantAccount_Attendance.jsp");
+					break;
+			}
+		}
+		else if (fub.getRoleName().equals("Staff"))
+		{
+			switch(requestType)
+			{
+				// Staff ACCOUNT
+				//////// seminar
+				case "goToStaffSeminar":
+					SeminarClass.completeSeminar(request, connection);
+					if(request.getParameter("flag")==null){
+					ResultSet seminars = SeminarClass.retrieveSeminars(connection);
+					session.setAttribute("seminars", seminars);
+					}
+					response.sendRedirect("jsp/staff/staffSeminars.jsp");
+					break;
+				//////// sessions
+				case "goToStaffSession":
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					SeminarClass.completeSeminar(request, connection);
+					ResultSet venues = VenueClass.retrieveVenues(connection);
+					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
+					ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
+					session.setAttribute("seminarName", request.getParameter("seminarName"));
+					session.setAttribute("session", sessions);
+					session.setAttribute("venue", venues);
+					session.setAttribute("speakers", speakers);
+					session.setAttribute("seminarID", request.getParameter("seminarID"));
+					response.sendRedirect("jsp/staff/staffSessions.jsp");
+					break;
+				case "goToStaffSessionFromAction":
+					ResultSet venues2 = VenueClass.retrieveVenues(connection);
+					ResultSet speakers2 = SessionClass.retrieveCoordinators(connection);
+					ResultSet sessions2 = SessionClass.retrieveSessions(connection, Integer.valueOf((String)session.getAttribute("seminarID")));
+					session.setAttribute("session", sessions2);
+					session.setAttribute("venue", venues2);
+					session.setAttribute("speakers", speakers2);
+					response.sendRedirect("jsp/staff/staffSessions.jsp");
+					break;
+				///////// manage participants
+				case "addParticipants":
+					ManageParticipantsClass.addMultipleParticipants(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToStaffManageParticipants");
+					break;
+				case "goToStaffManageParticipants":
+					int sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+					ResultSet allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					ResultSet oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+					ResultSet sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					session.setAttribute("allParticipants", allParticipantAccounts);
+					session.setAttribute("sessionDetails", oneSession);
+					session.setAttribute("sessionParticipants", sessionParticipants);
+					int participants = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
+					session.setAttribute("countParticipants", participants);					
+					response.sendRedirect("jsp/staff/staffManageParticipants.jsp");
+					break;
+				case "goToStaffManageParticipantsFromStaffSessions":
+					// retrieve participants
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					System.out.println(request.getParameter("sessionID"));
+					int sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+					ResultSet allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					ResultSet oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+					ResultSet sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					session.setAttribute("allParticipants", allParticipantAccounts2);
+					session.setAttribute("sessionDetails", oneSession2);
+					session.setAttribute("sessionName", request.getParameter("sessionName"));
+					session.setAttribute("sessionParticipants", sessionParticipants2);
+					int participants2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
+					session.setAttribute("countParticipants", participants2);
+					response.sendRedirect("jsp/staff/staffManageParticipants.jsp");
+					break;
+					
+				case "cancelRegistration":
+					ManageParticipantsClass.cancelRegistration(connection, Integer.parseInt(request.getParameter("attendanceID")));
+					response.sendRedirect("dbcontrol?requestType=goToStaffManageParticipants&sessionID="+session.getAttribute("sessionID"));
+					break;
+				case "certify":
+					ManageParticipantsClass.setCertification(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToStaffManageCertification&sessionID="+session.getAttribute("sessionID"));
+					break;
+					
+				case "setStatus":
+					ManageParticipantsClass.setStatus(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToStaffManageParticipants&sessionID="+session.getAttribute("sessionID"));
+					break;
+				
+				case "setAttendance":
+					ManageParticipantsClass.setTime(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToStaffManageParticipants&sessionID="+session.getAttribute("sessionID"));
+					break;
+					
+				case "goToStaffManageCertification":
+					sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+					sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					session.setAttribute("allParticipants", allParticipantAccounts);
+					session.setAttribute("sessionDetails", oneSession);
+					session.setAttribute("sessionParticipants", sessionParticipants);
+					response.sendRedirect("jsp/staff/staffManageCertification.jsp");
+					break;
+				case "goToStaffManageCertificationFromStaffSessions":
+					// retrieve participants
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					System.out.println(request.getParameter("sessionID"));
+					sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+					sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					session.setAttribute("allParticipants", allParticipantAccounts2);
+					session.setAttribute("sessionDetails", oneSession2);
+					session.setAttribute("sessionName", request.getParameter("sessionName"));
+					session.setAttribute("sessionParticipants", sessionParticipants2);
+					response.sendRedirect("jsp/staff/staffManageCertification.jsp");
+					break;
+				/// USER MANAGEMENT
+				case "staffUser": 
+					if(request.getParameter("flag")==null){
+						session.setAttribute("allUser",UserClass.getAllUsers(request, connection));	
+					}
+					try {
+						session.setAttribute("college",SQLOperations.selectCollege(connection).executeQuery());
+						session.setAttribute("department",SQLOperations.selectDepartment(connection).executeQuery());
+						session.setAttribute("role",SQLOperations.selectRole(connection).executeQuery());
+					} catch (SQLException e) {
+					e.printStackTrace();
+					}
+					response.sendRedirect("jsp/staff/staffUsers.jsp"); // change to URL mapping (hehe)
+					break;
+				case "staffManageUser": 
+					if(request.getParameter("flag")==null){
+					session.setAttribute("history", UserClass.getHistory(request, connection));
+					}
+					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+					
+					response.sendRedirect("jsp/staff/staffManageUsers.jsp"); // change to URL mapping (hehe)
+					break;
+				case "staffManageUserDone": 
+					UserClass.editUser(request, connection);
+					session.setAttribute("history", UserClass.getHistory(request, connection));
+					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+					response.sendRedirect("jsp/staff/staffManageUsers.jsp"); // change to URL mapping (hehe)
+					break;
+				case "staffManageUserDelete": 
+					UserClass.deleteUser(request, connection);
+					session.setAttribute("history", UserClass.getHistory(request, connection));
+					session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
+					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+					
+					response.sendRedirect("jsp/staff/staffUsers.jsp"); // change to URL mapping (hehe)
+					break;
+				case "staffAddUser": 
+					session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
+					
+					UserClass.createUser(request, connection);
+					response.sendRedirect("dbcontrol?requestType=staffUser"); // change to URL mapping (hehe)
+					break;
+				case "staffEditPassword": 
+					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
+					UserClass.editUserPassword(request, connection);
+					response.sendRedirect("jsp/staff/staffManageUsers.jsp"); // change to URL mapping (hehe)
+					break;
+				case "editSelfPassword": 
+					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+						response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=0");
+					} else{
+					UserClass.editUserPassword(request, connection);
+					response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=1"); // change to URL mapping (hehe)
+					}
+					break;
+				case "editSelfInfo": 
+					session.setAttribute("user",UserClass.editSelf(request, connection));
+					response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=2");
+					break;
+				// ANNOUNCEMENTS :))
+				case "addAnnouncement":
+						AnnouncementClass.createAnnouncement(request, connection);
+						try {
+							session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+							response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
+					break;
+				case  "announcementEdit":
+					AnnouncementClass.editAnnouncement(request, connection);
+					try {
+						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+						response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
+						break;
+				case  "announcementDelete":
+					AnnouncementClass.deleteAnnouncement(request, connection);
+					try {
+						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
+						break;
+				case  "home":
+					SeminarClass.completeSeminar(request, connection);
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					
+					try {
+						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+						response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
+						break;
+				case  "myAccount":
+						response.sendRedirect("jsp/staff/staffAccount_Profile.jsp");// change to URL mapping (hehe)
+						break;
+				case  "myHistory":
+					session.setAttribute("myHistory", UserClass.getMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/staff/staffAccount_History.jsp");// change to URL mapping (hehe)
+					break;
+				//search
+				case "searchName":
+					session.setAttribute("allUser",Search.searchedUser(request, connection));
+					response.sendRedirect("dbcontrol?requestType=staffUser&flag=1");
+					break;
+				case "searchSeminar":
+					session.setAttribute("seminars", Search.searchedSeminar(request, connection));
+					response.sendRedirect("dbcontrol?requestType=goToStaffSeminar&flag=1");
+					break;
+					
+				case "searchHistory":
+					session.setAttribute("history",Search.searchedHistory(request, connection));
+					response.sendRedirect("dbcontrol?requestType=staffManageUser&flag=1&accountId="+request.getParameter("accountId"));
+					break;
+					
+				case "searchMyHistory":
+					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/staff/staffAccount_History.jsp");
+					break;
+				/// FRONT DESK 
+				case "goToFrontDesk":
+					sessionID = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession = SessionClass.retrieveOneSession(connection, sessionID);
+					int participantCount = ManageParticipantsClass.countRegisteredSessionParticipants(sessionID, connection);
+					sessionParticipants = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID);
+					int countSessionParticipants = ManageParticipantsClass.countSessionParticipants(sessionID, connection);
+					session.setAttribute("allParticipants", allParticipantAccounts);
+					session.setAttribute("sessionDetails", oneSession);
+					session.setAttribute("sessionParticipants", sessionParticipants);
+					session.setAttribute("registeredParticipantCount", participantCount);
+					session.setAttribute("participantCount", countSessionParticipants);
+					response.sendRedirect("jsp/staff/frontDeskInterface.jsp");
+					break;
+				case "goToFrontDeskFromSessions":
+					// retrieve participants
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					System.out.println(request.getParameter("sessionID"));
+					sessionID2 = Integer.valueOf((String) session.getAttribute("sessionID"));
+					allParticipantAccounts2 = ManageParticipantsClass.retrieveAllParticipantAccounts(connection);
+					oneSession2 = SessionClass.retrieveOneSession(connection, sessionID2);
+					int participantCount2 = ManageParticipantsClass.countRegisteredSessionParticipants(sessionID2, connection);
+					sessionParticipants2 = ManageParticipantsClass.retrieveSessionParticipants(connection, sessionID2);
+					int countSessionParticipants2 = ManageParticipantsClass.countSessionParticipants(sessionID2, connection);
+					session.setAttribute("allParticipants", allParticipantAccounts2);
+					session.setAttribute("sessionDetails", oneSession2);
+					session.setAttribute("sessionName", request.getParameter("sessionName"));
+					session.setAttribute("sessionParticipants", sessionParticipants2);
+					session.setAttribute("registeredParticipantCount", participantCount2);
+					session.setAttribute("participantCount", countSessionParticipants2);
+					response.sendRedirect("jsp/staff/frontDeskInterface.jsp");
+					break;
+				case "register":
+					FrontDeskClass.register(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
 					break;
 			}
 		}

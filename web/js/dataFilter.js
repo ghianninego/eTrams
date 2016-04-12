@@ -9,21 +9,26 @@ $(document).ready(function () {
 	        return v;
 	    })];
 	});
-
     filterNames(pname);
 
 });
 
 function filterNames(pname){
-	alert(pname.length);
-	for(var i = 0;i<pname.length;i++){
-		rex = pname[i];
-	    $('#pvalues').filter(function(){
-	    	alert($(this).data('pname') + " " + rex);
-	    	return $(this).data('pname') == rex;
-	    }).remove();
-	    
-	}
+	    /*$('#pvalues').filter(function(){
+	    	return $('#pvalues').data('pname') === pname.get();
+	    }).remove();*/
+	
+		$('#pvalues').each(function(){
+			for(var i=0;i<pname.length;i++){
+
+			alert($(this).data('pname') + " " + pname[i]);
+			if($(this).data('pname') == pname[i]){
+				$(this).remove();
+			}
+			}
+		});
+	
+	
     
 }
 

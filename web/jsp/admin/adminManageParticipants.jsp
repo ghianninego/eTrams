@@ -136,12 +136,12 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="pName" >
 							<% 
 								while (rs2.next())
 								{
 							%>
-								<tr id="pName" data-pname="<%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %>">
+								<tr data-pname="<%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %>">
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
@@ -210,9 +210,9 @@
 											while(rs3.next()) {
 										%>
 										<tr id="pvalues" data-colaf="<%= rs3.getString(5) %>" data-pname="<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>">
-											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>" data-colaf="<%= rs3.getString(5) %>"></td>
+											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>" ></td>
 											<td class="hidden"><%= rs3.getInt(1)%></td> <!-- palagay sa query ung college id nila CALL NA -->
-											<td><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
+											<td id="namex"><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
 										</tr>
 								
 										<% } rs3.first(); rs3.previous(); %>
