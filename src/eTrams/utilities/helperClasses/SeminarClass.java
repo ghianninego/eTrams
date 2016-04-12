@@ -75,11 +75,13 @@ public class SeminarClass {
 	public static int deleteSeminar(HttpServletRequest request, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.deleteSeminar(connection);
+		PreparedStatement ps2 = SQLOperations.deleteSessionBySeminar(connection);
 		try
 		{
 			ps.setInt(1, Integer.parseInt(request.getParameter("seminarID")));
+			ps2.setInt(1, Integer.parseInt(request.getParameter("seminarID")));
 			System.out.println(request.getParameter("seminarID"));
-			if (ps.executeUpdate() > 0)
+			if (ps.executeUpdate() > 0 && ps2.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;

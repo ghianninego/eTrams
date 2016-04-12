@@ -115,6 +115,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "editSession":
 					SessionClass.editSession(request, connection);
+					SessionClass.completeSession(request,connection);
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "deleteSession":
@@ -287,12 +288,16 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				
 				case "editSelfPassword": 
+					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					response.sendRedirect("jsp/admin/adminAccount.jsp?flag=0");
+					} else{
 					UserClass.editUserPassword(request, connection);
-					response.sendRedirect("jsp/admin/adminAccount.jsp"); // change to URL mapping (hehe)
+					response.sendRedirect("jsp/admin/adminAccount.jsp?flag=1"); // change to URL mapping (hehe)
+					}
 					break;
 				case "editSelfInfo": 
 					session.setAttribute("user",UserClass.editSelf(request, connection));
-					response.sendRedirect("jsp/admin/adminAccount.jsp");
+					response.sendRedirect("jsp/admin/adminAccount.jsp?flag=2");
 					break;
 				// ANNOUNCEMENTS :))
 				case "addAnnouncement":
@@ -637,14 +642,17 @@ public class DatabaseControllerServlet extends HttpServlet {
 					UserClass.editUserPassword(request, connection);
 					response.sendRedirect("jsp/coordinator/coordinatorManageUsers.jsp"); // change to URL mapping (hehe)
 					break;
-				
 				case "editSelfPassword": 
+					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+						response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp?flag=0");
+					} else{
 					UserClass.editUserPassword(request, connection);
-					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp"); // change to URL mapping (hehe)
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp?flag=1"); // change to URL mapping (hehe)
+					}
 					break;
 				case "editSelfInfo": 
 					session.setAttribute("user",UserClass.editSelf(request, connection));
-					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp");
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp?flag=2");
 					break;
 				// ANNOUNCEMENTS :))
 				case "addAnnouncement":
