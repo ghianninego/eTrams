@@ -67,9 +67,9 @@
                  			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>
                  		</a>
         				<ul class="dropdown-menu">
-            				<li><a href="coordinatorAccount_Profile.jsp">Profile</a></li>
+            				<li><a href="../../dbcontrol?requestType=myAccount">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="coordinatorAccount_History.jsp">Attendance History</a></li>
+            				<li><a href="../../dbcontrol?requestType=myHistory">Attendance History</a></li>
           				</ul>
         			</li>
                	<% } else { %>
@@ -80,7 +80,7 @@
         				<ul class="dropdown-menu">
             				<li><a href="../../dbcontrol?requestType=myAccount">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="coordinatorAccount_History.jsp">Attendance History</a></li>
+            				<li><a href="../../dbcontrol?requestType=myHistory">Attendance History</a></li>
           				</ul>
         			</li>
 				<% } %>

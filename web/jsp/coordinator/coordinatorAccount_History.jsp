@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<jsp:useBean id="myHistory" type="java.sql.ResultSet"  scope="session"/>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -36,7 +37,7 @@
 			 				<!-- Search -->
 							<div class="col-sm-offset-9 col-sm-3">
 								<form method="post" action="../../dbcontrol">
-									<input type="hidden" name="requestType" value="searchName">
+									<input type="hidden" name="requestType" value="searchMyHistory">
 									<div class="input-group">
 										<input name="search" type="text" class="form-control" placeholder="Search">
 										<span class="input-group-btn">
@@ -56,34 +57,29 @@
 									<th>#</th>
 									<th>Seminar</th>
 									<th>Session</th>
-									<th>Time Start</th>
-									<th>Time End</th>
 									<th>Date</th>
-									<th>Status</th>
-									<th>Certification</th>
 								</tr>
 							</thead>
 							<tbody>
+							
+							<%boolean IsNotEmpty = myHistory.next();
+						
+							if(!IsNotEmpty){
+								System.out.println("bam!");	
+							}
+							else{
+							while(IsNotEmpty){ %>
 								<tr>
-									<td>001</td>
-									<td>Seminar Name</td>
-									<td>Session Name</td>
-									<td>00:00</td>
-									<td>00:00</td>
-									<td>mm/dd/yyyy</td>
-									<td>completed</td>
-									<td>certified</td>
+									<td><%=myHistory.getInt("attendanceID") %></td>
+									<td><%=myHistory.getString("seminarName") %></td>
+									<td><%=myHistory.getString("sessionName") %></td>
+									<td><%=myHistory.getString("date") %></td>
 								</tr>
-								<tr>
-									<td>002</td>
-									<td>Seminar Name</td>
-									<td>Session Name</td>
-									<td>00:00</td>
-									<td>00:00</td>
-									<td>mm/dd/yyyy</td>
-									<td>completed</td>
-									<td>certified</td>
-								</tr>
+								
+								<%IsNotEmpty =  myHistory.next();
+							}myHistory.first();myHistory.previous();
+							
+							} %>
 							</tbody>
 						</table>
 			 		</div>

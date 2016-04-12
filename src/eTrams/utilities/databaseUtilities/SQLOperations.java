@@ -99,6 +99,7 @@ public class SQLOperations
 	private static PreparedStatement searchName;
 	private static PreparedStatement searchSeminar;
 	private static PreparedStatement searchHistory;
+	private static PreparedStatement searchMyHistory;
 	private static PreparedStatement searchAnnouncementToDelete;
 /*-----------------------------------------------------------------------------------------
  *******************************************INSERT****************************************** 
@@ -925,7 +926,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateUserAccount== null)
-				updateUserAccount = connection.prepareStatement("UPDATE userInfoAccount  SET username = ? ,  password = ? , email = ? , roleID = ?, active = ? WHERE accountID = ? ");
+				updateUserAccount = connection.prepareStatement("UPDATE AccountTable  SET email = ?  WHERE accountID = ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -1375,4 +1376,20 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return searchHistory;
 	}
 
+	public synchronized static PreparedStatement SearchMyHistory(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchMyHistory == null)
+				searchMyHistory = connection.prepareStatement("SELECT a.*, s.*, sem.*,ac.*  FROM attendanceTable as a, sessionTable as s, seminarTable as sem, accountTable as ac WHERE sem.seminarID = s.seminarID and a.sessionId = s.sessionId and ac.accountID = a.participantID and  ac.accountID = ? AND (sem.seminarName Like ? OR s.sessionName Like ? OR a.status like ? OR date like ?)");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchHistory_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchHistory");         
+		return searchMyHistory;
+	}
 }

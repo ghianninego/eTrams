@@ -227,7 +227,7 @@ public class UserClass {
 			updated = pstmt.executeUpdate();
 			connection.commit();
 
-			PreparedStatement pstmt2 = SQLOperations.updateAccount(connection);
+			PreparedStatement pstmt2 = SQLOperations.updateUserAccount(connection);
 			pstmt2.setString(1, email);
 			pstmt2.setInt(2, accountId);
 			updated = pstmt2.executeUpdate();
@@ -260,7 +260,7 @@ public class UserClass {
 	
 	public static ResultSet getHistory(HttpServletRequest request, Connection connection){
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
-		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		//int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
 		
 		try {
 			PreparedStatement s = SQLOperations.selectOneAttendance(connection);
@@ -274,6 +274,22 @@ public class UserClass {
 		}
 	}
 	
+	
+	public static ResultSet getMyHistory(HttpServletRequest request, Connection connection, FinalUserBean user){
+		int accountId = user.getAccountID();
+		//int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		
+		try {
+			PreparedStatement s = SQLOperations.selectOneAttendance(connection);
+			s.setInt(1, accountId);
+			System.out.println(accountId);
+			return s.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	
 }

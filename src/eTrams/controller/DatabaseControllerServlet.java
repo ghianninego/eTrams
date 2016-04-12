@@ -58,6 +58,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 			try 
 			{
 				AnnouncementClass.beGoneAnnouncement(request, connection);
+				
 				fub = UserClass.login(request, connection);
 				SeminarClass.completeSeminar(request, connection);
 				System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
@@ -688,6 +689,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case  "myAccount":
 						response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp");// change to URL mapping (hehe)
 						break;
+				case  "myHistory":
+					session.setAttribute("myHistory", UserClass.getMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_History.jsp");// change to URL mapping (hehe)
+					break;
 				//search
 				case "searchName":
 					session.setAttribute("allUser",Search.searchedUser(request, connection));
@@ -701,6 +706,11 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "searchHistory":
 					session.setAttribute("history",Search.searchedHistory(request, connection));
 					response.sendRedirect("dbcontrol?requestType=coordinatorManageUser&flag=1&accountId="+request.getParameter("accountId"));
+					break;
+					
+				case "searchMyHistory":
+					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/coordinator/coordinatorAccount_History.jsp");
 					break;
 				/// FRONT DESK 
 				case "goToFrontDesk":

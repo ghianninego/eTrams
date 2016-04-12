@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import eTrams.model.FinalUserBean;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 
 public class Search {
@@ -83,6 +84,22 @@ public class Search {
 		try {
 			PreparedStatement ps = SQLOperations.SearchHistory(connection);
 			ps.setString(1 , request.getParameter("accountId"));
+			ps.setString(2, "%"+request.getParameter("search")+"%");
+			ps.setString(3, "%"+request.getParameter("search")+"%");
+			ps.setString(4, "%"+request.getParameter("search")+"%");
+			ps.setString(5, "%"+numberToStringDate(request.getParameter("search"))+"%");
+			return ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	public static ResultSet searchedMyHistory(HttpServletRequest request, Connection connection,FinalUserBean user) {
+		try {
+			PreparedStatement ps = SQLOperations.SearchMyHistory(connection);
+			ps.setString(1 , user.getAccountID()+"");
 			ps.setString(2, "%"+request.getParameter("search")+"%");
 			ps.setString(3, "%"+request.getParameter("search")+"%");
 			ps.setString(4, "%"+request.getParameter("search")+"%");
