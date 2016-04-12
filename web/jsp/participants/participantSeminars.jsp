@@ -136,7 +136,7 @@
   										">More Info</button>
   									</li>
 									<li class="list-group-item setting1">
-  										<a href="participantSessions.jsp">View Sessions</a>
+  										<a href="../../dbcontrol?requestType=goToSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>">View Sessions</a>
 									</li>
 								</ul>
 							</div>

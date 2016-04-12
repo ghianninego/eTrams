@@ -23,15 +23,15 @@
 				
 				
 				<% if (x.equals("participantHome.jsp")) { %>
-                 	<li class="active"><a href="participantHome.jsp">Home</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=home">Home</a></li>
                	<% } else { %>
-					<li><a href="participantHome.jsp">Home</a></li>
+					<li><a href="../../dbcontrol?requestType=home">Home</a></li>
 				<% } %>
 				
 				<% if (x.equals("participantSeminars.jsp") || x.equals("participantSessions.jsp")) { %>
-                 	<li class="active"><a href="participantSeminars.jsp">Seminars & Sessions</a></li>
+                 	<li class="active"><a href="../../dbcontrol?requestType=goToSeminar">Seminars & Sessions</a></li>
                	<% } else { %>
-					<li><a href="participantSeminars.jsp">Seminars & Sessions</a></li>
+					<li><a href="../../dbcontrol?requestType=goToSeminar">Seminars & Sessions</a></li>
 				<% } %>
 				
 			</ul>
@@ -44,9 +44,9 @@
                  			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>
                  		</a>
         				<ul class="dropdown-menu">
-            				<li><a href="participantAccount_Profile.jsp">Profile</a></li>
+            				<li><a href="../../dbcontrol?requestType=myAccount">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="participantAccount_Attendance.jsp">Attendance History</a></li>
+            				<li><a href="../../dbcontrol?requestType=myHistory">Attendance History</a></li>
           				</ul>
         			</li>
                	<% } else { %>
@@ -55,9 +55,9 @@
                  			<span class="glyphicon glyphicon-user"></span> My Account<span class="caret"></span>
                  		</a>
         				<ul class="dropdown-menu">
-            				<li><a href="participantAccount_Profile.jsp">Profile</a></li>
+            				<li><a href="../../dbcontrol?requestType=myAccount">Profile</a></li>
             				<li role="separator" class="divider"></li>
-            				<li><a href="participantAccount_Attendance.jsp">Attendance History</a></li>
+            				<li><a href="../../dbcontrol?requestType=myHistory">Attendance History</a></li>
           				</ul>
         			</li>
 				<% } %>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<jsp:useBean id="myHistory" type="java.sql.ResultSet"  scope="session"/>
+<%@ page import="eTrams.utilities.helperClasses.*" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -36,7 +37,7 @@
 			 				<!-- Search -->
 							<div class="col-sm-offset-9 col-sm-3">
 								<form method="post" action="../../dbcontrol">
-									<input type="hidden" name="requestType" value="searchName">
+									<input type="hidden" name="requestType" value="searchMyHistory">
 									<div class="input-group">
 										<input name="search" type="text" class="form-control" placeholder="Search">
 										<span class="input-group-btn">
@@ -64,26 +65,32 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%boolean IsNotEmpty = myHistory.next();
+						
+							if(!IsNotEmpty){
+							}
+							else{
+							while(IsNotEmpty){ %>
 								<tr>
-									<td>001</td>
-									<td>Seminar Name</td>
-									<td>Session Name</td>
-									<td>00:00</td>
-									<td>00:00</td>
-									<td>mm/dd/yyyy</td>
-									<td>completed</td>
-									<td>certified</td>
+									<td><%=myHistory.getInt("attendanceID") %></td>
+									<td><%=myHistory.getString("seminarName") %></td>
+									<td><%=myHistory.getString("sessionName") %></td>
+									<td><%=TimeDateConverterClass.convertTime(myHistory.getString("TimeIn"))%></td>
+									<td><%=TimeDateConverterClass.convertTime(myHistory.getString("TimeOut"))%></td>
+									<td><%=myHistory.getString("date") %></td>
+									<td><%=myHistory.getString("status") %></td>
+									<td><%if(myHistory.getString("certification").equals("0")){ %>
+											not certified
+										<%}else{ %>
+											certified
+										<%} %>
+									</td>
 								</tr>
-								<tr>
-									<td>002</td>
-									<td>Seminar Name</td>
-									<td>Session Name</td>
-									<td>00:00</td>
-									<td>00:00</td>
-									<td>mm/dd/yyyy</td>
-									<td>completed</td>
-									<td>certified</td>
-								</tr>
+								
+								<%IsNotEmpty =  myHistory.next();
+							}myHistory.first();myHistory.previous();
+							
+							} %>
 							</tbody>
 						</table>
 			 		</div>

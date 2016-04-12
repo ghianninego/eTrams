@@ -72,7 +72,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				else if (fub.getRoleName().equals("Coordinator"))
 					response.sendRedirect("jsp/coordinator/coordinatorHome.jsp");
 				else if (fub.getRoleName().equals("Participant"))
-					response.sendRedirect("jsp/participant/participantHome.jsp");
+					response.sendRedirect("jsp/participants/participantHome.jsp");
 				else if (fub.getRoleName().equals("Staff"))
 					response.sendRedirect("jsp/staff/staffHome.jsp");
 				
@@ -769,6 +769,74 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "generateReport":
 					ReportsClass.generateReport(response, connection);
+					break;
+			}
+		}else if (fub.getRoleName().equals("Participant"))
+		{
+			switch(requestType)
+			{
+
+				case "goToSeminar":
+					SeminarClass.completeSeminar(request, connection);
+					if(request.getParameter("flag")==null){
+					ResultSet seminars = SeminarClass.retrieveSeminars(connection);
+					session.setAttribute("seminars", seminars);
+					}
+					response.sendRedirect("jsp/participants/participantSeminars.jsp");
+					break;
+				//////// sessions
+				case "goToSession":
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					SeminarClass.completeSeminar(request, connection);
+					ResultSet venues = VenueClass.retrieveVenues(connection);
+					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
+					ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
+					session.setAttribute("seminarName", request.getParameter("seminarName"));
+					session.setAttribute("session", sessions);
+					session.setAttribute("venue", venues);
+					session.setAttribute("speakers", speakers);
+					session.setAttribute("seminarID", request.getParameter("seminarID"));
+					response.sendRedirect("jsp/participants/participantSessions.jsp");
+					break;
+			
+				case "editSelfPassword": 
+					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					response.sendRedirect("jsp/participants/adminAccount.jsp?flag=0");
+					} else{
+					UserClass.editUserPassword(request, connection);
+					response.sendRedirect("jsp/participants/participantAccount_Profile.jsp?flag=1"); // change to URL mapping (hehe)
+					}
+					break;
+				case "editSelfInfo": 
+					session.setAttribute("user",UserClass.editSelf(request, connection));
+					response.sendRedirect("jsp/participants/participantAccount_Profile.jsp?flag=2");
+					break;
+		
+				case  "home":
+					SeminarClass.completeSeminar(request, connection);
+					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					
+					try {
+						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+						response.sendRedirect("jsp/participants/participantHome.jsp");// change to URL mapping (hehe)
+						break;
+				case  "myAccount":
+						response.sendRedirect("jsp/participants/participantAccount_Profile.jsp");// change to URL mapping (hehe)
+						break;
+				case  "myHistory":
+					session.setAttribute("myHistory", UserClass.getMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/participants/participantAccount_Attendance.jsp");// change to URL mapping (hehe)
+					break;
+				case "searchSeminar":
+					session.setAttribute("seminars", Search.searchedSeminar(request, connection));
+					response.sendRedirect("dbcontrol?requestType=goToSeminar&flag=1");
+					break;
+				case "searchMyHistory":
+					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
+					response.sendRedirect("jsp/participants/participantAccount_Attendance.jsp");
 					break;
 			}
 		}
