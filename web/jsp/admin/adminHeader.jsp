@@ -75,7 +75,7 @@
 					<li><a href="../../dbcontrol?requestType=myAccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 				<% } %>
 				
-				<li><a href="../../index.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="../../dbcontrol?requestType=logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</div>

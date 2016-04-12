@@ -26,7 +26,12 @@
 						<!-- Error Message-->
 						<div class="row">
 							<div class="col-sm-8 col-sm-offset-2">
-								<h2>Oops! Something went wrong the system.</h2>
+								<%if (session.getAttribute("errorMessage") == null) {%>
+								<h2>Oops! Something went wrong with the system.</h2>
+								<% } else { %>
+								<h2> <%=session.getAttribute("errorMessage") %></h2> 
+								
+								<% } session.setAttribute("errorMessage", null); %>
 								<h4>Click <a href="../index.jsp">here</a> to redirect to the index page.</h4>
 								<br>
 								<h4>Or contact us: (contact numbers here)</h4>

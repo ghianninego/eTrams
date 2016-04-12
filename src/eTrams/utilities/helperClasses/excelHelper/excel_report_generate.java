@@ -1,10 +1,12 @@
 package eTrams.utilities.helperClasses.excelHelper;
 
+import java.net.URLEncoder;
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import eTrams.utilities.databaseUtilities.*;
 
 public class excel_report_generate{
@@ -26,10 +28,15 @@ public class excel_report_generate{
 			ExcelGenerationMethods.monthlyRecord(conn, annual);
 			
 			response.getOutputStream();
-			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8");
 		    annual.write(response.getOutputStream());
+			//annual.write(fileout);
+			//fileout.close();
 		    response.getOutputStream().close(); 
-			response.setHeader("Content-Disposition", "filename=etrams.xlsx");                   
+		    String filename = "ETRAMS_REPORT.xlsx";
+		    response.setCharacterEncoding("UTF-8");
+		    response.setHeader("Content-Disposition","attachment; filename="+URLEncoder.encode(filename, "UTF-8"));
+			//response.setHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");          
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -40,3 +47,4 @@ public class excel_report_generate{
 		}
 	}
 }
+

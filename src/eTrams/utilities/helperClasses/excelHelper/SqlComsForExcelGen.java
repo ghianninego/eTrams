@@ -113,7 +113,7 @@ public interface SqlComsForExcelGen {
 			 " and DepartmentTable.CollegeID = CollegeTable.CollegeID  "  +
 			 " and  "  +
 			 " (EXTRACT(MONTH FROM SessionTable.Date) = ? and SeminarTable.Active = ? and SessionTable.Active = ?) " +
-	         " ORDER BY SeminarTable.SeminarID ";
+			 " ORDER BY SeminarTable.seminarid ASC, SessionTable.Date ASC";
 	String seminar_session = 
 			//" SELECT CollegeTable.CollegeName, SessionTable.Date, SeminarTable.SeminarName, SessionTable.SessionName, VenueTable.VenueName, SessionTable.Completion as status, SessionTable.Capacity  "  +
 
@@ -127,7 +127,7 @@ public interface SqlComsForExcelGen {
 			 " and DepartmentTable.CollegeID = CollegeTable.CollegeID  "  +
 			 " and  "  +
 			 " (EXTRACT(MONTH FROM SessionTable.Date) between ? and ? and SeminarTable.Active = ? and SessionTable.Active = ?) " +
-			 " ORDER BY SeminarTable.SeminarID ";
+			 " ORDER BY SeminarTable.seminarid ASC, SessionTable.Date ASC";
 	
 //---------------------	
 	String certification_monthly = 
@@ -177,20 +177,20 @@ public interface SqlComsForExcelGen {
 	
 	String attendee_count = 
 			 " SELECT COUNT(distinct AttendanceTable.participantid) FROM AttendanceTable, SessionTable, AccountTable, SeminarTable   " +
-			 " where    " +
+			 " where " +
 			 " AttendanceTable.participantid = AccountTable.accountid    " +
 			 " and SessionTable.sessionID = AttendanceTable.SessionID    " +
 			 " and SessionTable.seminarid = seminartable.seminarid " +
 			 " and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Active = ?) " +
-	         " ORDER BY SeminarTable.SeminarID ";
+	         " ORDER BY SeminarTable.SeminarID ASC, SessionTable.Date ASC";
 	
 	String attendee_count_perterm = 
 			" SELECT COUNT(distinct AttendanceTable.participantid) FROM AttendanceTable, SessionTable, AccountTable, SeminarTable   " +
 			" where    " +
 			" AttendanceTable.participantid = AccountTable.accountid    " +
-			" and SessionTable.sessionID = AttendanceTable.SessionID    "+ 
+			" and SessionTable.sessionID = AttendanceTable.SessionID    " +
 			" and SessionTable.seminarid = seminartable.seminarid " +
 			" and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Active = ?) " +
-	        " ORDER BY SeminarTable.SeminarID ";
+			" ORDER BY SeminarTable.SeminarID ASC, SessionTable.Date ASC";
 
 }

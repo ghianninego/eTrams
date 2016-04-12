@@ -27,4 +27,18 @@
     <error-code>500</error-code>
     <location>/jsp/errorPage.jsp</location>
   </error-page>
+  
+<filter>
+	<filter-name>AuthenticationFilter</filter-name>
+	<filter-class>eTrams.security.AuthenticationFilter</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>AuthenticationFilter</filter-name>
+	<url-pattern>/jsp/admin/*</url-pattern>
+	<url-pattern>/jsp/coordinator/*</url-pattern>
+	<url-pattern>/jsp/participant/*</url-pattern>
+	<url-pattern>/jsp/staff/*</url-pattern>
+</filter-mapping>
+
 </web-app>

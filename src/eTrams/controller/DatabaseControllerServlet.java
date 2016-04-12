@@ -50,7 +50,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// INCLUDE USER TYPES SOON
 		String requestType = request.getParameter("requestType");
-		session = request.getSession();
+		session = request.getSession(false);
 		FinalUserBean fub = (FinalUserBean)session.getAttribute("user");
 		
 		if (requestType.equals("login"))
@@ -79,6 +79,11 @@ public class DatabaseControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		else if (fub == null)
+		{
+			session.setAttribute("errorMessage", "You aren't logged in. Please log in");
+			response.sendRedirect("jsp/errorPage.jsp");
 		}
 		else if (fub.getRoleName().equals("Admin"))
 		{
@@ -454,6 +459,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "generateReport":
 					ReportsClass.generateReport(response, connection);
 					break;
+				case "logout":
+					session.invalidate();
+					session = null;
+					response.sendRedirect("index.jsp");
+					break;
+				default:
+					response.sendRedirect("jsp/errorPage.jsp");
+					break;
 			}
 		} 
 		else if (fub.getRoleName().equals("Coordinator"))
@@ -771,6 +784,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "generateReport":
 					ReportsClass.generateReport(response, connection);
 					break;
+				case "logout":
+					session.invalidate();
+					session = null;
+					response.sendRedirect("index.jsp");
+					break;
+				default:
+					response.sendRedirect("jsp/errorPage.jsp");
+					break;
 			}
 		}
 		else if (fub.getRoleName().equals("Participant"))
@@ -839,6 +860,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "searchMyHistory":
 					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
 					response.sendRedirect("jsp/participants/participantAccount_Attendance.jsp");
+					break;
+				case "logout":
+					session.invalidate();
+					session = null;
+					response.sendRedirect("index.jsp");
+					break;
+				default:
+					response.sendRedirect("jsp/errorPage.jsp");
 					break;
 			}
 		}
@@ -1118,7 +1147,19 @@ public class DatabaseControllerServlet extends HttpServlet {
 					FrontDeskClass.register(request, connection);
 					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
 					break;
+				case "logout":
+					session.invalidate();
+					session = null;
+					response.sendRedirect("index.jsp");
+					break;
+				default:
+					response.sendRedirect("jsp/errorPage.jsp");
+					break;
 			}
+		}
+		else
+		{
+			response.sendRedirect("jsp/errorPage.jsp");
 		}
 	}
 }
