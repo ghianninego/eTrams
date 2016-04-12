@@ -417,7 +417,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("sessionParticipants", sessionParticipants);
 					session.setAttribute("registeredParticipantCount", participantCount);
 					session.setAttribute("participantCount", countSessionParticipants);
-					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
+					response.sendRedirect("jsp/admin/frontDeskInterface.jsp?flag="+request.getParameter("flag"));
 					break;
 				case "goToFrontDeskFromSessions":
 					// retrieve participants
@@ -438,8 +438,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/admin/frontDeskInterface.jsp");
 					break;
 				case "register":
-					FrontDeskClass.register(request, connection);
-					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
+					int x = FrontDeskClass.register(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToFrontDesk&flag="+x);
 					break;
 				////// REPORTS
 				case "goToAdminReports":
@@ -734,7 +734,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("sessionParticipants", sessionParticipants);
 					session.setAttribute("registeredParticipantCount", participantCount);
 					session.setAttribute("participantCount", countSessionParticipants);
-					response.sendRedirect("jsp/coordinator/frontDeskInterface.jsp");
+					response.sendRedirect("jsp/coordinator/frontDeskInterface.jsp?flag="+request.getParameter("flag"));
 					break;
 				case "goToFrontDeskFromSessions":
 					// retrieve participants
@@ -755,8 +755,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/coordinator/frontDeskInterface.jsp");
 					break;
 				case "register":
-					FrontDeskClass.register(request, connection);
-					response.sendRedirect("dbcontrol?requestType=goToFrontDesk");
+					int x = FrontDeskClass.register(request, connection);
+					response.sendRedirect("dbcontrol?requestType=goToFrontDesk&flag="+x);
 					break;
 				////// REPORTS
 				case "goToCoordinatorReports":
