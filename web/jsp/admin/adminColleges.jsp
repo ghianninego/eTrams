@@ -82,7 +82,7 @@
 					            	<div class="form-group">
 					            		<label for="college" class="col-sm-3 control-label">College Name</label>
 					                    <div class="col-sm-9">
-					                    	<input type="text" class="form-control" id="college" name="college" placeholder="Faculty/College/Institute" required />
+					                    	<input type="text" class="form-control" id="college" name="college" placeholder="Faculty/College/Institute" pattern="[a-zA-Z- ]+" required />
 					                    </div>
 					            	</div>
 					            </div>
@@ -112,7 +112,7 @@
 									<input type="hidden" name="requestType" value="adminEditCollege" />
 					            		<label for="college" class="col-sm-3 control-label">College Name</label>
 					                    <div class="col-sm-9">
-					                    	<input type="text" class="form-control" id="college" name="college" value="" required />
+					                    	<input type="text" class="form-control" id="college" name="college" value="" pattern="[a-zA-Z- ]+" required />
 					                    </div>
 					            	</div>
 					            </div>

@@ -116,27 +116,27 @@
             	<div class="form-group">
             		<label for="Name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-3">
-                    	<input type="text" class="form-control" id="username" name="firstName" placeholder="First Name" required />
+                    	<input type="text" class="form-control" id="username" name="firstName" placeholder="First Name" pattern="[a-zA-Z- ]+" required />
                     </div>
                     <div class="col-sm-3">
-                    	<input type="text" class="form-control" id="username" name="middleName" placeholder="Middle Name" required />
+                    	<input type="text" class="form-control" id="username" name="middleName" placeholder="Middle Name" pattern="[a-zA-Z- ]+" />
                     </div>
                     <div class="col-sm-3">
-                    	<input type="text" class="form-control" id="username" name="lastName" placeholder="Last Name" required />
+                    	<input type="text" class="form-control" id="username" name="lastName" placeholder="Last Name" pattern="[a-zA-Z- ]+" required />
                     </div>
             	</div>
             	<!-- Username -->
             	<div class="form-group">
             		<label for="User Name" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-9">
-                    	<input type="text" class="form-control" id="" name="username" placeholder="Username" required />
+                    	<input type="text" class="form-control" id="" name="username" placeholder="4 to 15 characters only" pattern="[a-zA-Z0-9_-]{4,15}" required />
                     </div>
             	</div>
             	<!-- Password -->
             	<div class="form-group">
             		<label for="Email" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-9">
-                    	<input type="password" class="form-control" id="" name="password" placeholder="Password" required />
+                    	<input type="password" class="form-control" id="" name="password" placeholder="minimum of 6 characters" pattern=".{6,}" />
                     </div>
             	</div>
             	<!-- Email -->

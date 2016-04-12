@@ -18,8 +18,7 @@
 	</head>
 	
 	<body>
-				<center>
-			<%if(request.getParameter("flag") == null){} 
+	<%if(request.getParameter("flag") == null){} 
 		else if(request.getParameter("flag").equals("0")){ %>
 		<div class="row" >
 			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
@@ -31,24 +30,23 @@
 		</div>
 	<% } else if(request.getParameter("flag").equals("1")){ %>
 		<div class="row" id="successfulUpdate">
-		<div class="alert alert-success alert-dismissible fade in" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<b><strong>Password Successfully Changed</strong> </b>
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Password Successfully Changed</strong> </b>
+			</div>
 		</div>
-	</div>
-		<%} else if(request.getParameter("flag").equals("2")){ %>
+	<%} else if(request.getParameter("flag").equals("2")){ %>
 		<div class="row" id="successfulUpdate">
-		<div class="alert alert-success alert-dismissible fade in" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<b><strong>Information Successfully Changed</strong> </b>
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Information Successfully Changed</strong> </b>
+			</div>
 		</div>
-	</div>
-		<%} %>	
-		</center>
+	<%} %>
 					
 		<!-- Header -->
 		<%@ include file= "coordinatorHeader.jsp" %>
@@ -165,13 +163,13 @@
 									<div class="form-group">
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" required />
+											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" pattern="[a-zA-Z- ]+" required />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" />
+											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" pattern="[a-zA-Z- ]+" />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" required />
+											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 									

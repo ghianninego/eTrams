@@ -104,7 +104,7 @@
 								Building</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="venue" name="venue"
-									value="" required />
+									value="" pattern="[a-zA-Z0-9 ]+" required />
 							</div>
 						</div>
 						<br>
