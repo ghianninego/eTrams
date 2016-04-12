@@ -683,7 +683,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectParticipants == null)
-				selectParticipants = connection.prepareStatement("SELECT AccountTable.accountID, UserInfoTable.LastName, UserInfoTable.FirstName, UserInfoTable.MiddleName FROM AccountTable, UserInfoTable WHERE RoleID = 3 AND AccountTable.UserInfoID = UserInfoTable.UserInfoID");
+				selectParticipants = connection.prepareStatement("SELECT AccountTable.accountID, UserInfoTable.LastName, UserInfoTable.FirstName, UserInfoTable.MiddleName, CollegeTable.CollegeName FROM AccountTable, UserInfoTable, DepartmentTable, CollegeTable WHERE RoleID = 3 AND UserInfoTable.DepartmentID = DepartmentTable.DepartmentID AND CollegeTable.COllegeID = DepartmentTable.CollegeID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID;");
 		} 
 		catch (SQLException e) 
 		{

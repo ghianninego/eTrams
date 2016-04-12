@@ -241,7 +241,7 @@
 											Time</label>
 										<div class="col-sm-4">
 											<div class="bfh-timepicker" data-mode="12h"
-												id="sessionTimeIn" data-name="sessionTimeIn"></div>
+												id="sessionTimeIn" data-time="6:00 AM" data-name="sessionTimeIn"></div>
 										</div>
 										<label for="Session Time Out" class="col-sm-2 control-label">End
 											Time</label>

@@ -31,7 +31,17 @@ public interface SqlComsForExcelGen {
 			 " select MAX(accountid) from accountTable " ;
 	
 	String count_session_total = 
-			 " select COUNT(*) from SessionTable " ;
+			 " select MAX(SessionID) from SessionTable " ;
+
+	String member = 
+			"select * from accounttable where accountid = ? and roleid = ?";
+	
+	String member2 = 
+			"select * from sessiontable where sessionid = ? and active = ?";
+	
+	String member3 = 
+			" select * from sessiontable where sessionid = ? and active = ? " +
+			" and EXTRACT(month from date) = ? "; 
 	
 	String count_session_monthly =  
 			"  SELECT COUNT(SessionTable.SessionID) AS ATTENDED " +
@@ -40,9 +50,6 @@ public interface SqlComsForExcelGen {
 			"  AND SessionTable.SessionID = AttendanceTable.SessionID " +
 			"  AND (AccountTable.RoleID = ? and AccountTable.AccountID = ? and " +
            "  EXTRACT(MONTH FROM SessionTable.date) = ? and AttendanceTable.status = ?) ";
-
-	String member = 
-			"select * from accounttable where accountid = ? and roleid = ?";
 	
 	String count_session = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
@@ -53,6 +60,31 @@ public interface SqlComsForExcelGen {
 			 " (AccountTable.RoleID = ? and AccountTable.AccountID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and AttendanceTable.status = ?) " ;
 	
 	String count_session_weekly = 
+			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
+			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable "  +
+			 " WHERE " +
+			 " AccountTable.AccountID = AttendanceTable.ParticipantID  "  + //
+			 " AND  "  +
+			 " (AccountTable.RoleID = ? and AccountTable.AccountID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and  EXTRACT(DAY FROM SessionTable.Date) between ? and ?  "  +
+			 " and AttendanceTable.status = ?) " ;
+	
+	String count_session_monthly_incomp =  
+			"  SELECT COUNT(SessionTable.SessionID) AS ATTENDED " +
+			"  FROM AttendanceTable,SessionTable,SeminarTable,AccountTable " +    
+			"  WHERE AccountTable.AccountID = AttendanceTable.ParticipantID " +
+			"  AND SessionTable.SessionID = AttendanceTable.SessionID " +
+			"  AND (AccountTable.RoleID = ? and AccountTable.AccountID = ? and " +
+           "  EXTRACT(MONTH FROM SessionTable.date) = ? and AttendanceTable.status = ?) ";
+	
+	String count_session_incomp = 
+			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
+			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable "  +
+			 " WHERE " +
+			 " AccountTable.AccountID = AttendanceTable.ParticipantID  "  + //
+			 " AND  "  +
+			 " (AccountTable.RoleID = ? and AccountTable.AccountID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and AttendanceTable.status = ?) " ;
+	
+	String count_session_weekly_incomp = 
 			 " SELECT COUNT(DISTINCT SessionTable.SessionID) AS ATTENDED  "  +
 			 " FROM AttendanceTable,SessionTable,SeminarTable,AccountTable "  +
 			 " WHERE " +

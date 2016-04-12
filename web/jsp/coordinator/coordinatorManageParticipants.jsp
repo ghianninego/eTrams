@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.ResultSet" %>
 
+<%@ page import = "eTrams.model.FinalUserBean" %>
 <%@ page import = "java.text.DateFormat" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
@@ -156,12 +157,12 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="pName" >
 							<% 
 								while (rs2.next())
 								{
 							%>
-								<tr>
+								<tr data-pname="<%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %>" >
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
@@ -215,22 +216,23 @@
 							</div>
 							
 							<div style="padding: 5px 50px;">
-								<table class="listTable table-condensed table-hover" data-pagination="true"
+								<table class="listTable table-condensed table-hover" data-toggle="table" data-pagination="true"
 										data-id-field="id" data-select-item-name="participants">
 									<thead>
 										<tr>
 											<th data-field="state" data-checkbox="true"></th>
 											<th data-field="id" data-visible="false" data-switchable="false" class="hidden">ID</th>
-											<th data-field="name">Select all</th>
+											<th data-field="name">Select all <a href="#" class="pull-right" id="fltrbtn" onclick="filter()" data-state="0"></a></th>
+											
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
+									<tbody id="dataSelector" data-college="<%= ((FinalUserBean)session.getAttribute("user")).getCollegeName() %>">
 										<% ResultSet rs3 = (ResultSet) session.getAttribute("allParticipants");
 											while(rs3.next()) {
 										%>
-											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>"></td>
-											<td class="hidden"><%= rs3.getInt(1)%></td>
+										<tr id="pvalues" data-colaf="<%= rs3.getString(5) %>" data-pname="<%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %>">
+											<td><input type="checkbox" name="participants" value="<%= rs3.getInt(1)%>" data-colaf="<%= rs3.getString(5) %>"></td>
+											<td class="hidden"><%= rs3.getInt(1)%></td> <!-- palagay sa query ung college id nila CALL NA -->
 											<td><%= rs3.getString(2) %>, <%= rs3.getString(3) %> <%= rs3.getString(4) %></td>
 										</tr>
 								
@@ -353,7 +355,7 @@
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers.js"></script>
 		<script type="text/javascript" src="../../js/datacontrol_2.js"></script>
-	
+		<script type="text/javascript" src="../../js/dataFilter.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
 	
 	<!-- FOR ADD PARTICIPANT MODAL -->

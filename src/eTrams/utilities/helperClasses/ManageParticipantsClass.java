@@ -204,9 +204,22 @@ public class ManageParticipantsClass {
 	
 	public static void addMultipleParticipants(HttpServletRequest request, Connection connection)
 	{
-		String values[] = request.getParameterValues("participants");
-		for (int i = 0; i < values.length; i++)
-			addParticipant(request, values[i], connection);
+		ResultSet rs = (ResultSet)(request.getSession(false)).getAttribute("sessionDetails");
+		try {
+			rs.next();
+			int capacity = rs.getInt(6);
+			int max = 0;
+			String values[] = request.getParameterValues("participants");
+			if (capacity > values.length)
+				max = values.length;
+			else
+				max = capacity;
+			for (int i = 0; i < max; i++)
+				addParticipant(request, values[i], connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static int countRegisteredSessionParticipants(int sessionID, Connection connection)

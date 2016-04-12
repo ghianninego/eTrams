@@ -50,6 +50,49 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		return verdict;
 	}
 	
+	public static boolean partOfSeshTable(Connection conn, int sessionID){
+		boolean verdict = false;
+		try{
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(member2);
+			pstmt.setInt(2, 1);
+			pstmt.setInt(1, sessionID);
+				
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){
+				verdict = true;
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
+		}
+		
+		return verdict;
+	}
+	
+	public static boolean partOfSeshTable2(Connection conn, int sessionID, int date){
+		boolean verdict = false;
+		try{
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(member3);
+			pstmt.setInt(1, sessionID);
+			pstmt.setInt(2, 1);
+			pstmt.setInt(3, date);
+				
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){
+				verdict = true;
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
+		}
+		
+		return verdict;
+	}
+	
 	public static void colleges(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFRow row, XSSFCell cell, CellStyle style){
 		try{
 			int x = 6;
@@ -191,7 +234,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		return x;
 	}
 	
-	public static void session_monthly(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month, String seshComplete, int d1, int d2){
+	public static void session_monthly(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month, int d1, int d2){
 		try{
 			int facultyCt = UserAccountTotal(conn);
 			//System.out.println(facultyCt + "-facultyct");
@@ -201,7 +244,8 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			PreparedStatement pstmt = conn.prepareStatement(count_session_monthly); 
 			pstmt.setInt(1, 3);
 			pstmt.setInt(3, month);
-			pstmt.setString(4, seshComplete);
+			pstmt.setString(4, "Complete");
+			//pstmt.setString(4, "'Complete'");
 			
 			for(int j = 1; j <= facultyCt; j++){
 				if(partOf(conn,3,j)){
@@ -236,7 +280,53 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 	
-	public static void session_count(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, String seshComplete, int month1, int month5, int d1, int d2){
+	public static void session_monthly_incomp(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month, int d1, int d2){
+		try{
+			int facultyCt = UserAccountTotal(conn);
+			//System.out.println(facultyCt + "-facultyct");
+			int x = 6;
+			
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(count_session_monthly_incomp); 
+			pstmt.setInt(1, 3);
+			pstmt.setInt(3, month);
+			pstmt.setString(4, "Incomplete");
+			//pstmt.setString(4, "'Incomplete'");
+			
+			for(int j = 1; j <= facultyCt; j++){
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
+					
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							if(d1 < d2){
+								cell.setCellValue("NOT YET AVAILABLE");
+								cell.setCellStyle(style);
+							}
+							else{
+								cell.setCellValue(rs.getInt(1));
+								cell.setCellStyle(style);
+							}
+						}
+						
+						x = x + 1;
+					}
+				}
+				else{
+					//do nothing
+				}
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
+		}
+	}
+	
+	public static void session_count(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month1, int month5, int d1, int d2){
 		try{
 			int facultyCt = UserAccountTotal(conn);
 			int x = 6;
@@ -246,7 +336,8 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(1, 3);
 			pstmt.setInt(3, month1);
 			pstmt.setInt(4, month5);
-			pstmt.setString(5, seshComplete);
+			pstmt.setString(5, "Complete");
+			//pstmt.setString(5, "'Complete'");
 
 			
 			for(int j = 1; j <= facultyCt; j++){
@@ -282,7 +373,54 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 	
-	public static void count_session_weekly(Connection conn, XSSFWorkbook wb, XSSFCell cell, XSSFSheet spst, CellStyle style, String seshComp, int column, int month, int date, int date1){
+	public static void session_count_incomp(Connection conn, XSSFWorkbook wb, XSSFSheet spst, XSSFCell cell, CellStyle style, int column, int month1, int month5, int d1, int d2){
+		try{
+			int facultyCt = UserAccountTotal(conn);
+			int x = 6;
+			
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(count_session_incomp); 
+			pstmt.setInt(1, 3);
+			pstmt.setInt(3, month1);
+			pstmt.setInt(4, month5);
+			pstmt.setString(5, "Incomplete");
+			//pstmt.setString(5, "'Incomplete'");
+
+			
+			for(int j = 1; j <= facultyCt; j++){
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
+					
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							if(d1 < d2){
+								cell.setCellValue("NOT YET AVAILABLE");
+								cell.setCellStyle(style);
+							}
+							else{
+								cell.setCellValue(rs.getInt(1));
+								cell.setCellStyle(style);
+							}
+							//x = x + 1;
+						}
+						x = x + 1;
+					}
+				}
+				else{
+					//do nothing
+				}
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
+		}
+	}
+	
+	public static void count_session_weekly(Connection conn, XSSFWorkbook wb, XSSFCell cell, XSSFSheet spst, CellStyle style, int column, int month, int date, int date1){
 		try{
 			int facultyCt = UserAccountTotal(conn);
 			int x = 6;
@@ -293,7 +431,8 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(3, month);
 			pstmt.setInt(4, date);
 			pstmt.setInt(5, date1);
-			pstmt.setString(6, seshComp);
+			pstmt.setString(6, "Complete");
+			//pstmt.setString(6, "'Complete'");
 
 			
 			for(int j = 1; j <= facultyCt; j++){
@@ -322,6 +461,49 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			x.printStackTrace();
 		}
 	}
+	
+	public static void count_session_weekly_incomp(Connection conn, XSSFWorkbook wb, XSSFCell cell, XSSFSheet spst, CellStyle style, int column, int month, int date, int date1){
+		try{
+			int facultyCt = UserAccountTotal(conn);
+			int x = 6;
+			
+			ResultSet rs = null;
+			PreparedStatement pstmt = conn.prepareStatement(count_session_weekly_incomp); 
+			pstmt.setInt(1, 3);
+			pstmt.setInt(3, month);
+			pstmt.setInt(4, date);
+			pstmt.setInt(5, date1);
+			pstmt.setString(6, "Incomplete");
+			//pstmt.setString(6, "'Incomplete'"); 
+
+			
+			for(int j = 1; j <= facultyCt; j++){
+				if(partOf(conn,3,j)){
+					pstmt.setInt(2, j);
+					
+					rs = pstmt.executeQuery();
+						
+					while(rs.next()){
+						XSSFRow row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							cell.setCellValue(rs.getInt(1));
+							cell.setCellStyle(style);
+							//x = x + 1;
+						}
+						x = x + 1;
+					}
+				}
+				else{
+					//do nothing
+				}
+			}
+		}
+		catch(Exception x){
+			x.printStackTrace();
+		}
+	}
+	
 	public static void session_seminar_permonth(Connection conn, XSSFWorkbook wb, XSSFRow row, XSSFCell c1, XSSFSheet spst, CellStyle style, int month){
 		try{
 			int x = 5;
@@ -734,18 +916,23 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(3, 1);
 			
 			for(int i = 1; i <= session; i++){
-				pstmt.setInt(1, i);
-				
-				rs = pstmt.executeQuery();
-				
-				while(rs.next()){
-					row = spst.getRow(x);
-					if(row != null){
-						cell = row.createCell(column);
-						cell.setCellValue(rs.getInt(1));
-						cell.setCellStyle(style);
+				if(partOfSeshTable(conn,i)){
+					pstmt.setInt(1, i);
+					
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()){
+						row = spst.getRow(x);
+						if(row != null){
+							cell = row.createCell(column);
+							cell.setCellValue(rs.getInt(1));
+							cell.setCellStyle(style);
+						}
+						x++;
 					}
-					x++;
+				}
+				else{
+					//do nothing
 				}
 				
 			}
@@ -770,96 +957,101 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 			pstmt.setInt(4, 1);
 			
 			for(int i = 1; i <= session; i++){
-				pstmt.setInt(1, i);
-				
-				rs = pstmt.executeQuery();
-				
-				while(rs.next()){
-					row = spst.getRow(x);
+				if(partOfSeshTable2(conn,i,term)){
+					pstmt.setInt(1, i);
 					
-					if(row != null){
-						cell = row.createCell(column);
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()){
+						row = spst.getRow(x);
 						
-						if(d1>d5){
-							if(rs.getInt(1) == 0){
-								if(month1 == 1){ // second term <-first at third mawawalan ng record-> //column 15
-									if(term == 1 || term == 2 || term == 3 || term == 4 || term == 5){
-										cell.setCellValue(rs.getInt(1));
-										cell.setCellStyle(style);
-									}
-									else{
-										XSSFCell c1 = row.getCell(column-15); //no records sa first term //0
-										XSSFCell c3 = row.getCell(column+1); // no record sa third term //16
-										
-										if((c1.getStringCellValue()).equals("") || (c3.getStringCellValue()).equals("NOT YET AVAILABLE") 
-												|| (c3.getStringCellValue()).equals("")){
-											c1 = row.getCell(column-8); //7
-											c3 = row.getCell(column+8); //23
-											if(!c1.getStringCellValue().equals("0") || !c3.getStringCellValue().equals("")
-													|| c1.getStringCellValue().equals("0") || c3.getStringCellValue().equals("")){
-												c1.setCellValue("");
-												c3.setCellValue("");
+						if(row != null){
+							cell = row.createCell(column);
+							
+							if(d1>d5){
+								if(rs.getInt(1) == 0){
+									if(month1 == 1){ // second term <-first at third mawawalan ng record-> //column 15
+										if(term == 1 || term == 2 || term == 3 || term == 4 || term == 5){
+											cell.setCellValue(rs.getInt(1));
+											cell.setCellStyle(style);
+										}
+										else{
+											XSSFCell c1 = row.getCell(column-15); //no records sa first term //0
+											XSSFCell c3 = row.getCell(column+1); // no record sa third term //16
+											
+											if((c1.getStringCellValue()).equals("") || (c3.getStringCellValue()).equals("NOT YET AVAILABLE") 
+													|| (c3.getStringCellValue()).equals("")){
+												c1 = row.getCell(column-8); //7
+												c3 = row.getCell(column+8); //23
+												if(!c1.getStringCellValue().equals("0") || !c3.getStringCellValue().equals("")
+														|| c1.getStringCellValue().equals("0") || c3.getStringCellValue().equals("")){
+													c1.setCellValue("");
+													c3.setCellValue("");
+												}
 											}
 										}
 									}
-								}
-								
-								else if(month1 == 6){ //third term <--first at second mawawalan--> // column 23
-									if(term == 6 || term == 7){
-										cell.setCellValue(rs.getInt(1));
-										cell.setCellStyle(style);
-									}
-									else{
-										XSSFCell c2 = row.getCell(column-23); //no records sa first term
-										XSSFCell c3 = row.getCell(column-16); // no record sa second term
-										
-										if((c2.getStringCellValue()).equals("") || (c3.getStringCellValue()).equals("")){
-											c2 = row.getCell(column-16);
-											c3 = row.getCell(column-8);
-											if(!c2.getStringCellValue().equals("") || !c3.getStringCellValue().equals("")){
-												c2.setCellValue("");
-												c3.setCellValue("");
-											}
+									
+									else if(month1 == 6){ //third term <--first at second mawawalan--> // column 23
+										if(term == 6 || term == 7){
+											cell.setCellValue(rs.getInt(1));
+											cell.setCellStyle(style);
+										}
+										else{
+											XSSFCell c2 = row.getCell(column-23); //no records sa first term
+											XSSFCell c3 = row.getCell(column-16); // no record sa second term
 											
+											if((c2.getStringCellValue()).equals("") || (c3.getStringCellValue()).equals("")){
+												c2 = row.getCell(column-16);
+												c3 = row.getCell(column-8);
+												if(!c2.getStringCellValue().equals("") || !c3.getStringCellValue().equals("")){
+													c2.setCellValue("");
+													c3.setCellValue("");
+												}
+												
+											}
+										}
+									}
+									
+									else if(month1 == 8){ //first term <--third at second mawawalan--> //column 7
+										if(term == 8 || term == 9 || term == 10 || term == 11 || term == 12){
+											cell.setCellValue(rs.getInt(1));
+											cell.setCellStyle(style);
+										}
+										else{
+											XSSFCell c1 = row.getCell(column + 1); //second
+											XSSFCell c2 = row.getCell(column + 9); //third
+											
+											/*if((c1.getStringCellValue()).equals("NOT YET AVAILABLE") || (c2.getStringCellValue()).equals("NOT YET AVAILABLE") || 
+													c1 != null || c2 != null){
+												c1 = row.getCell(column+8);
+												c2 = row.getCell(column+16);
+												if(!c1.getStringCellValue().equals("") || !c2.getStringCellValue().equals("")){ //
+													c1.setCellValue("");
+													c2.setCellValue("");
+												}
+												
+											}*/
 										}
 									}
 								}
-								
-								else if(month1 == 8){ //first term <--third at second mawawalan--> //column 7
-									if(term == 8 || term == 9 || term == 10 || term == 11 || term == 12){
-										cell.setCellValue(rs.getInt(1));
-										cell.setCellStyle(style);
-									}
-									else{
-										XSSFCell c1 = row.getCell(column + 1); //second
-										XSSFCell c2 = row.getCell(column + 9); //third
-										
-										/*if((c1.getStringCellValue()).equals("NOT YET AVAILABLE") || (c2.getStringCellValue()).equals("NOT YET AVAILABLE") || 
-												c1 != null || c2 != null){
-											c1 = row.getCell(column+8);
-											c2 = row.getCell(column+16);
-											if(!c1.getStringCellValue().equals("") || !c2.getStringCellValue().equals("")){ //
-												c1.setCellValue("");
-												c2.setCellValue("");
-											}
-											
-										}*/
-									}
+								else{
+									cell.setCellValue(rs.getInt(1));
+									cell.setCellStyle(style);
 								}
 							}
 							else{
-								cell.setCellValue(rs.getInt(1));
+								cell.setCellValue("NOT YET AVAILABLE");
 								cell.setCellStyle(style);
 							}
-						}
-						else{
-							cell.setCellValue("NOT YET AVAILABLE");
-							cell.setCellStyle(style);
+							
 						}
 						
+						x++;
 					}
-					
-					x++;
+				}
+				else{
+					//do nothing
 				}
 			}
 		}
@@ -869,5 +1061,7 @@ public class SqlOpsforExcelGen implements SqlComsForExcelGen{
 		}
 	}
 }
+
+
 
 
