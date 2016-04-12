@@ -27,7 +27,7 @@ public class SQLOperations
 	private static PreparedStatement deleteUserInfo;
 	private static PreparedStatement deleteUserAccount;
 	private static PreparedStatement deleteSeminar;
-	private static PreparedStatement deleteSession;
+	private static PreparedStatement deleteSession , deleteSessionBySeminar;
 	private static PreparedStatement deleteAttendance;
 	private static PreparedStatement deleteAnnouncement;
 	private static PreparedStatement deleteVenue;
@@ -39,7 +39,7 @@ public class SQLOperations
 	private static PreparedStatement updateSeminar;
 	private static PreparedStatement updateSeminarStatus;
 	private static PreparedStatement updateSession;
-	private static PreparedStatement updateSessionStatus;
+	private static PreparedStatement updateSessionStatus , updateSessionStatus2;
 	private static PreparedStatement updateTime;
 	private static PreparedStatement updateStatus;
 	private static PreparedStatement updateVenue;
@@ -813,6 +813,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		return deleteSession;
 	}
 	
+	public synchronized static PreparedStatement deleteSessionBySeminar(Connection connection)
+	{
+		try 
+		{
+			if (deleteSessionBySeminar == null)
+				deleteSessionBySeminar = connection.prepareStatement("UPDATE sessionTable SET active = '0' WHERE seminarID = ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("deleteSessionBySeminar_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("deleteSessionBySeminar");         
+		return deleteSessionBySeminar;
+	}
+	
 	
 	public synchronized static PreparedStatement deleteAttendance(Connection connection)
 	{
@@ -982,6 +998,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("update updateSessionStatus");         
 		return updateSessionStatus;
+	}
+	
+	public synchronized static PreparedStatement updateSessionStatus2(Connection connection)
+	{
+		try 
+		{
+			if (updateSessionStatus2 == null)
+				updateSessionStatus2 = connection.prepareStatement("UPDATE sessionTable  SET completion = ?  WHERE (date = ? AND  EndTime > ?) OR  date > ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update updateSessionStatus2_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update updateSessionStatus2");         
+		return updateSessionStatus2;
 	}
 	
 	
@@ -1255,7 +1287,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllAttendees == null)
-				countAllAttendees = connection.prepareStatement("select count(t.attendanceID) from (select attendancetable.AttendanceID , sessiontable.SessionID , seminartable.SeminarID from attendancetable, sessiontable , seminartable where attendancetable.sessionID = sessiontable.SessionID and seminartable.SeminarID = sessiontable.SeminarID and seminartable.Active=1 and sessiontable.completion > 0) as t ");
+				countAllAttendees = connection.prepareStatement("select count(t.attendanceID) from (select attendancetable.AttendanceID , sessiontable.SessionID , seminartable.SeminarID from attendancetable, sessiontable , seminartable where attendancetable.sessionID = sessiontable.SessionID and seminartable.SeminarID = sessiontable.SeminarID and seminartable.Active=1) as t ");
 		} 
 		catch (SQLException e) 
 		{

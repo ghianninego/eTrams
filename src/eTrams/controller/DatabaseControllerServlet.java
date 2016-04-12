@@ -115,6 +115,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "editSession":
 					SessionClass.editSession(request, connection);
+					SessionClass.completeSession(request,connection);
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "deleteSession":

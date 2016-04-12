@@ -84,7 +84,13 @@ public class SessionClass {
 			ps.setInt(8, Integer.parseInt(request.getParameter("sessionSpeaker")));
 			ps.setInt(9, Integer.parseInt(request.getParameter("sessionID")));
 
-			if (ps.executeUpdate() > 0)
+			PreparedStatement ps2 = SQLOperations.updateSessionStatus2(connection);
+			ps2.setInt(1, 0);
+			ps2.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
+			ps2.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+			ps2.setDate(4,  new java.sql.Date(new java.util.Date().getTime()));
+			
+			if (ps.executeUpdate() > 0 && ps2.executeUpdate() > 0)
 			{
 				connection.commit();
 				return 1;
