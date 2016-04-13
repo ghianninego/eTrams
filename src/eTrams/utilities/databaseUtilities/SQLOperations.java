@@ -28,7 +28,7 @@ public class SQLOperations
 	private static PreparedStatement deleteUserAccount;
 	private static PreparedStatement deleteSeminar;
 	private static PreparedStatement deleteSession , deleteSessionBySeminar;
-	private static PreparedStatement deleteAttendance;
+	private static PreparedStatement deleteAttendance , deleteAttendance2;
 	private static PreparedStatement deleteAnnouncement;
 	private static PreparedStatement deleteVenue;
 	private static PreparedStatement deleteAccount;
@@ -101,6 +101,7 @@ public class SQLOperations
 	private static PreparedStatement searchHistory;
 	private static PreparedStatement searchMyHistory;
 	private static PreparedStatement searchAnnouncementToDelete;
+	private static PreparedStatement searchMyAttendance;
 /*-----------------------------------------------------------------------------------------
  *******************************************INSERT****************************************** 
 ------------------------------------------------------------------------------------------*/	
@@ -845,7 +846,21 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("delete attendanceTable");         
 		return deleteAttendance;
 	}
-	
+	public synchronized static PreparedStatement deleteAttendance2(Connection connection)
+	{
+		try 
+		{
+			if (deleteAttendance2 == null)
+				deleteAttendance2 = connection.prepareStatement("DELETE FROM AttendanceTable WHERE sessionID = ? and participantID =?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("delete attendanceTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("delete attendanceTable");         
+		return deleteAttendance2;
+	}
 	public synchronized static PreparedStatement deleteAnnouncement(Connection connection)
 	{
 		try 
@@ -1422,5 +1437,23 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("SELECT searchHistory");         
 		return searchMyHistory;
+	}
+	
+
+	public synchronized static PreparedStatement searchMyAttendance(Connection connection)
+	{
+		
+		try 
+		{
+			if (searchMyAttendance == null)
+				searchMyAttendance = connection.prepareStatement("select sessionTable.sessionID from sessionTable, attendanceTable where attendanceTable.sessionID=sessionTAble.sessionID and attendancetable.participantID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("SELECT searchMyAttendance");
+			e.printStackTrace();
+		}
+		System.out.println("SELECT searchMyAttendance");         
+		return searchMyAttendance;
 	}
 }

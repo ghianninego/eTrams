@@ -291,5 +291,25 @@ public class UserClass {
 		}
 	}
 	
+	public static ArrayList<Integer> getMyAttendance(HttpServletRequest request, Connection connection, FinalUserBean user){
+		int accountId = user.getAccountID();
+		ArrayList<Integer> x = new ArrayList<Integer>();
+		try {
+			PreparedStatement s = SQLOperations.searchMyAttendance(connection);
+			s.setInt(1, accountId);
+			System.out.println(accountId);
+			ResultSet rs= s.executeQuery();
+			while(rs.next()){
+				x.add(rs.getInt("sessionId"));
+			}
+			
+			return x;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

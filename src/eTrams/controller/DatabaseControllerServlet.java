@@ -446,6 +446,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 					int x = FrontDeskClass.register(request, connection);
 					response.sendRedirect("dbcontrol?requestType=goToFrontDesk&flag="+x);
 					break;
+					
+				
 				////// REPORTS
 				case "goToAdminReports":
 					int countAllSessions = ReportsClass.countAllSessions(connection);
@@ -811,6 +813,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "goToSession":
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
 					SeminarClass.completeSeminar(request, connection);
+					session.setAttribute("myAttendance" , UserClass.getMyAttendance(request, connection, fub));
 					ResultSet venues = VenueClass.retrieveVenues(connection);
 					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
 					ResultSet sessions = SessionClass.retrieveSessions(connection, Integer.parseInt(request.getParameter("seminarID")));
@@ -819,7 +822,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("venue", venues);
 					session.setAttribute("speakers", speakers);
 					session.setAttribute("seminarID", request.getParameter("seminarID"));
-					response.sendRedirect("jsp/participants/participantSessions.jsp");
+					response.sendRedirect("jsp/participants/participantSessions.jsp?flag="+request.getParameter("flag"));
 					break;
 			
 				case "editSelfPassword": 
@@ -861,6 +864,19 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("myHistory",Search.searchedMyHistory(request, connection,fub));
 					response.sendRedirect("jsp/participants/participantAccount_Attendance.jsp");
 					break;
+					
+				case "register2":
+					session.setAttribute("sessionID", request.getParameter("sessionID"));
+					int p = -10;
+					if(request.getParameter("register").equals("1")){
+					p = ManageParticipantsClass.addParticipant(request,fub.getAccountID()+"",connection)+1;
+					}
+					else{
+					p= 	ManageParticipantsClass.cancelRegistration2(connection,request, fub.getAccountID());
+					}
+					response.sendRedirect("dbcontrol?requestType=goToSession&flag="+p+"&seminarID="+request.getParameter("seminarID"));
+					break;
+					
 				case "logout":
 					session.invalidate();
 					session = null;
