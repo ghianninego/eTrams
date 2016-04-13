@@ -24,9 +24,8 @@
 <body>
 
 <%ArrayList<Integer> o =(ArrayList<Integer>) session.getAttribute("myAttendance"); %>
-<center>
-		<%if(request.getParameter("flag") == null){} 
-			else if(request.getParameter("flag").equals("1")){ %>
+	<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("1")){ %>
 		<div class="row" >
 			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -35,7 +34,7 @@
 				<b><strong>Unregister Successfully</strong> </b>
 			</div>
 		</div>
-		<% } else if(request.getParameter("flag").equals("2")){ %>
+	<% } else if(request.getParameter("flag").equals("2")){ %>
 		<div class="row" id="successfulUpdate">
 			<div class="alert alert-success alert-dismissible fade in" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -44,8 +43,8 @@
 				<b><strong>Register Successfully</strong> </b>
 			</div>
 		</div>
-		<%} %>
-		</center>
+	<%} %>
+
 	<!-- Header -->
 	<%@ include file="participantHeader.jsp"%>
 	<!-- End of Header -->
@@ -55,7 +54,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">
-					<small><a href="participantSeminars.jsp"><%=(String) session.getAttribute("seminarName")%></a>
+					<small><a href="../../dbcontrol?requestType=goToSeminar"><%=(String) session.getAttribute("seminarName")%></a>
 						/ </small> Sessions
 				</h1>
 

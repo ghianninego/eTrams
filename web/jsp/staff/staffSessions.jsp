@@ -128,6 +128,9 @@
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToStaffManageParticipantsFromStaffSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
+									<li class="list-group-item">
+										&bull; &bull; &bull; 
+									</li>
 								</ul>
 							<% } else { %>
 								

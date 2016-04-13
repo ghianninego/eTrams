@@ -1050,15 +1050,15 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "editSelfPassword": 
 					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
-						response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=0");
+						response.sendRedirect("jsp/staff/staffAccount.jsp?flag=0");
 					} else{
 					UserClass.editUserPassword(request, connection);
-					response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=1"); // change to URL mapping (hehe)
+					response.sendRedirect("jsp/staff/staffAccount.jsp?flag=1"); // change to URL mapping (hehe)
 					}
 					break;
 				case "editSelfInfo": 
 					session.setAttribute("user",UserClass.editSelf(request, connection));
-					response.sendRedirect("jsp/staff/staffAccount_Profile.jsp?flag=2");
+					response.sendRedirect("jsp/staff/staffAccount.jsp?flag=2");
 					break;
 				// ANNOUNCEMENTS :))
 				case "addAnnouncement":
@@ -1101,7 +1101,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 						response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
 						break;
 				case  "myAccount":
-						response.sendRedirect("jsp/staff/staffAccount_Profile.jsp");// change to URL mapping (hehe)
+						response.sendRedirect("jsp/staff/staffAccount.jsp");// change to URL mapping (hehe)
 						break;
 				case  "myHistory":
 					session.setAttribute("myHistory", UserClass.getMyHistory(request, connection,fub));

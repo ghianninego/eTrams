@@ -39,6 +39,9 @@
 								<form method="post" action="../../dbcontrol">
 									<input type="hidden" name="requestType" value="searchMyHistory">
 									<div class="input-group">
+										<span class="input-group-btn">
+											<a class="btn btn-default" href="../../dbcontrol?requestType=myHistory"><span class="glyphicon glyphicon-refresh"></span></a>
+										</span>
 										<input name="search" type="text" class="form-control" placeholder="Search">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>

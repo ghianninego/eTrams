@@ -31,15 +31,13 @@
 			 			Departments
 			 		</h1>
 			 		
-			 			
 			 		<!-- Content -->
 			 		<div class="content">
-			 			<h3>College Name</h3>
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
-									<th data-sortable="true">Department ID #</th>
-									<th data-sortable="true">Department</th>
+									<th>Department ID #</th>
+									<th>Department</th>
 									<th></th>
 								</tr>
 							</thead>
