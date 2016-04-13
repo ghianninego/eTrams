@@ -110,7 +110,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="gridSystemModalLabel">Create New Account</h4>
 			</div>
-		<form class="form-horizontal" action="../../dbcontrol" method="post">
+		<form class="form-horizontal" action="../../dbcontrol" method="post" data-toggle="validator">
             <div class="modal-body">
             	<!-- Name -->
             	<div class="form-group">
@@ -191,8 +191,8 @@
             	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
             	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
             </div>
-        </div>
 		</form>
+        </div>
 	</div>
 </div>
 <!-- NEW USER MODAL -->
@@ -213,6 +213,7 @@
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
-		<script type="text/javascript" src="../../js/addUsers.js"></script>
+	<script type="text/javascript" src="../../js/validator.js"></script>
+	<script type="text/javascript" src="../../js/addUsers.js"></script>
 	
 </html>

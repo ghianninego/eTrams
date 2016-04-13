@@ -89,6 +89,26 @@ public class ManageParticipantsClass {
 		return 0;
 	}
 	
+	public static int cancelRegistration2(Connection connection,HttpServletRequest request, int participantID)
+	{
+		PreparedStatement ps = SQLOperations.deleteAttendance2(connection);
+		try 
+		{
+			ps.setInt(1, Integer.parseInt((String)request.getSession().getAttribute("sessionID")));
+			ps.setInt(2 , participantID);
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
 	public static int setStatus(HttpServletRequest request, Connection connection)
 	{
 		PreparedStatement ps = SQLOperations.updateStatus(connection);

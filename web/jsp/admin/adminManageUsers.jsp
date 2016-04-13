@@ -230,7 +230,7 @@
 									Profile</h4>
 							</div>
 							<form class="form-horizontal" action="../../dbcontrol"
-								method="post">
+								method="post" data-toggle="validator">
 								<div class="modal-body">
 
 									<!-- Name-->
@@ -311,7 +311,7 @@
 									Password</h4>
 							</div>
 							<form class="form-horizontal" action="../../dbcontrol"
-								method="post">
+								method="post" data-toggle="validator">
 								<div class="modal-body">
 
 									<!-- New Password-->
@@ -319,8 +319,8 @@
 										<label for="New Password1" class="col-sm-4 control-label">New
 											Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"
-												required />
+											<input type="password" class="form-control" id="newPassword1"
+												placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 
@@ -329,8 +329,10 @@
 										<label for="New Password2" class="col-sm-4 control-label">Re-enter
 											New Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"
-												name="password" required />
+											<input type="password" class="form-control" id="password" name="password"
+												placeholder="minimum of 6 characters" pattern=".{6,}" data-match="#newPassword1" 
+												data-match-error="These passwords don't match." required />
+											<div class="help-block with-errors"></div>
 										</div>
 									</div>
 
@@ -400,6 +402,7 @@
 <script src="../../js/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
 <script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+<script type="text/javascript" src="../../js/validator.js"></script>
 	
 <script type="text/javascript">
 	$(".editProfileModal").on("show.bs.modal", function(event) {

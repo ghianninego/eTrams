@@ -20,6 +20,26 @@
 	</head>
 	
 	<body>
+	<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("0")){ %>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>The username and password you entered did not match.</strong></b>
+			</div>
+		</div>
+	<% } else if(request.getParameter("flag").equals("1")){ %>
+		<div class="row" id="successfulUpdate">
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong> Successfully Confirmed!</strong> </b>
+			</div>
+		</div>
+	<%} %>
 				
 		<!-- Header -->
 		<%@ include file= "staffHeader.jsp" %>
@@ -61,7 +81,7 @@
 											<button type="submit" class="btn btn-yellow">Confirm Attendance</button>
 										</div>
 										<div class="btn-group" role="group">
-											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToAdminSession">Return to Sessions</a>
+											<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToStaffSession&seminarID=<%= session.getAttribute("seminarID")%>&seminarName=<%= session.getAttribute("seminarName")%>"">Return to Sessions</a>
 										</div>
 									</div>
 								</form>
@@ -70,7 +90,7 @@
 							<div class="col-sm-8 col-sm-offset-2">
 								<h4 class="text-center">All Participants have been able to confirm their attendance for this session.</h4>
 								<div class="text-center">
-									<a type="button" class="btn btn-gray" href="adminSessions.jsp">Return to Sessions</a>
+									<a type="button" class="btn btn-gray" href="../../dbcontrol?requestType=goToStaffSession&seminarID=<%= session.getAttribute("seminarID")%>&seminarName=<%= session.getAttribute("seminarName")%>"">Return to Sessions</a>
 								</div>
 							</div>
 						<% } 

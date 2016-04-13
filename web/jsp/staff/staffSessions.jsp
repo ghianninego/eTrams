@@ -128,6 +128,9 @@
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToStaffManageParticipantsFromStaffSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
+									<li class="list-group-item">
+										&bull; &bull; &bull; 
+									</li>
 								</ul>
 							<% } else { %>
 								
@@ -174,14 +177,6 @@
 					<!-- End of Announcements pagination -->
 					
 					<% } %>
-					<br>
-					
-					<div class="someButton">
-						<button type="button" class="btn btn-yellow" data-toggle="modal"
-							data-target="#sessionModal">
-							<span class="glyphicon glyphicon-plus"></span> New Session
-						</button>
-					</div>
 				</div>
 				<!-- End of Content -->
 
@@ -203,6 +198,10 @@
 
 <script type="text/javascript" src="../../js/jPages.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
+
+<!-- FOR SESSION MODAL -->
+<script type="text/javascript" src="../../js/sessionModal.js"></script>
 <script type="text/javascript" src="../../js/datacontrol.js"></script>
 
 </html>

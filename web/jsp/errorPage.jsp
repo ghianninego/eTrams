@@ -32,9 +32,7 @@
 								<h2> <%=session.getAttribute("errorMessage") %></h2> 
 								
 								<% } session.setAttribute("errorMessage", null); %>
-								<h4>Click <a href="../index.jsp">here</a> to redirect to the index page.</h4>
-								<br>
-								<h4>Or contact us: (contact numbers here)</h4>
+								<h4>Contact us at: (contact numbers here)</h4>
 								<br><br><br>
 							</div>
 						</div>

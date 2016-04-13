@@ -78,14 +78,14 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Password</h4>
 								</div>
-							<form class="form-horizontal" action="../../dbcontrol" method="post">
+							<form class="form-horizontal" action="../../dbcontrol" method="post" data-toggle="validator">
 								<div class="modal-body">
 									
 									<!-- Old Password-->
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">Old Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password" required />
+											<input type="password" class="form-control" id="password" placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 									
@@ -93,7 +93,7 @@
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">New Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password"  required />
+											<input type="password" class="form-control" id="newPassword1" placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 									
@@ -101,7 +101,9 @@
 									<div class="form-group">
 										<label for="New Password2" class="col-sm-4 control-label">Re-enter New Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password" name="password" required />
+											<input type="password" class="form-control" id="password" name="password" placeholder="minimum of 6 characters" pattern=".{6,}" 
+												data-match="#newPassword1" data-match-error="These passwords don't match." required />
+											<div class="help-block with-errors"></div>
 										</div>
 									</div>
 									
@@ -128,20 +130,20 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="gridSystemModalLabel">Edit Profile</h4>
 								</div>
-							<form class="form-horizontal" action="../../dbcontrol" method="post">
+							<form class="form-horizontal" action="../../dbcontrol" method="post" data-toggle="validator">
 								<div class="modal-body">
 								
 									<!-- Name-->
 									<div class="form-group">
 										<label for="Name" class="col-sm-2 control-label">Name</label>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" required />
+											<input type="text" class="form-control" name="firstName" id="name" value="${user.firstName }" placeholder="First name" pattern="[a-zA-Z- ]+" required />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" />
+											<input type="text" class="form-control" name="middleName" id="name" value="${user.middleName }" placeholder="Middle name" pattern="[a-zA-Z- ]+" />
 										</div>
 										<div class="col-sm-3">
-											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" required />
+											<input type="text" class="form-control" name="lastName" id="name" value="${user.lastName }" placeholder="Last name" pattern="[a-zA-Z- ]+" required />
 										</div>
 									</div>
 									
@@ -184,7 +186,7 @@
 	<script src="../../js/jquery.js"></script>
 	<script src="../../js/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap/bootstrap-formhelpers-min.js"></script>
-		
+	<script type="text/javascript" src="../../js/validator.js"></script>
 	<script type="text/javascript" src="../../js/myscript.js"></script>
 	
 </html>

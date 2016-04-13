@@ -4,6 +4,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 
 <html>
@@ -22,6 +23,28 @@
 
 <body>
 
+<%ArrayList<Integer> o =(ArrayList<Integer>) session.getAttribute("myAttendance"); %>
+	<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("1")){ %>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Unregister Successfully</strong> </b>
+			</div>
+		</div>
+	<% } else if(request.getParameter("flag").equals("2")){ %>
+		<div class="row" id="successfulUpdate">
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>Register Successfully</strong> </b>
+			</div>
+		</div>
+	<%} %>
+
 	<!-- Header -->
 	<%@ include file="participantHeader.jsp"%>
 	<!-- End of Header -->
@@ -31,7 +54,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">
-					<small><a href="participantSeminars.jsp"><%=(String) session.getAttribute("seminarName")%></a>
+					<small><a href="../../dbcontrol?requestType=goToSeminar"><%=(String) session.getAttribute("seminarName")%></a>
 						/ </small> Sessions
 				</h1>
 
@@ -42,7 +65,7 @@
 					ResultSet rs = (ResultSet) session.getAttribute("session");
 					ResultSet rs2 = (ResultSet) session.getAttribute("venue");
 					ResultSet rs3 = (ResultSet) session.getAttribute("speakers");
-					int sessions = 0;
+					int sessions = 0 , seminarID=0;
 					DateFormat format = new SimpleDateFormat("h:mm a");
 					DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
 					boolean isNotEmpty = rs.next();
@@ -94,6 +117,13 @@
 					<div class="row" id="ssList">
 						<%
 							while (isNotEmpty) {
+								boolean isMember = false;
+							for(int i = 0; i<o.size();i++){
+								if(o.get(i)==rs.getInt("sessionID")){
+									isMember=true;
+									break;
+								}
+							}
 								String str = format.format(rs.getTime(8));
 								String str2 = format.format(rs.getTime(9));
 								String dateDisplay = df2.format(rs.getDate(7));
@@ -146,11 +176,11 @@
   										">More Info</button>
   									</li>
 									<li class="list-group-item setting1">
-										<% //if (registered) { %>
+										<% if (isMember) { %>
   											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="0">Unregister</a>
-  										<% // } else { %>
+  										<%  } else { %>
   											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="1">Register</a>
-										<% //} %>
+										<% } %>
 									</li>
 								</ul>
 							<% } %>
@@ -159,6 +189,7 @@
 						</div>
 
 						<%
+						 seminarID=rs.getInt("seminarID");
 							sessions++;
 							isNotEmpty = rs.next();
 							}
@@ -175,14 +206,7 @@
 					<!-- End of Announcements pagination -->
 					
 					<% } %>
-					<br>
 					
-					<div class="someButton">
-						<button type="button" class="btn btn-yellow" data-toggle="modal"
-							data-target="#sessionModal">
-							<span class="glyphicon glyphicon-plus"></span> New Session
-						</button>
-					</div>
 				</div>
 				<!-- End of Content -->
 
@@ -204,10 +228,10 @@
 						<p id="myText">Are you sure you want to register to this session?</p>
 						
 						<div class="someButton text-center">
-							<input type="hidden" name="requestType" value="register" />
+							<input type="hidden" name="requestType" value="register2" />
 							<input type="hidden" id="register" name="register" value="" />
 							<input type="hidden" id="sessionID" name="sessionID" value="" />
-							
+							<input type="hidden"  name="seminarID" value="<%=seminarID%>" />
 							<button type="submit" class="btn btn-default">Yes</button>
 							<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
 						</div>
@@ -229,10 +253,14 @@
 <script type="text/javascript" src="../../js/myscript.js"></script>
 <script type="text/javascript" src="../../js/datacontrol.js"></script>
 
+<!-- FOR SESSION MODAL -->
+<script type="text/javascript" src="../../js/sessionModal.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
+
 <script type="text/javascript">
 	$(".registrationModal").on("show.bs.modal", function(event) {
 		var url = $(event.relatedTarget);
-		var sessionId = url.data("sessionid");
+		var sessionID = url.data("sessionid");
 		var register = url.data("register");
 					
 		var modal = $(this);
@@ -243,8 +271,8 @@
 			modal.find("#myText").text("Are you sure you want to unregister to this session?");
 		}
 		
-		modal.find("#certification").val(certification);
-		modal.find("#attendanceID").val(attendanceID);
+		modal.find("#register").val(register);
+		modal.find("#sessionID").val(sessionID);
 	
 		})
 </script>

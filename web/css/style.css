@@ -492,3 +492,16 @@ a.bfh-selectbox-toggle.form-control:hover {
 	color: #555 !important;
 }
 /******************** End of Others ********************/
+
+
+/******************** Alerts ********************/
+
+.row {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.alert {
+	margin-bottom: 0px !important;
+	text-align: center;
+}
