@@ -75,9 +75,7 @@
 
 								<h4><%=announcement.getString("title")%></h4>
 								<p>
-									<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal<%=g%>">View</a> |
-									<a href="#" data-toggle="modal" data-target="#editAnnouncementModal<%=g%>">Edit</a> |
-									<a href="#" data-toggle="modal" data-target="#deleteModal<%=g%>">Delete</a>
+									<a href="#" data-toggle="modal" data-target="#viewAnnouncementModal<%=g%>">View</a>
 								</p>
 							</div>
 							
@@ -99,69 +97,6 @@
 								</div>
 							</div>
 							<!-- VIEW ANNOUNCEMENT MODAL -->
-							
-							<!-- EDIT ANNOUNCEMENT MODAL -->
-							<div class="modal fade" id="editAnnouncementModal<%=g %>" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="gridSystemModalLabel">Edit Announcement</h4>
-										</div>
-									<form class="form-horizontal" action="../../dbcontrol" method="post">
-									<input type="hidden" name="requestType" value="announcementEdit" />
-									<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
-							            <div class="modal-body">
-							            
-							            	<!-- Announcement Title -->
-							            	<div class="form-group">
-							            		<label for="Title" class="col-sm-2 control-label">Title</label>
-							            		<div class="col-sm-10">
-							            			<input type="text" class="form-control" id="announcementTitle" name="announcementTitle" value="<%=announcement.getString("title") %>" required />
-							            		</div>
-							            	</div>
-							            	
-							            	<!-- Announcement Content -->
-							            	<div class="form-group">
-							            		<label for="Content" class="col-sm-2 control-label">Content</label>
-							            		<div class="col-sm-10">
-							            			<textarea class="form-control" name="announcementContent" id="announcementContent" rows="5" required><%=content%></textarea>
-							            		</div>
-							            	</div>
-							    				
-							            </div>
-							            <div class="modal-footer">
-							            	<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-							            	<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-							            </div>
-									</form>
-									</div>
-								</div>
-							</div>
-							<!-- EDIT ANNOUNCEMENT_MODAL -->
-							
-							<!-- DELETE MODAL -->
-							<div class="modal fade deleteModal" id="deleteModal<%=g %>" tabindex="-1"
-								role="dialog" aria-labelledby="gridSystemModalLabel">
-								<div class="modal-dialog modal-sm" role="document">
-									<div class="modal-content">
-										<form class="form-horizontal" action="../../dbcontrol">
-											<div class="modal-body text-center">
-												<p>Are you sure you want to delete this account?</p>
-							
-												<input type="hidden" name="requestType" value="announcementDelete" />
-												<input type="hidden" name="announcementID" value="<%=announcement.getString("AnnouncementID") %>" />
-							
-												<div class="someButton text-center">
-													<button type="submit" class="btn btn-default">Yes</button>
-													<button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<!-- DELETE MODAL -->
 							
 						<%
 								g++;
@@ -185,18 +120,8 @@
 					</div>
 					<!-- End of Announcements Container -->
 
-					<!-- New Announcement -->
-					<div class="someButton text-center" style="padding-top: 15px;">
-						<button type="button" class="btn btn-yellow" data-toggle="modal"
-							data-target="#createAnnouncementModal">
-							<span class="glyphicon glyphicon-plus"></span> New Announcement
-						</button>
-					</div>
-					<!-- New Announcement -->
-
 				</div>
 				<!-- End of content -->
-
 			</div>
 			<!-- End of Announcements -->
 
@@ -207,55 +132,6 @@
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- End of Footer -->
-	
-	<!-- MODALS -->
-	<!-- NEW ANNOUNCEMENT MODAL -->
-	<div class="modal fade" id="createAnnouncementModal" tabindex="-1"
-		role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="gridSystemModalLabel">New Announcement</h4>
-				</div>
-			<form class="form-horizontal" action="../../dbcontrol" method="post">
-				<div class="modal-body">
-
-					<!-- Announcement Title -->
-					<div class="form-group">
-						<label for="Title" class="col-sm-2 control-label">Title</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="announcementTitle" 
-								name="announcementTitle" placeholder="Title" required />
-						</div>
-					</div>
-
-					<!-- Announcement Content -->
-					<div class="form-group">
-						<label for="Content" class="col-sm-2 control-label">Content</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" name="announcementContent"
-								id="announcementContent" rows="5" required></textarea>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal-footer">
-					<input name="requestType" value="addAnnouncement" type="hidden" />
-					<input name="creatorID" value="<%=user.getAccountID()%>" type="hidden" />
-					<input name="userInfoID" value="<%=user.getUserInfoID()%>" type="hidden" />
-
-					<button type="submit" class="btn btn-yellow pull-left">Submit</button>
-					<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
-				</div>
-			</form>
-			</div>
-		</div>
-	</div>
-	<!-- NEW ANNOUNCEMENT_MODAL -->
-	
 	
 </body>
 

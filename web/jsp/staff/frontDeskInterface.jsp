@@ -20,6 +20,26 @@
 	</head>
 	
 	<body>
+	<%if(request.getParameter("flag") == null){} 
+		else if(request.getParameter("flag").equals("0")){ %>
+		<div class="row" >
+			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong>The username and password you entered did not match.</strong></b>
+			</div>
+		</div>
+	<% } else if(request.getParameter("flag").equals("1")){ %>
+		<div class="row" id="successfulUpdate">
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<b><strong> Successfully Confirmed!</strong> </b>
+			</div>
+		</div>
+	<%} %>
 				
 		<!-- Header -->
 		<%@ include file= "staffHeader.jsp" %>

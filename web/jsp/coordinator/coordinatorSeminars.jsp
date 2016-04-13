@@ -184,8 +184,6 @@
 <script type="text/javascript" src="../../js/jPages.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
-<!-- FOR SESSION MODAL -->
-<script type="text/javascript" src="../../js/sessionModal.js"></script>
 <script type="text/javascript" src="../../js/datacontrol.js"></script>
 
 </html>

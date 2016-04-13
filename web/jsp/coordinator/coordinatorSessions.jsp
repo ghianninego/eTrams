@@ -123,11 +123,8 @@
 			  								<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
 											<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
-  										">More Info</button> &bull; 
-  										<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
-  										 &bull; 
-  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
-									</li>
+  										">More Info</button> 
+  									</li>
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
@@ -149,11 +146,8 @@
 			  								<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
 											<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
-  										">More Info</button> &bull; 
-  										<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
-  										 &bull; 
-  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
-									</li>
+  										">More Info</button>
+  									</li>
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
@@ -205,4 +199,7 @@
 <script type="text/javascript" src="../../js/jPages.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
 
+<!-- FOR SESSION MODAL -->
+<script type="text/javascript" src="../../js/sessionModal.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
 </html>
