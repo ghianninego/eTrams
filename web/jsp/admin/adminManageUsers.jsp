@@ -4,7 +4,7 @@
 
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
-
+<%@ page import="eTrams.security.Security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
 				%>
 				<h1 class="page-header">
 					<small><a href="../../dbcontrol?requestType=adminUser">All Users</a> /</small>
-					<%=oneUser.getString("userName")%>
+					<%=Security.decrypt(oneUser.getString("userName"))%>
 				</h1>
 
 				<!-- Content -->
@@ -69,7 +69,7 @@
 									<br>
 									<h4>Username</h4>
 									<h4>
-										<span><%=oneUser.getString("userName")%></span>
+										<span><%=Security.decrypt(oneUser.getString("userName"))%></span>
 									</h4>
 									<br>
 									<h4>Email</h4>

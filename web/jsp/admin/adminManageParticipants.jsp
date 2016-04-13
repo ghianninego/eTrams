@@ -136,12 +136,12 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="pName" >
+							<tbody>
 							<% 
 								while (rs2.next())
 								{
 							%>
-								<tr data-pname="<%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %>">
+								<tr id=pNames data-pname="<%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %>">
 									<td><%= participants %></td>
 									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
 									<td><%= rs2.getString(12) %></td>
@@ -222,7 +222,7 @@
 						</div>
 						
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-yellow pull-left">Submit</button>
+							<button type="submit" id="refilter()" class="btn btn-yellow pull-left">Submit</button>
 							<button type="button" class="btn btn-gray pull-left" data-dismiss="modal">Cancel</button>
 						</div>
 					</form>

@@ -4,7 +4,7 @@ $(document).ready(function () {
 	
 	$('#fltrbtn').text('SELECT ALL FROM THIS COLLEGE ONLY');
 	
-	var pname = $('#pName tr').map(function(i) {
+	var pname = $('#pNames').map(function(i) {
 	    return [$.map($(this).data(), function(v) {
 	        return v;
 	    })];
@@ -13,23 +13,29 @@ $(document).ready(function () {
 
 });
 
+function refilter(){
+	var pname = $('#pNames').map(function(i) {
+	    return [$.map($(this).data(), function(v) {
+	        return v;
+	    })];
+	});
+    filterNames(pname);
+}
+
 function filterNames(pname){
 	    /*$('#pvalues').filter(function(){
 	    	return $('#pvalues').data('pname') === pname.get();
 	    }).remove();*/
 	
-		$('#pvalues').each(function(){
+		$('tr[id="pvalues"]').each(function(){
 			for(var i=0;i<pname.length;i++){
 
-			alert($(this).data('pname') + " " + pname[i]);
 			if($(this).data('pname') == pname[i]){
 				$(this).remove();
 			}
 			}
-		});
-	
-	
-    
+		});	
+	 
 }
 
 
@@ -51,12 +57,4 @@ function filter(){
         return rex.test($(this).data('colaf'));
     }).show();
 
-    var pname = $('#pName').map(function(i) {
-	    return [$.map($(this).data(), function(v) {
-	        return v;
-	    })];
-	});
-
-    
-    filterNames(pname);
 }

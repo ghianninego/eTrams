@@ -1,5 +1,7 @@
 package eTrams.utilities.helperClasses.excelHelper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.sql.Connection;
 
@@ -12,9 +14,11 @@ import eTrams.utilities.databaseUtilities.*;
 public class excel_report_generate{
 	public static void EXCEL_GENERATE(HttpServletResponse response, Connection connection){
 		try{
+			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 			XSSFWorkbook annual = new XSSFWorkbook();
 			Connection conn = connection; //-----pakigamit yung db mo :))
 			//Connection conn = DatabaseDataSource.getDBConnection();
+			
 			
 			ExcelGenerationMethods.F1(conn, annual);
 			ExcelGenerationMethods.F2(conn, annual);
@@ -26,17 +30,16 @@ public class excel_report_generate{
 			ExcelGenerationMethods.F8(conn, annual);
 			ExcelGenerationMethods.Sem_Ses_Record_term(conn, annual);
 			ExcelGenerationMethods.monthlyRecord(conn, annual);
-			
-			response.getOutputStream();
-			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8");
-		    annual.write(response.getOutputStream());
-			//annual.write(fileout);
-			//fileout.close();
-		    response.getOutputStream().close(); 
-		    String filename = "ETRAMS_REPORT.xlsx";
-		    response.setCharacterEncoding("UTF-8");
-		    response.setHeader("Content-Disposition","attachment; filename="+URLEncoder.encode(filename, "UTF-8"));
-			//response.setHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");          
+		    
+		    ByteArrayOutputStream outByteStream = new ByteArrayOutputStream();
+		    annual.write(outByteStream);
+		    byte [] out = outByteStream.toByteArray();
+		    response.setHeader("Content-Disposition", "attachment; filename=ETRAMS-REPORT.xlsx"); 
+		    //if gusto niyo palitan name, pakichange nalang yung filename :))))))))))
+		    
+		    OutputStream outstream = response.getOutputStream();
+		    outstream.write(out);
+		    outstream.flush();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -47,4 +50,3 @@ public class excel_report_generate{
 		}
 	}
 }
-

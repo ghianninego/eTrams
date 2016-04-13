@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import eTrams.model.AccountBean;
 import eTrams.model.FinalUserBean;
 import eTrams.model.UserInfoBean;
+import eTrams.security.Security;
 import eTrams.utilities.beanUtilities.BeanFactory;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 
@@ -31,8 +32,8 @@ public class UserClass {
 				collegeId);
 
 		if (ub.storeToDatabase(connection) > 0) {
-			AccountBean uab = (AccountBean) BeanFactory.getBean(0, ub.getIdFromDatabase(connection), username,
-					password, email, roleId, active);
+			AccountBean uab = (AccountBean) BeanFactory.getBean(0, ub.getIdFromDatabase(connection), Security.encrypt(username),
+					Security.encrypt(password), email, roleId, active);
 			if (uab.storeToDatabase(connection) > 0) {
 				return 1;
 				
@@ -128,7 +129,7 @@ public class UserClass {
 		try {
 			connection.setAutoCommit(false);
 			PreparedStatement pstmt = SQLOperations.updateAccountPassword(connection);
-			pstmt.setString(1, password);
+			pstmt.setString(1, Security.encrypt(password));
 			pstmt.setInt(2, accountId);
 			updated = pstmt.executeUpdate();
 			connection.commit();
@@ -186,11 +187,11 @@ public class UserClass {
 	{
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
-		System.out.print(username+password);
+		System.out.print(Security.encrypt(username)+Security.encrypt(password));
 		try {
 			PreparedStatement ps = SQLOperations.login(connection);
-			ps.setString(1,username);
-			ps.setString(2,password);
+			ps.setString(1,Security.encrypt(username));
+			ps.setString(2,Security.encrypt(password));
 			ResultSet rs= ps.executeQuery();
 			rs.next();
 			FinalUserBean x = (FinalUserBean) BeanFactory.getBean(rs.getInt("accountID"), rs.getInt("userInfoId")

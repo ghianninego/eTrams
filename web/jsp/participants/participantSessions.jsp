@@ -227,6 +227,7 @@
 
 <script type="text/javascript" src="../../js/jPages.js"></script>
 <script type="text/javascript" src="../../js/myscript.js"></script>
+<script type="text/javascript" src="../../js/datacontrol.js"></script>
 
 <script type="text/javascript">
 	$(".registrationModal").on("show.bs.modal", function(event) {
