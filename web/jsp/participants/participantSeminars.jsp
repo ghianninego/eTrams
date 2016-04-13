@@ -111,7 +111,7 @@
 						%>
 						<div class="col-sm-6 col-md-3" id="datavalues">
 							<span class="hidden" id="alpha"><%=rs.getString(3) %></span>
-							<span class="hidden" id="date"><%=rs.getDate(7)%></span>
+							<span class="hidden" id="date"><%=rs.getDate(5)%></span>
 							<div class="panel panel-default" id="dataContent_<%= rs.getInt(1)%>" data-semname="<%=rs.getString(3)%>" 
 									data-semtopic="<%=desc %>" data-semid="<%=rs.getInt(1) %>">
 								<div class="panel-body">

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import eTrams.security.Security;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 
 public class FrontDeskClass {
@@ -17,8 +18,8 @@ public class FrontDeskClass {
 		ResultSet rs = null;
 		
 		try {
-			ps.setString(1, request.getParameter("username"));
-			ps.setString(2, request.getParameter("password"));
+			ps.setString(1, Security.encrypt(request.getParameter("username")));
+			ps.setString(2, Security.encrypt(request.getParameter("password")));
 			rs = ps.executeQuery();
 			if (rs == null)
 			{
