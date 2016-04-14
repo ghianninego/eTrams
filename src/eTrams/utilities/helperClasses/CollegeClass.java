@@ -49,7 +49,7 @@ public class CollegeClass {
 	
 	public static int editCollege(HttpServletRequest request, Connection connection)
 	{
-		PreparedStatement ps = SQLOperations.updateVenue(connection);
+		PreparedStatement ps = SQLOperations.updateCollege(connection);
 		try {
 			ps.setString(1, request.getParameter("college"));
 			ps.setInt(2, Integer.parseInt(request.getParameter("collegeID")));

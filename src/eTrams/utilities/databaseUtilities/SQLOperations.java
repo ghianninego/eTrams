@@ -49,6 +49,7 @@ public class SQLOperations
 	private static PreparedStatement updateDepartment;
 	private static PreparedStatement updateAttendanceCertification;
 	private static PreparedStatement updateTimeIn;
+	private static PreparedStatement updateCollege;
 //-----------select CHECK
 	private static PreparedStatement selectCollege;
 	private static PreparedStatement selectCollegeDepartment;
@@ -965,6 +966,22 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("update userInfoAccount");         
 		return updateUserAccount;
+	}
+	
+	public synchronized static PreparedStatement updateCollege(Connection connection)
+	{
+		try 
+		{
+			if (updateCollege== null)
+				updateCollege = connection.prepareStatement("UPDATE CollegeTable set CollegeName=? WHERE CollegeID = ?");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update collegeTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update collegeTable");         
+		return updateCollege;
 	}
 	
 	public synchronized static PreparedStatement updateSeminar(Connection connection)

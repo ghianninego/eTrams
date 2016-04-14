@@ -361,6 +361,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					
 				case "adminEditCollege":
 					CollegeClass.editCollege(request, connection);
+					System.out.println("Editing college");
 					response.sendRedirect("dbcontrol?requestType=goToAdminColleges");
 					break;
 				
