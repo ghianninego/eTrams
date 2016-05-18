@@ -151,7 +151,7 @@
 							</tbody>
 						</table>
 						
-						<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
+						<% 	if (Integer.parseInt( session.getAttribute("countParticipants").toString()) < rs.getInt(6)) 
 							{	%>
 						<div class="someButton">
   							<button type="button" class="btn btn-yellow" data-toggle="modal" data-target="#addParticipantsModal">

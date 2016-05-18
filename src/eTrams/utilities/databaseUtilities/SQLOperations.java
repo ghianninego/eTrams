@@ -602,7 +602,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectAllSession == null)
-				selectAllSession = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , AccountTable.* , VenueTable.* , UserInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTable.Active = 1 and SeminarTable.seminarID = SessionTable.seminarID  ORDER BY Date DESC");
+				selectAllSession = connection.prepareStatement("SELECT SessionTable.*, SeminarTable.* , AccountTable.* , VenueTable.* , UserInfoTable.* FROM SessionTable, VenueTable, AccountTable, UserInfoTable , SeminarTable WHERE SessionTable.SpeakerID = AccountTable.accountID AND AccountTable.UserInfoID = UserInfoTable.UserInfoID AND VenueTable.venueID = SessionTable.venueID AND SessionTable.Active > 0 and SeminarTable.seminarID = SessionTable.seminarID  ORDER BY Date DESC");
 		} 
 		catch (SQLException e) 
 		{
@@ -1287,7 +1287,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllSessions == null)
-				countAllSessions = connection.prepareStatement("SELECT COUNT(m.sessionID) FROM SeminarTable AS g LEFT JOIN SessionTable AS m USING(seminarID) where g.active=1");
+				countAllSessions = connection.prepareStatement("SELECT COUNT(m.sessionID) FROM SeminarTable AS g LEFT JOIN SessionTable AS m USING(seminarID) where m.active=1");
 		} 
 		catch (SQLException e) 
 		{
@@ -1319,7 +1319,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countAllAttendees == null)
-				countAllAttendees = connection.prepareStatement("select count(t.attendanceID) from (select AttendanceTable.AttendanceID , SessionTable.SessionID , SeminarTable.SeminarID from AttendanceTable, SessionTable , SeminarTable where AttendanceTable.sessionID = SessionTable.SessionID and SeminarTable.SeminarID = SessionTable.SeminarID and SeminarTable.Active=1) as t ");
+				countAllAttendees = connection.prepareStatement("select count(t.attendanceID) from (select AttendanceTable.AttendanceID , SessionTable.SessionID , SeminarTable.SeminarID from AttendanceTable, SessionTable , SeminarTable where AttendanceTable.sessionID = SessionTable.SessionID and SeminarTable.SeminarID = SessionTable.SeminarID and SeminarTable.Active=1 and SessionTable.Active = 1) as t ");
 		} 
 		catch (SQLException e) 
 		{

@@ -299,7 +299,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				
 				case "editSelfPassword": 
-					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					if(!fub.getPassword().equals(Security.encrypt(request.getParameter("oldPassword")))){
 					response.sendRedirect("jsp/admin/adminAccount.jsp?flag=0");
 					} else{
 					UserClass.editUserPassword(request, connection);
@@ -676,7 +676,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/coordinator/coordinatorManageUsers.jsp"); // change to URL mapping (hehe)
 					break;
 				case "editSelfPassword": 
-					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					if(!fub.getPassword().equals(Security.encrypt(request.getParameter("oldPassword")))){
 						response.sendRedirect("jsp/coordinator/coordinatorAccount_Profile.jsp?flag=0");
 					} else{
 					UserClass.editUserPassword(request, connection);
@@ -846,7 +846,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 			
 				case "editSelfPassword": 
-					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					if(!fub.getPassword().equals(Security.encrypt(request.getParameter("oldPassword")))){
 					response.sendRedirect("jsp/participants/adminAccount.jsp?flag=0");
 					} else{
 					UserClass.editUserPassword(request, connection);
@@ -1072,7 +1072,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("jsp/staff/staffManageUsers.jsp"); // change to URL mapping (hehe)
 					break;
 				case "editSelfPassword": 
-					if(!fub.getPassword().equals(request.getParameter("oldPassword"))){
+					if(!fub.getPassword().equals(Security.encrypt(request.getParameter("oldPassword")))){
 						response.sendRedirect("jsp/staff/staffAccount.jsp?flag=0");
 					} else{
 					UserClass.editUserPassword(request, connection);

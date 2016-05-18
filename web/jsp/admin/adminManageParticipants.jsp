@@ -152,7 +152,7 @@
 							</tbody>
 						</table>
 						
-						<% 	if ((int) session.getAttribute("countParticipants") < rs.getInt(6)) 
+						<% 	if (Integer.parseInt( session.getAttribute("countParticipants").toString()) < rs.getInt(6)) 
 							{	%>
 						<br>
 						<div class="someButton">

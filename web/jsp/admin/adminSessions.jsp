@@ -200,7 +200,7 @@
 
 				<!-- Modals -->
 				<!--  CREATE SESSION MODAL -->
-				<div class="modal fade" id="sessionModal" tabindex="-1"
+				<div class="modal fade sessionModal" id="sessionModal" tabindex="-1"
 					role="dialog" aria-labelledby="gridSystemModalLabel">
 					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
@@ -343,7 +343,7 @@
 								<input type="hidden" name="seminarID"
 									value="<%=session.getAttribute("seminarID")%>" />
 								<div class="modal-footer">
-									<button type="submit" onclick="return checkSelect()"
+									<button type="submit" onclick="return checkSelect('sessionModal')"
 										class="btn btn-yellow pull-left">Submit</button>
 									<button type="button" class="btn btn-gray pull-left"
 										data-dismiss="modal">Cancel</button>
@@ -474,7 +474,7 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="submit" onclick="return checkSelect()"
+						<button type="submit" onclick="return checkSelect('editSessionModal')"
 							class="btn btn-yellow pull-left">Submit</button>
 						<button type="button" class="btn btn-gray pull-left"
 							data-dismiss="modal">Cancel</button>
@@ -524,6 +524,35 @@
 <script type="text/javascript">
 
 		$(".editSessionModal").on(
+				"show.bs.modal",
+				function(event) {
+					var event = $(event.relatedTarget);
+					id = event.data("sid");
+					var url = $("#dataContent_" + id);
+					var sessionName = url.data("sessionname");
+					var sessionDate = url.data("sessiondate");
+					var timeIn = url.data("timein");
+					var timeOut = url.data("timeout");
+					var venue = url.data("venue");
+					var remarks = url.data("remarks");
+					var capacity = url.data("capacity");
+					var speaker = url.data("speaker");
+					var sessionID = url.data("sessionid");
+					        
+					var modal = $(this);
+					modal.find("#sessionName").val(sessionName);
+					modal.find("#sessionDate").val(sessionDate);
+					modal.find("#sessionTimeIn").val(timeIn);
+					modal.find("#sessionTimeOut").val(timeOut);
+					modal.find("#sessionVenue").val(venue);
+					modal.find("#venueRemarks").val(remarks);
+					modal.find("#capacity").val(capacity);
+					modal.find("#sessionSpeaker").val(speaker);
+					modal.find("#sessionID").val(sessionID);
+	
+		});
+		
+		$(".sessionModal").on(
 				"show.bs.modal",
 				function(event) {
 					var event = $(event.relatedTarget);

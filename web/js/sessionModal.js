@@ -1,21 +1,21 @@
-function checkSelect(){
-	if($("#session_venue").val() == "--"){
+function checkSelect(dataID){
+	if($("#" + dataID + " #session_venue").val() == "--"){
 		alert("Please select a valid venue");
 		return false;	
 	}
 
-	if($("#session_speaker").val() == "--"){
+	if($("#" + dataID + " #session_speaker").val() == "--"){
 		alert("Please select a valid speaker");
 		return false;	
 	}
 
-	var timeIn = new Date(Date.parse('2000/01/01 ' + $('#sessionTimeIn').val()));
-	var timeOut = new Date(Date.parse('2000/01/01 ' + $('#sessionTimeOut').val()));
+	var timeIn = new Date(Date.parse('2000/01/01 ' + $('#' + dataID + ' #sessionTimeIn').val()));
+	var timeOut = new Date(Date.parse('2000/01/01 ' + $('#' + dataID + ' #sessionTimeOut').val()));
 
 	
 	if(timeIn <= new Date(Date.parse('2000/01/01 ' + "5:59 AM"))){
 		alert("Time In cannot be earlier than 6:00 am");
-		$('#sessionTimeIn').val("6:00 AM");
+		$('#' + dataID + ' #sessionTimeIn').val("6:00 AM");
 		return false;
 	}
 
@@ -24,7 +24,6 @@ function checkSelect(){
 		return false;
 	}
 
-	
 		return true;	
 	
 }
