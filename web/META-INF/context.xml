@@ -3,10 +3,10 @@
 <Context>
 
   <Resource name="jdbc/e-TRAMS-DS" auth="Container"
-            type="javax.sql.DataSource" username="root" password="!Qaz2wsx"
+            type="javax.sql.DataSource" username="etramsne_admin" password="!Qaz2wsx"
             driverClassName="com.mysql.jdbc.Driver" 
-            url="jdbc:mysql://127.0.0.1:3306/eTRAMS"
-            maxActive="50" 
+            url="jdbc:mysql://localhost:3306/etramsne_etrams2"
+            maxActive="100" 
             />
 
 </Context>

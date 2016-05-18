@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import eTrams.model.FinalUserBean;
+import eTrams.security.Security;
 import eTrams.utilities.databaseUtilities.DatabaseDataSource;
 import eTrams.utilities.databaseUtilities.SQLOperations;
 import eTrams.utilities.helperClasses.AnnouncementClass;
@@ -66,7 +67,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				session.setAttribute("user", fub);
 				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 				if(fub==null)
+				{
 					response.sendRedirect("index.jsp?flag=1");
+				}
 				else if (fub.getRoleName().equals("Admin"))
 					response.sendRedirect("jsp/admin/adminHome.jsp");
 				else if (fub.getRoleName().equals("Coordinator"))
@@ -78,6 +81,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
+				
 			}
 		}
 		else if (fub == null)
@@ -255,6 +259,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("role",SQLOperations.selectRole(connection).executeQuery());
 					} catch (SQLException e) {
 					e.printStackTrace();
+					session.setAttribute("errorMessage", e.toString());
+					response.sendRedirect("jsp/errorPage.jsp");
 					}
 					response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
 					break;
@@ -320,6 +326,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
 						e.printStackTrace();
+
+						session.setAttribute("errorMessage", e.toString());
+						response.sendRedirect("jsp/errorPage.jsp");
 					}
 						response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 						break;
@@ -330,6 +339,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+
+						session.setAttribute("errorMessage", e.toString());
+						response.sendRedirect("jsp/errorPage.jsp");
 					}
 						response.sendRedirect("jsp/admin/adminHome.jsp");// change to URL mapping (hehe)
 						break;
@@ -468,6 +480,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("index.jsp");
 					break;
 				default:
+					
 					response.sendRedirect("jsp/errorPage.jsp");
 					break;
 			}
@@ -623,6 +636,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("role",SQLOperations.selectRole(connection).executeQuery());
 					} catch (SQLException e) {
 					e.printStackTrace();
+
+					session.setAttribute("errorMessage", e.toString());
+					response.sendRedirect("jsp/errorPage.jsp");
 					}
 					response.sendRedirect("jsp/coordinator/coordinatorUsers.jsp"); // change to URL mapping (hehe)
 					break;
@@ -687,6 +703,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
 						e.printStackTrace();
+
+						session.setAttribute("errorMessage", e.toString());
+						response.sendRedirect("jsp/errorPage.jsp");
 					}
 						response.sendRedirect("jsp/coordinator/coordinatorHome.jsp");// change to URL mapping (hehe)
 						break;
@@ -847,6 +866,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
 						e.printStackTrace();
+
+						session.setAttribute("errorMessage", e.toString());
+						response.sendRedirect("jsp/errorPage.jsp");
 					}
 						response.sendRedirect("jsp/participants/participantHome.jsp");// change to URL mapping (hehe)
 						break;
@@ -1068,6 +1090,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 							session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 						} catch (SQLException e) {
 							e.printStackTrace();
+							session.setAttribute("errorMessage", e.toString());
+							response.sendRedirect("jsp/errorPage.jsp");
 						}
 							response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
 					break;
@@ -1098,6 +1122,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
 						e.printStackTrace();
+						session.setAttribute("errorMessage", e.toString());
+						response.sendRedirect("jsp/errorPage.jsp");
 					}
 						response.sendRedirect("jsp/staff/staffHome.jsp");// change to URL mapping (hehe)
 						break;
