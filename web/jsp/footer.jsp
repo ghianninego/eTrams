@@ -1,6 +1,5 @@
 <footer class="footer">
 	<div class="footer-cont">
-		<p>Copyright © 2016 University of Santo Tomas. All Rights Reserved.</p>
-		<p></p>
+		<p>Copyright ï¿½ 2016 University of Santo Tomas. All Rights Reserved.</p>
 	</div>
 </footer>
