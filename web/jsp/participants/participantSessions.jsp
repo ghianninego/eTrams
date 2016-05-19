@@ -27,11 +27,11 @@
 	<%if(request.getParameter("flag") == null){} 
 		else if(request.getParameter("flag").equals("1")){ %>
 		<div class="row" >
-			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
+			<div class="alert alert-success alert-dismissible fade in failedDeactivation" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Unregister Successfully</strong> </b>
+				<b><strong>Unregister Successful.</strong> </b>
 			</div>
 		</div>
 	<% } else if(request.getParameter("flag").equals("2")){ %>
@@ -40,7 +40,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Register Successfully</strong> </b>
+				<b><strong>Register Successful.</strong> </b>
 			</div>
 		</div>
 	<%} %>
