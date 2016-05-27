@@ -1040,7 +1040,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("allParticipants", allParticipantAccounts);
 					session.setAttribute("sessionDetails", oneSession);
 					session.setAttribute("sessionParticipants", sessionParticipants);
-					response.sendRedirect("jsp/staff/staffManageCertification.jsp");
+					response.sendRedirect("jsp/staff/staffManageParticipants.jsp");
 					break;
 				case "goToStaffManageCertificationFromStaffSessions":
 					// retrieve participants
@@ -1054,7 +1054,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("sessionDetails", oneSession2);
 					session.setAttribute("sessionName", request.getParameter("sessionName"));
 					session.setAttribute("sessionParticipants", sessionParticipants2);
-					response.sendRedirect("jsp/staff/staffManageCertification.jsp");
+					response.sendRedirect("jsp/staff/staffManageParticipants.jsp");
 					break;
 				/// USER MANAGEMENT
 				case "staffUser": 
