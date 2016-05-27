@@ -39,7 +39,7 @@ public class SQLOperations
 	private static PreparedStatement updateSeminar;
 	private static PreparedStatement updateSeminarStatus;
 	private static PreparedStatement updateSession;
-	private static PreparedStatement updateSessionStatus , updateSessionStatus2;
+	private static PreparedStatement updateSessionStatus , updateSessionStatus2 , updateSessionStatus3 , updateSessionStatus4;
 	private static PreparedStatement updateTime;
 	private static PreparedStatement updateStatus;
 	private static PreparedStatement updateVenue;
@@ -70,7 +70,7 @@ public class SQLOperations
 	
 //-----------select SINGLE CHECK
  	private static PreparedStatement selectOneUserInfo;
-	private static PreparedStatement selectOneUserAccount;
+	private static PreparedStatement selectOneUserAccount ,selectOneUsername;
 	private static PreparedStatement selectOneSeminar;
 	private static PreparedStatement selectOneSession;
 	private static PreparedStatement selectOneAttendance;
@@ -335,6 +335,24 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		System.out.println("selectOne userAccountTable");         
 		return selectOneUserAccount;
 	}
+	
+	public synchronized static PreparedStatement selectOneUsername(Connection connection)
+	{
+		try 
+		{
+			if (selectOneUsername == null)
+				selectOneUsername = connection.prepareStatement("SELECT Count(accountID) FROM accountTable where username = ? and active = 0");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("selectOne userAccountTable_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("selectOne userAccountTable22");         
+		return selectOneUsername;
+	}
+	
+	
 	
 	public synchronized static PreparedStatement selectOneUserInfo(Connection connection)
 	{
@@ -1021,7 +1039,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateSessionStatus == null)
-				updateSessionStatus = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  EndTime < ?) OR  date < ? ");
+				updateSessionStatus = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  EndTime <  ?) OR  date < ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -1030,6 +1048,39 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		}
 		System.out.println("update updateSessionStatus");         
 		return updateSessionStatus;
+	}
+	
+	public synchronized static PreparedStatement updateSessionStatus4(Connection connection)
+	{
+		try 
+		{
+			if (updateSessionStatus4 == null)
+				updateSessionStatus4 = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND StartTime >=  ? AND  EndTime <=  ?)  ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update updateSessionStatus4_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update updateSessionStatus4");         
+		return updateSessionStatus4;
+	}
+	
+	
+	public synchronized static PreparedStatement updateSessionStatus3(Connection connection)
+	{
+		try 
+		{
+			if (updateSessionStatus3 == null)
+				updateSessionStatus3 = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  EndTime >  ?) OR  date > ? ");
+		} 
+		catch (SQLException e) 
+		{
+			System.err.println("update updateSessionStatus3_ERR");
+			e.printStackTrace();
+		}
+		System.out.println("update updateSessionStatus3");         
+		return updateSessionStatus3;
 	}
 	
 	public synchronized static PreparedStatement updateSessionStatus2(Connection connection)
@@ -1223,7 +1274,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countSessions == null)
-				countSessions = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ? and active >0");
+				countSessions = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ? and active> 0 ");
 		} 
 		catch (SQLException e) 
 		{
@@ -1239,7 +1290,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (countSessionsC == null)
-				countSessionsC = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ? and active >0  and completion > 0 ");
+				countSessionsC = connection.prepareStatement("SELECT COUNT(SessionID) FROM SessionTable WHERE SeminarID = ? and active > 0  and completion = 1 ");
 		} 
 		catch (SQLException e) 
 		{

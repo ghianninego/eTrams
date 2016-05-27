@@ -63,6 +63,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 				fub = UserClass.login(request, connection);
 				SeminarClass.completeSeminar(request, connection);
 				System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+				System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+				System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user", fub);
 				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -125,6 +127,8 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "editSession":
 					SessionClass.editSession(request, connection);
 					SessionClass.completeSession(request,connection);
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "deleteSession":
@@ -133,6 +137,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "goToAdminSession":
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
 					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
@@ -250,9 +257,14 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				/// USER MANAGEMENT
 				case "adminUser": 
+					String plag="";
 					if(request.getParameter("flag")==null){
 						session.setAttribute("allUser",UserClass.getAllUsers(request, connection));	
 					}
+					if(request.getParameter("F")!=null){
+						plag=request.getParameter("F");
+					}
+					
 					try {
 						session.setAttribute("college",SQLOperations.selectCollege(connection).executeQuery());
 						session.setAttribute("department",SQLOperations.selectDepartment(connection).executeQuery());
@@ -262,7 +274,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					session.setAttribute("errorMessage", e.toString());
 					response.sendRedirect("jsp/errorPage.jsp");
 					}
-					response.sendRedirect("jsp/admin/adminUsers.jsp"); // change to URL mapping (hehe)
+					response.sendRedirect("jsp/admin/adminUsers.jsp?plag="+plag); // change to URL mapping (hehe)
 					break;
 				case "adminManageUser": 
 					if(request.getParameter("flag")==null){
@@ -289,8 +301,12 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "adminAddUser": 
 					session.setAttribute("allUser", UserClass.getAllUsers(request, connection));
 					
-					UserClass.createUser(request, connection);
-					response.sendRedirect("dbcontrol?requestType=adminUser"); // change to URL mapping (hehe)
+					if(UserClass.createUser(request, connection)!=0){
+					response.sendRedirect("dbcontrol?requestType=adminUser&F=1"); // change to URL mapping (hehe)
+					}
+					else{
+						response.sendRedirect("dbcontrol?requestType=adminUser&F=0"); // change to URL mapping (hehe)
+						}
 					break;
 				case "adminEditPassword": 
 					session.setAttribute("oneUser",UserClass.getUserById(request, connection));
@@ -347,8 +363,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 						break;
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
@@ -480,7 +498,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("index.jsp");
 					break;
 				default:
-					
+					System.out.println("dumaan");
 					response.sendRedirect("jsp/errorPage.jsp");
 					break;
 			}
@@ -528,6 +546,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				case "goToCoordinatorSession":
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
 					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
@@ -722,7 +743,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
@@ -832,6 +855,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//////// sessions
 				case "goToSession":
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
+					
 					SeminarClass.completeSeminar(request, connection);
 					session.setAttribute("myAttendance" , UserClass.getMyAttendance(request, connection, fub));
 					ResultSet venues = VenueClass.retrieveVenues(connection);
@@ -861,7 +888,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {
@@ -927,6 +956,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				//////// sessions
 				case "goToStaffSession":
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
 					ResultSet speakers = SessionClass.retrieveCoordinators(connection);
@@ -1117,7 +1149,9 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
 					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					
+					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
+					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
+
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
 					} catch (SQLException e) {

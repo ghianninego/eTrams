@@ -28,7 +28,7 @@ public class SessionClass {
 		java.sql.Time endTime = java.sql.Time.valueOf(TimeDateConverterClass.convertToSQLTimeFormat(request.getParameter("sessionTimeOut")));
 		
  		//temporary seminar id and creator ID
-		SessionBean sb = (SessionBean)BeanFactory.getBean(0, seminarID, seminarName, venueID, venueRemarks, capacity, date, startTime, endTime, speakerID, 0, 1);
+		SessionBean sb = (SessionBean)BeanFactory.getBean(0, seminarID, seminarName, venueID, venueRemarks, capacity, date, startTime, endTime, speakerID, 2, 1);
 		
 		if (sb.storeToDatabase(connection) > 0)
 			return 1;
@@ -163,6 +163,55 @@ public class SessionClass {
 			ps.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
 			ps.setDate(4,  new java.sql.Date(new java.util.Date().getTime()));
 			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public static int upcomingSession(HttpServletRequest request, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.updateSessionStatus3(connection);
+		try
+		{
+			ps.setInt(1, 2);
+			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
+			ps.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+			ps.setDate(4,  new java.sql.Date(new java.util.Date().getTime()));
+			
+			if (ps.executeUpdate() > 0)
+			{
+				connection.commit();
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public static int ongoingSession(HttpServletRequest request, Connection connection)
+	{
+		PreparedStatement ps = SQLOperations.updateSessionStatus4(connection);
+		try
+		{
+			ps.setInt(1, 0);
+			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
+			ps.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+
 			if (ps.executeUpdate() > 0)
 			{
 				connection.commit();

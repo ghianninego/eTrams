@@ -28,6 +28,21 @@ public class UserClass {
 		int departmentId = Integer.parseInt(request.getParameter("departmentID"));
 		int roleId = Integer.parseInt(request.getParameter("roleID"));
 		int active = 1;
+		
+		try {
+			PreparedStatement p = SQLOperations.selectOneUsername(connection);
+			p.setString(1, username);
+			ResultSet rs = p.executeQuery();
+			rs.next();
+			if(rs.getInt(1) == 1) {
+				return 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		
 		UserInfoBean ub = (UserInfoBean) BeanFactory.getBean(0, lastName, firstName, middleName, departmentId,
 				collegeId);
 
