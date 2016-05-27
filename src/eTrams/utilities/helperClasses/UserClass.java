@@ -122,7 +122,7 @@ public class UserClass {
 
 	public static int editUserPassword(HttpServletRequest request, Connection connection) {
 		int accountId = Integer.parseInt(request.getParameter("accountId"));
-		//int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
+		int userInfoId = Integer.parseInt(request.getParameter("userInfoId"));
 		String password = request.getParameter("password");
 
 		int updated = 0;

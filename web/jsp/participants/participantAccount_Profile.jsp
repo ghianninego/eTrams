@@ -85,7 +85,7 @@
 									<div class="form-group">
 										<label for="New Password1" class="col-sm-4 control-label">Old Password</label>
 										<div class="col-sm-8">
-											<input type="password" class="form-control" id="password" placeholder="minimum of 6 characters" pattern=".{6,}" required />
+											<input type="password" class="form-control" id="password" name="oldPassword" placeholder="minimum of 6 characters" pattern=".{6,}" required />
 										</div>
 									</div>
 									
