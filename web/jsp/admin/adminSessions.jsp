@@ -141,8 +141,8 @@
 								</ul>
 							<% } else if (rs.getInt(11) == 2) { %>
 								<ul class="list-group">
-									<li class="list-group-item status ongoing">
-										<p><span>UPCOMMING</span></p>
+									<li class="list-group-item status upcoming">
+										<p><span>UPCOMING</span></p>
 									</li>
 									<li class="list-group-item">
 										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
@@ -167,7 +167,7 @@
 							<% } else { %>
 								
 								<ul class="list-group">
-									<li class="list-group-item status">
+									<li class="list-group-item status ongoing">
 										<p><span>ONGOING</span></p>
 									</li>
 									<li class="list-group-item">

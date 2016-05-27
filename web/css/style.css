@@ -145,13 +145,18 @@ small {
 	border: none;
 }
 
-.status p span {
+.status.ongoing p span {
 	color: #5FB404;
 	font-weight: bold;
 }
 
 .status.complete p span {
 	color: #0489B1;
+}
+
+.status p span {
+	color: #FFA500;
+	font-weight: bold;
 }
 
 .list-group-item {

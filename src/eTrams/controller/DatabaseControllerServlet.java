@@ -88,7 +88,7 @@ public class DatabaseControllerServlet extends HttpServlet {
 		}
 		else if (fub == null)
 		{
-			session.setAttribute("errorMessage", "You aren't logged in. Please log in");
+			session.setAttribute("errorMessage", "You aren't logged in. Please log in /n To login, click here: etramsne.jvmhost.net/eTrams");
 			response.sendRedirect("jsp/errorPage.jsp");
 		}
 		else if (fub.getRoleName().equals("Admin"))

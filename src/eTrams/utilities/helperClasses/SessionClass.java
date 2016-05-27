@@ -211,6 +211,7 @@ public class SessionClass {
 			ps.setInt(1, 0);
 			ps.setDate(2,  new java.sql.Date(new java.util.Date().getTime()));
 			ps.setString(3, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+			ps.setString(4, new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
 
 			if (ps.executeUpdate() > 0)
 			{

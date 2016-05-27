@@ -62,9 +62,11 @@ $(document).ready(function() {
               speaker: ' <%=eBean.get(i).getSpeakerName()%> ',
               status:
             	  <%if(eBean.get(i).getCompletion() == 1){%>'Completed'
+            	  <%} else if(eBean.get(i).getCompletion() == 2){%> 'Upcoming'
             	  <%} else if(eBean.get(i).getCompletion() == 0){%>'Ongoing'<%}%>,
               color: 
             	  <%if(eBean.get(i).getCompletion() == 1){%>'#0489B1'
+            	  <%} else if(eBean.get(i).getCompletion() == 2){%>'#FFA500'
             	  <%} else if(eBean.get(i).getCompletion() == 0){%>'#5FB404'<%}%>
             	  
           	}
@@ -86,9 +88,11 @@ $(document).ready(function() {
             speaker: ' <%=eBean.get(i).getSpeakerName()%> ',
             status:
             	<%if(eBean.get(i).getCompletion() == 1){%>'Completed'
+        	  	<%} else if(eBean.get(i).getCompletion() == 2){%>'Upcoming'
         	  	<%} else if(eBean.get(i).getCompletion() == 0){%>'Ongoing'<%}%>,
             color:
             	<%if(eBean.get(i).getCompletion() == 1){%>'#0489B1'
+            	<%} else if(eBean.get(i).getCompletion() == 2){%>'#FFA500'
             	<%} else if(eBean.get(i).getCompletion() == 0){%>'#5FB404'<%}%>
           	  
         	},

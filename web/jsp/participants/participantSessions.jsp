@@ -161,8 +161,8 @@
 								</ul>
 							<% } else if (rs.getInt(11) == 2) { %>
 								<ul class="list-group">
-									<li class="list-group-item status ongoing">
-										<p><span>UPCOMMING</span></p>
+									<li class="list-group-item status">
+										<p><span>UPCOMING</span></p>
 									</li>
 									<li class="list-group-item">
 										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
@@ -172,22 +172,20 @@
 			  								<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
 											<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
-  										">More Info</button> &bull; 
-  										<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
-  										 &bull; 
-  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+  										">More Info</button>
 									</li>
 									<li class="list-group-item setting1">
-  										<a href="../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
-									</li>
-									<li class="list-group-item setting2">
-										<a href="../../dbcontrol?requestType=goToAdminManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
+										<% if (isMember) { %>
+  											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="0">Unregister</a>
+  										<%  } else { %>
+  											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="1">Register</a>
+										<% } %>
 									</li>
 								</ul>
 							<% } else { %>
 								
 								<ul class="list-group">
-									<li class="list-group-item status">
+									<li class="list-group-item status ongoing">
 										<p><span>ONGOING</span></p>
 									</li>
 									<li class="list-group-item">

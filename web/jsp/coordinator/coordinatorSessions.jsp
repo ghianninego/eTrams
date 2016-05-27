@@ -135,8 +135,8 @@
 							
 							<% } else if (rs.getInt(11) == 2) { %>
 								<ul class="list-group">
-									<li class="list-group-item status ongoing">
-										<p><span>UPCOMMING</span></p>
+									<li class="list-group-item status">
+										<p><span>UPCOMING</span></p>
 									</li>
 									<li class="list-group-item">
 										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
@@ -146,22 +146,19 @@
 			  								<p><strong>Venue:</strong> <%=rs.getString(4)%> <em><%=rs.getString(5)%></em>
 											<p><strong>Speaker:</strong> <%=rs.getString(13)%>, <%=rs.getString(14)%> <%=rs.getString(15)%></p>
 											<p><strong>Capacity:</strong> <%=rs.getInt(6)%></p>
-  										">More Info</button> &bull; 
-  										<button class="btn btn-link" data-toggle="modal" data-target="#editSessionModal" data-sid="<%= rs.getInt(1)%>">Edit</button>
-  										 &bull; 
-  										<button class="btn btn-link" data-toggle='modal' data-target='#deleteModal' data-sid="<%= rs.getInt(1)%>">Delete</button>
+  										">More Info</button>
 									</li>
 									<li class="list-group-item setting1">
-  										<a href="../../dbcontrol?requestType=goToAdminManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 									<li class="list-group-item setting2">
-										<a href="../../dbcontrol?requestType=goToAdminManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
+										<a href="../../dbcontrol?requestType=goToCoordinatorManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
 									</li>
 								</ul>
 							<% } else { %>
 								
 								<ul class="list-group">
-									<li class="list-group-item status">
+									<li class="list-group-item status ongoing">
 										<p><span>ONGOING</span></p>
 									</li>
 									<li class="list-group-item">
@@ -203,12 +200,174 @@
 					<!-- End of Announcements pagination -->
 					
 					<% } %>
+					<br>
+					<div class="someButton">
+						<button type="button" class="btn btn-yellow" data-toggle="modal"
+							data-target="#sessionModal">
+							<span class="glyphicon glyphicon-plus"></span> New Session
+						</button>
+					</div>
 				</div>
 				<!-- End of Content -->
 
 			</div>
 		</div>
-	</div>
+	</div><!-- End of Content -->
+
+				<!-- Modals -->
+				<!--  CREATE SESSION MODAL -->
+				<div class="modal fade sessionModal" id="sessionModal" tabindex="-1"
+					role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="gridSystemModalLabel">New
+									Session</h4>
+							</div>
+							<form class="form-horizontal" action="../../dbcontrol"
+								method="post">
+								<div class="modal-body">
+
+									<!-- Session Name -->
+									<div class="form-group">
+										<label for="Session Name" class="col-sm-2 control-label">Session
+											Name</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="sessionName"
+												name="sessionName" placeholder="Session Name" required />
+										</div>
+									</div>
+
+									<!-- Session Date -->
+									<div class="form-group">
+										<label for="Session Date" class="col-sm-2 control-label">Date</label>
+										<div class="col-sm-10">
+											<div class="bfh-datepicker" date-close="false"
+												id="sessionDate" data-name="sessionDate" data-min="today"></div>
+										</div>
+									</div>
+
+									<!-- Session Time -->
+									<div class="form-group">
+										<label for="Session Time In" class="col-sm-2 control-label">Start
+											Time</label>
+										<div class="col-sm-4">
+											<div class="bfh-timepicker" data-mode="12h"
+												id="sessionTimeIn" data-time="6:00 AM" data-name="sessionTimeIn"></div>
+										</div>
+										<label for="Session Time Out" class="col-sm-2 control-label">End
+											Time</label>
+										<div class="col-sm-4">
+											<div class="bfh-timepicker" data-mode="12h"
+												id="sessionTimeOut" data-name="sessionTimeOut"></div>
+										</div>
+									</div>
+
+									<!-- Session Venue -->
+									<div class="form-group">
+										<label for="Session Venue" class="col-sm-2 control-label">Venue</label>
+										<div class="col-sm-10">
+											
+											<select class="form-control" id="sessionVenue" name="sessionVenue" required>
+					            				<option class="hidden" disabled selected> -- select an option -- </option>
+					            				<%while (rs2.next()) {%>
+												<option value="<%=rs2.getInt(1)%>"><%=rs2.getString(2)%></option>
+												<%}
+													rs2.first();
+													rs2.previous();
+												%>
+					            			</select>
+											<!--
+											<div class="bfh-selectbox" data-name="sessionVenue"
+												id="sessionVenue" data-value="" data-filter="true">
+												<%
+													while (rs2.next()) {
+												%>
+												<div data-value="<%=rs2.getInt(1)%>"><%=rs2.getString(2)%></div>
+												<%
+													}
+													rs2.first();
+													rs2.previous();
+												%>
+												USE <div data-value="(value)">(NAME)</div> instead of <option> tags
+											</div>-->
+											
+											
+										</div>	
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<textarea class="form-control" id="venueRemarks"
+												name="venueRemarks" placeholder="Venue Remarks" rows="3"></textarea>
+										</div>
+									</div>
+
+									<!-- Capacity -->
+									<div class="form-group">
+										<label for="Capacity" class="col-sm-2 control-label">Capacity</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control" name="capacity"
+												id="capacity" placeholder="Number of Participants allowed"
+												required min="0"/>
+										</div>
+									</div>
+
+									<!-- Speaker -->
+									<div class="form-group">
+										<label for="Session Speaker" class="col-sm-2 control-label">Speaker</label>
+										<div class="col-sm-10">
+										
+											<select class="form-control" id="sessionSpeaker" name="sessionSpeaker" required>
+					            				<option class="hidden" disabled selected> -- select an option -- </option>
+					            				<%
+													while (rs3.next()) {
+												%>
+												<option value="<%=rs3.getInt(1)%>"><%=rs3.getString(2)%>,
+													<%=rs3.getString(3)%>
+													<%=rs3.getString(4)%></option>
+												<%
+													}
+													rs3.first();
+													rs3.previous();
+												%>
+					            			</select>
+										
+										<!-- <div class="bfh-selectbox" data-name="sessionSpeaker"
+												id="sessionSpeaker" data-filter="true" >
+												<%
+													while (rs3.next()) {
+												%>
+												<div data-input="hidden" data-value="<%=rs3.getInt(1)%>"><%=rs3.getString(2)%>,
+													<%=rs3.getString(3)%>
+													<%=rs3.getString(4)%></div>
+												<%
+													}
+													rs3.first();
+													rs3.previous();
+												%>
+												<!-- USE <div data-value="(value)">(NAME)</div> instead of <option> tags
+											</div> -->
+										</div>
+									</div>
+
+								</div>
+								<input type="hidden" name="requestType" value="createSession" />
+								<input type="hidden" name="seminarID"
+									value="<%=session.getAttribute("seminarID")%>" />
+								<div class="modal-footer">
+									<button type="submit" onclick="return checkSelect('sessionModal')"
+										class="btn btn-yellow pull-left">Submit</button>
+									<button type="button" class="btn btn-gray pull-left"
+										data-dismiss="modal">Cancel</button>
+								</div>
+						</form>
+						</div>
+					</div>
+				</div>
 	<!-- End of Container -->
 
 	<!-- Footer -->
