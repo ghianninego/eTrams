@@ -127,7 +127,7 @@
 										<p><span>COMPLETE</span></p>
 									</li>
 								<% } else { %>
-									<li class="list-group-item status">
+									<li class="list-group-item status ongoing">
 										<p><span>ONGOING</span></p>
 									</li>
 								<% } %>
