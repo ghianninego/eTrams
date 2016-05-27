@@ -161,7 +161,7 @@
 								</ul>
 							<% } else if (rs.getInt(11) == 2) { %>
 								<ul class="list-group">
-									<li class="list-group-item status">
+									<li class="list-group-item status upcoming">
 										<p><span>UPCOMING</span></p>
 									</li>
 									<li class="list-group-item">

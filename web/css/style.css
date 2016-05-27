@@ -152,6 +152,7 @@ small {
 
 .status.complete p span {
 	color: #0489B1;
+	font-weight: bold;
 }
 
 .status.upcoming p span {
