@@ -154,7 +154,7 @@ small {
 	color: #0489B1;
 }
 
-.status p span {
+.status.upcoming p span {
 	color: #FFA500;
 	font-weight: bold;
 }

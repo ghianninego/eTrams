@@ -119,11 +119,14 @@
 						
 					</div>
 			 		<!-- End of Content -->
-			 		<%}else if (rs.getInt(11) == 2) 
-					{
-					%>
+			 		
+			 		<% } else { %>
+			 		
+			 		<!-- For Ongoing/Unfinished Sessions -->
+			 		<!-- Content -->
+			 					 		
 			 		<div class="content">
-			 			
+						
 			 			<div class="row options">
 			 				<!-- Filter Data -->
 							<div class="col-sm-2">
@@ -142,64 +145,6 @@
 							</div>
 							<!-- End of Filter -->
 						</div>
-						
-						<br>
-  						<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>College/Faculty/Institute</th>
-									<th>Time In</th>
-									<th>Time Out</th>
-									<th>Status</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody id="dataValues">
-								<%
-									while(rs2.next())
-									{
-										String timeIn = format.format(rs2.getTime(4));
-										String timeOut = format.format(rs2.getTime(5));
-										
-										if (timeIn.equals("12:00 AM"))
-										{
-											timeIn = "00:00:00";
-										}
-										
-										if (timeOut.equals("12:00 AM"))
-										{
-											timeOut = "00:00:00";
-										}
-								%>
-								<tr>
-									<td><%= certParticipants %></td>
-									<td><%= rs2.getString(9) %>, <%= rs2.getString(10) %> <%=rs2.getString(11) %></td>
-									<td><%= rs2.getString(12) %></td>
-									<td><%= timeIn %></td>
-									<td><%= timeOut %></td>
-									<td><a href="#" data-toggle="modal" data-target="#setStatusModal" data-attendanceid="<%=rs2.getInt(1)%>" data-status="<%=rs2.getString(6) %>">
-			 							<%=rs2.getString(6) %>
-			 						</a></td>
-									<td><a href="" data-toggle="modal" data-target="#attendanceModal" data-attendanceid="<%=rs2.getInt(1) %>" data-timein="<%=timeIn%>" data-timeout="<%=timeOut%>">Set Attendance</a></td>			
-								</tr>
-								
-								<% 	
-									certParticipants++;	}
-									rs2.first(); rs2.previous();
-								%>
-							</tbody>
-						</table>
-						
-					</div>
-			 		<% } else { %>
-			 		
-			 		<!-- For Ongoing/Unfinished Sessions -->
-			 		<!-- Content -->			 		
-			 		<div class="content">
-						<br>
-						
 			 			<table class="table table-condensed table-striped table-hover" data-toggle="table" data-pagination="true">
 							<thead>
 								<tr>
