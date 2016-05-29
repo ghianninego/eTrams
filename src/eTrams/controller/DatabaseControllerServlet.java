@@ -53,6 +53,10 @@ public class DatabaseControllerServlet extends HttpServlet {
 		String requestType = request.getParameter("requestType");
 		session = request.getSession(false);
 		FinalUserBean fub = (FinalUserBean)session.getAttribute("user");
+		if (connection == null)
+		{
+			connection = (Connection)getServletContext().getAttribute("connectionDAO");
+		}
 		
 		if (requestType.equals("login"))
 		{
@@ -495,11 +499,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "logout":
 					session.invalidate();
 					session = null;
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
 					response.sendRedirect("index.jsp");
 					break;
 				default:

@@ -44,6 +44,9 @@
 						<!-- Login Form-->
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
+								<noscript><h4>Please enable Javascript to access the system.</h4></noscript>
+							</div>
+							<div class="hidden col-sm-6 col-sm-offset-3" id="loginForm">
 								<form class="form login" action="dbcontrol" method="post">
 									<input type="hidden" value="login" name="requestType">
 									<div class="form-group">
@@ -71,4 +74,8 @@
 			</div>
 			
 	</body>
+	
+	<script>
+			$("#loginForm").removeClass("hidden");
+	</script>
 </html>

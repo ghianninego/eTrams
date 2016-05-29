@@ -4,7 +4,7 @@ $(document).ready(function () {
 	
 	$('#fltrbtn').text('SELECT ALL FROM THIS COLLEGE ONLY');
 	
-	var pname = $('#pNames').map(function(i) {
+	var pname = $('#addedContent #pNames').map(function(i) {
 	    return [$.map($(this).data(), function(v) {
 	        return v;
 	    })];
@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 function refilter(){
-	var pname = $('#pNames').map(function(i) {
+	var pname = $('#addedContent #pNames').map(function(i) {
 	    return [$.map($(this).data(), function(v) {
 	        return v;
 	    })];
@@ -27,9 +27,8 @@ function filterNames(pname){
 	    	return $('#pvalues').data('pname') === pname.get();
 	    }).remove();*/
 	
-		$('tr[id="pvalues"]').each(function(){
+		$('tr[id="pvalues"').each(function(){
 			for(var i=0;i<pname.length;i++){
-
 			if($(this).data('pname') == pname[i]){
 				$(this).remove();
 			}

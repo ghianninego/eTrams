@@ -5,7 +5,6 @@
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta charset="UTF-8">

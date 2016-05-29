@@ -18,7 +18,19 @@ function checkSelect(dataID){
 		$('#' + dataID + ' #sessionTimeIn').val("6:00 AM");
 		return false;
 	}
-
+	
+	if(timeIn > new Date(Date.parse('2000/01/01 ' + "8:00 PM"))){
+		alert("Time In cannot be later than 8:00 pm");
+		$('#' + dataID + ' #sessionTimeIn').val("8:00 PM");
+		return false;
+	}
+	
+	if(timeOut > new Date(Date.parse('2000/01/01 ' + "8:00 PM"))){
+		alert("Time Out cannot be later than 8:00 pm");
+		$('#' + dataID + ' #sessionTimeOut').val("8:00 PM");
+		return false;
+	}
+	
 	if(timeIn >= timeOut){
 		alert("Time Out cannot be earlier or same as the Time In");
 		return false;
