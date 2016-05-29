@@ -21,21 +21,14 @@
 	</head>
 	
 	<body>
-				
-		<!-- Header -->
-		<%@ include file= "adminHeader.jsp" %>
-		<!-- End of Header -->
-				
-		<!-- Container -->
-		<div class="container">
-	<%if(request.getParameter("plag") == null){} 
+        <%if(request.getParameter("plag") == null){} 
 			else if(request.getParameter("plag").equals("0")){ %>
 		<div class="row" >
 			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>username EXISTED!</strong> </b>
+				<b><strong>Username already exists.</strong> </b>
 			</div>
 		</div>
 		<% } else if(request.getParameter("plag").equals("1")){ %>
@@ -44,10 +37,17 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Successfully Added.</strong> </b>
+				<b><strong>Successfully added new user.</strong> </b>
 			</div>
 		</div>
 		<%} %>
+				
+		<!-- Header -->
+		<%@ include file= "adminHeader.jsp" %>
+		<!-- End of Header -->
+				
+		<!-- Container -->
+		<div class="container">
 		 	<div class="row">
 			 	<div class="col-md-12">
 			 		<h1 class="page-header">All Users</h1>
@@ -175,7 +175,7 @@
             				<option class="hidden" disabled selected> -- select an option -- </option>
             				<%while(college.next()){ %>
             				<option value="<%=college.getString("collegeID") %>"><%=college.getString("collegeName") %> </option>
-            				<%} %>
+            				<%} college.first();college.previous();%>
             			</select>
             		</div>
             	</div>
@@ -188,7 +188,7 @@
             				<option class="hidden" disabled selected></option>
             				<%while(department.next()){ %>
             				<option id="<%=department.getString("collegeID") %>" value="<%=department.getString("departmentID") %>"><%=department.getString("departmentName") %> </option>
-            				<%} %>
+            				<%}department.first();department.previous(); %>
             			</select>
             		</div>
             	</div>
@@ -197,8 +197,10 @@
             	<div class="form-group">
             		<label for="Role" class="col-sm-2 control-label">User Type</label>
             		<div class="col-sm-9">
-            			<div class="bfh-selectbox" data-name="roleID" id="role" data-value="--">
+            			<div class="bfh-selectbox" data-name="roleID" id="role">
+            				<div data-value="--">Select an option</div>
             				<%while(role.next()){ %>
+            				
             				<div data-value="<%=role.getString("roleID") %>"><%=role.getString("roleName") %> </div>
             				<%} role.first();role.previous();%>
             			</div>
