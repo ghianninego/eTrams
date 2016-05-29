@@ -341,7 +341,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (selectOneUsername == null)
-				selectOneUsername = connection.prepareStatement("SELECT Count(accountID) FROM accountTable where username = ? and active = 0");
+				selectOneUsername = connection.prepareStatement("SELECT Count(accountID) FROM AccountTable where username = ? and active = 0");
 		} 
 		catch (SQLException e) 
 		{
