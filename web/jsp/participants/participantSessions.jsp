@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.Connection" %>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="eTrams.utilities.helperClasses.TimeDateConverterClass" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="eTrams.utilities.helperClasses.ManageParticipantsClass" %>
 <!DOCTYPE html>
 
 <html>
@@ -199,11 +201,24 @@
   										">More Info</button>
   									</li>
 									<li class="list-group-item setting1">
+									
+									<% 
+										Connection connection = (Connection) session.getAttribute("connection");
+										if (ManageParticipantsClass.countSessionParticipants(rs.getInt(1), connection) < rs.getInt(6))
+										{	
+									%>	
 										<% if (isMember) { %>
   											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="0">Unregister</a>
   										<%  } else { %>
   											<a href="#" data-toggle="modal" data-target="#registrationModal" data-sessionid="<%= rs.getInt(1)%>" data-register="1">Register</a>
 										<% } %>
+									<%
+										} else {
+									%>
+											<a href="#">Registration prohibited. <br> Session is already full.</a>
+									<%
+										}
+									%>
 									</li>
 								</ul>
 							<% } %>

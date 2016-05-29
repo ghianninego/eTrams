@@ -149,10 +149,10 @@
   										">More Info</button>
 									</li>
 									<li class="list-group-item setting1">
-  										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
+  										<a href="../../dbcontrol?requestType=goToCoordinatorManageParticipantsFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Participants</a>
 									</li>
 									<li class="list-group-item setting2">
-										<a href="../../dbcontrol?requestType=goToCoordinatorManageCertificationFromAdminSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
+										<a href="../../dbcontrol?requestType=goToCoordinatorManageCertificationFromCoordinatorSessions&sessionID=<%=rs.getInt(1)%>&sessionName=<%=rs.getString(3)%>">Manage Certification</a>
 									</li>
 								</ul>
 							<% } else { %>

@@ -126,11 +126,26 @@
 									<li class="list-group-item status complete">
 										<p><span>COMPLETE</span></p>
 									</li>
+									
+									<li class="list-group-item status">
+										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
+									</li>
+									<li class="list-group-item">
+										<button class="btn btn-link" data-toggle="popover" data-trigger="focus" data-html="true" 
+												data-placement="bottom" data-content="
+											<p><strong>Description:</strong></p>
+											<p><%=rs.getString(4)%></p>
+  										">More Info</button>
+									</li>
+									<li class="list-group-item setting1">
+  										<a href="../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>">View Sessions</a>
+									</li>
+									
 								<% } else { %>
 									<li class="list-group-item status ongoing">
 										<p><span>ONGOING</span></p>
 									</li>
-								<% } %>
+									
 									<li class="list-group-item status">
 										<p><strong>Date Created:</strong> <%=TimeDateConverterClass.convertToStringDate(editDate)%><br></p>
 									</li>
@@ -147,6 +162,7 @@
 									<li class="list-group-item setting1">
   										<a href="../../dbcontrol?requestType=goToAdminSession&seminarID=<%=rs.getInt(1)%>&seminarName=<%=rs.getString(3)%>">View Sessions</a>
 									</li>
+								<% } %>
 								</ul>
 							</div>
 						</div>
