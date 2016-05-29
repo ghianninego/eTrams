@@ -175,7 +175,7 @@
             				<option class="hidden" disabled selected> -- select an option -- </option>
             				<%while(college.next()){ %>
             				<option value="<%=college.getString("collegeID") %>"><%=college.getString("collegeName") %> </option>
-            				<%} %>
+            				<%} college.first();college.previous();%>
             			</select>
             		</div>
             	</div>
@@ -188,7 +188,7 @@
             				<option class="hidden" disabled selected></option>
             				<%while(department.next()){ %>
             				<option id="<%=department.getString("collegeID") %>" value="<%=department.getString("departmentID") %>"><%=department.getString("departmentName") %> </option>
-            				<%} %>
+            				<%}department.first();department.previous(); %>
             			</select>
             		</div>
             	</div>
@@ -197,8 +197,10 @@
             	<div class="form-group">
             		<label for="Role" class="col-sm-2 control-label">User Type</label>
             		<div class="col-sm-9">
-            			<div class="bfh-selectbox" data-name="roleID" id="role" data-value="--">
+            			<div class="bfh-selectbox" data-name="roleID" id="role">
+            				<div data-value="--">Select an option</div>
             				<%while(role.next()){ %>
+            				
             				<div data-value="<%=role.getString("roleID") %>"><%=role.getString("roleName") %> </div>
             				<%} role.first();role.previous();%>
             			</div>
