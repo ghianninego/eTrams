@@ -7,7 +7,7 @@ public interface SqlComsForExcelGen {
 			 " FROM AccountTable, DepartmentTable, CollegeTable, UserInfoTable  "  +
 			 " WHERE   "  +
 			 " UserInfoTable.UserInfoID = AccountTable.UserInfoID " +
-			 " AND userinfotable.departmentid = departmenttable.departmentid " +
+			 " AND UserInfoTable.departmentid = DepartmentTable.departmentid " +
 			 " AND CollegeTable.CollegeID = DepartmentTable.collegeID  "  +
 			 " AND (AccountTable.RoleID = ? AND AccountTable.Active = ?) " ;
 	
@@ -20,7 +20,7 @@ public interface SqlComsForExcelGen {
 			" FROM AccountTable, DepartmentTable, CollegeTable, UserInfoTable  "  +
 			" WHERE   "  +
 			" UserInfoTable.UserInfoID = AccountTable.UserInfoID " +
-			" AND userinfotable.departmentid = departmenttable.departmentid " +
+			" AND UserInfoTable.departmentid = DepartmentTable.departmentid " +
 			" AND CollegeTable.CollegeID = DepartmentTable.collegeID  "  +
 			" AND (AccountTable.RoleID = ? AND AccountTable.Active = ?) " ;
 	
@@ -30,23 +30,23 @@ public interface SqlComsForExcelGen {
 			 " where Active = ? " ;
 	
 	String count_user =
-			 " select MAX(accountid) from accountTable " ;
+			 " select MAX(accountid) from AccountTable " ;
 	
 	String count_session_total = 
 			 " select MAX(SessionID) from SessionTable " ;
 
 	String member = 
-			"select * from accounttable where accountid = ? and roleid = ?";
+			"select * from AccountTable where accountid = ? and roleid = ?";
 	
 	String member2 = 
-			"select * from sessiontable where sessionid = ?";
+			"select * from SessionTable where sessionid = ?";
 	
 	String member3 = 
-			" select * from sessiontable where sessionid = ? and active = ? " +
+			" select * from SessionTable where sessionid = ? and active = ? " +
 			" and EXTRACT(month from date) = ? "; 
 	
 	String member4 = 
-			" select * from sessiontable where sessionid = ? and active = ? and "
+			" select * from SessionTable where sessionid = ? and active = ? and "
 			+ "EXTRACT(month from date) between ? and ?";
 	
 	String count_session_monthly =  
@@ -183,7 +183,7 @@ public interface SqlComsForExcelGen {
 			 " where " +
 			 " AttendanceTable.participantid = AccountTable.accountid    " +
 			 " and SessionTable.sessionID = AttendanceTable.SessionID    " +
-			 " and SessionTable.seminarid = seminartable.seminarid " +
+			 " and SessionTable.seminarid = SeminarTable.seminarid " +
 			 " and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) = ? and SessionTable.Active = ?) ";
 	
 	String attendee_count_perterm = 
@@ -191,7 +191,7 @@ public interface SqlComsForExcelGen {
 			" where    " +
 			" AttendanceTable.participantid = AccountTable.accountid    " +
 			" and SessionTable.sessionID = AttendanceTable.SessionID    " +
-			" and SessionTable.seminarid = seminartable.seminarid " +
+			" and SessionTable.seminarid = SeminarTable.seminarid " +
 			" and(AttendanceTable.sessionID = ? and EXTRACT(MONTH FROM SessionTable.date) between ? and ? and SessionTable.Active = ?) " ;
 
 }
