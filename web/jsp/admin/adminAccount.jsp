@@ -26,7 +26,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Password Mismatch!</strong> </b>
+				<b><strong>Password mismatch!</strong> </b>
 			</div>
 		</div>
 		<% } else if(request.getParameter("flag").equals("1")){ %>
@@ -35,7 +35,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Password Successfully Changed.</strong> </b>
+				<b><strong>Password successfully changed.</strong> </b>
 			</div>
 		</div>
 		<%} else if(request.getParameter("flag").equals("2")){ %>
@@ -44,7 +44,7 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Information Successfully Changed.</strong> </b>
+				<b><strong>Information successfully changed.</strong> </b>
 			</div>
 		</div>
 		<%} %>

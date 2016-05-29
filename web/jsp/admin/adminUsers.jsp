@@ -21,21 +21,14 @@
 	</head>
 	
 	<body>
-				
-		<!-- Header -->
-		<%@ include file= "adminHeader.jsp" %>
-		<!-- End of Header -->
-				
-		<!-- Container -->
-		<div class="container">
-	<%if(request.getParameter("plag") == null){} 
+        <%if(request.getParameter("plag") == null){} 
 			else if(request.getParameter("plag").equals("0")){ %>
 		<div class="row" >
 			<div class="alert alert-danger alert-dismissible fade in failedDeactivation" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>username EXISTED!</strong> </b>
+				<b><strong>Username already exists.</strong> </b>
 			</div>
 		</div>
 		<% } else if(request.getParameter("plag").equals("1")){ %>
@@ -44,10 +37,17 @@
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<b><strong>Successfully Added.</strong> </b>
+				<b><strong>Successfully added new user.</strong> </b>
 			</div>
 		</div>
 		<%} %>
+				
+		<!-- Header -->
+		<%@ include file= "adminHeader.jsp" %>
+		<!-- End of Header -->
+				
+		<!-- Container -->
+		<div class="container">
 		 	<div class="row">
 			 	<div class="col-md-12">
 			 		<h1 class="page-header">All Users</h1>
