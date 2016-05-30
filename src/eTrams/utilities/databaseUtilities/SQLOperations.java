@@ -1039,7 +1039,7 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateSessionStatus == null)
-				updateSessionStatus = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  EndTime <  ? AND StartTime < ?) OR  date < ? ");
+				updateSessionStatus = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  EndTime <  ? ) OR  date < ? ");
 		} 
 		catch (SQLException e) 
 		{
@@ -1072,12 +1072,11 @@ public synchronized static PreparedStatement selectOneCollege(Connection connect
 		try 
 		{
 			if (updateSessionStatus3 == null)
-				updateSessionStatus3 = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  StartTime >  ? AND endTime > ?) OR  date > ? ");
+				updateSessionStatus3 = connection.prepareStatement("UPDATE SessionTable  SET completion = ?  WHERE (date = ? AND  StartTime > ? ) OR  date > ? ");
 		} 
 		catch (SQLException e) 
 		{
 			System.err.println("update updateSessionStatus3_ERR");
-			e.printStackTrace();
 		}
 		System.out.println("update updateSessionStatus3");         
 		return updateSessionStatus3;

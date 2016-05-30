@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,6 +54,16 @@ public class DatabaseControllerServlet extends HttpServlet {
 		String requestType = request.getParameter("requestType");
 		session = request.getSession(false);
 		FinalUserBean fub = (FinalUserBean)session.getAttribute("user");
+		
+		System.out.println(new java.sql.Date(new java.util.Date().getTime()));
+		System.out.println(new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+		System.out.println(new SimpleDateFormat("HH:mm:ss").format(new java.util.Date()));
+		System.out.println(new java.sql.Date(new java.util.Date().getTime()));
+		
+		System.out.println("SESSIONCom  " + SessionClass.completeSession(request, connection));
+		System.out.println("SESSIONUp  " + SessionClass.upcomingSession(request, connection));
+		System.out.println("SESSIONOn  " + SessionClass.ongoingSession(request, connection));
+		
 		if (connection == null)
 		{
 			connection = (Connection)getServletContext().getAttribute("connectionDAO");
@@ -66,9 +77,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 				
 				fub = UserClass.login(request, connection);
 				SeminarClass.completeSeminar(request, connection);
-				System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-				System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-				System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 				session.setAttribute("eventsList",CalendarClass.selectData(request, connection));
 				session.setAttribute("user", fub);
 				session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -131,7 +139,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 				case "editSession":
 					SessionClass.editSession(request, connection);
 					SessionClass.completeSession(request,connection);
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
 
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
@@ -140,9 +147,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("dbcontrol?requestType=goToAdminSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "goToAdminSession":
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
@@ -367,9 +371,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 						break;
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
 
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -549,9 +550,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 					response.sendRedirect("dbcontrol?requestType=goToCoordinatorSessionFromAction&seminarID="+session.getAttribute("seminarID"));
 					break;
 				case "goToCoordinatorSession":
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
@@ -746,9 +744,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 						break;
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
 
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -858,9 +853,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				//////// sessions
 				case "goToSession":
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 
 					
 					SeminarClass.completeSeminar(request, connection);
@@ -892,9 +884,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 		
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
 
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
@@ -960,9 +949,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 					break;
 				//////// sessions
 				case "goToStaffSession":
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 
 					SeminarClass.completeSeminar(request, connection);
 					ResultSet venues = VenueClass.retrieveVenues(connection);
@@ -1153,9 +1139,6 @@ public class DatabaseControllerServlet extends HttpServlet {
 						break;
 				case  "home":
 					SeminarClass.completeSeminar(request, connection);
-					System.out.println("SESSION  " + SessionClass.completeSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.upcomingSession(request, connection));
-					System.out.println("SESSION  " + SessionClass.ongoingSession(request, connection));
 
 					try {
 						session.setAttribute("announcement",SQLOperations.selectAnnouncement(connection).executeQuery());
